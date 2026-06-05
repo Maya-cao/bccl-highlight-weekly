@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R12W Daily Review – 05/06/2026</title>
+<style>
+:root{--bg:#f1f5f9;--card:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
+
+.topbar{background:#0f172a;color:#fff;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200}
+.topbar-title{font-size:16px;font-weight:700;letter-spacing:.3px}
+.topbar-meta{font-size:12px;color:#94a3b8;display:flex;gap:16px;align-items:center}
+.topbar-badge{background:#1e3a5f;color:#93c5fd;padding:2px 10px;border-radius:12px;font-size:11px}
+
+.container{max-width:1100px;margin:0 auto;padding:20px 16px;display:flex;flex-direction:column;gap:20px}
+
+/* Alert strip */
+.alert-strip{background:#fff;border-radius:12px;padding:14px 18px;display:flex;flex-wrap:wrap;gap:8px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.alert-item{padding:5px 12px;border-radius:20px;font-size:13px;font-weight:500}
+.alert-red{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+.alert-yel{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+.alert-grn{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+
+/* Cards */
+.card{background:var(--card);border-radius:12px;padding:20px 24px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.sec-title{font-size:17px;font-weight:700;color:#1e293b;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.subsec{margin-bottom:20px}
+.subsec h3{font-size:14px;font-weight:600;color:#374151;margin-bottom:12px;padding:6px 10px;background:#f8fafc;border-radius:6px;border-left:3px solid #6366f1}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px}
+.kpi-grid.small .kpi-card{padding:10px 14px}
+.kpi-card{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:14px 18px;text-align:center}
+.kpi-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.kpi-val{font-size:22px;font-weight:700;color:#1e293b}
+.kpi-grid.small .kpi-val{font-size:18px}
+.prev-note{font-size:10px;color:#94a3b8;margin-top:2px}
+
+/* Delta */
+.delta{font-size:12px;font-weight:600;margin-left:4px}
+
+/* Bar */
+.bar-bg{background:#f1f5f9;border-radius:4px;overflow:hidden;margin-bottom:3px}
+.bar-fill{height:100%;border-radius:4px;transition:width .3s}
+
+/* Table */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:#f8fafc;padding:8px 10px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);border-bottom:2px solid var(--border)}
+tbody td{padding:8px 10px;border-bottom:1px solid #f1f5f9}
+tbody tr:hover td{background:#fafbfc}
+tbody tr.row-red td{background:#fff5f5}
+tbody tr.row-yel td{background:#fffbeb}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.trend-cell{font-size:11px;color:#94a3b8;white-space:nowrap}
+.trend-text{font-family:monospace}
+
+/* Badges */
+.badge{font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px}
+.b1{background:#fef9c3;color:#713f12}.b2{background:#f1f5f9;color:#475569}
+.b3{background:#fef3c7;color:#78350f}.blow{background:#fee2e2;color:#991b1b}
+.bmid{background:#f1f5f9;color:#64748b}
+
+/* Highlight lists */
+.hi-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.hi-list li{padding:6px 10px;border-radius:6px;font-size:13px}
+.hi-red{background:#fef2f2;border-left:3px solid #ef4444}
+.hi-yel{background:#fffbeb;border-left:3px solid #f59e0b}
+.hi-grn{background:#f0fdf4;border-left:3px solid #22c55e}
+
+/* Two-col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* Action grid */
+.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.action-block{border-radius:8px;padding:14px 16px}
+.action-tnkh{background:#eff6ff;border:1px solid #bfdbfe}
+.action-rsm{background:#f0fdf4;border:1px solid #bbf7d0}
+.action-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;color:#374151}
+.action-block ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.action-block li{font-size:13px;padding-left:14px;position:relative}
+.action-block li::before{content:"›";position:absolute;left:0;color:#6b7280}
+
+/* Tabs */
+.tab-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0;padding-bottom:0}
+.tab-btn{padding:8px 14px;border:none;border-radius:8px 8px 0 0;cursor:pointer;font-size:13px;font-weight:600;background:#e2e8f0;color:#64748b;transition:all .15s;border-bottom:3px solid transparent}
+.tab-btn:hover{background:#cbd5e1;color:#374151}
+.tab-btn.active{background:#fff;color:var(--tab-color,#6366f1);border-bottom:3px solid var(--tab-color,#6366f1);box-shadow:0 -1px 0 var(--border)}
+.tab-content{display:none;padding:20px 0 0}
+.tab-content.active{display:block}
+.region-subsec{margin-bottom:20px}
+.region-subsec h3{font-size:14px;font-weight:600;color:#374151;margin-bottom:12px;padding:6px 10px;background:#f8fafc;border-radius:6px;border-left:3px solid var(--accent,#6366f1)}
+
+/* Trend bar */
+.trend-bar{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:12px;color:#64748b;font-family:monospace;margin-bottom:12px}
+
+/* Narrative prose blocks */
+.narrative-block{background:#f8fafc;border-radius:8px;padding:12px 16px;margin-bottom:12px;border-left:3px solid #6366f1}
+.narrative-block h4{font-size:12px;font-weight:700;color:#374151;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+.narrative-block p{font-size:13px;line-height:1.75;color:#374151}
+
+/* Responsive */
+@media(max-width:640px){
+  .two-col,.action-grid{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .tab-btn{font-size:12px;padding:6px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-title">R12W Daily Review</div>
+  <div class="topbar-meta">
+    <span>📅 05/06/2026</span>
+    <span class="topbar-badge">MTD tháng 6</span>
+    <span style="color:#64748b">vs 01/06/2026</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="alert-strip"><div class="alert-item alert-red">🔴 Salon 362 NGT BN (NNQ): XL 14.6% — cần push ngay</div><div class="alert-item alert-red">🔴 Salon 186 QT (NNQ): XL 14.5% — cần push ngay</div><div class="alert-item alert-red">🔴 Salon 168 NVC (NNQ): XL 14.0% — cần push ngay</div><div class="alert-item alert-red">🔴 Salon 10 TP (NNQ): XL 7.9% — cần push ngay</div><div class="alert-item alert-yel">🟡 Salon 11 PKT (NNQ): XL 43.3%, Book 6.3%</div><div class="alert-item alert-yel">🟡 Salon 237 NTT (TXQ): XL 43.5%, Book 7.2%</div><div class="alert-item alert-yel">🟡 Salon 65 CD (DTD): XL 63.5%, Book 6.3%</div></div>
+
+  <!-- SECTION 1: HỆ THỐNG -->
+  <div class="card">
+    <h2 class="sec-title">1. Toàn hệ thống</h2>
+    <div class="subsec" id="s1-overview"><h3>📊 Tổng quan hệ thống</h3>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Pool hệ thống</div>
+        <div class="kpi-val">95,651</div>
+        <div class="prev-note">vs 01/06/2026</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">% Xử lý</div>
+        <div class="kpi-val" style="color:#ef4444">32.6% <span class="delta" style="color:#dc2626">▼68.1%</span></div>
+        <div class="prev-note">vs 01/06/2026</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">% Book / KN</div>
+        <div class="kpi-val" style="color:#ef4444">7.9% <span class="delta" style="color:#dc2626">▼29.3%</span></div>
+        <div class="prev-note">vs 01/06/2026</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">% Đạt MT (avg)</div>
+        <div class="kpi-val" style="color:#ef4444">0.0% <span class="delta" style="color:#dc2626">▼70.7%</span></div>
+        <div class="prev-note">vs 01/06/2026</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th><th>GĐKV</th><th>Pool</th>
+            <th>% XL</th><th>% Book</th><th>% Đạt MT</th>
+            <th>Xu hướng MT</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+          <td><span class="badge b1">🥇 #1</span></td>
+          <td><strong>NNQ</strong></td>
+          <td class="num">10,762</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:10.5%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">15.8%</span>
+            <span class="delta" style="color:#dc2626">▼76.8%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.9%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">6.9%</span>
+            <span class="delta" style="color:#dc2626">▼31.8%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:700">0.0%</span>
+            <span class="delta" style="color:#dc2626">▼73.6%</span>
+          </td>
+          <td class="trend-cell"><span class="trend-text">18/05: 76.2% → 19/05: 77.8% → 01/06: 92.5% → 05/06: 15.8%</span></td>
+        </tr><tr>
+          <td><span class="badge b2">🥈 #2</span></td>
+          <td><strong>NVC</strong></td>
+          <td class="num">19,498</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:17.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">25.5%</span>
+            <span class="delta" style="color:#dc2626">▼70.7%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:8.7%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">8.7%</span>
+            <span class="delta" style="color:#dc2626">▼23.0%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:700">0.0%</span>
+            <span class="delta" style="color:#dc2626">▼73.5%</span>
+          </td>
+          <td class="trend-cell"><span class="trend-text">18/05: 62.7% → 19/05: 65.5% → 01/06: 96.1% → 05/06: 25.5%</span></td>
+        </tr><tr>
+          <td><span class="badge b3">🥉 #3</span></td>
+          <td><strong>TXQ</strong></td>
+          <td class="num">20,256</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:21.5%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">32.2%</span>
+            <span class="delta" style="color:#dc2626">▼95.0%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:7.3%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">7.3%</span>
+            <span class="delta" style="color:#dc2626">▼32.3%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:700">0.0%</span>
+            <span class="delta" style="color:#dc2626">▼72.4%</span>
+          </td>
+          <td class="trend-cell"><span class="trend-text">18/05: 83.7% → 19/05: 89.5% → 01/06: 127.2% → 05/06: 32.2%</span></td>
+        </tr><tr>
+          <td><span class="badge bmid">#4</span></td>
+          <td><strong>DTD</strong></td>
+          <td class="num">15,733</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:25.6%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">38.3%</span>
+            <span class="delta" style="color:#dc2626">▼50.1%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:9.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">9.2%</span>
+            <span class="delta" style="color:#dc2626">▼33.2%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:700">0.0%</span>
+            <span class="delta" style="color:#dc2626">▼70.4%</span>
+          </td>
+          <td class="trend-cell"><span class="trend-text">18/05: 71.6% → 19/05: 73.3% → 01/06: 88.5% → 05/06: 38.3%</span></td>
+        </tr><tr>
+          <td><span class="badge bmid">#5</span></td>
+          <td><strong>NTH</strong></td>
+          <td class="num">5,590</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:25.9%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">38.9%</span>
+            <span class="delta" style="color:#dc2626">▼55.5%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:5.6%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">5.6%</span>
+            <span class="delta" style="color:#dc2626">▼24.7%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:700">0.0%</span>
+            <span class="delta" style="color:#dc2626">▼66.5%</span>
+          </td>
+          <td class="trend-cell"><span class="trend-text">18/05: 66.9% → 19/05: 70.6% → 01/06: 94.3% → 05/06: 38.9%</span></td>
+        </tr><tr>
+          <td><span class="badge bmid">#6</span></td>
+          <td><strong>TVQ</strong></td>
+          <td class="num">9,435</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:40.2%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-weight:600">60.3%</span>
+            <span class="delta" style="color:#dc2626">▼42.0%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.9%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">6.9%</span>
+            <span class="delta" style="color:#dc2626">▼35.3%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:700">0.0%</span>
+            <span class="delta" style="color:#dc2626">▼70.6%</span>
+          </td>
+          <td class="trend-cell"><span class="trend-text">18/05: 98.9% → 19/05: 98.9% → 01/06: 102.3% → 05/06: 60.3%</span></td>
+        </tr><tr>
+          <td><span class="badge blow">⚠️ #7</span></td>
+          <td><strong>PTHG</strong></td>
+          <td class="num">14,377</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:19.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">28.5%</span>
+            <span class="delta" style="color:#dc2626">▼62.7%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:8.6%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:600">8.6%</span>
+            <span class="delta" style="color:#dc2626">▼25.6%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-weight:700">0.0%</span>
+            <span class="delta" style="color:#dc2626">▼67.7%</span>
+          </td>
+          <td class="trend-cell"><span class="trend-text">18/05: 56.0% → 19/05: 58.9% → 01/06: 91.2% → 05/06: 28.5%</span></td>
+        </tr></tbody>
+      </table>
+    </div></div>
+    
+    <div class="subsec" id="s1-highlights">
+      <h3>💡 Phân tích hệ thống</h3>
+      <div class="narrative-block">
+        <h4>📊 Tỉ lệ Xử lý (% XL)</h4>
+        <p>Có 7 vùng XL còn dưới ngưỡng cảnh báo: <strong>Vùng Nguyễn Như Quỳnh</strong> (15.8%), <strong>Vùng Nguyễn Việt Cường</strong> (25.5%), <strong>Vùng Tống Xuân Quyền</strong> (32.2%), <strong>Vùng Đoàn Trung Đức</strong> (38.3%), <strong>Vùng Nguyễn Thị Huệ</strong> (38.9%), <strong>Vùng Trịnh Văn Quang</strong> (60.3%), <strong>Vùng Phan Thị Hồng Gấm</strong> (28.5%).</p>
+      </div>
+      <div class="narrative-block">
+        <h4>📅 Tỉ lệ Book lịch (% Book) — điểm nghẽn hệ thống</h4>
+        <p><strong>Không có vùng nào đạt ngưỡng vàng 48%.</strong> Toàn bộ 7 vùng kẹt dưới ngưỡng, dao động từ 5.6% (Vùng Huệ) đến 9.2% (Vùng Đức). Pattern XL tốt mà Book kém là tín hiệu rõ ràng: nhân viên có nhắn tin nhưng không chốt được lịch. Nguyên nhân phổ biến nhất là kịch bản nhắn tin chưa tạo được lý do cụ thể để khách xác nhận ngày, hoặc offer không phù hợp với nhóm segment của khách.</p>
+      </div>
+      
+      <div style="margin-top:4px">
+        <h4 style="font-size:12px;font-weight:700;color:#d97706;margin-bottom:10px">
+          🔍 Nhìn sâu vào 7 vùng Book đỏ (dưới 35.0%)
+        </h4>
+        <div style="margin-bottom:14px"><strong style="font-size:12px;color:#374151">Vùng Nguyễn Thị Huệ — Book 5.6%</strong><ul class="hi-list" style="margin-top:6px"><li class="hi-red"><strong>Salon 290 QT TH</strong>: Book 1.6% (61 kết nối, book 1 lịch) — cả XL lẫn Book đều đỏ — thường là vấn đề nhân sự chưa thực sự làm task</li><li class="hi-red"><strong>Salon 68 LN NA</strong>: Book 2.3% (214 kết nối, book 5 lịch) — cả XL lẫn Book đều đỏ — thường là vấn đề nhân sự chưa thực sự làm task</li><li class="hi-red"><strong>Salon 595 BT TH</strong>: Book 5.0% (219 kết nối, book 11 lịch) — cả XL lẫn Book đều đỏ — thường là vấn đề nhân sự chưa thực sự làm task</li></ul></div><div style="margin-bottom:14px"><strong style="font-size:12px;color:#374151">Vùng Nguyễn Như Quỳnh — Book 6.9%</strong><ul class="hi-list" style="margin-top:6px"><li class="hi-red"><strong>Salon 4 LQD BN</strong>: Book 0.0% — cả XL lẫn Book đều đỏ — thường là vấn đề nhân sự chưa thực sự làm task</li><li class="hi-red"><strong>Salon 186 QT</strong>: Book 3.8% (104 kết nối, book 4 lịch) — cả XL lẫn Book đều đỏ — thường là vấn đề nhân sự chưa thực sự làm task</li><li class="hi-red"><strong>Salon 362 NGT BN</strong>: Book 5.2% (404 kết nối, book 21 lịch) — cả XL lẫn Book đều đỏ — thường là vấn đề nhân sự chưa thực sự làm task</li></ul></div><div style="margin-bottom:14px"><strong style="font-size:12px;color:#374151">Vùng Trịnh Văn Quang — Book 6.9%</strong><ul class="hi-list" style="margin-top:6px"><li class="hi-yel"><strong>Salon 76 PVH</strong>: Book 4.8% (857 kết nối, book 41 lịch) — XL 50.4% — cần cải thiện cả xử lý lẫn chốt lịch</li><li class="hi-yel"><strong>Salon 483 TN</strong>: Book 6.2% (1,233 kết nối, book 77 lịch) — XL 58.8% — cần cải thiện cả xử lý lẫn chốt lịch</li><li class="hi-yel"><strong>Salon 1180 QT</strong>: Book 6.6% (1,195 kết nối, book 79 lịch) — XL 66.0% — cần cải thiện cả xử lý lẫn chốt lịch</li></ul></div>
+      </div>
+    </div>
+    
+    <div class="subsec" id="s1-actions">
+      <h3>🎯 Hành động ưu tiên</h3>
+      <div class="action-grid">
+        <div class="action-block action-tnkh">
+          <div class="action-title">👥 TNKH</div>
+          <ul><li>Gửi kịch bản nhắn tin chốt lịch cụ thể (có ngày cụ thể, không phải 'mời anh/chị ghé khi nào thuận tiện') cho 7 vùng Book đỏ: Vùng NTH, Vùng NNQ, Vùng TVQ</li><li>Liên hệ trực tiếp với Salon 362 NGT BN (NNQ), Salon 186 QT (NNQ) để xác minh: nhân viên có đang nhắn tin thực tế không hay số liệu XL là ghi nhận muộn</li></ul>
+        </div>
+        <div class="action-block action-rsm">
+          <div class="action-title">📌 GĐKV / Vùng</div>
+          <ul><li>Vùng Quỳnh: Yêu cầu quản lý Salon 362 NGT BN báo cáo ngay hôm nay — sĩ số nhân viên làm R12W và đã bắt đầu nhắn tin chưa (XL 14.6% + Book 5.2%)</li><li>Vùng Quỳnh: Yêu cầu quản lý Salon 186 QT báo cáo ngay hôm nay — sĩ số nhân viên làm R12W và đã bắt đầu nhắn tin chưa (XL 14.5% + Book 3.8%)</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: TỪNG VÙNG -->
+  <div class="card">
+    <h2 class="sec-title">2. Từng vùng (GĐKV)</h2>
+    <div class="tab-nav"><button class="tab-btn active" style="--tab-color:#6366f1" onclick="switchTab('NNQ', this)">NNQ</button><button class="tab-btn" style="--tab-color:#06b6d4" onclick="switchTab('NVC', this)">NVC</button><button class="tab-btn" style="--tab-color:#8b5cf6" onclick="switchTab('TXQ', this)">TXQ</button><button class="tab-btn" style="--tab-color:#f97316" onclick="switchTab('DTD', this)">DTD</button><button class="tab-btn" style="--tab-color:#ef4444" onclick="switchTab('NTH', this)">NTH</button><button class="tab-btn" style="--tab-color:#10b981" onclick="switchTab('TVQ', this)">TVQ</button><button class="tab-btn" style="--tab-color:#ec4899" onclick="switchTab('PTHG', this)">PTHG</button></div>
+    <div id="tab-NNQ" class="tab-content active">
+    <div class="region-subsec">
+      <h3>📊 Tổng quan — Vùng Nguyễn Như Quỳnh</h3>
+      
+    <div class="kpi-grid small">
+      <div class="kpi-card"><div class="kpi-label">Pool</div><div class="kpi-val">10,762</div></div>
+      <div class="kpi-card"><div class="kpi-label">% XL</div>
+        <div class="kpi-val" style="color:#ef4444">15.8% <span class="delta" style="color:#dc2626">▼76.8%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Book</div>
+        <div class="kpi-val" style="color:#ef4444">6.9% <span class="delta" style="color:#dc2626">▼31.8%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Đạt MT</div>
+        <div class="kpi-val" style="color:#ef4444"><strong>0.0%</strong> <span class="delta" style="color:#dc2626">▼73.6%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Salon</div><div class="kpi-val">6</div></div>
+    </div>
+      <div class="narrative-block">
+          <h4>📈 Xu hướng XL &amp; Book</h4>
+          <p>% XL giảm <strong>76.8 điểm</strong> so với 01/06 (92.5% → 15.8%). % Book giảm <strong>31.8 điểm</strong> (38.7% → 6.9%). Xu hướng Book giảm cần theo dõi sát — hiện vẫn dưới ngưỡng vàng 48.0%.</p>
+          <div class="trend-bar" style="margin-top:8px">XL: 18/05: 76.2% → 19/05: 77.8% → 01/06: 92.5% → 05/06: 15.8% | Book: 18/05: 24.3% → 19/05: 25.1% → 01/06: 38.7% → 05/06: 6.9%</div>
+        </div>
+      
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% Đạt MT</th></tr></thead>
+        <tbody><tr class="row-yel">
+          <td><strong>Salon 11 PKT</strong></td>
+          <td class="num">1,352</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:43.3%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-size:12px">43.3%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.3%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">6.3%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 362 NGT BN</strong></td>
+          <td class="num">2,769</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:14.6%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">14.6%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:5.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">5.2%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 186 QT</strong></td>
+          <td class="num">715</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:14.5%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">14.5%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:3.8%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">3.8%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 168 NVC</strong></td>
+          <td class="num">3,100</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:14.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">14.0%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:9.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">9.2%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 10 TP</strong></td>
+          <td class="num">2,144</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:7.9%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">7.9%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:9.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">9.2%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 4 LQD BN</strong></td>
+          <td class="num">682</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">0.0%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">0.0%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr></tbody>
+      </table>
+    </div>
+    </div>
+    <div class="region-subsec">
+      <h3>💡 Xu hướng & Phân tích</h3>
+      
+    
+    <ul class="hi-list" style="margin-top:8px"><li class="hi-red"><strong>Salon 362 NGT BN</strong>: XL 14.6% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 186 QT</strong>: XL 14.5% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 168 NVC</strong>: XL 14.0% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 10 TP</strong>: XL 7.9% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 4 LQD BN</strong>: XL 0.0% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-yel"><strong>Salon 11 PKT</strong>: XL 43.3% — còn cách ngưỡng vàng 65.0%, cần tăng tốc xử lý</li><li class="hi-grn"><strong>Salon 10 TP</strong>: Book 9.2% — cao nhất vùng</li></ul>
+    </div>
+    <div class="region-subsec">
+      <h3>🎯 Hành động</h3>
+      
+    <div class="action-grid">
+      <div class="action-block action-tnkh">
+        <div class="action-title">👥 TNKH</div>
+        <ul><li>Theo dõi sát 5 salon XL < 40% trong vùng NNQ — cập nhật tiến độ cuối ngày</li></ul>
+      </div>
+      <div class="action-block action-rsm">
+        <div class="action-title">📌 GĐKV</div>
+        <ul><li>Đốc thúc XL ngay trong hôm nay: Salon 362 NGT BN, Salon 186 QT, Salon 168 NVC (XL < 40%) — ưu tiên #1</li><li>Push XL lên ≥65%: Salon 11 PKT — tăng tốc xử lý data tuần này</li><li>Salon 4 LQD BN: Book — thấp nhất vùng — xem xét điều chỉnh kịch bản hoặc thời điểm gửi tin nhắn</li></ul>
+      </div>
+    </div>
+    </div></div><div id="tab-NVC" class="tab-content">
+    <div class="region-subsec">
+      <h3>📊 Tổng quan — Vùng Nguyễn Việt Cường</h3>
+      
+    <div class="kpi-grid small">
+      <div class="kpi-card"><div class="kpi-label">Pool</div><div class="kpi-val">19,498</div></div>
+      <div class="kpi-card"><div class="kpi-label">% XL</div>
+        <div class="kpi-val" style="color:#ef4444">25.5% <span class="delta" style="color:#dc2626">▼70.7%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Book</div>
+        <div class="kpi-val" style="color:#ef4444">8.7% <span class="delta" style="color:#dc2626">▼23.0%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Đạt MT</div>
+        <div class="kpi-val" style="color:#ef4444"><strong>0.0%</strong> <span class="delta" style="color:#dc2626">▼73.5%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Salon</div><div class="kpi-val">9</div></div>
+    </div>
+      <div class="narrative-block">
+          <h4>📈 Xu hướng XL &amp; Book</h4>
+          <p>% XL giảm <strong>70.7 điểm</strong> so với 01/06 (96.1% → 25.5%). % Book giảm <strong>23.0 điểm</strong> (31.7% → 8.7%). Xu hướng Book giảm cần theo dõi sát — hiện vẫn dưới ngưỡng vàng 48.0%.</p>
+          <div class="trend-bar" style="margin-top:8px">XL: 18/05: 62.7% → 19/05: 65.5% → 01/06: 96.1% → 05/06: 25.5% | Book: 18/05: 22.3% → 19/05: 22.6% → 01/06: 31.7% → 05/06: 8.7%</div>
+        </div>
+      
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% Đạt MT</th></tr></thead>
+        <tbody><tr class="row-red">
+          <td><strong>Salon 29 HB</strong></td>
+          <td class="num">2,585</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:39.3%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">39.3%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:7.1%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">7.1%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 1146 KVC</strong></td>
+          <td class="num">1,431</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:37.7%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">37.7%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:11.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">11.0%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 36 N1 BD</strong></td>
+          <td class="num">1,361</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:33.7%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">33.7%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:5.9%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">5.9%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 255 NAN</strong></td>
+          <td class="num">2,402</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:28.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">28.2%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.8%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">6.8%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 401/1 NDT</strong></td>
+          <td class="num">1,576</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:25.6%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">25.6%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:11.4%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">11.4%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 1371 PVT</strong></td>
+          <td class="num">1,523</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:22.6%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">22.6%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:8.8%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">8.8%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 80 PL BD</strong></td>
+          <td class="num">2,280</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:22.1%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">22.1%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:9.4%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">9.4%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 103 TN</strong></td>
+          <td class="num">5,281</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:19.3%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">19.3%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:10.5%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">10.5%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 451 PVT</strong></td>
+          <td class="num">1,059</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">0.0%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">0.0%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr></tbody>
+      </table>
+    </div>
+    </div>
+    <div class="region-subsec">
+      <h3>💡 Xu hướng & Phân tích</h3>
+      
+    
+    <ul class="hi-list" style="margin-top:8px"><li class="hi-red"><strong>Salon 29 HB</strong>: XL 39.3% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 1146 KVC</strong>: XL 37.7% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 36 N1 BD</strong>: XL 33.7% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 255 NAN</strong>: XL 28.2% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 401/1 NDT</strong>: XL 25.6% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 1371 PVT</strong>: XL 22.6% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 80 PL BD</strong>: XL 22.1% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 103 TN</strong>: XL 19.3% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 451 PVT</strong>: XL 0.0% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-grn"><strong>Salon 401/1 NDT</strong>: Book 11.4% — cao nhất vùng</li></ul>
+    </div>
+    <div class="region-subsec">
+      <h3>🎯 Hành động</h3>
+      
+    <div class="action-grid">
+      <div class="action-block action-tnkh">
+        <div class="action-title">👥 TNKH</div>
+        <ul><li>Theo dõi sát 9 salon XL < 40% trong vùng NVC — cập nhật tiến độ cuối ngày</li></ul>
+      </div>
+      <div class="action-block action-rsm">
+        <div class="action-title">📌 GĐKV</div>
+        <ul><li>Đốc thúc XL ngay trong hôm nay: Salon 29 HB, Salon 1146 KVC, Salon 36 N1 BD (XL < 40%) — ưu tiên #1</li><li>Salon 451 PVT: Book — thấp nhất vùng — xem xét điều chỉnh kịch bản hoặc thời điểm gửi tin nhắn</li></ul>
+      </div>
+    </div>
+    </div></div><div id="tab-TXQ" class="tab-content">
+    <div class="region-subsec">
+      <h3>📊 Tổng quan — Vùng Tống Xuân Quyền</h3>
+      
+    <div class="kpi-grid small">
+      <div class="kpi-card"><div class="kpi-label">Pool</div><div class="kpi-val">20,256</div></div>
+      <div class="kpi-card"><div class="kpi-label">% XL</div>
+        <div class="kpi-val" style="color:#ef4444">32.2% <span class="delta" style="color:#dc2626">▼95.0%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Book</div>
+        <div class="kpi-val" style="color:#ef4444">7.3% <span class="delta" style="color:#dc2626">▼32.3%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Đạt MT</div>
+        <div class="kpi-val" style="color:#ef4444"><strong>0.0%</strong> <span class="delta" style="color:#dc2626">▼72.4%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Salon</div><div class="kpi-val">8</div></div>
+    </div>
+      <div class="narrative-block">
+          <h4>📈 Xu hướng XL &amp; Book</h4>
+          <p>% XL giảm <strong>95.0 điểm</strong> so với 01/06 (127.2% → 32.2%). % Book giảm <strong>32.3 điểm</strong> (39.5% → 7.3%). Xu hướng Book giảm cần theo dõi sát — hiện vẫn dưới ngưỡng vàng 48.0%.</p>
+          <div class="trend-bar" style="margin-top:8px">XL: 18/05: 83.7% → 19/05: 89.5% → 01/06: 127.2% → 05/06: 32.2% | Book: 18/05: 26.5% → 19/05: 26.3% → 01/06: 39.5% → 05/06: 7.3%</div>
+        </div>
+      
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% Đạt MT</th></tr></thead>
+        <tbody><tr>
+          <td><strong>Salon 113 THD AG</strong></td>
+          <td class="num">1,031</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:93.8%;background:#22c55e;height:100%"></div></div>
+            <span style="color:#22c55e;font-size:12px">93.8%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:3.3%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">3.3%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-yel">
+          <td><strong>Salon 237 NTT</strong></td>
+          <td class="num">4,654</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:43.5%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-size:12px">43.5%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:7.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">7.2%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 7 DTP LA</strong></td>
+          <td class="num">1,228</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:32.5%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">32.5%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:9.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">9.2%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 25 TD</strong></td>
+          <td class="num">2,894</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:30.3%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">30.3%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:10.5%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">10.5%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 420 HTP</strong></td>
+          <td class="num">3,780</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:28.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">28.0%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:7.1%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">7.1%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 186 DTH</strong></td>
+          <td class="num">2,602</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:26.9%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">26.9%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:10.7%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">10.7%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 236 DBT</strong></td>
+          <td class="num">2,729</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:12.9%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">12.9%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:2.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">2.0%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 341 XVNT</strong></td>
+          <td class="num">1,338</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:11.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">11.0%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:10.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">10.2%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr></tbody>
+      </table>
+    </div>
+    </div>
+    <div class="region-subsec">
+      <h3>💡 Xu hướng & Phân tích</h3>
+      
+    <div class="narrative-block" style="border-left-color:#f97316"><h4>🔍 Phân tích chi tiết</h4><p style="margin-bottom:10px">Salon 113 THD AG: XL 93.8% nhưng Book chỉ 3.3% (923 kết nối, chỉ book được 30 lịch) — nhắn tin nhiều nhưng chốt lịch được ít, đây là tín hiệu của kịch bản nhắn tin yếu, không phải vấn đề effort.</p></div>
+    <ul class="hi-list" style="margin-top:8px"><li class="hi-red"><strong>Salon 7 DTP LA</strong>: XL 32.5% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 25 TD</strong>: XL 30.3% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 420 HTP</strong>: XL 28.0% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 186 DTH</strong>: XL 26.9% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 236 DBT</strong>: XL 12.9% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 341 XVNT</strong>: XL 11.0% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-grn"><strong>Salon 186 DTH</strong>: Book 10.7% — cao nhất vùng</li><li class="hi-grn"><strong>Salon 113 THD AG</strong>: XL 93.8% — xử lý tốt nhất vùng</li></ul>
+    </div>
+    <div class="region-subsec">
+      <h3>🎯 Hành động</h3>
+      
+    <div class="action-grid">
+      <div class="action-block action-tnkh">
+        <div class="action-title">👥 TNKH</div>
+        <ul><li>Theo dõi sát 6 salon XL < 40% trong vùng TXQ — cập nhật tiến độ cuối ngày</li><li>Review kịch bản nhắn tin cho Salon 113 THD AG: XL đã tốt nhưng Book thấp — vấn đề không phải nỗ lực mà là nội dung tin nhắn chốt lịch</li></ul>
+      </div>
+      <div class="action-block action-rsm">
+        <div class="action-title">📌 GĐKV</div>
+        <ul><li>Đốc thúc XL ngay trong hôm nay: Salon 7 DTP LA, Salon 25 TD, Salon 420 HTP (XL < 40%) — ưu tiên #1</li><li>Push XL lên ≥65%: Salon 237 NTT — tăng tốc xử lý data tuần này</li><li>Cùng Salon 113 THD AG thử A/B kịch bản nhắn tin mới — mục tiêu Book ≥35.0%</li><li>Salon 236 DBT: Book 2.0% thấp nhất vùng — xem xét điều chỉnh kịch bản hoặc thời điểm gửi tin nhắn</li></ul>
+      </div>
+    </div>
+    </div></div><div id="tab-DTD" class="tab-content">
+    <div class="region-subsec">
+      <h3>📊 Tổng quan — Vùng Đoàn Trung Đức</h3>
+      
+    <div class="kpi-grid small">
+      <div class="kpi-card"><div class="kpi-label">Pool</div><div class="kpi-val">15,733</div></div>
+      <div class="kpi-card"><div class="kpi-label">% XL</div>
+        <div class="kpi-val" style="color:#ef4444">38.3% <span class="delta" style="color:#dc2626">▼50.1%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Book</div>
+        <div class="kpi-val" style="color:#ef4444">9.2% <span class="delta" style="color:#dc2626">▼33.2%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Đạt MT</div>
+        <div class="kpi-val" style="color:#ef4444"><strong>0.0%</strong> <span class="delta" style="color:#dc2626">▼70.4%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Salon</div><div class="kpi-val">7</div></div>
+    </div>
+      <div class="narrative-block">
+          <h4>📈 Xu hướng XL &amp; Book</h4>
+          <p>% XL giảm <strong>50.1 điểm</strong> so với 01/06 (88.5% → 38.3%). % Book giảm <strong>33.2 điểm</strong> (42.4% → 9.2%). Xu hướng Book giảm cần theo dõi sát — hiện vẫn dưới ngưỡng vàng 48.0%.</p>
+          <div class="trend-bar" style="margin-top:8px">XL: 18/05: 71.6% → 19/05: 73.3% → 01/06: 88.5% → 05/06: 38.3% | Book: 18/05: 26.9% → 19/05: 27.9% → 01/06: 42.4% → 05/06: 9.2%</div>
+        </div>
+      
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% Đạt MT</th></tr></thead>
+        <tbody><tr class="row-yel">
+          <td><strong>Salon 65 CD</strong></td>
+          <td class="num">1,221</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:63.5%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-size:12px">63.5%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.3%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">6.3%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-yel">
+          <td><strong>Salon 90 NH</strong></td>
+          <td class="num">1,601</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:46.5%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-size:12px">46.5%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:8.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">8.0%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-yel">
+          <td><strong>Salon 382 NT</strong></td>
+          <td class="num">3,669</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:41.5%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-size:12px">41.5%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:10.6%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">10.6%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 55A NVL</strong></td>
+          <td class="num">1,528</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:38.9%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">38.9%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:10.6%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">10.6%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 116 TK</strong></td>
+          <td class="num">3,514</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:33.7%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">33.7%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:8.7%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">8.7%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 109 TQH</strong></td>
+          <td class="num">2,994</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:30.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">30.2%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:9.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">9.0%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 62 LH</strong></td>
+          <td class="num">1,206</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:25.4%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">25.4%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:13.1%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">13.1%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr></tbody>
+      </table>
+    </div>
+    </div>
+    <div class="region-subsec">
+      <h3>💡 Xu hướng & Phân tích</h3>
+      
+    
+    <ul class="hi-list" style="margin-top:8px"><li class="hi-red"><strong>Salon 55A NVL</strong>: XL 38.9% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 116 TK</strong>: XL 33.7% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 109 TQH</strong>: XL 30.2% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 62 LH</strong>: XL 25.4% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-yel"><strong>Salon 65 CD</strong>: XL 63.5% — còn cách ngưỡng vàng 65.0%, cần tăng tốc xử lý</li><li class="hi-yel"><strong>Salon 90 NH</strong>: XL 46.5% — còn cách ngưỡng vàng 65.0%, cần tăng tốc xử lý</li><li class="hi-grn"><strong>Salon 62 LH</strong>: Book 13.1% — cao nhất vùng</li></ul>
+    </div>
+    <div class="region-subsec">
+      <h3>🎯 Hành động</h3>
+      
+    <div class="action-grid">
+      <div class="action-block action-tnkh">
+        <div class="action-title">👥 TNKH</div>
+        <ul><li>Theo dõi sát 4 salon XL < 40% trong vùng DTD — cập nhật tiến độ cuối ngày</li></ul>
+      </div>
+      <div class="action-block action-rsm">
+        <div class="action-title">📌 GĐKV</div>
+        <ul><li>Đốc thúc XL ngay trong hôm nay: Salon 55A NVL, Salon 116 TK, Salon 109 TQH (XL < 40%) — ưu tiên #1</li><li>Push XL lên ≥65%: Salon 65 CD, Salon 90 NH, Salon 382 NT — tăng tốc xử lý data tuần này</li><li>Salon 65 CD: Book 6.3% thấp nhất vùng — xem xét điều chỉnh kịch bản hoặc thời điểm gửi tin nhắn</li></ul>
+      </div>
+    </div>
+    </div></div><div id="tab-NTH" class="tab-content">
+    <div class="region-subsec">
+      <h3>📊 Tổng quan — Vùng Nguyễn Thị Huệ</h3>
+      
+    <div class="kpi-grid small">
+      <div class="kpi-card"><div class="kpi-label">Pool</div><div class="kpi-val">5,590</div></div>
+      <div class="kpi-card"><div class="kpi-label">% XL</div>
+        <div class="kpi-val" style="color:#ef4444">38.9% <span class="delta" style="color:#dc2626">▼55.5%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Book</div>
+        <div class="kpi-val" style="color:#ef4444">5.6% <span class="delta" style="color:#dc2626">▼24.7%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Đạt MT</div>
+        <div class="kpi-val" style="color:#ef4444"><strong>0.0%</strong> <span class="delta" style="color:#dc2626">▼66.5%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Salon</div><div class="kpi-val">6</div></div>
+    </div>
+      <div class="narrative-block">
+          <h4>📈 Xu hướng XL &amp; Book</h4>
+          <p>% XL giảm <strong>55.5 điểm</strong> so với 01/06 (94.3% → 38.9%). % Book giảm <strong>24.7 điểm</strong> (30.3% → 5.6%). Xu hướng Book giảm cần theo dõi sát — hiện vẫn dưới ngưỡng vàng 48.0%.</p>
+          <div class="trend-bar" style="margin-top:8px">XL: 18/05: 66.9% → 19/05: 70.6% → 01/06: 94.3% → 05/06: 38.9% | Book: 18/05: 19.4% → 19/05: 20.3% → 01/06: 30.3% → 05/06: 5.6%</div>
+        </div>
+      
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% Đạt MT</th></tr></thead>
+        <tbody><tr class="row-yel">
+          <td><strong>Salon 58 NVC NA</strong></td>
+          <td class="num">1,109</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:64.8%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-size:12px">64.8%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:5.5%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">5.5%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-yel">
+          <td><strong>Salon 80 TP TH</strong></td>
+          <td class="num">1,105</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:63.1%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-size:12px">63.1%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.7%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">6.7%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 304 NT TH</strong></td>
+          <td class="num">813</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:31.5%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">31.5%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:8.1%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">8.1%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 595 BT TH</strong></td>
+          <td class="num">791</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:28.4%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">28.4%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:5.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">5.0%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 68 LN NA</strong></td>
+          <td class="num">899</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:23.8%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">23.8%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:2.3%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">2.3%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 290 QT TH</strong></td>
+          <td class="num">873</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:7.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">7.0%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:1.6%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">1.6%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr></tbody>
+      </table>
+    </div>
+    </div>
+    <div class="region-subsec">
+      <h3>💡 Xu hướng & Phân tích</h3>
+      
+    
+    <ul class="hi-list" style="margin-top:8px"><li class="hi-red"><strong>Salon 304 NT TH</strong>: XL 31.5% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 595 BT TH</strong>: XL 28.4% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 68 LN NA</strong>: XL 23.8% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 290 QT TH</strong>: XL 7.0% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-yel"><strong>Salon 58 NVC NA</strong>: XL 64.8% — còn cách ngưỡng vàng 65.0%, cần tăng tốc xử lý</li><li class="hi-yel"><strong>Salon 80 TP TH</strong>: XL 63.1% — còn cách ngưỡng vàng 65.0%, cần tăng tốc xử lý</li><li class="hi-grn"><strong>Salon 304 NT TH</strong>: Book 8.1% — cao nhất vùng</li></ul>
+    </div>
+    <div class="region-subsec">
+      <h3>🎯 Hành động</h3>
+      
+    <div class="action-grid">
+      <div class="action-block action-tnkh">
+        <div class="action-title">👥 TNKH</div>
+        <ul><li>Theo dõi sát 4 salon XL < 40% trong vùng NTH — cập nhật tiến độ cuối ngày</li></ul>
+      </div>
+      <div class="action-block action-rsm">
+        <div class="action-title">📌 GĐKV</div>
+        <ul><li>Đốc thúc XL ngay trong hôm nay: Salon 304 NT TH, Salon 595 BT TH, Salon 68 LN NA (XL < 40%) — ưu tiên #1</li><li>Push XL lên ≥65%: Salon 58 NVC NA, Salon 80 TP TH — tăng tốc xử lý data tuần này</li><li>Salon 290 QT TH: Book 1.6% thấp nhất vùng — xem xét điều chỉnh kịch bản hoặc thời điểm gửi tin nhắn</li></ul>
+      </div>
+    </div>
+    </div></div><div id="tab-TVQ" class="tab-content">
+    <div class="region-subsec">
+      <h3>📊 Tổng quan — Vùng Trịnh Văn Quang</h3>
+      
+    <div class="kpi-grid small">
+      <div class="kpi-card"><div class="kpi-label">Pool</div><div class="kpi-val">9,435</div></div>
+      <div class="kpi-card"><div class="kpi-label">% XL</div>
+        <div class="kpi-val" style="color:#f59e0b">60.3% <span class="delta" style="color:#dc2626">▼42.0%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Book</div>
+        <div class="kpi-val" style="color:#ef4444">6.9% <span class="delta" style="color:#dc2626">▼35.3%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Đạt MT</div>
+        <div class="kpi-val" style="color:#ef4444"><strong>0.0%</strong> <span class="delta" style="color:#dc2626">▼70.6%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Salon</div><div class="kpi-val">5</div></div>
+    </div>
+      <div class="narrative-block">
+          <h4>📈 Xu hướng XL &amp; Book</h4>
+          <p>% XL giảm <strong>42.0 điểm</strong> so với 01/06 (102.3% → 60.3%). % Book giảm <strong>35.3 điểm</strong> (42.2% → 6.9%). Xu hướng Book giảm cần theo dõi sát — hiện vẫn dưới ngưỡng vàng 48.0%.</p>
+          <div class="trend-bar" style="margin-top:8px">XL: 18/05: 98.9% → 19/05: 98.9% → 01/06: 102.3% → 05/06: 60.3% | Book: 18/05: 24.5% → 19/05: 25.6% → 01/06: 42.2% → 05/06: 6.9%</div>
+        </div>
+      
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% Đạt MT</th></tr></thead>
+        <tbody><tr>
+          <td><strong>Salon 12 LDT</strong></td>
+          <td class="num">2,275</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:70.2%;background:#22c55e;height:100%"></div></div>
+            <span style="color:#22c55e;font-size:12px">70.2%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:11.3%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">11.3%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr>
+          <td><strong>Salon 1180 QT</strong></td>
+          <td class="num">1,913</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:66.0%;background:#22c55e;height:100%"></div></div>
+            <span style="color:#22c55e;font-size:12px">66.0%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.6%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">6.6%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-yel">
+          <td><strong>Salon 483 TN</strong></td>
+          <td class="num">2,231</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:58.8%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-size:12px">58.8%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">6.2%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-yel">
+          <td><strong>Salon 76 PVH</strong></td>
+          <td class="num">1,723</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:50.4%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-size:12px">50.4%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:4.8%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">4.8%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-yel">
+          <td><strong>Salon 32 NAT</strong></td>
+          <td class="num">1,293</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:50.4%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-size:12px">50.4%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:7.1%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">7.1%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr></tbody>
+      </table>
+    </div>
+    </div>
+    <div class="region-subsec">
+      <h3>💡 Xu hướng & Phân tích</h3>
+      
+    <div class="narrative-block" style="border-left-color:#f97316"><h4>🔍 Phân tích chi tiết</h4><p style="margin-bottom:10px">Salon cần theo dõi XL: Salon 12 LDT (70.2%), Salon 1180 QT (66.0%) — đang trong ngưỡng vàng, nếu pool tăng lên tuần tới có thể trượt xuống đỏ.</p></div>
+    <ul class="hi-list" style="margin-top:8px"><li class="hi-yel"><strong>Salon 483 TN</strong>: XL 58.8% — còn cách ngưỡng vàng 65.0%, cần tăng tốc xử lý</li><li class="hi-yel"><strong>Salon 76 PVH</strong>: XL 50.4% — còn cách ngưỡng vàng 65.0%, cần tăng tốc xử lý</li><li class="hi-grn"><strong>Salon 12 LDT</strong>: Book 11.3% — cao nhất vùng</li></ul>
+    </div>
+    <div class="region-subsec">
+      <h3>🎯 Hành động</h3>
+      
+    <div class="action-grid">
+      <div class="action-block action-tnkh">
+        <div class="action-title">👥 TNKH</div>
+        <ul><li>Vùng TVQ ổn định về XL và Book — theo dõi duy trì, ưu tiên nâng vùng yếu hơn</li></ul>
+      </div>
+      <div class="action-block action-rsm">
+        <div class="action-title">📌 GĐKV</div>
+        <ul><li>Push XL lên ≥65%: Salon 483 TN, Salon 76 PVH, Salon 32 NAT — tăng tốc xử lý data tuần này</li><li>Salon 76 PVH: Book 4.8% thấp nhất vùng — xem xét điều chỉnh kịch bản hoặc thời điểm gửi tin nhắn</li><li>Theo dõi cuối tuần: Salon 12 LDT, Salon 1180 QT — XL đang ngưỡng vàng, nếu pool tăng mà tốc độ nhắn tin không tăng theo thì sẽ trượt đỏ</li></ul>
+      </div>
+    </div>
+    </div></div><div id="tab-PTHG" class="tab-content">
+    <div class="region-subsec">
+      <h3>📊 Tổng quan — Vùng Phan Thị Hồng Gấm</h3>
+      
+    <div class="kpi-grid small">
+      <div class="kpi-card"><div class="kpi-label">Pool</div><div class="kpi-val">14,377</div></div>
+      <div class="kpi-card"><div class="kpi-label">% XL</div>
+        <div class="kpi-val" style="color:#ef4444">28.5% <span class="delta" style="color:#dc2626">▼62.7%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Book</div>
+        <div class="kpi-val" style="color:#ef4444">8.6% <span class="delta" style="color:#dc2626">▼25.6%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">% Đạt MT</div>
+        <div class="kpi-val" style="color:#ef4444"><strong>0.0%</strong> <span class="delta" style="color:#dc2626">▼67.7%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Salon</div><div class="kpi-val">8</div></div>
+    </div>
+      <div class="narrative-block">
+          <h4>📈 Xu hướng XL &amp; Book</h4>
+          <p>% XL giảm <strong>62.7 điểm</strong> so với 01/06 (91.2% → 28.5%). % Book giảm <strong>25.6 điểm</strong> (34.2% → 8.6%). Xu hướng Book giảm cần theo dõi sát — hiện vẫn dưới ngưỡng vàng 48.0%.</p>
+          <div class="trend-bar" style="margin-top:8px">XL: 18/05: 56.0% → 19/05: 58.9% → 01/06: 91.2% → 05/06: 28.5% | Book: 18/05: 24.4% → 19/05: 24.7% → 01/06: 34.2% → 05/06: 8.6%</div>
+        </div>
+      
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% Đạt MT</th></tr></thead>
+        <tbody><tr>
+          <td><strong>Salon 39 HBT</strong></td>
+          <td class="num">1,739</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:68.8%;background:#22c55e;height:100%"></div></div>
+            <span style="color:#22c55e;font-size:12px">68.8%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:8.8%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">8.8%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-yel">
+          <td><strong>Salon 346 KT</strong></td>
+          <td class="num">1,569</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:58.2%;background:#f59e0b;height:100%"></div></div>
+            <span style="color:#f59e0b;font-size:12px">58.2%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:9.7%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">9.7%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 363 LNQ TN</strong></td>
+          <td class="num">1,466</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:37.9%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">37.9%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">6.0%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 202 DC</strong></td>
+          <td class="num">2,151</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:37.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">37.2%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:11.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">11.2%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 148 TD</strong></td>
+          <td class="num">1,240</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:17.9%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">17.9%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.8%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">6.8%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 173 TN</strong></td>
+          <td class="num">1,855</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:15.6%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">15.6%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:2.5%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">2.5%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 264 LLQ</strong></td>
+          <td class="num">1,859</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.2%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">6.2%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:6.9%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">6.9%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr><tr class="row-red">
+          <td><strong>Salon 50BT4 NPC LD</strong></td>
+          <td class="num">2,498</td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">0.0%</span>
+          </td>
+          <td>
+            <div class="bar-bg" style="height:14px"><div class="bar-fill" style="width:0.0%;background:#ef4444;height:100%"></div></div>
+            <span style="color:#ef4444;font-size:12px">0.0%</span>
+          </td>
+          <td><strong style="color:#ef4444">0.0%</strong></td>
+        </tr></tbody>
+      </table>
+    </div>
+    </div>
+    <div class="region-subsec">
+      <h3>💡 Xu hướng & Phân tích</h3>
+      
+    <div class="narrative-block" style="border-left-color:#f97316"><h4>🔍 Phân tích chi tiết</h4><p style="margin-bottom:10px">Salon cần theo dõi XL: Salon 39 HBT (68.8%) — đang trong ngưỡng vàng, nếu pool tăng lên tuần tới có thể trượt xuống đỏ.</p></div>
+    <ul class="hi-list" style="margin-top:8px"><li class="hi-red"><strong>Salon 363 LNQ TN</strong>: XL 37.9% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 202 DC</strong>: XL 37.2% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 148 TD</strong>: XL 17.9% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 173 TN</strong>: XL 15.6% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 264 LLQ</strong>: XL 6.2% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-red"><strong>Salon 50BT4 NPC LD</strong>: XL 0.0% — dưới ngưỡng đỏ 40%, cần kích hoạt xử lý ngay</li><li class="hi-yel"><strong>Salon 346 KT</strong>: XL 58.2% — còn cách ngưỡng vàng 65.0%, cần tăng tốc xử lý</li><li class="hi-grn"><strong>Salon 202 DC</strong>: Book 11.2% — cao nhất vùng</li></ul>
+    </div>
+    <div class="region-subsec">
+      <h3>🎯 Hành động</h3>
+      
+    <div class="action-grid">
+      <div class="action-block action-tnkh">
+        <div class="action-title">👥 TNKH</div>
+        <ul><li>Theo dõi sát 6 salon XL < 40% trong vùng PTHG — cập nhật tiến độ cuối ngày</li></ul>
+      </div>
+      <div class="action-block action-rsm">
+        <div class="action-title">📌 GĐKV</div>
+        <ul><li>Đốc thúc XL ngay trong hôm nay: Salon 363 LNQ TN, Salon 202 DC, Salon 148 TD (XL < 40%) — ưu tiên #1</li><li>Push XL lên ≥65%: Salon 346 KT — tăng tốc xử lý data tuần này</li><li>Salon 50BT4 NPC LD: Book — thấp nhất vùng — xem xét điều chỉnh kịch bản hoặc thời điểm gửi tin nhắn</li><li>Theo dõi cuối tuần: Salon 39 HBT — XL đang ngưỡng vàng, nếu pool tăng mà tốc độ nhắn tin không tăng theo thì sẽ trượt đỏ</li></ul>
+      </div>
+    </div>
+    </div></div>
+  </div>
+
+  
+
+  <div style="text-align:center;font-size:11px;color:#94a3b8;padding:8px">
+    R12W Daily Review · 05/06/2026 · Dữ liệu tích lũy từ đầu tháng 6
+  </div>
+
+</div>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
