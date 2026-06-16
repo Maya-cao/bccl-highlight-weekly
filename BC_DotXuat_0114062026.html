@@ -3,51 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Báo Cáo Đột Xuất — Kì 01-14/6/2026</title>
+<title>Phân Tích Chuyên Đề — Chất Lượng Tư Vấn &amp; Tay Nghề Kì 01-14/6/2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222; background: #f5f6fa; }
+body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222; background: #f0f2f8; }
 .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
-header { background: #1a237e; color: #fff; padding: 24px 32px; border-radius: 8px; margin-bottom: 28px; }
-header h1 { font-size: 22px; font-weight: 700; letter-spacing: .3px; }
-header .sub { font-size: 13px; color: #c5cae9; margin-top: 6px; }
-section { background: #fff; border-radius: 8px; padding: 24px 28px; margin-bottom: 22px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
-h2 { font-size: 17px; font-weight: 700; color: #1a237e; border-left: 4px solid #1a237e; padding-left: 10px; margin-bottom: 16px; }
-h3 { font-size: 14px; font-weight: 700; color: #333; margin: 20px 0 10px; }
-h4 { font-size: 13px; font-weight: 700; color: #555; margin: 16px 0 8px; }
+header { background: linear-gradient(135deg, #1a237e 0%, #283593 100%); color: #fff; padding: 26px 32px; border-radius: 10px; margin-bottom: 28px; }
+header h1 { font-size: 20px; font-weight: 700; letter-spacing: .2px; }
+header .sub { font-size: 12px; color: #c5cae9; margin-top: 6px; }
+section { background: #fff; border-radius: 10px; padding: 24px 28px; margin-bottom: 22px; box-shadow: 0 1px 5px rgba(0,0,0,.07); }
+h2 { font-size: 16px; font-weight: 700; color: #1a237e; border-left: 4px solid #1a237e; padding-left: 10px; margin-bottom: 16px; }
+h3 { font-size: 14px; font-weight: 700; color: #333; margin: 22px 0 10px; }
+h4 { font-size: 13px; font-weight: 700; color: #555; margin: 16px 0 8px; padding-top: 12px; border-top: 1px dashed #e0e0e0; }
 .cards { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
-.card { flex: 1 1 160px; border-radius: 8px; padding: 16px 18px; text-align: center; }
+.card { flex: 1 1 150px; border-radius: 8px; padding: 16px 18px; text-align: center; }
 .card-neutral { background: #e8eaf6; border: 1px solid #c5cae9; }
-.card-num { font-size: 32px; font-weight: 800; color: #1a237e; }
+.card-blue { background: #e3f2fd; border: 1px solid #90caf9; }
+.card-num { font-size: 34px; font-weight: 800; color: #1a237e; }
 .card-label { font-size: 12px; color: #555; margin-top: 4px; }
-.note-box { background: #fff9c4; border-left: 4px solid #f9a825; padding: 10px 14px; border-radius: 4px; font-size: 13px; line-height: 1.6; margin-top: 12px; }
-.strong-stmt { background: #e3f2fd; border-left: 4px solid #1565c0; padding: 12px 16px; border-radius: 4px; font-size: 14px; line-height: 1.7; margin-bottom: 18px; }
+.note-box { background: #fff9c4; border-left: 4px solid #f9a825; padding: 10px 14px; border-radius: 4px; font-size: 13px; line-height: 1.65; margin-top: 8px; }
+.strong-stmt { background: #e8eaf6; border-left: 4px solid #3949ab; padding: 13px 16px; border-radius: 5px; font-size: 13.5px; line-height: 1.75; margin-bottom: 18px; }
+.analysis-box { background: #f1f8e9; border-left: 4px solid #558b2f; padding: 12px 16px; border-radius: 5px; font-size: 13px; line-height: 1.75; margin-top: 10px; margin-bottom: 6px; }
+.chart-wrap { position: relative; height: 220px; margin-bottom: 4px; }
+.chart-tall { height: 260px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 4px; }
 th { background: #e8eaf6; color: #1a237e; font-weight: 700; padding: 8px 10px; text-align: left; border-bottom: 2px solid #c5cae9; }
 td { padding: 7px 10px; border-bottom: 1px solid #eee; vertical-align: top; }
 tr:hover td { background: #fafafa; }
 .center { text-align: center; }
-.cur-period td { background: #fff8e1 !important; font-weight: 600; }
 .bill-id { display: inline-block; background: #eceff1; color: #455a64; font-size: 11px; font-family: monospace; border-radius: 3px; padding: 1px 5px; margin: 1px 2px; white-space: nowrap; }
 .rate-red { color: #c62828; font-weight: 700; }
 .rate-orange { color: #e65100; font-weight: 600; }
 .rate-green { color: #2e7d32; }
-.trend-up { color: #c62828; }
-.trend-down { color: #2e7d32; }
-.trend-flat { color: #888; }
-.quote-block { border: 1px solid #e0e0e0; border-left: 4px solid #5c6bc0; border-radius: 4px; padding: 12px 14px; margin: 8px 0; background: #fafafa; }
+.quote-block { border: 1px solid #e0e0e0; border-left: 4px solid #5c6bc0; border-radius: 5px; padding: 11px 14px; margin: 8px 0; background: #fafafa; }
 .quote-meta { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
 .quote-salon { font-weight: 700; font-size: 13px; color: #1a237e; }
-.quote-text { font-size: 13px; line-height: 1.6; color: #333; font-style: italic; }
-.note { font-size: 12px; color: #888; margin-top: 4px; margin-bottom: 8px; }
+.quote-text { font-size: 13px; line-height: 1.65; color: #333; font-style: italic; }
+.note { font-size: 11.5px; color: #999; margin: 4px 0 8px; }
 .empty-note { color: #999; font-style: italic; font-size: 13px; margin: 8px 0; }
 </style>
 </head>
 <body>
 <div class="container">
   <header>
-    <h1>Báo Cáo Đột Xuất — Kì 01-14/6/2026</h1>
-    <div class="sub">Phân tích chuyên sâu 2 vấn đề: Tư vấn chèo kéo &amp; Chất lượng tay nghề cắt/uốn/nhuộm &nbsp;·&nbsp; Dữ liệu CSKH tổng hợp &nbsp;·&nbsp; Xuất: 16/6/2026</div>
+    <h1>Phân Tích Chuyên Đề — Chất Lượng Tư Vấn &amp; Tay Nghề</h1>
+    <div class="sub">Kì 01-14/6/2026 &nbsp;·&nbsp; Hai vấn đề trọng tâm: Tư vấn chèo kéo &amp; Tay nghề cắt/uốn/nhuộm &nbsp;·&nbsp; Dữ liệu CSKH &nbsp;·&nbsp; Xuất: 16/6/2026</div>
   </header>
   
 <section id="tong-quan">
@@ -61,175 +62,105 @@ tr:hover td { background: #fafafa; }
       <div class="card-num">19</div>
       <div class="card-label">Bill lỗi nhượng quyền (NQ)</div>
     </div>
-    <div class="card card-neutral">
+    <div class="card card-blue">
       <div class="card-num">99</div>
       <div class="card-label">HT — T1 (01-07/6)</div>
     </div>
-    <div class="card card-neutral">
+    <div class="card card-blue">
       <div class="card-num">58</div>
       <div class="card-label">HT — T2 (08-14/6)</div>
     </div>
   </div>
   <div class="note-box">
-    <strong>Lưu ý đọc báo cáo:</strong> Kì này bao gồm 2 tuần 01-07/6 (T1) và 08-14/6 (T2).
-    Tổng bill T1 (99 bill) cao hơn T2 (58 bill) — T2 ít bill hơn đồng nghĩa mỗi bill lỗi mang trọng số lớn hơn khi tính tỉ lệ.
-    Phân tích NQ chỉ mang tính tham khảo, không dùng để so sánh trực tiếp với HT.
+    <strong>Lưu ý đọc báo cáo:</strong> Kì này bao gồm 2 tuần — T1 (01-07/6) và T2 (08-14/6).
+    Tổng bill T1 (99 bill) cao hơn T2 (58 bill), đồng nghĩa mỗi bill lỗi ở T2 mang tỉ trọng lớn hơn khi tính tỉ lệ.
+    Xu hướng 4 tuần trong biểu đồ bên dưới lấy từ báo cáo hàng tuần riêng biệt, không phải gộp kì này.
+    Phân tích NQ chỉ mang tính tham khảo, không so sánh trực tiếp với HT.
   </div>
 </section>
 
   
 <section id="tvck">
   <h2>Vấn Đề 1 — Tư Vấn Bán Hàng / Chèo Kéo</h2>
-  <div class="strong-stmt">Lỗi tư vấn chèo kéo ghi nhận <strong>4 bill HT</strong> trong kì 01-14/6/2026, phân bổ tại: Nguyễn Thanh Sang GDKV (2 bill), Nguyễn Việt Cường GDKV (1 bill), Đoàn Trung Đức GDKV (1 bill). Xu hướng tăng so với tuần trước (1 → 4 bill trong 2 tuần). Con số tuyệt đối còn nhỏ — cần theo dõi liên tục để xác nhận có phải xu hướng leo thang hay chỉ dao động ngẫu nhiên.</div>
+  <div class="strong-stmt">Lỗi tư vấn chèo kéo ghi nhận <strong>4 bill HT</strong> trong kì 01-14/6/2026 tại Nguyễn Thanh Sang GDKV (2 bill), Nguyễn Việt Cường GDKV (1 bill), Đoàn Trung Đức GDKV (1 bill). Con số tuyệt đối còn nhỏ — nhưng xuất hiện rải rác ở nhiều GDKV khác nhau, không tập trung thành một điểm nóng đơn lẻ.</div>
 
-  <h3>Xu hướng 6 tuần (HT)</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Kì</th>
-        <th>Tổng bill HT</th>
-        <th>Chèo kéo</th>
-        <th>Cắt/Uốn/Nhuộm</th>
-      </tr>
-    </thead>
-    <tbody>
-  <tr>
-    <td>11-17/5</td>
-    <td>104</td>
-    <td><span style="color:#555">0</span></td>
-    <td><span class="rate-orange">31</span> (30%)</td>
-  </tr>
-  <tr>
-    <td>18-24/5</td>
-    <td>121</td>
-    <td><span style="color:#d32f2f">1</span></td>
-    <td><span class="rate-orange">36</span> (30%)</td>
-  </tr>
-  <tr class="cur-period">
-    <td>01-07/6</td>
-    <td>91</td>
-    <td><span style="color:#d32f2f">3</span></td>
-    <td><span class="rate-red">32</span> (35%)</td>
-  </tr>
-  <tr class="cur-period">
-    <td>08-14/6</td>
-    <td>43</td>
-    <td><span style="color:#d32f2f">1</span></td>
-    <td><span class="rate-red">17</span> (40%)</td>
-  </tr>
-  <tr class="cur-period">
-    <td>T1 01-07/6</td>
-    <td>99</td>
-    <td><span style="color:#d32f2f">3</span></td>
-    <td><span class="rate-red">40</span> (40%)</td>
-  </tr>
-  <tr class="cur-period">
-    <td>T2 08-14/6</td>
-    <td>58</td>
-    <td><span style="color:#d32f2f">1</span></td>
-    <td><span class="rate-orange">20</span> (34%)</td>
-  </tr></tbody>
-  </table>
-  <p class="note">* Cột Cắt/Uốn/Nhuộm đặt bên cạnh để so sánh tương quan quy mô. Tỉ lệ chèo kéo chủ đích không tính vì số nhỏ.</p>
+  <h3>Xu hướng 4 tuần — Bill lỗi tư vấn chèo kéo (HT)</h3>
+  <div class="chart-wrap">
+    <canvas id="chartTvck"></canvas>
+  </div>
+  <div class="analysis-box">Xu hướng 4 tuần <strong>tăng dần</strong> từ 0 lên 1 bill — cần hành động phòng ngừa trước khi thành điểm nóng rõ ràng. <em>Lưu ý phương pháp:</em> Tổng bill chèo kéo qua 4 tuần chỉ 5 bill — số quá nhỏ để tính tỉ lệ có ý nghĩa. Phân tích theo số tuyệt đối là phù hợp hơn.</div>
 
-  <h3>Phân bổ theo salon — Công ty (HT)</h3>
-  
+  <h3>Phân bổ theo salon — Công ty (HT) — 4 bill</h3>
   <table><thead><tr><th>Thị trường</th><th>GDKV</th><th>Salon</th><th>Số bill</th><th>Bill ID</th></tr></thead><tbody>
-  <tr>
-    <td>(NQ)Trung Đức_Phía Đông Hà Nội</td>
-    <td>Đoàn Trung Đức GDKV</td>
-    <td><strong>90 TDH</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24745028.0</span></td>
-  </tr>
-  <tr>
-    <td>TT08 - Quận 3,10, Tân Bình, Tân Phú</td>
-    <td>Nguyễn Thanh Sang GDKV</td>
-    <td><strong>575 AC</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24781388.0</span></td>
-  </tr>
-  <tr>
-    <td>TT08 - Quận 3,10, Tân Bình, Tân Phú</td>
-    <td>Nguyễn Thanh Sang GDKV</td>
-    <td><strong>99 TSN</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24756238.0</span></td>
-  </tr>
-  <tr>
-    <td>TT11 - Quận Thủ Đức, Quận 9</td>
-    <td>Nguyễn Việt Cường GDKV</td>
-    <td><strong>1146 KVC</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24766092.0</span></td>
-  </tr></tbody></table>
+      <tr>
+        <td>(NQ)Trung Đức_Phía Đông Hà Nội</td>
+        <td>Đoàn Trung Đức GDKV</td>
+        <td><strong>90 TDH</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24745028.0</span></td>
+      </tr>
+      <tr>
+        <td>TT08 - Quận 3,10, Tân Bình, Tân Phú</td>
+        <td>Nguyễn Thanh Sang GDKV</td>
+        <td><strong>575 AC</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24781388.0</span></td>
+      </tr>
+      <tr>
+        <td>TT08 - Quận 3,10, Tân Bình, Tân Phú</td>
+        <td>Nguyễn Thanh Sang GDKV</td>
+        <td><strong>99 TSN</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24756238.0</span></td>
+      </tr>
+      <tr>
+        <td>TT11 - Quận Thủ Đức, Quận 9</td>
+        <td>Nguyễn Việt Cường GDKV</td>
+        <td><strong>1146 KVC</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24766092.0</span></td>
+      </tr></tbody></table>
 
   
   <h4>Nhượng quyền (NQ) — tham khảo (1 bill)</h4>
-  <table>
-    <thead><tr><th>Thị trường</th><th>GDKV NQ</th><th>Salon</th><th>Bill</th><th>Bill ID</th></tr></thead>
-    <tbody>
-  <tr>
-    <td>(NQ)Văn Quang_Quận Gò Vấp - Q12</td>
-    <td>An NQ</td>
-    <td><strong>152 NO</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24767272.0</span></td>
-  </tr></tbody>
-  </table>
+  <table><thead><tr><th>Thị trường</th><th>GDKV NQ</th><th>Salon</th><th>Số bill</th><th>Bill ID</th></tr></thead>
+  <tbody>
+      <tr>
+        <td>(NQ)Văn Quang_Quận Gò Vấp - Q12</td><td>An NQ</td>
+        <td><strong>152 NO</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24767272.0</span></td>
+      </tr></tbody></table>
 
   <h3>Lời khách hàng phản ánh (4 trích dẫn)</h3>
-  
-  
-  <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">575 AC</span>
-      <span class="bill-id">24781388.0</span>
-    </div>
-    <div class="quote-text">"anh đánh giá stylist và skinner 5 sao hết nhé, còn  reception anh đánh giá 1 sao vì ép mua sản phẩm"</div>
-  </div>
-  <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">1146 KVC</span>
-      <span class="bill-id">24766092.0</span>
-    </div>
-    <div class="quote-text">"bận nt zalo 2. Thái độ pv: 
+  <div class="quote-block"><div class="quote-meta"><span class="quote-salon">575 AC</span><span class="bill-id">24781388.0</span></div><div class="quote-text">"anh đánh giá stylist và skinner 5 sao hết nhé, còn  reception anh đánh giá 1 sao vì ép mua sản phẩm"</div></div><div class="quote-block"><div class="quote-meta"><span class="quote-salon">1146 KVC</span><span class="bill-id">24766092.0</span></div><div class="quote-text">"bận nt zalo 2. Thái độ pv: 
 - không có giỏ bỏ đồ cho khách khi massa
 - khi a đã đưa đt cho bấm đt tự bấm k rõ bấm j nhưng xong rồi mới trả đt. K tinh tế. A k khó nhưng đt a mà mượn bams địa chỉ bấm xog rồi mới đưa tự bấm
-- a làm bên e nhiêu k phải ít nhưng khi a nc k mún tư vấn là hiểu k mún tư vấn nhưng cứ hỏi nhiều."</div>
-  </div>
-  <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">99 TSN</span>
-      <span class="bill-id">24756238.0</span>
-    </div>
-    <div class="quote-text">"knm,thợ gội chưa oke nha tay nghề yếu quá,b hớt tóc mới vào cứ sale uốn tóc mà cứ lải nhải nhiều nói tới lần thứ 3 mới im ,hớt quá ngắn"</div>
-  </div>
-  <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">90 TDH</span>
-      <span class="bill-id">24745028.0</span>
-    </div>
-    <div class="quote-text">"skn chèo kéo khách, tư vấn mục đích lấy tiền, nói chuyện hay cãi nhau gì đó to lắm ồn ào"</div>
-  </div>
+- a làm bên e nhiêu k phải ít nhưng khi a nc k mún tư vấn là hiểu k mún tư vấn nhưng cứ hỏi nhiều."</div></div><div class="quote-block"><div class="quote-meta"><span class="quote-salon">99 TSN</span><span class="bill-id">24756238.0</span></div><div class="quote-text">"knm,thợ gội chưa oke nha tay nghề yếu quá,b hớt tóc mới vào cứ sale uốn tóc mà cứ lải nhải nhiều nói tới lần thứ 3 mới im ,hớt quá ngắn"</div></div><div class="quote-block"><div class="quote-meta"><span class="quote-salon">90 TDH</span><span class="bill-id">24745028.0</span></div><div class="quote-text">"skn chèo kéo khách, tư vấn mục đích lấy tiền, nói chuyện hay cãi nhau gì đó to lắm ồn ào"</div></div>
 </section>
 
   
 <section id="tn">
   <h2>Vấn Đề 2 — Chất Lượng Tay Nghề Cắt / Uốn / Nhuộm</h2>
-  <div class="strong-stmt">Lỗi tay nghề cắt/uốn/nhuộm là nhóm lỗi <em>dẫn đầu</em> kì 01-14/6/2026 — <strong>60 bill HT</strong> trên tổng 157 bill (38%), gồm 48 bill kết quả sai mẫu/màu và 12 bill quy trình sơ sài/ăn bớt bước. Salon nổi trội nhất: <strong>362 NGT BN</strong> (4 bill).</div>
+  <div class="strong-stmt">Lỗi tay nghề cắt/uốn/nhuộm là nhóm lỗi <em>dẫn đầu</em> kì 01-14/6/2026 — <strong>60 bill HT</strong> trên tổng 157 bill (38%), gồm 48 bill kết quả sai mẫu/màu và 12 bill quy trình sơ sài. Salon nổi trội nhất: <strong>362 NGT BN</strong> (4 bill).</div>
+
+  <h3>Xu hướng 4 tuần — Bill tay nghề (số tuyệt đối &amp; tỉ lệ trên tổng bill HT)</h3>
+  <div class="chart-wrap chart-tall">
+    <canvas id="chartTn"></canvas>
+  </div>
+  <div class="analysis-box">Số bill lỗi tay nghề có xu hướng <strong>giảm nhẹ</strong> so với đầu kì (31 → 17 bill), tuy nhiên chưa về mức thấp đáng kể. Đáng chú ý: tỉ lệ bill tay nghề trên tổng bill <strong>tăng từ 35% lên 40%</strong> trong khi tổng bill giảm (91 → 43 bill). Điều này cho thấy lỗi tay nghề <strong>không giảm theo quy mô hoạt động</strong> — đây là dấu hiệu vấn đề gốc rễ chưa được giải quyết.</div>
 
   <h3>Phân loại lỗi trong kì</h3>
   
   <table>
-    <thead><tr><th>Nhóm tag</th><th>Mô tả ngắn</th><th>T1</th><th>T2</th><th>Tổng kì</th></tr></thead>
+    <thead><tr><th>Nhóm lỗi</th><th>Mô tả</th><th>T1 (01-07/6)</th><th>T2 (08-14/6)</th><th>Tổng kì</th></tr></thead>
     <tbody>
       <tr>
         <td><strong>Kết quả sai mẫu/màu</strong></td>
         <td>Cắt/Uốn/Nhuộm không đúng yêu cầu; cạo đau rát; xả còn tóc con...</td>
         <td class="center">32</td>
         <td class="center">16</td>
-        <td class="center rate-orange"><strong>48</strong></td>
+        <td class="center rate-red"><strong>48</strong></td>
       </tr>
       <tr>
         <td><strong>Quy trình sơ sài</strong></td>
@@ -241,515 +172,566 @@ tr:hover td { background: #fafafa; }
     </tbody>
   </table>
 
-  <h3>Xu hướng 6 tuần — tỉ lệ tay nghề trên tổng bill HT</h3>
+  <h3>Phân bổ theo GDKV — Công ty (HT)</h3>
   <table>
-    <thead>
-      <tr><th>Kì</th><th>Tổng bill HT</th><th>Bill tay nghề</th><th>Tỉ lệ</th></tr>
-    </thead>
+    <thead><tr><th>GDKV</th><th>Số bill tay nghề</th><th>% trong nhóm</th></tr></thead>
     <tbody>
-  <tr>
-    <td>11-17/5</td>
-    <td>104</td>
-    <td class="center">31</td>
-    <td class="center rate-orange">30%</td>
-  </tr>
-  <tr>
-    <td>18-24/5</td>
-    <td>121</td>
-    <td class="center">36</td>
-    <td class="center rate-orange">30%</td>
-  </tr>
-  <tr class="cur-period">
-    <td>01-07/6</td>
-    <td>91</td>
-    <td class="center">32</td>
-    <td class="center rate-red">35%</td>
-  </tr>
-  <tr class="cur-period">
-    <td>08-14/6</td>
-    <td>43</td>
-    <td class="center">17</td>
-    <td class="center rate-red">40%</td>
-  </tr>
-  <tr class="cur-period">
-    <td>T1 01-07/6</td>
-    <td>99</td>
-    <td class="center">40</td>
-    <td class="center rate-red">40%</td>
-  </tr>
-  <tr class="cur-period">
-    <td>T2 08-14/6</td>
-    <td>58</td>
-    <td class="center">20</td>
-    <td class="center rate-orange">34%</td>
-  </tr></tbody>
-  </table>
-  <p class="note">* Màu đỏ: ≥35% · Cam: ≥25% · Xanh: &lt;25%</p>
-
-  <h3>Phân bổ theo GDKV (HT)</h3>
-  <table>
-    <thead><tr><th>GDKV</th><th>Số bill</th><th>% trong nhóm tay nghề</th></tr></thead>
-    <tbody>
-  <tr>
-    <td>Nguyễn Việt Cường GDKV</td>
-    <td class="center">12</td>
-    <td class="center">20%</td>
-  </tr>
-  <tr>
-    <td>Phan Thị Hồng Gấm GDKV</td>
-    <td class="center">12</td>
-    <td class="center">20%</td>
-  </tr>
-  <tr>
-    <td>Đoàn Trung Đức GDKV</td>
-    <td class="center">10</td>
-    <td class="center">17%</td>
-  </tr>
-  <tr>
-    <td>Tống Xuân Quyền GDKV</td>
-    <td class="center">9</td>
-    <td class="center">15%</td>
-  </tr>
-  <tr>
-    <td>Nguyễn Thanh Sang GDKV</td>
-    <td class="center">6</td>
-    <td class="center">10%</td>
-  </tr>
-  <tr>
-    <td>Nguyễn Như Quỳnh GDKV</td>
-    <td class="center">6</td>
-    <td class="center">10%</td>
-  </tr>
-  <tr>
-    <td>Nguyễn Thanh Sang GDKV</td>
-    <td class="center">3</td>
-    <td class="center">5%</td>
-  </tr>
-  <tr>
-    <td>Nguyễn Thị Huệ GDKV</td>
-    <td class="center">1</td>
-    <td class="center">2%</td>
-  </tr>
-  <tr>
-    <td>Trịnh Văn Quang GDKV</td>
-    <td class="center">1</td>
-    <td class="center">2%</td>
-  </tr></tbody>
+      <tr>
+        <td>Nguyễn Việt Cường GDKV</td>
+        <td class="center">12</td>
+        <td class="center">20%</td>
+      </tr>
+      <tr>
+        <td>Phan Thị Hồng Gấm GDKV</td>
+        <td class="center">12</td>
+        <td class="center">20%</td>
+      </tr>
+      <tr>
+        <td>Đoàn Trung Đức GDKV</td>
+        <td class="center">10</td>
+        <td class="center">17%</td>
+      </tr>
+      <tr>
+        <td>Tống Xuân Quyền GDKV</td>
+        <td class="center">9</td>
+        <td class="center">15%</td>
+      </tr>
+      <tr>
+        <td>Nguyễn Thanh Sang GDKV</td>
+        <td class="center">6</td>
+        <td class="center">10%</td>
+      </tr>
+      <tr>
+        <td>Nguyễn Như Quỳnh GDKV</td>
+        <td class="center">6</td>
+        <td class="center">10%</td>
+      </tr>
+      <tr>
+        <td>Nguyễn Thanh Sang GDKV</td>
+        <td class="center">3</td>
+        <td class="center">5%</td>
+      </tr>
+      <tr>
+        <td>Nguyễn Thị Huệ GDKV</td>
+        <td class="center">1</td>
+        <td class="center">2%</td>
+      </tr>
+      <tr>
+        <td>Trịnh Văn Quang GDKV</td>
+        <td class="center">1</td>
+        <td class="center">2%</td>
+      </tr></tbody>
   </table>
 
-  <h3>Phân bổ theo salon — Công ty (HT)</h3>
+  <h3>Phân bổ theo salon — Công ty (HT) — 60 bill</h3>
   <table>
     <thead><tr><th>Thị trường</th><th>GDKV</th><th>Salon</th><th>Số bill</th><th>Bill ID</th></tr></thead>
     <tbody>
-  <tr>
-    <td>TT13 - Tỉnh phía Bắc</td>
-    <td>Nguyễn Như Quỳnh GDKV</td>
-    <td><strong>362 NGT BN</strong></td>
-    <td class="center">4</td>
-    <td><span class="bill-id">24739958.0 | 24748449.0 | 24764765.0 | 24772262.0</span></td>
-  </tr>
-  <tr>
-    <td>TT09 - Quận 4, 7, 8</td>
-    <td>Tống Xuân Quyền GDKV</td>
-    <td><strong>237 NTT</strong></td>
-    <td class="center">4</td>
-    <td><span class="bill-id">24735908.0 | 24758839.0 | 24782014.0 | 24788192.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Trung Đức_Phía Đông Hà Nội</td>
-    <td>Đoàn Trung Đức GDKV</td>
-    <td><strong>VINSMART PZ4</strong></td>
-    <td class="center">4</td>
-    <td><span class="bill-id">24751663.0 | 24756302.0 | 24759127.0 | 24760908.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Việt Cường_TP Thủ Dầu, Tỉnh Bình Dương</td>
-    <td>Nguyễn Việt Cường GDKV</td>
-    <td><strong>13 BH2</strong></td>
-    <td class="center">3</td>
-    <td><span class="bill-id">24750258.0 | 24763080.0 | 24792170.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Thanh Sang_TP Quy Nhơn, Bình Định</td>
-    <td>Nguyễn Thanh Sang GDKV</td>
-    <td><strong>484 NTH QN</strong></td>
-    <td class="center">3</td>
-    <td><span class="bill-id">24735988.0 | 24747214.0 | 24756032.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Trung Đức_Phía Đông Hà Nội</td>
-    <td>Phan Thị Hồng Gấm GDKV</td>
-    <td><strong>63B TDT</strong></td>
-    <td class="center">2</td>
-    <td><span class="bill-id">24739087.0 | 24763221.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Hồng Gấm_Phía Nam Hà Nội</td>
-    <td>Phan Thị Hồng Gấm GDKV</td>
-    <td><strong>14 LN</strong></td>
-    <td class="center">2</td>
-    <td><span class="bill-id">24758459.0 | 24775319.0</span></td>
-  </tr>
-  <tr>
-    <td>TT03 - Phía Đông Hà Nội</td>
-    <td>Đoàn Trung Đức GDKV</td>
-    <td><strong>62 LH</strong></td>
-    <td class="center">2</td>
-    <td><span class="bill-id">24747013.0 | 24790869.0</span></td>
-  </tr>
-  <tr>
-    <td>TT17 - TP Thủ Đức, Quận 2</td>
-    <td>Nguyễn Việt Cường GDKV</td>
-    <td><strong>401/1 NDT</strong></td>
-    <td class="center">2</td>
-    <td><span class="bill-id">24781706.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Việt Cường_Long Khánh, Đồng Nai</td>
-    <td>Nguyễn Việt Cường GDKV</td>
-    <td><strong>27 NT DN</strong></td>
-    <td class="center">2</td>
-    <td><span class="bill-id">24787717.0 | 24791797.0</span></td>
-  </tr>
-  <tr>
-    <td>TT03 - Phía Đông Hà Nội</td>
-    <td>Nguyễn Như Quỳnh GDKV</td>
-    <td><strong>168 NVC</strong></td>
-    <td class="center">2</td>
-    <td><span class="bill-id">24757022.0 | 24776963.0</span></td>
-  </tr>
-  <tr>
-    <td>TT04 - Phía Nam Hà Nội</td>
-    <td>Phan Thị Hồng Gấm GDKV</td>
-    <td><strong>173 TN</strong></td>
-    <td class="center">2</td>
-    <td><span class="bill-id">24736308.0 | 24755487.0</span></td>
-  </tr>
-  <tr>
-    <td>TT04 - Phía Nam Hà Nội</td>
-    <td>Phan Thị Hồng Gấm GDKV</td>
-    <td><strong>39 HBT</strong></td>
-    <td class="center">2</td>
-    <td><span class="bill-id">24760025.0 | 24780854.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Thanh Sang_Q10-11-5-6-Bình Chánh-Bình Tân</td>
-    <td>Nguyễn Thanh Sang GDKV</td>
-    <td><strong>671 QL50</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24746572.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Thanh Sang_TP Phan Thiết, Bình Thuận</td>
-    <td>Nguyễn Thanh Sang GDKV</td>
-    <td><strong>F33 HV PT</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24793052.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Trung Đức_Phía Đông Hà Nội</td>
-    <td>Đoàn Trung Đức GDKV</td>
-    <td><strong>82 VTP</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24764078.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Trung Đức_Phía Đông Hà Nội</td>
-    <td>Đoàn Trung Đức GDKV</td>
-    <td><strong>26 TT</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24778752.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Xuân Quyền_TP Bả Rịa - TP Vũng Tau</td>
-    <td>Tống Xuân Quyền GDKV</td>
-    <td><strong>504 30T4</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24765119.0</span></td>
-  </tr>
-  <tr>
-    <td>TT03 - Phía Đông Hà Nội</td>
-    <td>Phan Thị Hồng Gấm GDKV</td>
-    <td><strong>264 LLQ</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24757588.0</span></td>
-  </tr>
-  <tr>
-    <td>TT03 - Phía Đông Hà Nội</td>
-    <td>Đoàn Trung Đức GDKV</td>
-    <td><strong>382 NT</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24768796.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Xuân Quyền_Mỹ Tho</td>
-    <td>Tống Xuân Quyền GDKV</td>
-    <td><strong>113 LTK TG</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24770742.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Việt Cường_Tp Đà Nẵng - TP. Nha Trang</td>
-    <td>Nguyễn Việt Cường GDKV</td>
-    <td><strong>345 NVL DN</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24785510.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Việt Cường_Tp Đà Nẵng - TP. Nha Trang</td>
-    <td>Nguyễn Việt Cường GDKV</td>
-    <td><strong>130 XVNT DN</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24783097.0</span></td>
-  </tr>
-  <tr>
-    <td>TT04 - Phía Nam Hà Nội</td>
-    <td>Phan Thị Hồng Gấm GDKV</td>
-    <td><strong>202 DC</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24777696.0</span></td>
-  </tr>
-  <tr>
-    <td>TT04 - Phía Nam Hà Nội</td>
-    <td>Phan Thị Hồng Gấm GDKV</td>
-    <td><strong>148 TD</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24756513.0</span></td>
-  </tr>
-  <tr>
-    <td>TT03 - Phía Đông Hà Nội</td>
-    <td>Đoàn Trung Đức GDKV</td>
-    <td><strong>116 TK</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24768133.0</span></td>
-  </tr>
-  <tr>
-    <td>TT04 - Phía Nam Hà Nội</td>
-    <td>Phan Thị Hồng Gấm GDKV</td>
-    <td><strong>50BT4 NPC LD</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24770405.0</span></td>
-  </tr>
-  <tr>
-    <td>TT08 - Quận 3,10, Tân Bình, Tân Phú</td>
-    <td>Nguyễn Thanh Sang GDKV</td>
-    <td><strong>145 THT</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24777061.0</span></td>
-  </tr>
-  <tr>
-    <td>TT08 - Quận 3,10, Tân Bình, Tân Phú</td>
-    <td>Nguyễn Thanh Sang GDKV</td>
-    <td><strong>99 TSN</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24756238.0</span></td>
-  </tr>
-  <tr>
-    <td>TT06 - Q10,11,5,6, Bình Chánh, Bình Tân</td>
-    <td>Nguyễn Thanh Sang GDKV</td>
-    <td><strong>8 CVL</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24783841.0</span></td>
-  </tr>
-  <tr>
-    <td>TT06 - Q10,11,5,6, Bình Chánh, Bình Tân</td>
-    <td>Nguyễn Thanh Sang GDKV</td>
-    <td><strong>730 TL10</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24755404.0</span></td>
-  </tr>
-  <tr>
-    <td>TT10 - Quận Gò Vấp, Tân Bình, Ninh Kiều</td>
-    <td>Trịnh Văn Quang GDKV</td>
-    <td><strong>483 TN</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24756057.0</span></td>
-  </tr>
-  <tr>
-    <td>TT09 - Quận 4, 7, 8</td>
-    <td>Tống Xuân Quyền GDKV</td>
-    <td><strong>236 DBT</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24770097.0</span></td>
-  </tr>
-  <tr>
-    <td>TT12 - Tỉnh miền Trung</td>
-    <td>Nguyễn Thị Huệ GDKV</td>
-    <td><strong>68 LN NA</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24753764.0</span></td>
-  </tr>
-  <tr>
-    <td>TT11 - Quận Thủ Đức, Quận 9</td>
-    <td>Nguyễn Việt Cường GDKV</td>
-    <td><strong>29 HB</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24782893.0</span></td>
-  </tr>
-  <tr>
-    <td>TT14 - TP Biên Hòa, Đồng Nai</td>
-    <td>Nguyễn Việt Cường GDKV</td>
-    <td><strong>1371 PVT</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24748900.0</span></td>
-  </tr>
-  <tr>
-    <td>TT14 - TP Biên Hòa, Đồng Nai</td>
-    <td>Nguyễn Việt Cường GDKV</td>
-    <td><strong>451 PVT</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24743008.0</span></td>
-  </tr>
-  <tr>
-    <td>Tân An, Long Xuyên</td>
-    <td>Tống Xuân Quyền GDKV</td>
-    <td><strong>113 THD AG</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24743045.0</span></td>
-  </tr>
-  <tr>
-    <td>Tân An, Long Xuyên</td>
-    <td>Tống Xuân Quyền GDKV</td>
-    <td><strong>7 DTP LA</strong></td>
-    <td class="center">1</td>
-    <td><span class="bill-id">24762839.0</span></td>
-  </tr></tbody>
+      <tr>
+        <td>TT13 - Tỉnh phía Bắc</td>
+        <td>Nguyễn Như Quỳnh GDKV</td>
+        <td><strong>362 NGT BN</strong></td>
+        <td class="center">4</td>
+        <td><span class="bill-id">24739958.0</span> <span class="bill-id">24748449.0</span> <span class="bill-id">24764765.0</span> <span class="bill-id">24772262.0</span></td>
+      </tr>
+      <tr>
+        <td>TT09 - Quận 4, 7, 8</td>
+        <td>Tống Xuân Quyền GDKV</td>
+        <td><strong>237 NTT</strong></td>
+        <td class="center">4</td>
+        <td><span class="bill-id">24735908.0</span> <span class="bill-id">24758839.0</span> <span class="bill-id">24782014.0</span> <span class="bill-id">24788192.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Trung Đức_Phía Đông Hà Nội</td>
+        <td>Đoàn Trung Đức GDKV</td>
+        <td><strong>VINSMART PZ4</strong></td>
+        <td class="center">4</td>
+        <td><span class="bill-id">24751663.0</span> <span class="bill-id">24756302.0</span> <span class="bill-id">24759127.0</span> <span class="bill-id">24760908.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Việt Cường_TP Thủ Dầu, Tỉnh Bình Dương</td>
+        <td>Nguyễn Việt Cường GDKV</td>
+        <td><strong>13 BH2</strong></td>
+        <td class="center">3</td>
+        <td><span class="bill-id">24750258.0</span> <span class="bill-id">24763080.0</span> <span class="bill-id">24792170.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Thanh Sang_TP Quy Nhơn, Bình Định</td>
+        <td>Nguyễn Thanh Sang GDKV</td>
+        <td><strong>484 NTH QN</strong></td>
+        <td class="center">3</td>
+        <td><span class="bill-id">24735988.0</span> <span class="bill-id">24747214.0</span> <span class="bill-id">24756032.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Trung Đức_Phía Đông Hà Nội</td>
+        <td>Phan Thị Hồng Gấm GDKV</td>
+        <td><strong>63B TDT</strong></td>
+        <td class="center">2</td>
+        <td><span class="bill-id">24739087.0</span> <span class="bill-id">24763221.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Hồng Gấm_Phía Nam Hà Nội</td>
+        <td>Phan Thị Hồng Gấm GDKV</td>
+        <td><strong>14 LN</strong></td>
+        <td class="center">2</td>
+        <td><span class="bill-id">24758459.0</span> <span class="bill-id">24775319.0</span></td>
+      </tr>
+      <tr>
+        <td>TT03 - Phía Đông Hà Nội</td>
+        <td>Đoàn Trung Đức GDKV</td>
+        <td><strong>62 LH</strong></td>
+        <td class="center">2</td>
+        <td><span class="bill-id">24747013.0</span> <span class="bill-id">24790869.0</span></td>
+      </tr>
+      <tr>
+        <td>TT17 - TP Thủ Đức, Quận 2</td>
+        <td>Nguyễn Việt Cường GDKV</td>
+        <td><strong>401/1 NDT</strong></td>
+        <td class="center">2</td>
+        <td><span class="bill-id">24781706.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Việt Cường_Long Khánh, Đồng Nai</td>
+        <td>Nguyễn Việt Cường GDKV</td>
+        <td><strong>27 NT DN</strong></td>
+        <td class="center">2</td>
+        <td><span class="bill-id">24787717.0</span> <span class="bill-id">24791797.0</span></td>
+      </tr>
+      <tr>
+        <td>TT03 - Phía Đông Hà Nội</td>
+        <td>Nguyễn Như Quỳnh GDKV</td>
+        <td><strong>168 NVC</strong></td>
+        <td class="center">2</td>
+        <td><span class="bill-id">24757022.0</span> <span class="bill-id">24776963.0</span></td>
+      </tr>
+      <tr>
+        <td>TT04 - Phía Nam Hà Nội</td>
+        <td>Phan Thị Hồng Gấm GDKV</td>
+        <td><strong>173 TN</strong></td>
+        <td class="center">2</td>
+        <td><span class="bill-id">24736308.0</span> <span class="bill-id">24755487.0</span></td>
+      </tr>
+      <tr>
+        <td>TT04 - Phía Nam Hà Nội</td>
+        <td>Phan Thị Hồng Gấm GDKV</td>
+        <td><strong>39 HBT</strong></td>
+        <td class="center">2</td>
+        <td><span class="bill-id">24760025.0</span> <span class="bill-id">24780854.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Thanh Sang_Q10-11-5-6-Bình Chánh-Bình Tân</td>
+        <td>Nguyễn Thanh Sang GDKV</td>
+        <td><strong>671 QL50</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24746572.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Thanh Sang_TP Phan Thiết, Bình Thuận</td>
+        <td>Nguyễn Thanh Sang GDKV</td>
+        <td><strong>F33 HV PT</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24793052.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Trung Đức_Phía Đông Hà Nội</td>
+        <td>Đoàn Trung Đức GDKV</td>
+        <td><strong>82 VTP</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24764078.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Trung Đức_Phía Đông Hà Nội</td>
+        <td>Đoàn Trung Đức GDKV</td>
+        <td><strong>26 TT</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24778752.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Xuân Quyền_TP Bả Rịa - TP Vũng Tau</td>
+        <td>Tống Xuân Quyền GDKV</td>
+        <td><strong>504 30T4</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24765119.0</span></td>
+      </tr>
+      <tr>
+        <td>TT03 - Phía Đông Hà Nội</td>
+        <td>Phan Thị Hồng Gấm GDKV</td>
+        <td><strong>264 LLQ</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24757588.0</span></td>
+      </tr>
+      <tr>
+        <td>TT03 - Phía Đông Hà Nội</td>
+        <td>Đoàn Trung Đức GDKV</td>
+        <td><strong>382 NT</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24768796.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Xuân Quyền_Mỹ Tho</td>
+        <td>Tống Xuân Quyền GDKV</td>
+        <td><strong>113 LTK TG</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24770742.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Việt Cường_Tp Đà Nẵng - TP. Nha Trang</td>
+        <td>Nguyễn Việt Cường GDKV</td>
+        <td><strong>345 NVL DN</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24785510.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Việt Cường_Tp Đà Nẵng - TP. Nha Trang</td>
+        <td>Nguyễn Việt Cường GDKV</td>
+        <td><strong>130 XVNT DN</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24783097.0</span></td>
+      </tr>
+      <tr>
+        <td>TT04 - Phía Nam Hà Nội</td>
+        <td>Phan Thị Hồng Gấm GDKV</td>
+        <td><strong>202 DC</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24777696.0</span></td>
+      </tr>
+      <tr>
+        <td>TT04 - Phía Nam Hà Nội</td>
+        <td>Phan Thị Hồng Gấm GDKV</td>
+        <td><strong>148 TD</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24756513.0</span></td>
+      </tr>
+      <tr>
+        <td>TT03 - Phía Đông Hà Nội</td>
+        <td>Đoàn Trung Đức GDKV</td>
+        <td><strong>116 TK</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24768133.0</span></td>
+      </tr>
+      <tr>
+        <td>TT04 - Phía Nam Hà Nội</td>
+        <td>Phan Thị Hồng Gấm GDKV</td>
+        <td><strong>50BT4 NPC LD</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24770405.0</span></td>
+      </tr>
+      <tr>
+        <td>TT08 - Quận 3,10, Tân Bình, Tân Phú</td>
+        <td>Nguyễn Thanh Sang GDKV</td>
+        <td><strong>145 THT</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24777061.0</span></td>
+      </tr>
+      <tr>
+        <td>TT08 - Quận 3,10, Tân Bình, Tân Phú</td>
+        <td>Nguyễn Thanh Sang GDKV</td>
+        <td><strong>99 TSN</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24756238.0</span></td>
+      </tr>
+      <tr>
+        <td>TT06 - Q10,11,5,6, Bình Chánh, Bình Tân</td>
+        <td>Nguyễn Thanh Sang GDKV</td>
+        <td><strong>8 CVL</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24783841.0</span></td>
+      </tr>
+      <tr>
+        <td>TT06 - Q10,11,5,6, Bình Chánh, Bình Tân</td>
+        <td>Nguyễn Thanh Sang GDKV</td>
+        <td><strong>730 TL10</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24755404.0</span></td>
+      </tr>
+      <tr>
+        <td>TT10 - Quận Gò Vấp, Tân Bình, Ninh Kiều</td>
+        <td>Trịnh Văn Quang GDKV</td>
+        <td><strong>483 TN</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24756057.0</span></td>
+      </tr>
+      <tr>
+        <td>TT09 - Quận 4, 7, 8</td>
+        <td>Tống Xuân Quyền GDKV</td>
+        <td><strong>236 DBT</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24770097.0</span></td>
+      </tr>
+      <tr>
+        <td>TT12 - Tỉnh miền Trung</td>
+        <td>Nguyễn Thị Huệ GDKV</td>
+        <td><strong>68 LN NA</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24753764.0</span></td>
+      </tr>
+      <tr>
+        <td>TT11 - Quận Thủ Đức, Quận 9</td>
+        <td>Nguyễn Việt Cường GDKV</td>
+        <td><strong>29 HB</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24782893.0</span></td>
+      </tr>
+      <tr>
+        <td>TT14 - TP Biên Hòa, Đồng Nai</td>
+        <td>Nguyễn Việt Cường GDKV</td>
+        <td><strong>1371 PVT</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24748900.0</span></td>
+      </tr>
+      <tr>
+        <td>TT14 - TP Biên Hòa, Đồng Nai</td>
+        <td>Nguyễn Việt Cường GDKV</td>
+        <td><strong>451 PVT</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24743008.0</span></td>
+      </tr>
+      <tr>
+        <td>Tân An, Long Xuyên</td>
+        <td>Tống Xuân Quyền GDKV</td>
+        <td><strong>113 THD AG</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24743045.0</span></td>
+      </tr>
+      <tr>
+        <td>Tân An, Long Xuyên</td>
+        <td>Tống Xuân Quyền GDKV</td>
+        <td><strong>7 DTP LA</strong></td>
+        <td class="center">1</td>
+        <td><span class="bill-id">24762839.0</span></td>
+      </tr></tbody>
   </table>
 
   
   <h4>Nhượng quyền (NQ) — tham khảo (4 bill)</h4>
-  <table>
-    <thead><tr><th>Thị trường</th><th>GDKV NQ</th><th>Salon</th><th>Bill</th><th>Bill ID</th></tr></thead>
-    <tbody>
-  <tr>
-    <td>(NQ)Tôn Cương_Q1, Bình Thạnh, Phú Nhuận</td>
-    <td>An NQ</td>
-    <td><strong>359 LQD</strong></td>
-    <td class="center">2</td>
-    <td><span class="bill-id">24761261.0 | 24777636.0</span></td>
-  </tr>
-  <tr>
-    <td>(NQ)Tôn Cương_Quận Thủ Đức - Quận 9</td>
-    <td>Nhật NQ</td>
-    <td><strong>411 NVT</strong></td>
-    <td class="center">2</td>
-    <td><span class="bill-id">24760761.0 | 24760826.0</span></td>
-  </tr></tbody>
-  </table>
+  <table><thead><tr><th>Thị trường</th><th>GDKV NQ</th><th>Salon</th><th>Số bill</th><th>Bill ID</th></tr></thead>
+  <tbody>
+      <tr>
+        <td>(NQ)Tôn Cương_Q1, Bình Thạnh, Phú Nhuận</td><td>An NQ</td>
+        <td><strong>359 LQD</strong></td>
+        <td class="center">2</td>
+        <td><span class="bill-id">24761261.0</span> <span class="bill-id">24777636.0</span></td>
+      </tr>
+      <tr>
+        <td>(NQ)Tôn Cương_Quận Thủ Đức - Quận 9</td><td>Nhật NQ</td>
+        <td><strong>411 NVT</strong></td>
+        <td class="center">2</td>
+        <td><span class="bill-id">24760761.0</span> <span class="bill-id">24760826.0</span></td>
+      </tr></tbody></table>
 
-  <h3>Lời khách hàng phản ánh — Kết quả sai mẫu/màu (10 trích dẫn)</h3>
+  <h3>Lời khách hàng — Kết quả sai mẫu/màu (10 trích dẫn)</h3>
   
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">13 BH2</span>
-      <span class="bill-id">24792170.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">13 BH2</span><span class="bill-id">24792170.0</span></div>
     <div class="quote-text">"à anh đưa mẫu mà bạn cắt k đúng"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">113 LTK TG</span>
-      <span class="bill-id">24770742.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">113 LTK TG</span><span class="bill-id">24770742.0</span></div>
     <div class="quote-text">"a thấy chưa ưng ý b thợ cắt em ạ,cạo râu chưa sạch ghế ngồi cắt tóc cũng k thoải mái b hớt tóc gì mà hỏi tùm lum á em"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">168 NVC</span>
-      <span class="bill-id">24776963.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">168 NVC</span><span class="bill-id">24776963.0</span></div>
     <div class="quote-text">"anh chia sẻ rồi đấy em, anh còn nói luôn cả với bạn nhân viên cắt đấy em. Dịch vụ quá không ổn, mua bực vào người"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">63B TDT</span>
-      <span class="bill-id">24763221.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">63B TDT</span><span class="bill-id">24763221.0</span></div>
     <div class="quote-text">"anh chia sẻ trên đó rồi mà em, mấy bạn nhắn hỏi anh rồi đó"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">202 DC</span>
-      <span class="bill-id">24777696.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">202 DC</span><span class="bill-id">24777696.0</span></div>
     <div class="quote-text">"b cắt tóc hơi lệch lệch tí k giống như những lần trước thôi ạ"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">730 TL10</span>
-      <span class="bill-id">24755404.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">730 TL10</span><span class="bill-id">24755404.0</span></div>
     <div class="quote-text">"b thợ cắt chưa ưng ý em ạ"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">264 LLQ</span>
-      <span class="bill-id">24757588.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">264 LLQ</span><span class="bill-id">24757588.0</span></div>
     <div class="quote-text">"b thợ cắt hơi không đúng mẫu lắm"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">39 HBT</span>
-      <span class="bill-id">24760025.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">39 HBT</span><span class="bill-id">24760025.0</span></div>
     <div class="quote-text">"bạn cắt cắt không đúng mẫu xong mình bảo thì bạn ấy cứ đổ do cái này do cái khác"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">362 NGT BN</span>
-      <span class="bill-id">24764765.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">362 NGT BN</span><span class="bill-id">24764765.0</span></div>
     <div class="quote-text">"bạn cắt cho em xấu quá"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">F33 HV PT</span>
-      <span class="bill-id">24793052.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">F33 HV PT</span><span class="bill-id">24793052.0</span></div>
     <div class="quote-text">"bạn cắt k đúng ý mình á, mình có bảo r mà mình thấy k hài lòng lắm"</div>
   </div>
 
   
-  <h4>Khách phản ánh — Quy trình sơ sài (STL_Cắt)</h4>
+  <h4>Khách phản ánh — Quy trình sơ sài / STL (5 trích dẫn)</h4>
   
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">13 BH2</span>
-      <span class="bill-id">24763080.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">13 BH2</span><span class="bill-id">24763080.0</span></div>
     <div class="quote-text">"a thấy k tiệm bên ngoài ,từ thợ cắt ,thợ gội phục vụ qua loa sơ sài vội vàng như kiểu sắp đi có việc gì vậy á"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">484 NTH QN</span>
-      <span class="bill-id">24747214.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">484 NTH QN</span><span class="bill-id">24747214.0</span></div>
     <div class="quote-text">"anh về soi gương thấy cọng dài cọng ngắn, còn gội massgae thì rât ok"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">173 TN</span>
-      <span class="bill-id">24755487.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">173 TN</span><span class="bill-id">24755487.0</span></div>
     <div class="quote-text">"b thợ cắt hời hợt em ạ,cạo mặt mà râu ria vẫn còn nguyên"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">484 NTH QN</span>
-      <span class="bill-id">24756032.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">484 NTH QN</span><span class="bill-id">24756032.0</span></div>
     <div class="quote-text">"b thợ sấy tóc không khô và cũng kbt setup chỗ gội xả"</div>
   </div>
   <div class="quote-block">
-    <div class="quote-meta">
-      <span class="quote-salon">62 LH</span>
-      <span class="bill-id">24747013.0</span>
-    </div>
+    <div class="quote-meta"><span class="quote-salon">62 LH</span><span class="bill-id">24747013.0</span></div>
     <div class="quote-text">"bạn cạo râu không sạch về nhà anh phải cạo lại nè em"</div>
   </div>
 </section>
 
 </div>
+<script>
+const periods = ["11-17/5", "18-24/5", "01-07/6", "08-14/6"];
+const tvckCounts = [0, 1, 3, 1];
+const tnCounts = [31, 36, 32, 17];
+const tnRates = [30, 30, 35, 40];
+const totalCounts = [104, 121, 91, 43];
+
+// Shared options
+const fontFamily = "'Segoe UI', Arial, sans-serif";
+Chart.defaults.font.family = fontFamily;
+Chart.defaults.font.size = 12;
+
+// ---- TVCK Chart ----
+new Chart(document.getElementById('chartTvck'), {
+  type: 'line',
+  data: {
+    labels: periods,
+    datasets: [
+      {
+        label: 'Bill chèo kéo (HT)',
+        data: tvckCounts,
+        borderColor: '#e53935',
+        backgroundColor: 'rgba(229,57,53,0.08)',
+        pointBackgroundColor: '#e53935',
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        borderWidth: 2.5,
+        tension: 0.35,
+        fill: true,
+        yAxisID: 'y',
+      },
+      {
+        label: 'Tổng bill HT',
+        data: totalCounts,
+        borderColor: '#90a4ae',
+        backgroundColor: 'transparent',
+        pointBackgroundColor: '#90a4ae',
+        pointRadius: 4,
+        borderWidth: 1.5,
+        borderDash: [5, 4],
+        tension: 0.35,
+        fill: false,
+        yAxisID: 'y2',
+      },
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { boxWidth: 12, padding: 14 } },
+      tooltip: { padding: 10 },
+    },
+    scales: {
+      y: {
+        position: 'left',
+        title: { display: true, text: 'Bill chèo kéo' },
+        beginAtZero: true,
+        ticks: { stepSize: 1 },
+        grid: { color: 'rgba(0,0,0,.06)' },
+      },
+      y2: {
+        position: 'right',
+        title: { display: true, text: 'Tổng bill HT (tham chiếu)' },
+        beginAtZero: false,
+        grid: { drawOnChartArea: false },
+      },
+      x: { grid: { color: 'rgba(0,0,0,.04)' } },
+    }
+  }
+});
+
+// ---- TN Chart ----
+new Chart(document.getElementById('chartTn'), {
+  type: 'line',
+  data: {
+    labels: periods,
+    datasets: [
+      {
+        label: 'Bill tay nghề (HT)',
+        data: tnCounts,
+        borderColor: '#1565c0',
+        backgroundColor: 'rgba(21,101,192,0.08)',
+        pointBackgroundColor: '#1565c0',
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        borderWidth: 2.5,
+        tension: 0.35,
+        fill: true,
+        yAxisID: 'y',
+      },
+      {
+        label: 'Tỉ lệ % trên tổng bill HT',
+        data: tnRates,
+        borderColor: '#f57c00',
+        backgroundColor: 'transparent',
+        pointBackgroundColor: '#f57c00',
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        borderWidth: 2.5,
+        tension: 0.35,
+        fill: false,
+        yAxisID: 'y2',
+        borderDash: [4, 3],
+      },
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { boxWidth: 12, padding: 14 } },
+      tooltip: {
+        padding: 10,
+        callbacks: {
+          label: function(ctx) {
+            const label = ctx.dataset.label || '';
+            if (ctx.datasetIndex === 1) return label + ': ' + ctx.parsed.y + '%';
+            return label + ': ' + ctx.parsed.y + ' bill';
+          }
+        }
+      },
+    },
+    scales: {
+      y: {
+        position: 'left',
+        title: { display: true, text: 'Số bill tay nghề' },
+        beginAtZero: true,
+        grid: { color: 'rgba(0,0,0,.06)' },
+      },
+      y2: {
+        position: 'right',
+        title: { display: true, text: 'Tỉ lệ (%)' },
+        beginAtZero: true,
+        max: 60,
+        ticks: { callback: v => v + '%' },
+        grid: { drawOnChartArea: false },
+      },
+      x: { grid: { color: 'rgba(0,0,0,.04)' } },
+    }
+  }
+});
+</script>
 </body>
 </html>
