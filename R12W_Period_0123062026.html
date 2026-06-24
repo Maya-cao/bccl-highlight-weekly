@@ -1,1283 +1,550 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>R12W Period Review – 01–23/06/2026</title>
+<title>Phân tích độ trễ booking — R12W Pool T4 & T5 | 30Shine</title>
 <style>
-:root{--bg:#f1f5f9;--card:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
-
-/* Topbar */
-.topbar{background:#0f172a;color:#fff;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200}
-.topbar-title{font-size:16px;font-weight:700}
-.topbar-meta{font-size:12px;color:#94a3b8;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.topbar-badge{background:#1e3a5f;color:#93c5fd;padding:2px 10px;border-radius:12px;font-size:11px}
-
-/* Layout */
-.container{max-width:1100px;margin:0 auto;padding:20px 16px;display:flex;flex-direction:column;gap:20px}
-.card{background:var(--card);border-radius:12px;padding:20px 24px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.sec-title{font-size:17px;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
-.subsec{margin-bottom:20px}
-.subsec h3{font-size:13px;font-weight:600;color:#374151;margin-bottom:10px;padding:5px 10px;background:#f8fafc;border-radius:6px;border-left:3px solid #6366f1}
-
-/* KPI */
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px}
-.kpi-grid.small .kpi-card{padding:10px 14px}
-.kpi-card{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:14px 18px;text-align:center}
-.kpi-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.kpi-val{font-size:20px;font-weight:700}
-.kpi-grid.small .kpi-val{font-size:17px}
-.delta{font-size:12px;font-weight:600;margin-left:4px}
-
-/* Bar */
-.bar-bg{background:#f1f5f9;border-radius:3px;overflow:hidden;margin-bottom:3px}
-.bar-fill{height:100%;border-radius:3px}
-
-/* Table */
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:13px}
-thead th{background:#f8fafc;padding:9px 10px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);border-bottom:2px solid var(--border)}
-tbody td{padding:9px 10px;border-bottom:1px solid #f1f5f9;vertical-align:top}
-tbody tr:hover td{background:#fafbfc}
-td.num{text-align:right;font-variant-numeric:tabular-nums}
-
-/* Threshold badges */
-.th-badge{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:8px;margin-left:4px;vertical-align:middle}
-.th-green{background:#dcfce7;color:#166534}
-.th-yellow{background:#fef3c7;color:#92400e}
-.th-red{background:#fee2e2;color:#991b1b}
-
-/* Badges */
-.badge{font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px}
-.b1{background:#fef9c3;color:#713f12}.b2{background:#f1f5f9;color:#475569}
-.b3{background:#fef3c7;color:#78350f}.blow{background:#fee2e2;color:#991b1b}
-.bmid{background:#f1f5f9;color:#64748b}
-
-/* Row highlights */
-.row-alert td{background:#fef2f2 !important}
-.row-alert:hover td{background:#fee2e2 !important}
-.row-top td{background:#f0fdf4 !important}
-.row-top:hover td{background:#dcfce7 !important}
-
-/* Value highlights */
-.val-xl.alert-xl,.val-bk.alert-bk{font-weight:800;font-size:15px}
-.val-xl.top-xl,.val-bk.top-bk{font-weight:800;font-size:15px}
-
-/* Alert / Top sections */
-.alert-section{border:2px solid #fca5a5;border-radius:10px;padding:14px;margin-bottom:12px;background:#fef2f2}
-.alert-header{font-size:13px;font-weight:700;color:#991b1b;margin-bottom:10px}
-.top-section{border:2px solid #86efac;border-radius:10px;padding:14px;margin-bottom:12px;background:#f0fdf4}
-.top-header{font-size:13px;font-weight:700;color:#166534;margin-bottom:10px}
-.row-legend{font-size:11px;margin-left:8px;padding:1px 6px;border-radius:4px}
-.row-top-leg{background:#dcfce7;color:#166534}
-.row-alert-leg{background:#fee2e2;color:#991b1b}
-
-/* Matrix */
-.matrix-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.q-cell{border-radius:10px;padding:14px;min-height:110px}
-.q-label{font-size:13px;font-weight:700;margin-bottom:2px}
-.q-sub{font-size:11px;font-family:monospace;margin-bottom:10px}
-.q-tags{display:flex;flex-direction:column;gap:5px}
-.q-tag{font-size:11px;padding:4px 8px;border-radius:6px;display:flex;justify-content:space-between;align-items:center}
-.q-empty{font-size:11px;color:#94a3b8;font-style:italic}
-
-/* Gap box */
-.gap-box{border:1px solid;border-radius:10px;padding:14px 18px;margin-bottom:4px}
-.gap-icon{font-size:13px;font-weight:700;margin-bottom:10px}
-.gap-grid{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:8px}
-.gap-lbl{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px}
-.gap-val{font-size:18px;font-weight:700}
-.gap-note{font-size:12px;color:#374151;margin-top:6px;padding-top:6px;border-top:1px solid rgba(0,0,0,.08)}
-
-/* Funnel */
-.funnel-scroll{display:flex;align-items:flex-start;gap:4px;overflow-x:auto;padding-bottom:8px}
-.f-step{flex:1;min-width:85px;text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px;border:1px solid var(--border)}
-.f-label{font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}
-.f-count{font-size:14px;font-weight:600;margin-bottom:5px}
-.f-sub{font-size:10px;color:#94a3b8;margin-top:3px}
-.f-target{font-size:10px;color:#6366f1;margin-top:2px;font-weight:600}
-.f-arr{color:#cbd5e1;font-size:20px;padding-top:26px;flex-shrink:0}
-
-/* Narrative */
-.narrative-block{background:#f8fafc;border-radius:8px;padding:14px 18px;border-left:3px solid #6366f1;font-size:13px;line-height:1.85;color:#374151}
-.narrative-block p{margin-bottom:10px}
-.narrative-block p:last-child{margin-bottom:0}
-
-/* Action tables */
-.act-table td{padding:12px 14px;border-bottom:1px solid #f1f5f9;vertical-align:top}
-.act-table th{background:#f8fafc;padding:10px 14px}
-.act-vung{white-space:nowrap;min-width:160px}
-.act-hd-col{min-width:200px;max-width:220px}
-.act-row{font-size:13px;line-height:1.75;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #f1f5f9}
-.act-row:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
-
-/* Tabs */
-.tab-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0}
-.tab-btn{padding:7px 13px;border:none;border-radius:8px 8px 0 0;cursor:pointer;font-size:13px;font-weight:600;background:#e2e8f0;color:#64748b;transition:all .15s;border-bottom:3px solid transparent}
-.tab-btn:hover{background:#cbd5e1}
-.tab-btn.active{background:#fff;color:var(--tc,#6366f1);border-bottom:3px solid var(--tc,#6366f1)}
-.tab-content{display:none;padding:20px 0 0}
-.tab-content.active{display:block}
-.region-subsec{margin-bottom:20px}
-.region-subsec h3{font-size:13px;font-weight:600;color:#374151;margin-bottom:10px;padding:5px 10px;background:#f8fafc;border-radius:6px;border-left:3px solid var(--tc,#6366f1)}
-
-/* Salon ranking grid */
-.salon-rank-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.salon-rank-grid .subsec{margin-bottom:0}
-
-/* Responsive */
-@media(max-width:640px){
-  .matrix-grid{grid-template-columns:1fr}
-  .kpi-grid{grid-template-columns:repeat(2,1fr)}
-  .tab-btn{font-size:12px;padding:6px 10px}
-  .funnel-scroll{flex-direction:column}
-  .f-arr{transform:rotate(90deg);text-align:center;padding:4px 0}
-  .act-vung{white-space:normal}
-  .salon-rank-grid{grid-template-columns:1fr}
+:root{
+  --bg:#E9EDF5;--surface:#fff;--border:#D2D9E8;
+  --t1:#1C2333;--t2:#5B6780;--t3:#9BA8BF;
+  --accent:#1754A8;--accent-pale:#EBF0FA;
+  --good:#15803D;--good-pale:#DCFCE7;
+  --warn:#92400E;--warn-pale:#FEF3C7;
+  --danger:#991B1B;--danger-pale:#FEE2E2;
+  --qtt:#1754A8;--mqtt:#0C7067;--qbq:#C2410C;--mqbq:#9F1239;
+  /* stacked bar colours */
+  --s7:#15803D;--s14:#22C55E;--s30:#86EFAC;--s40:#FDE68A;--s60:#FCA5A5;--s60p:#EF4444;--snone:#E5E9F2;
 }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--t1);font-size:14px;line-height:1.55}
+h1{font-size:22px;font-weight:750;letter-spacing:-.025em;line-height:1.2}
+h2{font-size:15px;font-weight:650;letter-spacing:-.01em}
+.eyebrow{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--t3)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+/* HEADER */
+.ph{background:var(--accent);color:#fff;padding:26px 0 22px}
+.ph .eyebrow{color:rgba(255,255,255,.5);margin-bottom:5px}
+.ph h1{color:#fff;margin-bottom:3px}
+.ph .sub{color:rgba(255,255,255,.68);font-size:13px}
+/* NAV */
+.snav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;overflow-x:auto}
+.snav-i{display:flex;max-width:1100px;margin:0 auto;padding:0 20px}
+.snav a{display:block;padding:11px 13px;font-size:11px;font-weight:600;letter-spacing:.03em;text-decoration:none;color:var(--t2);border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s}
+.snav a:hover,.snav a.active{color:var(--accent);border-color:var(--accent)}
+/* DATA NOTICE */
+.notice{background:#FFFBEB;border:1px solid #FDE68A;border-left:4px solid #F59E0B;border-radius:6px;padding:11px 15px;margin:18px 0;font-size:12.5px;line-height:1.65}
+.notice strong{color:#92400E}
+/* CARD */
+.card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:1px;background:var(--border);border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+.kpi{background:#fff;padding:16px 18px}
+.kpi .kv{font-size:24px;font-weight:750;letter-spacing:-.025em;line-height:1.05;margin:3px 0}
+.kpi .kl{font-size:11.5px;color:var(--t2)}
+/* SECTION */
+section{margin:24px 0}
+.sh{margin-bottom:12px}
+.sh h2{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--t2);margin-bottom:2px}
+.sh p{font-size:12px;color:var(--t3)}
+/* TABLE */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{background:var(--bg);padding:7px 9px;text-align:left;font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--t2);border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:7px 9px;border-bottom:1px solid #F0F2F7;font-variant-numeric:tabular-nums;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#F7F8FC}
+.num{text-align:right}
+/* subtotal / total rows */
+tr.sub-row td{background:#F4F6FB;font-weight:600;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+tr.total-row td{background:#1C2333;color:#fff;font-weight:700}
+tr.total-row .seg{opacity:.9}
+tr.total-row .bw{background:rgba(255,255,255,.15)}
+/* SEG BADGE */
+.seg{display:inline-block;padding:1px 6px;border-radius:99px;font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.sQTT{background:#EBF0FA;color:var(--qtt)}.sMQTT{background:#CCFBF1;color:var(--mqtt)}
+.sQBQ{background:#FFEDD5;color:var(--qbq)}.sMQBQ{background:#FFE4E6;color:var(--mqbq)}
+/* STACKED BAR */
+.stack{display:flex;height:10px;border-radius:5px;overflow:hidden;min-width:140px;gap:1px}
+.stack span{display:block;height:100%;min-width:1px}
+/* MINI BAR (simple) */
+.bw{position:relative;height:5px;background:#E5EAF3;border-radius:3px;min-width:65px}
+.bf{height:100%;border-radius:3px}
+/* PCT badge */
+.pv{font-weight:600;font-size:12px}
+.ph-c{color:var(--good)}.pm-c{color:var(--warn)}.pl-c{color:var(--danger)}
+/* YĐỒ box */
+.yd{border-left:3px solid var(--accent);background:var(--accent-pale);border-radius:0 8px 8px 0;padding:12px 15px;margin-top:16px;font-size:13px;line-height:1.75}
+.yd .yd-title{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:5px}
+.yd strong{color:var(--accent)}
+/* TWO COL */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+/* THRESH */
+.tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tc{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;border-top-width:4px}
+.tc .tn{font-size:12px;font-weight:700;margin-bottom:6px}
+.tc .td{font-size:22px;font-weight:750;letter-spacing:-.03em;line-height:1}
+.tc .tl{font-size:11px;color:var(--t2);margin-bottom:8px}
+.tc ul{font-size:11.5px;line-height:1.7;list-style:none}
+.tc .ta{margin-top:8px;font-size:11.5px;font-weight:600;padding-top:8px;border-top:1px solid var(--border)}
+/* LEGEND */
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;margin-bottom:12px;color:var(--t2)}
+.legend span{display:inline-flex;align-items:center;gap:4px}
+.legend b{display:inline-block;width:10px;height:10px;border-radius:2px}
+/* COMPARE DELTA */
+.dpos{color:var(--good);font-weight:600}.dneg{color:var(--danger);font-weight:600}.dflat{color:var(--t2);font-weight:600}
+/* SUMMARY FINAL */
+.sum{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-top:16px}
+.sum h2{font-size:14px;margin-bottom:10px}
+.sum ul{font-size:13px;line-height:1.8;list-style:none;display:grid;gap:5px}
+.sum li{padding-left:22px;position:relative}
+.sum li::before{content:attr(data-i);position:absolute;left:0}
 </style>
-</head>
-<body>
 
-<div class="topbar">
-  <div class="topbar-title">R12W Period Review</div>
-  <div class="topbar-meta">
-    <span>📅 Kỳ 01–23/06/2026</span>
-    <span class="topbar-badge">Tích lũy 23 ngày · tháng 6</span>
-    <span>vs 22/06/2026</span>
-    <span>MT: XL ≥90% · Book ≥40%</span>
+<header class="ph">
+  <div class="wrap">
+    <div class="eyebrow">R12W · 30Shine · 24/06/2026</div>
+    <h1>Phân tích độ trễ booking</h1>
+    <div class="sub">Pool T4 &amp; T5/2026 · 7 / 14 / 30 / 40 / 60 ngày và sau 60 ngày · theo nhóm khách, GĐKV, hành trình</div>
   </div>
+</header>
+
+<nav class="snav">
+  <div class="snav-i">
+    <a href="#kpi">Tổng quan</a>
+    <a href="#phanphoi">Phân phối thời gian T4</a>
+    <a href="#ss">So sánh T4→T5</a>
+    <a href="#gdkv">Theo GĐKV</a>
+    <a href="#hanh-trinh">Hành trình 1-2-3</a>
+    <a href="#nguong">Ngưỡng &amp; Hành động</a>
+  </div>
+</nav>
+
+<main><div class="wrap">
+
+<div class="notice">
+  <strong>⚠ Lưu ý dữ liệu —</strong>
+  <strong>T3/2026:</strong> Không có trong bảng Pool. &nbsp;
+  <strong>T5/2026:</strong> Tính đến 24/6 mới qua 25–54 ngày — lag QBQ/MQBQ là 87–97 ngày nên số liệu T5 của 2 nhóm này chưa phản ánh thực tế. Phần so sánh T4→T5 chỉ dùng mốc ≤7, ≤14, ≤25 ngày để đảm bảo công bằng.
 </div>
 
-<div class="container">
+<!-- ===== 1. KPI ===== -->
+<section id="kpi">
+  <div class="sh"><h2>Tổng quan</h2></div>
+  <div class="kpi-row" id="kpi-row"></div>
+  <div class="yd">
+    <div class="yd-title">Ý đồ phần này</div>
+    Pool T4 có <strong>186.174 KH</strong>, T5 tăng lên <strong>197.865 KH</strong> (+6%). Nhìn vào con số 61% book lại của T4 thì ổn — nhưng số tuyệt đối <strong>71.794 KH chưa quay lại</strong> là quy mô cần hành động. Và phần lớn nỗ lực chăm hiện tại chưa phân biệt timing theo nhóm, dẫn đến phí nguồn lực. Các phần dưới sẽ bóc tách từng lớp.
+  </div>
+</section>
 
-  <!-- 1. TỔNG QUAN -->
+<!-- ===== 2. PHÂN PHỐI THỜI GIAN ===== -->
+<section id="phanphoi">
+  <div class="sh">
+    <h2>Phân phối thời gian book lại theo nhóm — T4/2026</h2>
+    <p>Mỗi màu = một khoảng thời gian. Bar = tỉ lệ % trên tổng pool của nhóm đó. Nhóm sorted theo % book tổng giảm dần.</p>
+  </div>
   <div class="card">
-    <h2 class="sec-title">1. Tổng quan kỳ 01–23/06/2026</h2>
-    <div class="subsec">
-      
-<div class="kpi-grid">
-  <div class="kpi-card"><div class="kpi-label">Pool hệ thống</div>
-    <div class="kpi-val">123,997</div></div>
-  <div class="kpi-card"><div class="kpi-label">% Xử lý (MT: 90%)</div>
-    <div class="kpi-val" style="color:#22c55e">95.2% <span class="delta" style="color:#16a34a">▲0.7%</span></div></div>
-  <div class="kpi-card"><div class="kpi-label">Lịch hẹn chốt</div>
-    <div class="kpi-val">36,023</div></div>
-  <div class="kpi-card"><div class="kpi-label">% Book (MT: 40%)</div>
-    <div class="kpi-val" style="color:#f59e0b">33.1% <span class="delta" style="color:#16a34a">▲1.1%</span></div></div>
-  <div class="kpi-card"><div class="kpi-label">Đến / Book</div>
-    <div class="kpi-val">97.9%</div></div>
-  <div class="kpi-card"><div class="kpi-label">% Đạt MT bình quân</div>
-    <div class="kpi-val" style="color:#f59e0b">76.3%</div></div>
-</div>
+    <div class="legend">
+      <span><b style="background:var(--s7)"></b>≤7 ngày</span>
+      <span><b style="background:var(--s14)"></b>8–14 ngày</span>
+      <span><b style="background:var(--s30)"></b>15–30 ngày</span>
+      <span><b style="background:var(--s40)"></b>31–40 ngày</span>
+      <span><b style="background:var(--s60)"></b>41–60 ngày</span>
+      <span><b style="background:var(--s60p)"></b>>60 ngày</span>
+      <span><b style="background:var(--snone)"></b>Chưa book</span>
     </div>
-    <div class="subsec">
-      <h3>📝 Nhận định hệ thống</h3>
-      <div class="narrative-block"><p>Kỳ 01–23/06/2026, hệ thống 8 vùng tích lũy xử lý <strong>118,025/123,997</strong> pool (95.2%), chốt được <strong>36,023</strong> lịch hẹn. <strong>7/8 vùng</strong> đạt ngưỡng xử lý 90%; <strong>0/8 vùng</strong> đạt ngưỡng book 40% — hệ thống đang xử lý pool tốt nhưng chưa chuyển được lịch hẹn.</p><p>Xử lý pool: 7/8 vùng đã vượt 90%. Dẫn đầu: <strong>GĐKV Trịnh Văn Quang</strong> (133.4%) — đang kéo thêm lead tồn cũ để xử lý. Tuy nhiên XL tốt chưa đủ nếu book rate không theo.</p><p><strong>Điểm nghẽn hệ thống: Book rate.</strong> Tất cả 8 vùng đang dưới 30% — chưa vùng nào đạt mục tiêu 40%. Vùng có book cao nhất: <strong>GĐKV Đoàn Trung Đức</strong> (40.4%); thấp nhất: <strong>GĐKV Tống Xuân Quyền</strong> (28.8%). Chênh lệch 11.6 điểm trong cùng hệ thống — dấu hiệu vấn đề nằm ở cách thực hiện sau kết nối, không phải điều kiện thị trường.</p><p>Tiến độ mục tiêu tháng bình quân: <strong>76.3%</strong> (sau 23 ngày/6/2026). <strong>GĐKV Nguyễn Việt Cường</strong> dẫn đầu (80.0%); <strong>GĐKV Phan Thị Hồng Gấm</strong> thấp nhất (71.7%). Với 12 ngày còn lại trong tháng, book rate cần tăng đáng kể để đạt 100% mục tiêu.</p></div>
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th>Phân đoạn</th><th>Mức nhiệt</th>
+          <th class="num">Pool</th>
+          <th style="min-width:160px">Phân phối</th>
+          <th class="num">≤7n</th><th class="num">≤14n</th>
+          <th class="num">≤30n</th><th class="num">≤40n</th>
+          <th class="num">≤60n</th><th class="num">>60n</th>
+          <th class="num">Chưa book</th>
+          <th class="num">Avg lag</th>
+        </tr></thead>
+        <tbody id="dist-tbody"></tbody>
+      </table>
     </div>
-    
-    <div class="subsec">
-      <h3>🎯 Ma trận XL × Book (Ngưỡng mục tiêu: XL = 90% · Book = 40%)</h3>
-      <div class="matrix-grid">
-        <div class="q-cell" style="background:#f0fdf4;border:2px solid #22c55e">
-          <div class="q-label" style="color:#166534">✅ Đạt cả 2 mục tiêu</div>
-          <div class="q-sub" style="color:#16653499">XL ≥90%  ·  Book ≥40%</div>
-          <div class="q-tags"><span class="q-tag" style="background:#f9731618;border:1px solid #f97316;color:#f97316"><strong>Trung Đức</strong> <span style="opacity:.8">95.1% XL · 40.4% Book</span></span></div>
-        </div>
-        <div class="q-cell" style="background:#fffbeb;border:2px solid #f59e0b">
-          <div class="q-label" style="color:#92400e">⚠️ XL tốt — Book chưa</div>
-          <div class="q-sub" style="color:#92400e99">XL ≥90%  ·  Book <40%</div>
-          <div class="q-tags"><span class="q-tag" style="background:#6366f118;border:1px solid #6366f1;color:#6366f1"><strong>Như Quỳnh</strong> <span style="opacity:.8">90.7% XL · 33.1% Book</span></span><span class="q-tag" style="background:#06b6d418;border:1px solid #06b6d4;color:#06b6d4"><strong>Việt Cường</strong> <span style="opacity:.8">98.3% XL · 30.3% Book</span></span><span class="q-tag" style="background:#8b5cf618;border:1px solid #8b5cf6;color:#8b5cf6"><strong>Xuân Quyền</strong> <span style="opacity:.8">104.8% XL · 28.8% Book</span></span><span class="q-tag" style="background:#ef444418;border:1px solid #ef4444;color:#ef4444"><strong>Thị Huệ</strong> <span style="opacity:.8">105.8% XL · 30.5% Book</span></span><span class="q-tag" style="background:#10b98118;border:1px solid #10b981;color:#10b981"><strong>Văn Quang</strong> <span style="opacity:.8">133.4% XL · 33.6% Book</span></span><span class="q-tag" style="background:#ec489918;border:1px solid #ec4899;color:#ec4899"><strong>Hồng Gấm</strong> <span style="opacity:.8">92.9% XL · 34.5% Book</span></span></div>
-        </div>
-        <div class="q-cell" style="background:#eff6ff;border:2px solid #3b82f6">
-          <div class="q-label" style="color:#1e40af">🔵 Book tốt — XL chưa</div>
-          <div class="q-sub" style="color:#1e40af99">XL <90%  ·  Book ≥40%</div>
-          <div class="q-tags"><div class="q-empty">Không có vùng nào</div></div>
-        </div>
-        <div class="q-cell" style="background:#fef2f2;border:2px solid #ef4444">
-          <div class="q-label" style="color:#991b1b">🔴 Cần can thiệp</div>
-          <div class="q-sub" style="color:#991b1b99">XL <90%  ·  Book <40%</div>
-          <div class="q-tags"><span class="q-tag" style="background:#f59e0b18;border:1px solid #f59e0b;color:#f59e0b"><strong>Thanh Sang</strong> <span style="opacity:.8">74.3% XL · 33.9% Book</span></span></div>
-        </div></div>
-    </div>
-    
-    <div class="subsec">
-      <h3>📊 Xếp hạng 8 vùng (theo % XL)</h3>
-      <p style="font-size:12px;color:#64748b;margin-bottom:8px">
-        Ngưỡng mục tiêu: <span class="th-badge th-green">XL ≥90%</span>
-        <span class="th-badge th-red">XL &lt;70%: cảnh báo</span>
-        <span class="th-badge th-green">Book ≥40%</span>
-        <span class="th-badge th-red">Book &lt;30%: cảnh báo</span>
-      </p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Rank</th><th>GĐKV</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% Đạt MT</th><th>Ô</th></tr></thead>
-          <tbody><tr>
-          <td><span class="badge b1">🥇 #1</span></td>
-          <td>
-            <strong style="color:#10b981">GĐKV Trịnh Văn Quang</strong>
-          </td>
-          <td class="num">9,435</td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:95.3%;background:#22c55e"></div></div>
-            <span style="color:#22c55e;font-weight:600">133.4%</span>
-            
-            <span class="th-badge th-green">Đạt MT</span>
-          </td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:74.7%;background:#f59e0b"></div></div>
-            <span style="color:#f59e0b;font-weight:600">33.6%</span>
-            <span class="delta" style="color:#16a34a">▲1.0%</span>
-            <span class="th-badge th-yellow">30–40%</span>
-          </td>
-          <td><strong style="color:#f59e0b">77.7%</strong></td>
-          <td style="text-align:center;font-size:18px">⚠️</td>
-        </tr><tr>
-          <td><span class="badge b2">🥈 #2</span></td>
-          <td>
-            <strong style="color:#ef4444">GĐKV Nguyễn Thị Huệ</strong>
-          </td>
-          <td class="num">5,590</td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:75.6%;background:#22c55e"></div></div>
-            <span style="color:#22c55e;font-weight:600">105.8%</span>
-            
-            <span class="th-badge th-green">Đạt MT</span>
-          </td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:67.7%;background:#f59e0b"></div></div>
-            <span style="color:#f59e0b;font-weight:600">30.5%</span>
-            <span class="delta" style="color:#16a34a">▲1.0%</span>
-            <span class="th-badge th-yellow">30–40%</span>
-          </td>
-          <td><strong style="color:#f59e0b">74.9%</strong></td>
-          <td style="text-align:center;font-size:18px">⚠️</td>
-        </tr><tr>
-          <td><span class="badge b3">🥉 #3</span></td>
-          <td>
-            <strong style="color:#8b5cf6">GĐKV Tống Xuân Quyền</strong>
-          </td>
-          <td class="num">20,256</td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:74.8%;background:#22c55e"></div></div>
-            <span style="color:#22c55e;font-weight:600">104.8%</span>
-            <span class="delta" style="color:#16a34a">▲1.2%</span>
-            <span class="th-badge th-green">Đạt MT</span>
-          </td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:63.9%;background:#ef4444"></div></div>
-            <span style="color:#ef4444;font-weight:600">28.8%</span>
-            <span class="delta" style="color:#16a34a">▲1.0%</span>
-            <span class="th-badge th-red">⚠️ Dưới 30%</span>
-          </td>
-          <td><strong style="color:#f59e0b">77.5%</strong></td>
-          <td style="text-align:center;font-size:18px">⚠️</td>
-        </tr><tr>
-          <td><span class="badge bmid">#4</span></td>
-          <td>
-            <strong style="color:#06b6d4">GĐKV Nguyễn Việt Cường</strong>
-          </td>
-          <td class="num">19,498</td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:70.2%;background:#22c55e"></div></div>
-            <span style="color:#22c55e;font-weight:600">98.3%</span>
-            <span class="delta" style="color:#16a34a">▲0.5%</span>
-            <span class="th-badge th-green">Đạt MT</span>
-          </td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:67.3%;background:#f59e0b"></div></div>
-            <span style="color:#f59e0b;font-weight:600">30.3%</span>
-            <span class="delta" style="color:#16a34a">▲1.0%</span>
-            <span class="th-badge th-yellow">30–40%</span>
-          </td>
-          <td><strong style="color:#f59e0b">80.0%</strong></td>
-          <td style="text-align:center;font-size:18px">⚠️</td>
-        </tr><tr>
-          <td><span class="badge bmid">#5</span></td>
-          <td>
-            <strong style="color:#f97316">GĐKV Đoàn Trung Đức</strong>
-          </td>
-          <td class="num">15,733</td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:67.9%;background:#22c55e"></div></div>
-            <span style="color:#22c55e;font-weight:600">95.1%</span>
-            
-            <span class="th-badge th-green">Đạt MT</span>
-          </td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:89.8%;background:#22c55e"></div></div>
-            <span style="color:#22c55e;font-weight:600">40.4%</span>
-            <span class="delta" style="color:#16a34a">▲1.3%</span>
-            <span class="th-badge th-green">Đạt MT</span>
-          </td>
-          <td><strong style="color:#f59e0b">73.7%</strong></td>
-          <td style="text-align:center;font-size:18px">✅</td>
-        </tr><tr>
-          <td><span class="badge bmid">#6</span></td>
-          <td>
-            <strong style="color:#ec4899">GĐKV Phan Thị Hồng Gấm</strong>
-          </td>
-          <td class="num">14,377</td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:66.4%;background:#22c55e"></div></div>
-            <span style="color:#22c55e;font-weight:600">92.9%</span>
-            <span class="delta" style="color:#16a34a">▲1.5%</span>
-            <span class="th-badge th-green">Đạt MT</span>
-          </td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:76.6%;background:#f59e0b"></div></div>
-            <span style="color:#f59e0b;font-weight:600">34.5%</span>
-            <span class="delta" style="color:#16a34a">▲0.8%</span>
-            <span class="th-badge th-yellow">30–40%</span>
-          </td>
-          <td><strong style="color:#f59e0b">71.7%</strong></td>
-          <td style="text-align:center;font-size:18px">⚠️</td>
-        </tr><tr>
-          <td><span class="badge blow">⚠️ #7</span></td>
-          <td>
-            <strong style="color:#6366f1">GĐKV Nguyễn Như Quỳnh</strong>
-          </td>
-          <td class="num">10,762</td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:64.8%;background:#22c55e"></div></div>
-            <span style="color:#22c55e;font-weight:600">90.7%</span>
-            
-            <span class="th-badge th-green">Đạt MT</span>
-          </td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:73.6%;background:#f59e0b"></div></div>
-            <span style="color:#f59e0b;font-weight:600">33.1%</span>
-            <span class="delta" style="color:#16a34a">▲1.2%</span>
-            <span class="th-badge th-yellow">30–40%</span>
-          </td>
-          <td><strong style="color:#f59e0b">75.9%</strong></td>
-          <td style="text-align:center;font-size:18px">⚠️</td>
-        </tr><tr>
-          <td><span class="badge blow">⚠️ #8</span></td>
-          <td>
-            <strong style="color:#f59e0b">GĐKV Nguyễn Thanh Sang</strong>
-          </td>
-          <td class="num">28,346</td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:53.1%;background:#f59e0b"></div></div>
-            <span style="color:#f59e0b;font-weight:600">74.3%</span>
-            <span class="delta" style="color:#16a34a">▲1.1%</span>
-            
-          </td>
-          <td>
-            <div class="bar-bg" style="height:10px"><div class="bar-fill" style="width:75.2%;background:#f59e0b"></div></div>
-            <span style="color:#f59e0b;font-weight:600">33.9%</span>
-            <span class="delta" style="color:#16a34a">▲1.2%</span>
-            <span class="th-badge th-yellow">30–40%</span>
-          </td>
-          <td><strong style="color:#f59e0b">79.0%</strong></td>
-          <td style="text-align:center;font-size:18px">🔴</td>
-        </tr></tbody>
-        </table>
-      </div>
+    <div class="yd">
+      <div class="yd-title">Ý đồ phần này</div>
+      <strong>QTT:</strong> phần lớn hoạt động nằm trong khung 15–60 ngày (chiếm ~58% tổng pool). Chỉ 3% book trong 14 ngày đầu — giai đoạn im lặng đầu tiên là bình thường, đừng vội call.<br>
+      <strong>MQTT:</strong> rải đều hơn, đỉnh ở 40–60 ngày. Nhóm Vô tâm (18,5%) có phần lớn không quay lại — cần lọc riêng.<br>
+      <strong>QBQ và MQBQ:</strong> thanh màu xanh gần như không tồn tại trong 60 ngày đầu — khách của nhóm này chưa sẵn sàng ở mốc 30 ngày. Toàn bộ convert xảy ra sau ngày 60 (màu đỏ đậm). <strong>Đây là bằng chứng: gọi QBQ/MQBQ ở ngày 30 là lãng phí.</strong>
     </div>
   </div>
+</section>
 
-  <!-- 2. TỪNG VÙNG -->
+<!-- ===== 3. SO SÁNH T4 vs T5 ===== -->
+<section id="ss">
+  <div class="sh">
+    <h2>So sánh T4 → T5 tại mốc 7 / 14 / 25 ngày</h2>
+    <p>Chỉ dùng mốc ≤25 ngày để so T5 (tháng 5 đã qua 25–54 ngày). QBQ/MQBQ số quá nhỏ tại mốc 25 ngày — không so được, bỏ qua.</p>
+  </div>
   <div class="card">
-    <h2 class="sec-title">2. Từng vùng (GĐKV)</h2>
-    <div class="tab-nav"><button class="tab-btn active" style="--tc:#6366f1" onclick="switchTab('Nguyễn_Như_Quỳnh',this)">Như Quỳnh</button><button class="tab-btn" style="--tc:#06b6d4" onclick="switchTab('Nguyễn_Việt_Cường',this)">Việt Cường</button><button class="tab-btn" style="--tc:#8b5cf6" onclick="switchTab('Tống_Xuân_Quyền',this)">Xuân Quyền</button><button class="tab-btn" style="--tc:#f97316" onclick="switchTab('Đoàn_Trung_Đức',this)">Trung Đức</button><button class="tab-btn" style="--tc:#ef4444" onclick="switchTab('Nguyễn_Thị_Huệ',this)">Thị Huệ</button><button class="tab-btn" style="--tc:#10b981" onclick="switchTab('Trịnh_Văn_Quang',this)">Văn Quang</button><button class="tab-btn" style="--tc:#f59e0b" onclick="switchTab('Nguyễn_Thanh_Sang',this)">Thanh Sang</button><button class="tab-btn" style="--tc:#ec4899" onclick="switchTab('Phan_Thị_Hồng_Gấm',this)">Hồng Gấm</button></div>
-    <div id="tab-Nguyễn_Như_Quỳnh" class="tab-content active" style="--tc:#6366f1"><div style="font-size:12px;color:#94a3b8;margin-bottom:12px"><strong>GĐKV Nguyễn Như Quỳnh</strong></div>
-    <div class="region-subsec">
-      <h3>📊 Tổng quan kỳ 01–23/06/2026</h3>
-      
-    <div class="kpi-grid small">
-      <div class="kpi-card"><div class="kpi-label">Pool</div>
-        <div class="kpi-val">10,762</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Xử lý</div>
-        <div class="kpi-val" style="color:#22c55e">90.7%
-          </div>
-        <div style="font-size:10px;color:#94a3b8">MT: 90%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Book</div>
-        <div class="kpi-val" style="color:#f59e0b">33.1%
-          <span class="delta" style="color:#16a34a">▲1.2%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 40%</div></div>
-      <div class="kpi-card"><div class="kpi-label">KN / XL</div>
-        <div class="kpi-val">97.4%</div></div>
-      <div class="kpi-card"><div class="kpi-label">Đến / Book</div>
-        <div class="kpi-val">98.3%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Đạt MT tháng</div>
-        <div class="kpi-val" style="color:#f59e0b">75.9%</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🎯 Tiến độ mục tiêu tháng 6/2026</h3>
-      
-    <div class="gap-box" style="background:#fffbeb;border-color:#fcd34d">
-      <div class="gap-icon" style="color:#92400e">⚠️ Cần đẩy thêm</div>
-      <div class="gap-grid">
-        <div class="gap-item"><div class="gap-lbl">Đã đạt MT tháng</div>
-          <div class="gap-val" style="color:#f59e0b">75.9%</div></div>
-        <div class="gap-item"><div class="gap-lbl">Book còn cần (lịch)</div>
-          <div class="gap-val">1,000</div></div>
-        <div class="gap-item"><div class="gap-lbl">Pool chưa xử lý</div>
-          <div class="gap-val">1,006</div></div>
-        <div class="gap-item"><div class="gap-lbl">Cần book rate</div>
-          <div class="gap-val" style="color:#f59e0b">99.4%</div></div>
-      </div>
-      <div class="gap-note">Cần tăng book rate lên 99.4% — đang ở 29.2%, phải cải thiện đáng kể.</div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🔄 Funnel tích lũy kỳ 01–23/06/2026</h3>
-      
-    <div class="funnel-scroll">
-      <div class="f-step"><div class="f-label">Pool</div><div class="f-count">10,762</div><div style="height:7px"></div><span style="color:#94a3b8">—</span></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Phân phối</div><div class="f-count">21,873</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:100.0%;background:#6366f1"></div></div><span style="color:#6366f1;font-weight:700;font-size:14px">203.2%</span><div class="f-sub">/ pool</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Xử lý</div><div class="f-count">9,756</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:90.7%;background:#22c55e"></div></div><span style="color:#22c55e;font-weight:700;font-size:14px">90.7%</span><div class="f-sub">/ pool</div><div class="f-target">MT: 90%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Kết nối</div><div class="f-count">9,504</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:97.4%;background:#06b6d4"></div></div><span style="color:#06b6d4;font-weight:700;font-size:14px">97.4%</span><div class="f-sub">/ XL</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Book lịch</div><div class="f-count">3,146</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:33.1%;background:#f59e0b"></div></div><span style="color:#f59e0b;font-weight:700;font-size:14px">33.1%</span><div class="f-sub">/ KN</div><div class="f-target">MT: 40%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Đã đến</div><div class="f-count">3,091</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:98.3%;background:#10b981"></div></div><span style="color:#10b981;font-weight:700;font-size:14px">98.3%</span><div class="f-sub">/ Book</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🏆 Phân bổ salon — highlight theo ngưỡng mục tiêu</h3>
-      
-        <div class="alert-section">
-          <div class="alert-header">🚨 Book &lt;30% — cần chú ý ngay (1 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-alert"><td><strong>Salon 4 LQD BN</strong></td><td class="num">682</td><td><span class="val-xl" style="color:#f59e0b">85.9%</span></td><td><span class="val-bk alert-bk">21.7%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#f59e0b">71.8%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-        <div class="top-section">
-          <div class="top-header">⭐ XL ≥90% — đạt mục tiêu (2 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-top"><td><strong>Salon 11 PKT</strong></td><td class="num">1,352</td><td><span class="val-xl top-xl">96.1%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">36.9%</span></td><td><span style="color:#22c55e">82.6%</span></td></tr><tr class="row-top"><td><strong>Salon 362 NGT BN</strong></td><td class="num">2,769</td><td><span class="val-xl top-xl">92.6%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">31.7%</span></td><td><span style="color:#f59e0b">75.6%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-    <div class="table-wrap" style="margin-top:16px">
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:6px">
-        Tất cả salon — sắp xếp theo % Book (cao → thấp) ·
-        <span class="row-legend row-top-leg">■ Đạt/vượt mục tiêu</span>
-        <span class="row-legend row-alert-leg">■ Cần chú ý</span>
-      </div>
-      <table style="font-size:12px">
-        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-        <tbody><tr class="row-top"><td><strong>Salon 11 PKT</strong></td><td class="num">1,352</td><td><span style="color:#22c55e;font-weight:600">96.1%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">36.9%</span> </td><td><span style="color:#22c55e">82.6%</span></td></tr><tr class=""><td><strong>Salon 168 NVC</strong></td><td class="num">3,100</td><td><span style="color:#f59e0b;font-weight:600">89.9%</span> </td><td><span style="color:#f59e0b;font-weight:600">35.1%</span> </td><td><span style="color:#f59e0b">75.8%</span></td></tr><tr class=""><td><strong>Salon 10 TP</strong></td><td class="num">2,144</td><td><span style="color:#f59e0b;font-weight:600">89.5%</span> </td><td><span style="color:#f59e0b;font-weight:600">33.7%</span> </td><td><span style="color:#f59e0b">73.1%</span></td></tr><tr class="row-top"><td><strong>Salon 362 NGT BN</strong></td><td class="num">2,769</td><td><span style="color:#22c55e;font-weight:600">92.6%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">31.7%</span> </td><td><span style="color:#f59e0b">75.6%</span></td></tr><tr class=""><td><strong>Salon 186 QT</strong></td><td class="num">715</td><td><span style="color:#f59e0b;font-weight:600">84.1%</span> </td><td><span style="color:#f59e0b;font-weight:600">30.8%</span> </td><td><span style="color:#22c55e">82.1%</span></td></tr><tr class="row-alert"><td><strong>Salon 4 LQD BN</strong></td><td class="num">682</td><td><span style="color:#f59e0b;font-weight:600">85.9%</span> </td><td><span style="color:#ef4444;font-weight:600">21.7%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#f59e0b">71.8%</span></td></tr></tbody>
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th>Nhóm</th>
+          <th class="num">Pool T4</th><th class="num">≤7n T4</th><th class="num">≤14n T4</th><th class="num">≤25n T4</th>
+          <th style="width:8px"></th>
+          <th class="num">Pool T5</th><th class="num">≤7n T5</th><th class="num">≤14n T5</th><th class="num">≤25n T5</th>
+          <th class="num">Δ 25n</th>
+        </tr></thead>
+        <tbody id="ss-tbody"></tbody>
       </table>
     </div>
+    <div class="yd">
+      <div class="yd-title">Ý đồ phần này</div>
+      <strong>T5 không yếu hơn T4 — thực ra đang nhỉnh hơn.</strong> Trong cùng điều kiện thời gian (≤25 ngày), QTT Thân thiết T5 đạt 17,0% so với T4 là 14,1% (+2,9pp). MQTT Thân thiết T5 = 6,8% so với T4 = 5,8%. <strong>Tín hiệu sớm cho thấy khách tháng 5 đang book nhanh hơn tháng 4</strong>, không phải chậm hơn. Những con số "thấp hơn" khi so tổng là do hiệu ứng lag, không phải suy giảm thật sự.
     </div>
-    <div class="region-subsec">
-      <h3>💡 Phân tích</h3>
-      <div class="narrative-block"><p>So với kỳ 22/06/2026: XL giảm <strong>0.0 điểm</strong> (90.7% → 90.7%), Book tăng 1.2 điểm (31.9% → 33.1%), chốt thêm <strong>110</strong> lịch.</p><p>GĐKV Nguyễn Như Quỳnh đạt ngưỡng xử lý pool 90.7% — <strong>Salon 11 PKT</strong> dẫn đầu vùng (96.1%). XL tốt là điều kiện cần — nhưng bộ phận chuyển đổi (Book) chưa theo kịp, cần kiểm tra đoạn sau kết nối.</p><p>Khoảng cách Book trong vùng rộng: <strong>Salon 11 PKT</strong> (36.9%) so với <strong>Salon 4 LQD BN</strong> (21.7%) — chênh 15.2%. GĐKV Nguyễn Như Quỳnh cần trực tiếp so sánh cách hai salon này làm: NV của <strong>Salon 11 PKT</strong> đang nói gì với khách sau kết nối, theo thứ tự nào, và bao giờ đề nghị đặt lịch?</p><p>Tiến độ MT tháng: cần thêm 1,000 lịch, book rate cần 99.4% — cao hơn rate hiện tại (29.2%). Ưu tiên kép: tăng cả XL (mở rộng pool tiếp cận) lẫn book rate.</p></div>
-    </div></div><div id="tab-Nguyễn_Việt_Cường" class="tab-content" style="--tc:#06b6d4"><div style="font-size:12px;color:#94a3b8;margin-bottom:12px"><strong>GĐKV Nguyễn Việt Cường</strong></div>
-    <div class="region-subsec">
-      <h3>📊 Tổng quan kỳ 01–23/06/2026</h3>
-      
-    <div class="kpi-grid small">
-      <div class="kpi-card"><div class="kpi-label">Pool</div>
-        <div class="kpi-val">19,498</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Xử lý</div>
-        <div class="kpi-val" style="color:#22c55e">98.3%
-          <span class="delta" style="color:#16a34a">▲0.5%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 90%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Book</div>
-        <div class="kpi-val" style="color:#f59e0b">30.3%
-          <span class="delta" style="color:#16a34a">▲1.0%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 40%</div></div>
-      <div class="kpi-card"><div class="kpi-label">KN / XL</div>
-        <div class="kpi-val">92.1%</div></div>
-      <div class="kpi-card"><div class="kpi-label">Đến / Book</div>
-        <div class="kpi-val">97.5%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Đạt MT tháng</div>
-        <div class="kpi-val" style="color:#f59e0b">80.0%</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🎯 Tiến độ mục tiêu tháng 6/2026</h3>
-      
-    <div class="gap-box" style="background:#fffbeb;border-color:#fcd34d">
-      <div class="gap-icon" style="color:#92400e">⚠️ Cần đẩy thêm</div>
-      <div class="gap-grid">
-        <div class="gap-item"><div class="gap-lbl">Đã đạt MT tháng</div>
-          <div class="gap-val" style="color:#f59e0b">80.0%</div></div>
-        <div class="gap-item"><div class="gap-lbl">Book còn cần (lịch)</div>
-          <div class="gap-val">1,339</div></div>
-        <div class="gap-item"><div class="gap-lbl">Pool chưa xử lý</div>
-          <div class="gap-val">327</div></div>
-        <div class="gap-item"><div class="gap-lbl">Cần book rate</div>
-          <div class="gap-val" style="color:#f59e0b">409.4%</div></div>
-      </div>
-      <div class="gap-note">Cần tăng book rate lên 409.4% — đang ở 27.4%, phải cải thiện đáng kể.</div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🔄 Funnel tích lũy kỳ 01–23/06/2026</h3>
-      
-    <div class="funnel-scroll">
-      <div class="f-step"><div class="f-label">Pool</div><div class="f-count">19,498</div><div style="height:7px"></div><span style="color:#94a3b8">—</span></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Phân phối</div><div class="f-count">46,282</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:100.0%;background:#6366f1"></div></div><span style="color:#6366f1;font-weight:700;font-size:14px">237.4%</span><div class="f-sub">/ pool</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Xử lý</div><div class="f-count">19,171</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:98.3%;background:#22c55e"></div></div><span style="color:#22c55e;font-weight:700;font-size:14px">98.3%</span><div class="f-sub">/ pool</div><div class="f-target">MT: 90%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Kết nối</div><div class="f-count">17,662</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:92.1%;background:#06b6d4"></div></div><span style="color:#06b6d4;font-weight:700;font-size:14px">92.1%</span><div class="f-sub">/ XL</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Book lịch</div><div class="f-count">5,350</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:30.3%;background:#f59e0b"></div></div><span style="color:#f59e0b;font-weight:700;font-size:14px">30.3%</span><div class="f-sub">/ KN</div><div class="f-target">MT: 40%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Đã đến</div><div class="f-count">5,218</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:97.5%;background:#10b981"></div></div><span style="color:#10b981;font-weight:700;font-size:14px">97.5%</span><div class="f-sub">/ Book</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🏆 Phân bổ salon — highlight theo ngưỡng mục tiêu</h3>
-      
-        <div class="alert-section">
-          <div class="alert-header">🚨 Book &lt;30% — cần chú ý ngay (4 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-alert"><td><strong>Salon 451 PVT</strong></td><td class="num">1,059</td><td><span class="val-xl" style="color:#22c55e">112.8%</span></td><td><span class="val-bk alert-bk">9.1%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#22c55e">95.2%</span></td></tr><tr class="row-alert"><td><strong>Salon 1371 PVT</strong></td><td class="num">1,523</td><td><span class="val-xl" style="color:#22c55e">95.7%</span></td><td><span class="val-bk alert-bk">23.3%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#22c55e">83.0%</span></td></tr><tr class="row-alert"><td><strong>Salon 255 NAN</strong></td><td class="num">2,402</td><td><span class="val-xl" style="color:#f59e0b">87.6%</span></td><td><span class="val-bk alert-bk">25.5%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#22c55e">80.7%</span></td></tr><tr class="row-alert"><td><strong>Salon 1146 KVC</strong></td><td class="num">1,431</td><td><span class="val-xl" style="color:#22c55e">142.3%</span></td><td><span class="val-bk alert-bk">29.8%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#22c55e">85.3%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-        <div class="top-section">
-          <div class="top-header">⭐ XL ≥90% — đạt mục tiêu (8 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-top"><td><strong>Salon 1146 KVC</strong></td><td class="num">1,431</td><td><span class="val-xl top-xl">142.3%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#ef4444">29.8%</span></td><td><span style="color:#22c55e">85.3%</span></td></tr><tr class="row-top"><td><strong>Salon 451 PVT</strong></td><td class="num">1,059</td><td><span class="val-xl top-xl">112.8%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#ef4444">9.1%</span></td><td><span style="color:#22c55e">95.2%</span></td></tr><tr class="row-top"><td><strong>Salon 29 HB</strong></td><td class="num">2,585</td><td><span class="val-xl top-xl">99.7%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">31.7%</span></td><td><span style="color:#22c55e">88.9%</span></td></tr><tr class="row-top"><td><strong>Salon 80 PL BD</strong></td><td class="num">2,280</td><td><span class="val-xl top-xl">95.9%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">31.3%</span></td><td><span style="color:#22c55e">87.3%</span></td></tr><tr class="row-top"><td><strong>Salon 1371 PVT</strong></td><td class="num">1,523</td><td><span class="val-xl top-xl">95.7%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#ef4444">23.3%</span></td><td><span style="color:#22c55e">83.0%</span></td></tr><tr class="row-top"><td><strong>Salon 36 N1 BD</strong></td><td class="num">1,361</td><td><span class="val-xl top-xl">95.4%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">31.4%</span></td><td><span style="color:#ef4444">66.0%</span></td></tr><tr class="row-top"><td><strong>Salon 103 TN</strong></td><td class="num">5,281</td><td><span class="val-xl top-xl">92.5%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">36.1%</span></td><td><span style="color:#f59e0b">72.9%</span></td></tr><tr class="row-top"><td><strong>Salon 401/1 NDT</strong></td><td class="num">1,576</td><td><span class="val-xl top-xl">90.9%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">32.6%</span></td><td><span style="color:#22c55e">87.9%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-    <div class="table-wrap" style="margin-top:16px">
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:6px">
-        Tất cả salon — sắp xếp theo % Book (cao → thấp) ·
-        <span class="row-legend row-top-leg">■ Đạt/vượt mục tiêu</span>
-        <span class="row-legend row-alert-leg">■ Cần chú ý</span>
-      </div>
-      <table style="font-size:12px">
-        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-        <tbody><tr class="row-top"><td><strong>Salon 103 TN</strong></td><td class="num">5,281</td><td><span style="color:#22c55e;font-weight:600">92.5%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">36.1%</span> </td><td><span style="color:#f59e0b">72.9%</span></td></tr><tr class="row-top"><td><strong>Salon 401/1 NDT</strong></td><td class="num">1,576</td><td><span style="color:#22c55e;font-weight:600">90.9%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">32.6%</span> </td><td><span style="color:#22c55e">87.9%</span></td></tr><tr class="row-top"><td><strong>Salon 29 HB</strong></td><td class="num">2,585</td><td><span style="color:#22c55e;font-weight:600">99.7%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">31.7%</span> </td><td><span style="color:#22c55e">88.9%</span></td></tr><tr class="row-top"><td><strong>Salon 36 N1 BD</strong></td><td class="num">1,361</td><td><span style="color:#22c55e;font-weight:600">95.4%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">31.4%</span> </td><td><span style="color:#ef4444">66.0%</span></td></tr><tr class="row-top"><td><strong>Salon 80 PL BD</strong></td><td class="num">2,280</td><td><span style="color:#22c55e;font-weight:600">95.9%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">31.3%</span> </td><td><span style="color:#22c55e">87.3%</span></td></tr><tr class="row-alert"><td><strong>Salon 1146 KVC</strong></td><td class="num">1,431</td><td><span style="color:#22c55e;font-weight:600">142.3%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#ef4444;font-weight:600">29.8%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#22c55e">85.3%</span></td></tr><tr class="row-alert"><td><strong>Salon 255 NAN</strong></td><td class="num">2,402</td><td><span style="color:#f59e0b;font-weight:600">87.6%</span> </td><td><span style="color:#ef4444;font-weight:600">25.5%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#22c55e">80.7%</span></td></tr><tr class="row-alert"><td><strong>Salon 1371 PVT</strong></td><td class="num">1,523</td><td><span style="color:#22c55e;font-weight:600">95.7%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#ef4444;font-weight:600">23.3%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#22c55e">83.0%</span></td></tr><tr class="row-alert"><td><strong>Salon 451 PVT</strong></td><td class="num">1,059</td><td><span style="color:#22c55e;font-weight:600">112.8%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#ef4444;font-weight:600">9.1%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#22c55e">95.2%</span></td></tr></tbody>
-      </table>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>💡 Phân tích</h3>
-      <div class="narrative-block"><p>So với kỳ 22/06/2026: XL tăng <strong>0.5 điểm</strong> (97.8% → 98.3%), Book tăng 1.0 điểm (29.3% → 30.3%), chốt thêm <strong>203</strong> lịch.</p><p>GĐKV Nguyễn Việt Cường đạt ngưỡng xử lý pool 98.3% — <strong>Salon 1146 KVC</strong> dẫn đầu vùng (142.3%). XL tốt là điều kiện cần — nhưng bộ phận chuyển đổi (Book) chưa theo kịp, cần kiểm tra đoạn sau kết nối.</p><p>Khoảng cách Book trong vùng rộng: <strong>Salon 103 TN</strong> (36.1%) so với <strong>Salon 451 PVT</strong> (9.1%) — chênh 27.1%. GĐKV Nguyễn Việt Cường cần trực tiếp so sánh cách hai salon này làm: NV của <strong>Salon 103 TN</strong> đang nói gì với khách sau kết nối, theo thứ tự nào, và bao giờ đề nghị đặt lịch?</p><p>Tiến độ MT tháng: cần thêm 1,339 lịch, book rate cần 409.4% — cao hơn rate hiện tại (27.4%). Ưu tiên kép: tăng cả XL (mở rộng pool tiếp cận) lẫn book rate.</p></div>
-    </div></div><div id="tab-Tống_Xuân_Quyền" class="tab-content" style="--tc:#8b5cf6"><div style="font-size:12px;color:#94a3b8;margin-bottom:12px"><strong>GĐKV Tống Xuân Quyền</strong></div>
-    <div class="region-subsec">
-      <h3>📊 Tổng quan kỳ 01–23/06/2026</h3>
-      
-    <div class="kpi-grid small">
-      <div class="kpi-card"><div class="kpi-label">Pool</div>
-        <div class="kpi-val">20,256</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Xử lý</div>
-        <div class="kpi-val" style="color:#22c55e">104.8%
-          <span class="delta" style="color:#16a34a">▲1.2%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 90%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Book</div>
-        <div class="kpi-val" style="color:#ef4444">28.8%
-          <span class="delta" style="color:#16a34a">▲1.0%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 40%</div></div>
-      <div class="kpi-card"><div class="kpi-label">KN / XL</div>
-        <div class="kpi-val">94.0%</div></div>
-      <div class="kpi-card"><div class="kpi-label">Đến / Book</div>
-        <div class="kpi-val">97.9%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Đạt MT tháng</div>
-        <div class="kpi-val" style="color:#f59e0b">77.5%</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🎯 Tiến độ mục tiêu tháng 6/2026</h3>
-      
-    <div class="gap-box" style="background:#fffbeb;border-color:#fcd34d">
-      <div class="gap-icon" style="color:#92400e">⚠️ Cần đẩy thêm</div>
-      <div class="gap-grid">
-        <div class="gap-item"><div class="gap-lbl">Đã đạt MT tháng</div>
-          <div class="gap-val" style="color:#f59e0b">77.5%</div></div>
-        <div class="gap-item"><div class="gap-lbl">Book còn cần (lịch)</div>
-          <div class="gap-val">1,667</div></div>
-        <div class="gap-item"><div class="gap-lbl">Pool chưa xử lý</div>
-          <div class="gap-val">0</div></div>
-        <div class="gap-item"><div class="gap-lbl">Cần book rate</div>
-          <div class="gap-val" style="color:#f59e0b">—</div></div>
-      </div>
-      
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🔄 Funnel tích lũy kỳ 01–23/06/2026</h3>
-      
-    <div class="funnel-scroll">
-      <div class="f-step"><div class="f-label">Pool</div><div class="f-count">20,256</div><div style="height:7px"></div><span style="color:#94a3b8">—</span></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Phân phối</div><div class="f-count">46,862</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:100.0%;background:#6366f1"></div></div><span style="color:#6366f1;font-weight:700;font-size:14px">231.3%</span><div class="f-sub">/ pool</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Xử lý</div><div class="f-count">21,222</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:100.0%;background:#22c55e"></div></div><span style="color:#22c55e;font-weight:700;font-size:14px">104.8%</span><div class="f-sub">/ pool</div><div class="f-target">MT: 90%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Kết nối</div><div class="f-count">19,956</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:94.0%;background:#06b6d4"></div></div><span style="color:#06b6d4;font-weight:700;font-size:14px">94.0%</span><div class="f-sub">/ XL</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Book lịch</div><div class="f-count">5,741</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:28.8%;background:#ef4444"></div></div><span style="color:#ef4444;font-weight:700;font-size:14px">28.8%</span><div class="f-sub">/ KN</div><div class="f-target">MT: 40%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Đã đến</div><div class="f-count">5,619</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:97.9%;background:#10b981"></div></div><span style="color:#10b981;font-weight:700;font-size:14px">97.9%</span><div class="f-sub">/ Book</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🏆 Phân bổ salon — highlight theo ngưỡng mục tiêu</h3>
-      
-        <div class="alert-section">
-          <div class="alert-header">🚨 Book &lt;30% — cần chú ý ngay (5 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-alert"><td><strong>Salon 236 DBT</strong></td><td class="num">2,729</td><td><span class="val-xl" style="color:#22c55e">92.8%</span></td><td><span class="val-bk alert-bk">19.8%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#22c55e">83.2%</span></td></tr><tr class="row-alert"><td><strong>Salon 420 HTP</strong></td><td class="num">3,780</td><td><span class="val-xl" style="color:#22c55e">151.9%</span></td><td><span class="val-bk alert-bk">21.6%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#f59e0b">77.1%</span></td></tr><tr class="row-alert"><td><strong>Salon 113 THD AG</strong></td><td class="num">1,031</td><td><span class="val-xl" style="color:#22c55e">99.0%</span></td><td><span class="val-bk alert-bk">25.9%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#f59e0b">77.3%</span></td></tr><tr class="row-alert"><td><strong>Salon 341 XVNT</strong></td><td class="num">1,338</td><td><span class="val-xl" style="color:#f59e0b">88.6%</span></td><td><span class="val-bk alert-bk">29.0%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#22c55e">84.2%</span></td></tr><tr class="row-alert"><td><strong>Salon 186 DTH</strong></td><td class="num">2,602</td><td><span class="val-xl" style="color:#f59e0b">87.5%</span></td><td><span class="val-bk alert-bk">29.2%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#f59e0b">77.1%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-        <div class="top-section">
-          <div class="top-header">⭐ XL ≥90% — đạt mục tiêu (5 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-top"><td><strong>Salon 420 HTP</strong></td><td class="num">3,780</td><td><span class="val-xl top-xl">151.9%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#ef4444">21.6%</span></td><td><span style="color:#f59e0b">77.1%</span></td></tr><tr class="row-top"><td><strong>Salon 7 DTP LA</strong></td><td class="num">1,228</td><td><span class="val-xl top-xl">113.1%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">33.2%</span></td><td><span style="color:#22c55e">81.7%</span></td></tr><tr class="row-top"><td><strong>Salon 113 THD AG</strong></td><td class="num">1,031</td><td><span class="val-xl top-xl">99.0%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#ef4444">25.9%</span></td><td><span style="color:#f59e0b">77.3%</span></td></tr><tr class="row-top"><td><strong>Salon 237 NTT</strong></td><td class="num">4,654</td><td><span class="val-xl top-xl">96.6%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">37.1%</span></td><td><span style="color:#f59e0b">77.7%</span></td></tr><tr class="row-top"><td><strong>Salon 236 DBT</strong></td><td class="num">2,729</td><td><span class="val-xl top-xl">92.8%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#ef4444">19.8%</span></td><td><span style="color:#22c55e">83.2%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-    <div class="table-wrap" style="margin-top:16px">
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:6px">
-        Tất cả salon — sắp xếp theo % Book (cao → thấp) ·
-        <span class="row-legend row-top-leg">■ Đạt/vượt mục tiêu</span>
-        <span class="row-legend row-alert-leg">■ Cần chú ý</span>
-      </div>
-      <table style="font-size:12px">
-        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-        <tbody><tr class=""><td><strong>Salon 25 TD</strong></td><td class="num">2,894</td><td><span style="color:#f59e0b;font-weight:600">89.1%</span> </td><td><span style="color:#f59e0b;font-weight:600">38.2%</span> </td><td><span style="color:#f59e0b">73.4%</span></td></tr><tr class="row-top"><td><strong>Salon 237 NTT</strong></td><td class="num">4,654</td><td><span style="color:#22c55e;font-weight:600">96.6%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">37.1%</span> </td><td><span style="color:#f59e0b">77.7%</span></td></tr><tr class="row-top"><td><strong>Salon 7 DTP LA</strong></td><td class="num">1,228</td><td><span style="color:#22c55e;font-weight:600">113.1%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">33.2%</span> </td><td><span style="color:#22c55e">81.7%</span></td></tr><tr class="row-alert"><td><strong>Salon 186 DTH</strong></td><td class="num">2,602</td><td><span style="color:#f59e0b;font-weight:600">87.5%</span> </td><td><span style="color:#ef4444;font-weight:600">29.2%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#f59e0b">77.1%</span></td></tr><tr class="row-alert"><td><strong>Salon 341 XVNT</strong></td><td class="num">1,338</td><td><span style="color:#f59e0b;font-weight:600">88.6%</span> </td><td><span style="color:#ef4444;font-weight:600">29.0%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#22c55e">84.2%</span></td></tr><tr class="row-alert"><td><strong>Salon 113 THD AG</strong></td><td class="num">1,031</td><td><span style="color:#22c55e;font-weight:600">99.0%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#ef4444;font-weight:600">25.9%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#f59e0b">77.3%</span></td></tr><tr class="row-alert"><td><strong>Salon 420 HTP</strong></td><td class="num">3,780</td><td><span style="color:#22c55e;font-weight:600">151.9%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#ef4444;font-weight:600">21.6%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#f59e0b">77.1%</span></td></tr><tr class="row-alert"><td><strong>Salon 236 DBT</strong></td><td class="num">2,729</td><td><span style="color:#22c55e;font-weight:600">92.8%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#ef4444;font-weight:600">19.8%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#22c55e">83.2%</span></td></tr></tbody>
-      </table>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>💡 Phân tích</h3>
-      <div class="narrative-block"><p>So với kỳ 22/06/2026: XL tăng <strong>1.2 điểm</strong> (103.6% → 104.8%), Book tăng 1.0 điểm (27.8% → 28.8%), chốt thêm <strong>253</strong> lịch.</p><p>GĐKV Tống Xuân Quyền đạt ngưỡng xử lý pool 104.8% — <strong>Salon 420 HTP</strong> dẫn đầu vùng (151.9%). XL tốt là điều kiện cần — nhưng bộ phận chuyển đổi (Book) chưa theo kịp, cần kiểm tra đoạn sau kết nối.</p><p>Book rate toàn vùng 28.8% — dưới 30%. Salon thấp nhất: <strong>Salon 236 DBT</strong> (19.8%), <strong>Salon 420 HTP</strong> (21.6%). Câu hỏi cần trả lời: sau khi kết nối được khách, NV đang đề nghị đặt lịch vào lúc nào trong cuộc trò chuyện — và đưa ngày giờ cụ thể hay để khách tự chọn? Trong vùng, <strong>Salon 25 TD</strong> book tốt hơn (38.2%) — hỏi cụ thể: NV đang làm gì khác sau kết nối?</p><p>Khoảng cách Book trong vùng rộng: <strong>Salon 25 TD</strong> (38.2%) so với <strong>Salon 236 DBT</strong> (19.8%) — chênh 18.4%. GĐKV Tống Xuân Quyền cần trực tiếp so sánh cách hai salon này làm: NV của <strong>Salon 25 TD</strong> đang nói gì với khách sau kết nối, theo thứ tự nào, và bao giờ đề nghị đặt lịch?</p></div>
-    </div></div><div id="tab-Đoàn_Trung_Đức" class="tab-content" style="--tc:#f97316"><div style="font-size:12px;color:#94a3b8;margin-bottom:12px"><strong>GĐKV Đoàn Trung Đức</strong></div>
-    <div class="region-subsec">
-      <h3>📊 Tổng quan kỳ 01–23/06/2026</h3>
-      
-    <div class="kpi-grid small">
-      <div class="kpi-card"><div class="kpi-label">Pool</div>
-        <div class="kpi-val">15,733</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Xử lý</div>
-        <div class="kpi-val" style="color:#22c55e">95.1%
-          </div>
-        <div style="font-size:10px;color:#94a3b8">MT: 90%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Book</div>
-        <div class="kpi-val" style="color:#22c55e">40.4%
-          <span class="delta" style="color:#16a34a">▲1.3%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 40%</div></div>
-      <div class="kpi-card"><div class="kpi-label">KN / XL</div>
-        <div class="kpi-val">99.6%</div></div>
-      <div class="kpi-card"><div class="kpi-label">Đến / Book</div>
-        <div class="kpi-val">97.7%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Đạt MT tháng</div>
-        <div class="kpi-val" style="color:#f59e0b">73.7%</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🎯 Tiến độ mục tiêu tháng 6/2026</h3>
-      
-    <div class="gap-box" style="background:#fffbeb;border-color:#fcd34d">
-      <div class="gap-icon" style="color:#92400e">⚠️ Cần đẩy thêm</div>
-      <div class="gap-grid">
-        <div class="gap-item"><div class="gap-lbl">Đã đạt MT tháng</div>
-          <div class="gap-val" style="color:#f59e0b">73.7%</div></div>
-        <div class="gap-item"><div class="gap-lbl">Book còn cần (lịch)</div>
-          <div class="gap-val">2,142</div></div>
-        <div class="gap-item"><div class="gap-lbl">Pool chưa xử lý</div>
-          <div class="gap-val">776</div></div>
-        <div class="gap-item"><div class="gap-lbl">Cần book rate</div>
-          <div class="gap-val" style="color:#f59e0b">276.1%</div></div>
-      </div>
-      <div class="gap-note">Cần tăng book rate lên 276.1% — đang ở 38.2%, phải cải thiện đáng kể.</div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🔄 Funnel tích lũy kỳ 01–23/06/2026</h3>
-      
-    <div class="funnel-scroll">
-      <div class="f-step"><div class="f-label">Pool</div><div class="f-count">15,733</div><div style="height:7px"></div><span style="color:#94a3b8">—</span></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Phân phối</div><div class="f-count">21,802</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:100.0%;background:#6366f1"></div></div><span style="color:#6366f1;font-weight:700;font-size:14px">138.6%</span><div class="f-sub">/ pool</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Xử lý</div><div class="f-count">14,957</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:95.1%;background:#22c55e"></div></div><span style="color:#22c55e;font-weight:700;font-size:14px">95.1%</span><div class="f-sub">/ pool</div><div class="f-target">MT: 90%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Kết nối</div><div class="f-count">14,890</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:99.6%;background:#06b6d4"></div></div><span style="color:#06b6d4;font-weight:700;font-size:14px">99.6%</span><div class="f-sub">/ XL</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Book lịch</div><div class="f-count">6,015</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:40.4%;background:#22c55e"></div></div><span style="color:#22c55e;font-weight:700;font-size:14px">40.4%</span><div class="f-sub">/ KN</div><div class="f-target">MT: 40%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Đã đến</div><div class="f-count">5,879</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:97.7%;background:#10b981"></div></div><span style="color:#10b981;font-weight:700;font-size:14px">97.7%</span><div class="f-sub">/ Book</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🏆 Phân bổ salon — highlight theo ngưỡng mục tiêu</h3>
-      
-        <div class="top-section">
-          <div class="top-header">🌟 Book ≥40% — đạt mục tiêu (3 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-top"><td><strong>Salon 116 TK</strong></td><td class="num">3,514</td><td><span style="color:#22c55e">93.7%</span></td><td><span class="val-bk top-bk">44.4%</span>    <span class="th-badge th-green">✅ Đạt MT Book</span></td><td><span style="color:#f59e0b">71.6%</span></td></tr><tr class="row-top"><td><strong>Salon 382 NT</strong></td><td class="num">3,669</td><td><span style="color:#22c55e">96.0%</span></td><td><span class="val-bk top-bk">42.9%</span>    <span class="th-badge th-green">✅ Đạt MT Book</span></td><td><span style="color:#f59e0b">73.0%</span></td></tr><tr class="row-top"><td><strong>Salon 55A NVL</strong></td><td class="num">1,528</td><td><span style="color:#22c55e">96.2%</span></td><td><span class="val-bk top-bk">42.7%</span>    <span class="th-badge th-green">✅ Đạt MT Book</span></td><td><span style="color:#ef4444">69.3%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-        <div class="top-section">
-          <div class="top-header">⭐ XL ≥90% — đạt mục tiêu (7 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-top"><td><strong>Salon 90 NH</strong></td><td class="num">1,601</td><td><span class="val-xl top-xl">98.4%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">36.6%</span></td><td><span style="color:#f59e0b">79.8%</span></td></tr><tr class="row-top"><td><strong>Salon 65 CD</strong></td><td class="num">1,221</td><td><span class="val-xl top-xl">96.3%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">35.2%</span></td><td><span style="color:#ef4444">67.6%</span></td></tr><tr class="row-top"><td><strong>Salon 55A NVL</strong></td><td class="num">1,528</td><td><span class="val-xl top-xl">96.2%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#22c55e">42.7%</span></td><td><span style="color:#ef4444">69.3%</span></td></tr><tr class="row-top"><td><strong>Salon 382 NT</strong></td><td class="num">3,669</td><td><span class="val-xl top-xl">96.0%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#22c55e">42.9%</span></td><td><span style="color:#f59e0b">73.0%</span></td></tr><tr class="row-top"><td><strong>Salon 116 TK</strong></td><td class="num">3,514</td><td><span class="val-xl top-xl">93.7%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#22c55e">44.4%</span></td><td><span style="color:#f59e0b">71.6%</span></td></tr><tr class="row-top"><td><strong>Salon 109 TQH</strong></td><td class="num">2,994</td><td><span class="val-xl top-xl">93.6%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">36.2%</span></td><td><span style="color:#f59e0b">79.8%</span></td></tr><tr class="row-top"><td><strong>Salon 62 LH</strong></td><td class="num">1,206</td><td><span class="val-xl top-xl">92.8%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">39.3%</span></td><td><span style="color:#22c55e">84.5%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-    <div class="table-wrap" style="margin-top:16px">
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:6px">
-        Tất cả salon — sắp xếp theo % Book (cao → thấp) ·
-        <span class="row-legend row-top-leg">■ Đạt/vượt mục tiêu</span>
-        <span class="row-legend row-alert-leg">■ Cần chú ý</span>
-      </div>
-      <table style="font-size:12px">
-        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-        <tbody><tr class="row-top"><td><strong>Salon 116 TK</strong></td><td class="num">3,514</td><td><span style="color:#22c55e;font-weight:600">93.7%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#22c55e;font-weight:600">44.4%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b">71.6%</span></td></tr><tr class="row-top"><td><strong>Salon 382 NT</strong></td><td class="num">3,669</td><td><span style="color:#22c55e;font-weight:600">96.0%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#22c55e;font-weight:600">42.9%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b">73.0%</span></td></tr><tr class="row-top"><td><strong>Salon 55A NVL</strong></td><td class="num">1,528</td><td><span style="color:#22c55e;font-weight:600">96.2%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#22c55e;font-weight:600">42.7%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#ef4444">69.3%</span></td></tr><tr class="row-top"><td><strong>Salon 62 LH</strong></td><td class="num">1,206</td><td><span style="color:#22c55e;font-weight:600">92.8%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">39.3%</span> </td><td><span style="color:#22c55e">84.5%</span></td></tr><tr class="row-top"><td><strong>Salon 90 NH</strong></td><td class="num">1,601</td><td><span style="color:#22c55e;font-weight:600">98.4%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">36.6%</span> </td><td><span style="color:#f59e0b">79.8%</span></td></tr><tr class="row-top"><td><strong>Salon 109 TQH</strong></td><td class="num">2,994</td><td><span style="color:#22c55e;font-weight:600">93.6%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">36.2%</span> </td><td><span style="color:#f59e0b">79.8%</span></td></tr><tr class="row-top"><td><strong>Salon 65 CD</strong></td><td class="num">1,221</td><td><span style="color:#22c55e;font-weight:600">96.3%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">35.2%</span> </td><td><span style="color:#ef4444">67.6%</span></td></tr></tbody>
-      </table>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>💡 Phân tích</h3>
-      <div class="narrative-block"><p>So với kỳ 22/06/2026: XL giảm <strong>0.0 điểm</strong> (95.1% → 95.1%), Book tăng 1.3 điểm (39.0% → 40.4%), chốt thêm <strong>201</strong> lịch.</p><p>GĐKV Đoàn Trung Đức đạt ngưỡng xử lý pool 95.1% — <strong>Salon 90 NH</strong> dẫn đầu vùng (98.4%). XL tốt là điều kiện cần — nhưng bộ phận chuyển đổi (Book) chưa theo kịp, cần kiểm tra đoạn sau kết nối.</p><p>Tiến độ MT tháng: cần thêm 2,142 lịch, book rate cần 276.1% — cao hơn rate hiện tại (38.2%). Ưu tiên kép: tăng cả XL (mở rộng pool tiếp cận) lẫn book rate.</p></div>
-    </div></div><div id="tab-Nguyễn_Thị_Huệ" class="tab-content" style="--tc:#ef4444"><div style="font-size:12px;color:#94a3b8;margin-bottom:12px"><strong>GĐKV Nguyễn Thị Huệ</strong></div>
-    <div class="region-subsec">
-      <h3>📊 Tổng quan kỳ 01–23/06/2026</h3>
-      
-    <div class="kpi-grid small">
-      <div class="kpi-card"><div class="kpi-label">Pool</div>
-        <div class="kpi-val">5,590</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Xử lý</div>
-        <div class="kpi-val" style="color:#22c55e">105.8%
-          </div>
-        <div style="font-size:10px;color:#94a3b8">MT: 90%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Book</div>
-        <div class="kpi-val" style="color:#f59e0b">30.5%
-          <span class="delta" style="color:#16a34a">▲1.0%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 40%</div></div>
-      <div class="kpi-card"><div class="kpi-label">KN / XL</div>
-        <div class="kpi-val">87.9%</div></div>
-      <div class="kpi-card"><div class="kpi-label">Đến / Book</div>
-        <div class="kpi-val">98.5%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Đạt MT tháng</div>
-        <div class="kpi-val" style="color:#f59e0b">74.9%</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🎯 Tiến độ mục tiêu tháng 6/2026</h3>
-      
-    <div class="gap-box" style="background:#fffbeb;border-color:#fcd34d">
-      <div class="gap-icon" style="color:#92400e">⚠️ Cần đẩy thêm</div>
-      <div class="gap-grid">
-        <div class="gap-item"><div class="gap-lbl">Đã đạt MT tháng</div>
-          <div class="gap-val" style="color:#f59e0b">74.9%</div></div>
-        <div class="gap-item"><div class="gap-lbl">Book còn cần (lịch)</div>
-          <div class="gap-val">532</div></div>
-        <div class="gap-item"><div class="gap-lbl">Pool chưa xử lý</div>
-          <div class="gap-val">0</div></div>
-        <div class="gap-item"><div class="gap-lbl">Cần book rate</div>
-          <div class="gap-val" style="color:#f59e0b">—</div></div>
-      </div>
-      
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🔄 Funnel tích lũy kỳ 01–23/06/2026</h3>
-      
-    <div class="funnel-scroll">
-      <div class="f-step"><div class="f-label">Pool</div><div class="f-count">5,590</div><div style="height:7px"></div><span style="color:#94a3b8">—</span></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Phân phối</div><div class="f-count">11,563</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:100.0%;background:#6366f1"></div></div><span style="color:#6366f1;font-weight:700;font-size:14px">206.9%</span><div class="f-sub">/ pool</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Xử lý</div><div class="f-count">5,914</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:100.0%;background:#22c55e"></div></div><span style="color:#22c55e;font-weight:700;font-size:14px">105.8%</span><div class="f-sub">/ pool</div><div class="f-target">MT: 90%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Kết nối</div><div class="f-count">5,197</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:87.9%;background:#06b6d4"></div></div><span style="color:#06b6d4;font-weight:700;font-size:14px">87.9%</span><div class="f-sub">/ XL</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Book lịch</div><div class="f-count">1,583</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:30.5%;background:#f59e0b"></div></div><span style="color:#f59e0b;font-weight:700;font-size:14px">30.5%</span><div class="f-sub">/ KN</div><div class="f-target">MT: 40%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Đã đến</div><div class="f-count">1,559</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:98.5%;background:#10b981"></div></div><span style="color:#10b981;font-weight:700;font-size:14px">98.5%</span><div class="f-sub">/ Book</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🏆 Phân bổ salon — highlight theo ngưỡng mục tiêu</h3>
-      
-        <div class="alert-section">
-          <div class="alert-header">🚨 Book &lt;30% — cần chú ý ngay (1 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-alert"><td><strong>Salon 68 LN NA</strong></td><td class="num">899</td><td><span class="val-xl" style="color:#f59e0b">86.8%</span></td><td><span class="val-bk alert-bk">24.6%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#22c55e">86.2%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-        <div class="top-section">
-          <div class="top-header">⭐ XL ≥90% — đạt mục tiêu (4 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-top"><td><strong>Salon 304 NT TH</strong></td><td class="num">813</td><td><span class="val-xl top-xl">164.8%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">30.4%</span></td><td><span style="color:#f59e0b">70.1%</span></td></tr><tr class="row-top"><td><strong>Salon 58 NVC NA</strong></td><td class="num">1,109</td><td><span class="val-xl top-xl">103.3%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">31.1%</span></td><td><span style="color:#f59e0b">78.0%</span></td></tr><tr class="row-top"><td><strong>Salon 80 TP TH</strong></td><td class="num">1,105</td><td><span class="val-xl top-xl">100.3%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">30.8%</span></td><td><span style="color:#22c55e">81.3%</span></td></tr><tr class="row-top"><td><strong>Salon 595 BT TH</strong></td><td class="num">791</td><td><span class="val-xl top-xl">95.7%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">35.4%</span></td><td><span style="color:#ef4444">69.6%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-    <div class="table-wrap" style="margin-top:16px">
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:6px">
-        Tất cả salon — sắp xếp theo % Book (cao → thấp) ·
-        <span class="row-legend row-top-leg">■ Đạt/vượt mục tiêu</span>
-        <span class="row-legend row-alert-leg">■ Cần chú ý</span>
-      </div>
-      <table style="font-size:12px">
-        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-        <tbody><tr class="row-top"><td><strong>Salon 595 BT TH</strong></td><td class="num">791</td><td><span style="color:#22c55e;font-weight:600">95.7%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">35.4%</span> </td><td><span style="color:#ef4444">69.6%</span></td></tr><tr class="row-top"><td><strong>Salon 58 NVC NA</strong></td><td class="num">1,109</td><td><span style="color:#22c55e;font-weight:600">103.3%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">31.1%</span> </td><td><span style="color:#f59e0b">78.0%</span></td></tr><tr class="row-top"><td><strong>Salon 80 TP TH</strong></td><td class="num">1,105</td><td><span style="color:#22c55e;font-weight:600">100.3%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">30.8%</span> </td><td><span style="color:#22c55e">81.3%</span></td></tr><tr class="row-top"><td><strong>Salon 304 NT TH</strong></td><td class="num">813</td><td><span style="color:#22c55e;font-weight:600">164.8%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">30.4%</span> </td><td><span style="color:#f59e0b">70.1%</span></td></tr><tr class=""><td><strong>Salon 290 QT TH</strong></td><td class="num">873</td><td><span style="color:#f59e0b;font-weight:600">89.7%</span> </td><td><span style="color:#f59e0b;font-weight:600">30.4%</span> </td><td><span style="color:#ef4444">68.3%</span></td></tr><tr class="row-alert"><td><strong>Salon 68 LN NA</strong></td><td class="num">899</td><td><span style="color:#f59e0b;font-weight:600">86.8%</span> </td><td><span style="color:#ef4444;font-weight:600">24.6%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#22c55e">86.2%</span></td></tr></tbody>
-      </table>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>💡 Phân tích</h3>
-      <div class="narrative-block"><p>So với kỳ 22/06/2026: XL tăng <strong>0.1 điểm</strong> (105.7% → 105.8%), Book tăng 1.0 điểm (29.5% → 30.5%), chốt thêm <strong>52</strong> lịch.</p><p>GĐKV Nguyễn Thị Huệ đạt ngưỡng xử lý pool 105.8% — <strong>Salon 304 NT TH</strong> dẫn đầu vùng (164.8%). XL tốt là điều kiện cần — nhưng bộ phận chuyển đổi (Book) chưa theo kịp, cần kiểm tra đoạn sau kết nối.</p><p>Khoảng cách Book trong vùng rộng: <strong>Salon 595 BT TH</strong> (35.4%) so với <strong>Salon 68 LN NA</strong> (24.6%) — chênh 10.8%. GĐKV Nguyễn Thị Huệ cần trực tiếp so sánh cách hai salon này làm: NV của <strong>Salon 595 BT TH</strong> đang nói gì với khách sau kết nối, theo thứ tự nào, và bao giờ đề nghị đặt lịch?</p></div>
-    </div></div><div id="tab-Trịnh_Văn_Quang" class="tab-content" style="--tc:#10b981"><div style="font-size:12px;color:#94a3b8;margin-bottom:12px"><strong>GĐKV Trịnh Văn Quang</strong></div>
-    <div class="region-subsec">
-      <h3>📊 Tổng quan kỳ 01–23/06/2026</h3>
-      
-    <div class="kpi-grid small">
-      <div class="kpi-card"><div class="kpi-label">Pool</div>
-        <div class="kpi-val">9,435</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Xử lý</div>
-        <div class="kpi-val" style="color:#22c55e">133.4%
-          </div>
-        <div style="font-size:10px;color:#94a3b8">MT: 90%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Book</div>
-        <div class="kpi-val" style="color:#f59e0b">33.6%
-          <span class="delta" style="color:#16a34a">▲1.0%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 40%</div></div>
-      <div class="kpi-card"><div class="kpi-label">KN / XL</div>
-        <div class="kpi-val">71.8%</div></div>
-      <div class="kpi-card"><div class="kpi-label">Đến / Book</div>
-        <div class="kpi-val">98.5%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Đạt MT tháng</div>
-        <div class="kpi-val" style="color:#f59e0b">77.7%</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🎯 Tiến độ mục tiêu tháng 6/2026</h3>
-      
-    <div class="gap-box" style="background:#fffbeb;border-color:#fcd34d">
-      <div class="gap-icon" style="color:#92400e">⚠️ Cần đẩy thêm</div>
-      <div class="gap-grid">
-        <div class="gap-item"><div class="gap-lbl">Đã đạt MT tháng</div>
-          <div class="gap-val" style="color:#f59e0b">77.7%</div></div>
-        <div class="gap-item"><div class="gap-lbl">Book còn cần (lịch)</div>
-          <div class="gap-val">872</div></div>
-        <div class="gap-item"><div class="gap-lbl">Pool chưa xử lý</div>
-          <div class="gap-val">0</div></div>
-        <div class="gap-item"><div class="gap-lbl">Cần book rate</div>
-          <div class="gap-val" style="color:#f59e0b">—</div></div>
-      </div>
-      
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🔄 Funnel tích lũy kỳ 01–23/06/2026</h3>
-      
-    <div class="funnel-scroll">
-      <div class="f-step"><div class="f-label">Pool</div><div class="f-count">9,435</div><div style="height:7px"></div><span style="color:#94a3b8">—</span></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Phân phối</div><div class="f-count">13,987</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:100.0%;background:#6366f1"></div></div><span style="color:#6366f1;font-weight:700;font-size:14px">148.2%</span><div class="f-sub">/ pool</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Xử lý</div><div class="f-count">12,591</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:100.0%;background:#22c55e"></div></div><span style="color:#22c55e;font-weight:700;font-size:14px">133.4%</span><div class="f-sub">/ pool</div><div class="f-target">MT: 90%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Kết nối</div><div class="f-count">9,040</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:71.8%;background:#06b6d4"></div></div><span style="color:#06b6d4;font-weight:700;font-size:14px">71.8%</span><div class="f-sub">/ XL</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Book lịch</div><div class="f-count">3,040</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:33.6%;background:#f59e0b"></div></div><span style="color:#f59e0b;font-weight:700;font-size:14px">33.6%</span><div class="f-sub">/ KN</div><div class="f-target">MT: 40%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Đã đến</div><div class="f-count">2,994</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:98.5%;background:#10b981"></div></div><span style="color:#10b981;font-weight:700;font-size:14px">98.5%</span><div class="f-sub">/ Book</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🏆 Phân bổ salon — highlight theo ngưỡng mục tiêu</h3>
-      
-        <div class="top-section">
-          <div class="top-header">⭐ XL ≥90% — đạt mục tiêu (5 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-top"><td><strong>Salon 12 LDT</strong></td><td class="num">2,275</td><td><span class="val-xl top-xl">228.5%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">32.0%</span></td><td><span style="color:#22c55e">83.0%</span></td></tr><tr class="row-top"><td><strong>Salon 32 NAT</strong></td><td class="num">1,293</td><td><span class="val-xl top-xl">114.5%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">36.1%</span></td><td><span style="color:#f59e0b">73.8%</span></td></tr><tr class="row-top"><td><strong>Salon 1180 QT</strong></td><td class="num">1,913</td><td><span class="val-xl top-xl">102.6%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">35.9%</span></td><td><span style="color:#f59e0b">79.3%</span></td></tr><tr class="row-top"><td><strong>Salon 483 TN</strong></td><td class="num">2,231</td><td><span class="val-xl top-xl">101.4%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">34.3%</span></td><td><span style="color:#f59e0b">76.8%</span></td></tr><tr class="row-top"><td><strong>Salon 76 PVH</strong></td><td class="num">1,723</td><td><span class="val-xl top-xl">97.9%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">30.5%</span></td><td><span style="color:#f59e0b">74.9%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-    <div class="table-wrap" style="margin-top:16px">
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:6px">
-        Tất cả salon — sắp xếp theo % Book (cao → thấp) ·
-        <span class="row-legend row-top-leg">■ Đạt/vượt mục tiêu</span>
-        <span class="row-legend row-alert-leg">■ Cần chú ý</span>
-      </div>
-      <table style="font-size:12px">
-        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-        <tbody><tr class="row-top"><td><strong>Salon 32 NAT</strong></td><td class="num">1,293</td><td><span style="color:#22c55e;font-weight:600">114.5%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">36.1%</span> </td><td><span style="color:#f59e0b">73.8%</span></td></tr><tr class="row-top"><td><strong>Salon 1180 QT</strong></td><td class="num">1,913</td><td><span style="color:#22c55e;font-weight:600">102.6%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">35.9%</span> </td><td><span style="color:#f59e0b">79.3%</span></td></tr><tr class="row-top"><td><strong>Salon 483 TN</strong></td><td class="num">2,231</td><td><span style="color:#22c55e;font-weight:600">101.4%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">34.3%</span> </td><td><span style="color:#f59e0b">76.8%</span></td></tr><tr class="row-top"><td><strong>Salon 12 LDT</strong></td><td class="num">2,275</td><td><span style="color:#22c55e;font-weight:600">228.5%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">32.0%</span> </td><td><span style="color:#22c55e">83.0%</span></td></tr><tr class="row-top"><td><strong>Salon 76 PVH</strong></td><td class="num">1,723</td><td><span style="color:#22c55e;font-weight:600">97.9%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">30.5%</span> </td><td><span style="color:#f59e0b">74.9%</span></td></tr></tbody>
-      </table>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>💡 Phân tích</h3>
-      <div class="narrative-block"><p>So với kỳ 22/06/2026: XL giảm <strong>0.0 điểm</strong> (133.4% → 133.4%), Book tăng 1.0 điểm (32.6% → 33.6%), chốt thêm <strong>93</strong> lịch.</p><p>GĐKV Trịnh Văn Quang đạt ngưỡng xử lý pool 133.4% — <strong>Salon 12 LDT</strong> dẫn đầu vùng (228.5%). XL tốt là điều kiện cần — nhưng bộ phận chuyển đổi (Book) chưa theo kịp, cần kiểm tra đoạn sau kết nối.</p></div>
-    </div></div><div id="tab-Nguyễn_Thanh_Sang" class="tab-content" style="--tc:#f59e0b"><div style="font-size:12px;color:#94a3b8;margin-bottom:12px"><strong>GĐKV Nguyễn Thanh Sang</strong></div>
-    <div class="region-subsec">
-      <h3>📊 Tổng quan kỳ 01–23/06/2026</h3>
-      
-    <div class="kpi-grid small">
-      <div class="kpi-card"><div class="kpi-label">Pool</div>
-        <div class="kpi-val">28,346</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Xử lý</div>
-        <div class="kpi-val" style="color:#f59e0b">74.3%
-          <span class="delta" style="color:#16a34a">▲1.1%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 90%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Book</div>
-        <div class="kpi-val" style="color:#f59e0b">33.9%
-          <span class="delta" style="color:#16a34a">▲1.2%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 40%</div></div>
-      <div class="kpi-card"><div class="kpi-label">KN / XL</div>
-        <div class="kpi-val">98.0%</div></div>
-      <div class="kpi-card"><div class="kpi-label">Đến / Book</div>
-        <div class="kpi-val">97.8%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Đạt MT tháng</div>
-        <div class="kpi-val" style="color:#f59e0b">79.0%</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🎯 Tiến độ mục tiêu tháng 6/2026</h3>
-      
-    <div class="gap-box" style="background:#f0fdf4;border-color:#86efac">
-      <div class="gap-icon" style="color:#166534">✅ Đúng tiến độ</div>
-      <div class="gap-grid">
-        <div class="gap-item"><div class="gap-lbl">Đã đạt MT tháng</div>
-          <div class="gap-val" style="color:#f59e0b">79.0%</div></div>
-        <div class="gap-item"><div class="gap-lbl">Book còn cần (lịch)</div>
-          <div class="gap-val">1,851</div></div>
-        <div class="gap-item"><div class="gap-lbl">Pool chưa xử lý</div>
-          <div class="gap-val">7,290</div></div>
-        <div class="gap-item"><div class="gap-lbl">Cần book rate</div>
-          <div class="gap-val" style="color:#f59e0b">25.4%</div></div>
-      </div>
-      <div class="gap-note">Book rate hiện tại (24.6%) đủ để bù pool còn lại nếu tiếp tục pace.</div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🔄 Funnel tích lũy kỳ 01–23/06/2026</h3>
-      
-    <div class="funnel-scroll">
-      <div class="f-step"><div class="f-label">Pool</div><div class="f-count">28,346</div><div style="height:7px"></div><span style="color:#94a3b8">—</span></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Phân phối</div><div class="f-count">67,981</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:100.0%;background:#6366f1"></div></div><span style="color:#6366f1;font-weight:700;font-size:14px">239.8%</span><div class="f-sub">/ pool</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Xử lý</div><div class="f-count">21,056</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:74.3%;background:#f59e0b"></div></div><span style="color:#f59e0b;font-weight:700;font-size:14px">74.3%</span><div class="f-sub">/ pool</div><div class="f-target">MT: 90%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Kết nối</div><div class="f-count">20,632</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:98.0%;background:#06b6d4"></div></div><span style="color:#06b6d4;font-weight:700;font-size:14px">98.0%</span><div class="f-sub">/ XL</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Book lịch</div><div class="f-count">6,986</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:33.9%;background:#f59e0b"></div></div><span style="color:#f59e0b;font-weight:700;font-size:14px">33.9%</span><div class="f-sub">/ KN</div><div class="f-target">MT: 40%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Đã đến</div><div class="f-count">6,834</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:97.8%;background:#10b981"></div></div><span style="color:#10b981;font-weight:700;font-size:14px">97.8%</span><div class="f-sub">/ Book</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🏆 Phân bổ salon — highlight theo ngưỡng mục tiêu</h3>
-      
-        <div class="alert-section">
-          <div class="alert-header">⚠️ XL &lt;70% — xử lý pool chậm (3 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-alert"><td><strong>Salon 145 THT</strong></td><td class="num">4,691</td><td><span class="val-xl alert-xl">40.1%</span>    <span class="th-badge th-red">⚠️ XL thấp</span></td><td><span style="color:#f59e0b">35.1%</span></td><td><span style="color:#f59e0b">77.3%</span></td></tr><tr class="row-alert"><td><strong>Salon 190 HB</strong></td><td class="num">2,144</td><td><span class="val-xl alert-xl">45.4%</span>    <span class="th-badge th-red">⚠️ XL thấp</span></td><td><span style="color:#f59e0b">32.6%</span></td><td><span style="color:#f59e0b">79.8%</span></td></tr><tr class="row-alert"><td><strong>Salon 312 LVS</strong></td><td class="num">3,646</td><td><span class="val-xl alert-xl">56.8%</span>    <span class="th-badge th-red">⚠️ XL thấp</span></td><td><span style="color:#f59e0b">33.5%</span></td><td><span style="color:#f59e0b">79.6%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-        <div class="top-section">
-          <div class="top-header">⭐ XL ≥90% — đạt mục tiêu (4 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-top"><td><strong>Salon 730 TL10</strong></td><td class="num">3,257</td><td><span class="val-xl top-xl">101.0%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">33.9%</span></td><td><span style="color:#22c55e">81.2%</span></td></tr><tr class="row-top"><td><strong>Salon 708 LTT</strong></td><td class="num">1,546</td><td><span class="val-xl top-xl">96.0%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">33.9%</span></td><td><span style="color:#22c55e">85.6%</span></td></tr><tr class="row-top"><td><strong>Salon 99 TSN</strong></td><td class="num">3,593</td><td><span class="val-xl top-xl">94.7%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">36.8%</span></td><td><span style="color:#22c55e">81.1%</span></td></tr><tr class="row-top"><td><strong>Salon 927 HG</strong></td><td class="num">3,789</td><td><span class="val-xl top-xl">93.8%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">33.6%</span></td><td><span style="color:#f59e0b">78.5%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-    <div class="table-wrap" style="margin-top:16px">
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:6px">
-        Tất cả salon — sắp xếp theo % Book (cao → thấp) ·
-        <span class="row-legend row-top-leg">■ Đạt/vượt mục tiêu</span>
-        <span class="row-legend row-alert-leg">■ Cần chú ý</span>
-      </div>
-      <table style="font-size:12px">
-        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-        <tbody><tr class="row-top"><td><strong>Salon 99 TSN</strong></td><td class="num">3,593</td><td><span style="color:#22c55e;font-weight:600">94.7%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">36.8%</span> </td><td><span style="color:#22c55e">81.1%</span></td></tr><tr class="row-alert"><td><strong>Salon 145 THT</strong></td><td class="num">4,691</td><td><span style="color:#ef4444;font-weight:600">40.1%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#f59e0b;font-weight:600">35.1%</span> </td><td><span style="color:#f59e0b">77.3%</span></td></tr><tr class="row-top"><td><strong>Salon 730 TL10</strong></td><td class="num">3,257</td><td><span style="color:#22c55e;font-weight:600">101.0%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">33.9%</span> </td><td><span style="color:#22c55e">81.2%</span></td></tr><tr class="row-top"><td><strong>Salon 708 LTT</strong></td><td class="num">1,546</td><td><span style="color:#22c55e;font-weight:600">96.0%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">33.9%</span> </td><td><span style="color:#22c55e">85.6%</span></td></tr><tr class="row-top"><td><strong>Salon 927 HG</strong></td><td class="num">3,789</td><td><span style="color:#22c55e;font-weight:600">93.8%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">33.6%</span> </td><td><span style="color:#f59e0b">78.5%</span></td></tr><tr class="row-alert"><td><strong>Salon 312 LVS</strong></td><td class="num">3,646</td><td><span style="color:#ef4444;font-weight:600">56.8%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#f59e0b;font-weight:600">33.5%</span> </td><td><span style="color:#f59e0b">79.6%</span></td></tr><tr class=""><td><strong>Salon 575 AC</strong></td><td class="num">2,544</td><td><span style="color:#f59e0b;font-weight:600">83.7%</span> </td><td><span style="color:#f59e0b;font-weight:600">33.4%</span> </td><td><span style="color:#f59e0b">74.5%</span></td></tr><tr class="row-alert"><td><strong>Salon 190 HB</strong></td><td class="num">2,144</td><td><span style="color:#ef4444;font-weight:600">45.4%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#f59e0b;font-weight:600">32.6%</span> </td><td><span style="color:#f59e0b">79.8%</span></td></tr><tr class=""><td><strong>Salon 8 CVL</strong></td><td class="num">3,136</td><td><span style="color:#f59e0b;font-weight:600">72.4%</span> </td><td><span style="color:#f59e0b;font-weight:600">30.2%</span> </td><td><span style="color:#22c55e">83.2%</span></td></tr></tbody>
-      </table>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>💡 Phân tích</h3>
-      <div class="narrative-block"><p>So với kỳ 22/06/2026: XL tăng <strong>1.1 điểm</strong> (73.2% → 74.3%), Book tăng 1.2 điểm (32.7% → 33.9%), chốt thêm <strong>338</strong> lịch.</p><p>Tiến độ MT tháng: cần thêm 1,851 lịch, book rate cần 25.4% — đang ở 24.6%, trong tầm tay. Nhưng cần đảm bảo pool còn lại được NV xử lý đủ.</p></div>
-    </div></div><div id="tab-Phan_Thị_Hồng_Gấm" class="tab-content" style="--tc:#ec4899"><div style="font-size:12px;color:#94a3b8;margin-bottom:12px"><strong>GĐKV Phan Thị Hồng Gấm</strong></div>
-    <div class="region-subsec">
-      <h3>📊 Tổng quan kỳ 01–23/06/2026</h3>
-      
-    <div class="kpi-grid small">
-      <div class="kpi-card"><div class="kpi-label">Pool</div>
-        <div class="kpi-val">14,377</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Xử lý</div>
-        <div class="kpi-val" style="color:#22c55e">92.9%
-          <span class="delta" style="color:#16a34a">▲1.5%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 90%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Book</div>
-        <div class="kpi-val" style="color:#f59e0b">34.5%
-          <span class="delta" style="color:#16a34a">▲0.8%</span></div>
-        <div style="font-size:10px;color:#94a3b8">MT: 40%</div></div>
-      <div class="kpi-card"><div class="kpi-label">KN / XL</div>
-        <div class="kpi-val">90.4%</div></div>
-      <div class="kpi-card"><div class="kpi-label">Đến / Book</div>
-        <div class="kpi-val">98.1%</div></div>
-      <div class="kpi-card"><div class="kpi-label">% Đạt MT tháng</div>
-        <div class="kpi-val" style="color:#f59e0b">71.7%</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🎯 Tiến độ mục tiêu tháng 6/2026</h3>
-      
-    <div class="gap-box" style="background:#fffbeb;border-color:#fcd34d">
-      <div class="gap-icon" style="color:#92400e">⚠️ Cần đẩy thêm</div>
-      <div class="gap-grid">
-        <div class="gap-item"><div class="gap-lbl">Đã đạt MT tháng</div>
-          <div class="gap-val" style="color:#f59e0b">71.7%</div></div>
-        <div class="gap-item"><div class="gap-lbl">Book còn cần (lịch)</div>
-          <div class="gap-val">1,641</div></div>
-        <div class="gap-item"><div class="gap-lbl">Pool chưa xử lý</div>
-          <div class="gap-val">1,019</div></div>
-        <div class="gap-item"><div class="gap-lbl">Cần book rate</div>
-          <div class="gap-val" style="color:#f59e0b">161.0%</div></div>
-      </div>
-      <div class="gap-note">Cần tăng book rate lên 161.0% — đang ở 28.9%, phải cải thiện đáng kể.</div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🔄 Funnel tích lũy kỳ 01–23/06/2026</h3>
-      
-    <div class="funnel-scroll">
-      <div class="f-step"><div class="f-label">Pool</div><div class="f-count">14,377</div><div style="height:7px"></div><span style="color:#94a3b8">—</span></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Phân phối</div><div class="f-count">28,941</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:100.0%;background:#6366f1"></div></div><span style="color:#6366f1;font-weight:700;font-size:14px">201.3%</span><div class="f-sub">/ pool</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Xử lý</div><div class="f-count">13,358</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:92.9%;background:#22c55e"></div></div><span style="color:#22c55e;font-weight:700;font-size:14px">92.9%</span><div class="f-sub">/ pool</div><div class="f-target">MT: 90%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Kết nối</div><div class="f-count">12,071</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:90.4%;background:#06b6d4"></div></div><span style="color:#06b6d4;font-weight:700;font-size:14px">90.4%</span><div class="f-sub">/ XL</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Book lịch</div><div class="f-count">4,162</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:34.5%;background:#f59e0b"></div></div><span style="color:#f59e0b;font-weight:700;font-size:14px">34.5%</span><div class="f-sub">/ KN</div><div class="f-target">MT: 40%</div></div>
-      <div class="f-arr">→</div>
-      <div class="f-step"><div class="f-label">Đã đến</div><div class="f-count">4,083</div><div class="bar-bg" style="height:7px"><div class="bar-fill" style="width:98.1%;background:#10b981"></div></div><span style="color:#10b981;font-weight:700;font-size:14px">98.1%</span><div class="f-sub">/ Book</div></div>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>🏆 Phân bổ salon — highlight theo ngưỡng mục tiêu</h3>
-      
-        <div class="alert-section">
-          <div class="alert-header">🚨 Book &lt;30% — cần chú ý ngay (3 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-alert"><td><strong>Salon 50BT4 NPC LD</strong></td><td class="num">2,498</td><td><span class="val-xl" style="color:#f59e0b">78.9%</span></td><td><span class="val-bk alert-bk">23.8%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#f59e0b">72.5%</span></td></tr><tr class="row-alert"><td><strong>Salon 264 LLQ</strong></td><td class="num">1,859</td><td><span class="val-xl" style="color:#22c55e">97.4%</span></td><td><span class="val-bk alert-bk">27.2%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#f59e0b">77.9%</span></td></tr><tr class="row-alert"><td><strong>Salon 363 LNQ TN</strong></td><td class="num">1,466</td><td><span class="val-xl" style="color:#22c55e">99.9%</span></td><td><span class="val-bk alert-bk">27.7%</span>    <span class="th-badge th-red">⚠️ Book thấp</span></td><td><span style="color:#ef4444">67.9%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-        <div class="top-section">
-          <div class="top-header">🌟 Book ≥40% — đạt mục tiêu (3 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-top"><td><strong>Salon 39 HBT</strong></td><td class="num">1,739</td><td><span style="color:#22c55e">98.9%</span></td><td><span class="val-bk top-bk">43.8%</span>    <span class="th-badge th-green">✅ Đạt MT Book</span></td><td><span style="color:#ef4444">68.8%</span></td></tr><tr class="row-top"><td><strong>Salon 346 KT</strong></td><td class="num">1,569</td><td><span style="color:#22c55e">109.8%</span></td><td><span class="val-bk top-bk">42.6%</span>    <span class="th-badge th-green">✅ Đạt MT Book</span></td><td><span style="color:#f59e0b">72.0%</span></td></tr><tr class="row-top"><td><strong>Salon 202 DC</strong></td><td class="num">2,151</td><td><span style="color:#22c55e">99.9%</span></td><td><span class="val-bk top-bk">40.6%</span>    <span class="th-badge th-green">✅ Đạt MT Book</span></td><td><span style="color:#f59e0b">70.4%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-        <div class="top-section">
-          <div class="top-header">⭐ XL ≥90% — đạt mục tiêu (6 salon)</div>
-          <div class="table-wrap">
-            <table style="font-size:12px">
-              <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-              <tbody><tr class="row-top"><td><strong>Salon 346 KT</strong></td><td class="num">1,569</td><td><span class="val-xl top-xl">109.8%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#22c55e">42.6%</span></td><td><span style="color:#f59e0b">72.0%</span></td></tr><tr class="row-top"><td><strong>Salon 363 LNQ TN</strong></td><td class="num">1,466</td><td><span class="val-xl top-xl">99.9%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#ef4444">27.7%</span></td><td><span style="color:#ef4444">67.9%</span></td></tr><tr class="row-top"><td><strong>Salon 202 DC</strong></td><td class="num">2,151</td><td><span class="val-xl top-xl">99.9%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#22c55e">40.6%</span></td><td><span style="color:#f59e0b">70.4%</span></td></tr><tr class="row-top"><td><strong>Salon 39 HBT</strong></td><td class="num">1,739</td><td><span class="val-xl top-xl">98.9%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#22c55e">43.8%</span></td><td><span style="color:#ef4444">68.8%</span></td></tr><tr class="row-top"><td><strong>Salon 264 LLQ</strong></td><td class="num">1,859</td><td><span class="val-xl top-xl">97.4%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#ef4444">27.2%</span></td><td><span style="color:#f59e0b">77.9%</span></td></tr><tr class="row-top"><td><strong>Salon 148 TD</strong></td><td class="num">1,240</td><td><span class="val-xl top-xl">93.5%</span>    <span class="th-badge th-green">✅ Đạt MT XL</span></td><td><span style="color:#f59e0b">33.2%</span></td><td><span style="color:#22c55e">81.6%</span></td></tr></tbody>
-            </table>
-          </div>
-        </div>
-    <div class="table-wrap" style="margin-top:16px">
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:6px">
-        Tất cả salon — sắp xếp theo % Book (cao → thấp) ·
-        <span class="row-legend row-top-leg">■ Đạt/vượt mục tiêu</span>
-        <span class="row-legend row-alert-leg">■ Cần chú ý</span>
-      </div>
-      <table style="font-size:12px">
-        <thead><tr><th>Salon</th><th>Pool</th><th>% XL</th><th>% Book</th><th>% MT</th></tr></thead>
-        <tbody><tr class="row-top"><td><strong>Salon 39 HBT</strong></td><td class="num">1,739</td><td><span style="color:#22c55e;font-weight:600">98.9%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#22c55e;font-weight:600">43.8%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#ef4444">68.8%</span></td></tr><tr class="row-top"><td><strong>Salon 346 KT</strong></td><td class="num">1,569</td><td><span style="color:#22c55e;font-weight:600">109.8%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#22c55e;font-weight:600">42.6%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b">72.0%</span></td></tr><tr class="row-top"><td><strong>Salon 202 DC</strong></td><td class="num">2,151</td><td><span style="color:#22c55e;font-weight:600">99.9%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#22c55e;font-weight:600">40.6%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b">70.4%</span></td></tr><tr class=""><td><strong>Salon 173 TN</strong></td><td class="num">1,855</td><td><span style="color:#f59e0b;font-weight:600">73.3%</span> </td><td><span style="color:#f59e0b;font-weight:600">35.0%</span> </td><td><span style="color:#f59e0b">71.8%</span></td></tr><tr class="row-top"><td><strong>Salon 148 TD</strong></td><td class="num">1,240</td><td><span style="color:#22c55e;font-weight:600">93.5%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#f59e0b;font-weight:600">33.2%</span> </td><td><span style="color:#22c55e">81.6%</span></td></tr><tr class="row-alert"><td><strong>Salon 363 LNQ TN</strong></td><td class="num">1,466</td><td><span style="color:#22c55e;font-weight:600">99.9%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#ef4444;font-weight:600">27.7%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#ef4444">67.9%</span></td></tr><tr class="row-alert"><td><strong>Salon 264 LLQ</strong></td><td class="num">1,859</td><td><span style="color:#22c55e;font-weight:600">97.4%</span> <span class="th-badge th-green">✅</span></td><td><span style="color:#ef4444;font-weight:600">27.2%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#f59e0b">77.9%</span></td></tr><tr class="row-alert"><td><strong>Salon 50BT4 NPC LD</strong></td><td class="num">2,498</td><td><span style="color:#f59e0b;font-weight:600">78.9%</span> </td><td><span style="color:#ef4444;font-weight:600">23.8%</span> <span class="th-badge th-red">⚠️</span></td><td><span style="color:#f59e0b">72.5%</span></td></tr></tbody>
-      </table>
-    </div>
-    </div>
-    <div class="region-subsec">
-      <h3>💡 Phân tích</h3>
-      <div class="narrative-block"><p>So với kỳ 22/06/2026: XL tăng <strong>1.5 điểm</strong> (91.4% → 92.9%), Book tăng 0.8 điểm (33.7% → 34.5%), chốt thêm <strong>167</strong> lịch.</p><p>GĐKV Phan Thị Hồng Gấm đạt ngưỡng xử lý pool 92.9% — <strong>Salon 346 KT</strong> dẫn đầu vùng (109.8%). XL tốt là điều kiện cần — nhưng bộ phận chuyển đổi (Book) chưa theo kịp, cần kiểm tra đoạn sau kết nối.</p><p>Khoảng cách Book trong vùng rộng: <strong>Salon 39 HBT</strong> (43.8%) so với <strong>Salon 50BT4 NPC LD</strong> (23.8%) — chênh 20.0%. GĐKV Phan Thị Hồng Gấm cần trực tiếp so sánh cách hai salon này làm: NV của <strong>Salon 39 HBT</strong> đang nói gì với khách sau kết nối, theo thứ tự nào, và bao giờ đề nghị đặt lịch?</p><p>Tiến độ MT tháng: cần thêm 1,641 lịch, book rate cần 161.0% — cao hơn rate hiện tại (28.9%). Ưu tiên kép: tăng cả XL (mở rộng pool tiếp cận) lẫn book rate.</p></div>
-    </div></div>
   </div>
+</section>
 
-  <!-- 3. GĐKV -->
-  
-    <div class="card" id="gdkv-table">
-      <h2 class="sec-title">3. Hành động — GĐKV</h2>
-      <div class="table-wrap">
-        <table class="act-table">
-          <thead><tr><th style="width:180px">Vùng</th><th>Việc cụ thể</th></tr></thead>
-          <tbody>
-        <tr>
-          <td class="act-vung">
-            <strong style="color:#6366f1">GĐKV Nguyễn Như Quỳnh</strong>
-            <div style="font-size:11px;color:#f59e0b;margin-top:4px;font-weight:600">75.9% MT</div>
-          </td>
-          <td><div class="act-row"><strong>Salon 4 LQD BN</strong> (21.7%) — Book dưới 30%, thấp nhất vùng. Ngồi với NV nghe trực tiếp đoạn hội thoại sau kết nối: NV đang đề nghị đặt lịch vào lúc nào? Có đưa ngày giờ cụ thể không?</div><div class="act-row">MT tháng: cần book rate 99.4% từ pool còn lại — cao hơn rate hiện tại (29.2%). Xác định pool nào còn 'warm' nhất (mới vào, chưa có lịch) và ưu tiên NV xử lý trước.</div></td>
-        </tr>
-        <tr>
-          <td class="act-vung">
-            <strong style="color:#06b6d4">GĐKV Nguyễn Việt Cường</strong>
-            <div style="font-size:11px;color:#f59e0b;margin-top:4px;font-weight:600">80.0% MT</div>
-          </td>
-          <td><div class="act-row"><strong>Salon 451 PVT</strong> (9.1%), <strong>Salon 1371 PVT</strong> (23.3%) — Book dưới 30%, thấp nhất vùng. Ngồi với NV nghe trực tiếp đoạn hội thoại sau kết nối: NV đang đề nghị đặt lịch vào lúc nào? Có đưa ngày giờ cụ thể không?</div><div class="act-row">MT tháng: cần book rate 409.4% từ pool còn lại — cao hơn rate hiện tại (27.4%). Xác định pool nào còn 'warm' nhất (mới vào, chưa có lịch) và ưu tiên NV xử lý trước.</div></td>
-        </tr>
-        <tr>
-          <td class="act-vung">
-            <strong style="color:#8b5cf6">GĐKV Tống Xuân Quyền</strong>
-            <div style="font-size:11px;color:#f59e0b;margin-top:4px;font-weight:600">77.5% MT</div>
-          </td>
-          <td><div class="act-row"><strong>Salon 236 DBT</strong> (19.8%), <strong>Salon 420 HTP</strong> (21.6%) — Book dưới 30%, thấp nhất vùng. Ngồi với NV nghe trực tiếp đoạn hội thoại sau kết nối: NV đang đề nghị đặt lịch vào lúc nào? Có đưa ngày giờ cụ thể không? Đối chiếu với <strong>Salon 25 TD</strong> (Book 38.2%, cao nhất vùng): hỏi NV cụ thể đang làm gì khác — câu chốt lịch, thời điểm đề nghị, cách xử lý từ chối.</div></td>
-        </tr>
-        <tr>
-          <td class="act-vung">
-            <strong style="color:#f97316">GĐKV Đoàn Trung Đức</strong>
-            <div style="font-size:11px;color:#f59e0b;margin-top:4px;font-weight:600">73.7% MT</div>
-          </td>
-          <td><div class="act-row">MT tháng: cần book rate 276.1% từ pool còn lại — cao hơn rate hiện tại (38.2%). Xác định pool nào còn 'warm' nhất (mới vào, chưa có lịch) và ưu tiên NV xử lý trước.</div></td>
-        </tr>
-        <tr>
-          <td class="act-vung">
-            <strong style="color:#ef4444">GĐKV Nguyễn Thị Huệ</strong>
-            <div style="font-size:11px;color:#f59e0b;margin-top:4px;font-weight:600">74.9% MT</div>
-          </td>
-          <td><div class="act-row"><strong>Salon 68 LN NA</strong> (24.6%) — Book dưới 30%, thấp nhất vùng. Ngồi với NV nghe trực tiếp đoạn hội thoại sau kết nối: NV đang đề nghị đặt lịch vào lúc nào? Có đưa ngày giờ cụ thể không?</div></td>
-        </tr>
-        <tr>
-          <td class="act-vung">
-            <strong style="color:#10b981">GĐKV Trịnh Văn Quang</strong>
-            <div style="font-size:11px;color:#f59e0b;margin-top:4px;font-weight:600">77.7% MT</div>
-          </td>
-          <td><div class="act-row">GĐKV Trịnh Văn Quang: XL 133.4%, Book 33.6%. Duy trì pace và theo dõi salon có chỉ số thấp hơn trung bình vùng.</div></td>
-        </tr>
-        <tr>
-          <td class="act-vung">
-            <strong style="color:#f59e0b">GĐKV Nguyễn Thanh Sang</strong>
-            <div style="font-size:11px;color:#f59e0b;margin-top:4px;font-weight:600">79.0% MT</div>
-          </td>
-          <td><div class="act-row"><strong>Salon 312 LVS</strong> (56.8%), <strong>Salon 190 HB</strong> (45.4%), <strong>Salon 145 THT</strong> (40.1%) — XL dưới 70%. Kiểm tra: pool được giao cho NV như thế nào, có case đã phân nhưng chưa contact quá 48h không? SM có review tiến độ pool hàng ngày không?</div></td>
-        </tr>
-        <tr>
-          <td class="act-vung">
-            <strong style="color:#ec4899">GĐKV Phan Thị Hồng Gấm</strong>
-            <div style="font-size:11px;color:#f59e0b;margin-top:4px;font-weight:600">71.7% MT</div>
-          </td>
-          <td><div class="act-row"><strong>Salon 50BT4 NPC LD</strong> (23.8%), <strong>Salon 264 LLQ</strong> (27.2%) — Book dưới 30%, thấp nhất vùng. Ngồi với NV nghe trực tiếp đoạn hội thoại sau kết nối: NV đang đề nghị đặt lịch vào lúc nào? Có đưa ngày giờ cụ thể không? Đối chiếu với <strong>Salon 39 HBT</strong> (Book 43.8%, cao nhất vùng): hỏi NV cụ thể đang làm gì khác — câu chốt lịch, thời điểm đề nghị, cách xử lý từ chối.</div><div class="act-row">MT tháng: cần book rate 161.0% từ pool còn lại — cao hơn rate hiện tại (28.9%). Xác định pool nào còn 'warm' nhất (mới vào, chưa có lịch) và ưu tiên NV xử lý trước.</div></td>
-        </tr></tbody>
-        </table>
-      </div>
-    </div>
-
-  <!-- 4. TNKH -->
-  
-    <div class="card" id="tnkh-table">
-      <h2 class="sec-title">4. Hành động — bp TNKH</h2>
-      <div class="table-wrap">
-        <table class="act-table">
-          <thead><tr><th style="width:200px">Hành động</th><th>Chi tiết thực hiện</th></tr></thead>
-          <tbody>
-        <tr>
-          <td class="act-hd-col">
-            <strong>Thu thập script chốt lịch từ salon dẫn đầu</strong>
-            <div style="font-size:11px;color:#6366f1;margin-top:3px">→ GĐKV Đoàn Trung Đức, GĐKV Phan Thị Hồng Gấm, GĐKV Tống Xuân Quyền</div>
-          </td>
-          <td style="font-size:13px;line-height:1.75">Phỏng vấn NV tại <strong>Salon 116 TK</strong> (GĐKV Đoàn Trung Đức, Book 44.4%), <strong>Salon 39 HBT</strong> (GĐKV Phan Thị Hồng Gấm, Book 43.8%), <strong>Salon 25 TD</strong> (GĐKV Tống Xuân Quyền, Book 38.2%): (1) Câu NV nói ngay sau khi kết nối được khách — <em>nguyên văn</em>, (2) Thời điểm đề nghị đặt lịch trong cuộc trò chuyện (ngay từ đầu hay sau giải thích?), (3) Khi khách từ chối/do dự — NV nói gì tiếp theo. Output cần: 3–5 câu cụ thể để làm script baseline, không phải nguyên tắc chung.</td>
-        </tr>
-        <tr>
-          <td class="act-hd-col">
-            <strong>Phổ biến script — áp dụng ngay tuần tới</strong>
-            <div style="font-size:11px;color:#6366f1;margin-top:3px">→ GĐKV Tống Xuân Quyền</div>
-          </td>
-          <td style="font-size:13px;line-height:1.75">Sau khi thu thập script từ bước trên, gửi đến <strong>GĐKV Tống Xuân Quyền</strong> (Book 28.8%). Gửi đúng câu NV nói trong tình huống cụ thể — không gửi file lý thuyết hay bullet point. Yêu cầu GĐKV: trực tiếp hướng dẫn NV dùng script này, ghi nhận phản hồi từ thực tế (khách phản ứng thế nào). Đánh giá Book rate sau 5 ngày.</td>
-        </tr>
-        <tr>
-          <td class="act-hd-col">
-            <strong>Rà soát tiến độ MT tháng — vùng cần đẩy</strong>
-            <div style="font-size:11px;color:#6366f1;margin-top:3px">→ GĐKV Nguyễn Như Quỳnh, GĐKV Nguyễn Việt Cường, GĐKV Tống Xuân Quyền</div>
-          </td>
-          <td style="font-size:13px;line-height:1.75">Với 12 ngày còn lại tháng 6, <strong>GĐKV Nguyễn Như Quỳnh</strong>, <strong>GĐKV Nguyễn Việt Cường</strong>, <strong>GĐKV Tống Xuân Quyền</strong> cần book rate cao hơn hiện tại. Làm rõ: pool còn lại có đủ không, hay đã cạn? Nếu còn pool — đây là vấn đề XL + Book. Nếu pool gần cạn — cần đặt vấn đề sớm về chiến lược tháng 7.</td>
-        </tr></tbody>
-        </table>
-      </div>
-    </div>
-
-  <!-- 5. SALON TOP/BOTTOM -->
-  
-    <div class="card" id="salon-ranking">
-      <h2 class="sec-title">5. Salon nổi bật — Toàn hệ thống (58 salon)</h2>
-      <div class="salon-rank-grid">
-        <div class="subsec">
-          <h3>🌟 Top 10 Book rate cao nhất</h3>
-          <div class="table-wrap"><table style="font-size:12px"><thead><tr><th>#</th><th>Salon</th><th>Vùng</th><th>Tỉ lệ</th></tr></thead><tbody><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#1</td><td><strong>Salon 116 TK</strong></td><td><span style="background:#f9731618;border:1px solid #f97316;color:#f97316;font-size:10px;padding:1px 6px;border-radius:8px">Trung Đức</span></td><td class="num"><span style="color:#22c55e;font-weight:700">44.4%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#2</td><td><strong>Salon 39 HBT</strong></td><td><span style="background:#ec489918;border:1px solid #ec4899;color:#ec4899;font-size:10px;padding:1px 6px;border-radius:8px">Hồng Gấm</span></td><td class="num"><span style="color:#22c55e;font-weight:700">43.8%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#3</td><td><strong>Salon 382 NT</strong></td><td><span style="background:#f9731618;border:1px solid #f97316;color:#f97316;font-size:10px;padding:1px 6px;border-radius:8px">Trung Đức</span></td><td class="num"><span style="color:#22c55e;font-weight:700">42.9%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#4</td><td><strong>Salon 55A NVL</strong></td><td><span style="background:#f9731618;border:1px solid #f97316;color:#f97316;font-size:10px;padding:1px 6px;border-radius:8px">Trung Đức</span></td><td class="num"><span style="color:#22c55e;font-weight:700">42.7%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#5</td><td><strong>Salon 346 KT</strong></td><td><span style="background:#ec489918;border:1px solid #ec4899;color:#ec4899;font-size:10px;padding:1px 6px;border-radius:8px">Hồng Gấm</span></td><td class="num"><span style="color:#22c55e;font-weight:700">42.6%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#6</td><td><strong>Salon 202 DC</strong></td><td><span style="background:#ec489918;border:1px solid #ec4899;color:#ec4899;font-size:10px;padding:1px 6px;border-radius:8px">Hồng Gấm</span></td><td class="num"><span style="color:#22c55e;font-weight:700">40.6%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#7</td><td><strong>Salon 62 LH</strong></td><td><span style="background:#f9731618;border:1px solid #f97316;color:#f97316;font-size:10px;padding:1px 6px;border-radius:8px">Trung Đức</span></td><td class="num"><span style="color:#f59e0b;font-weight:700">39.3%</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#8</td><td><strong>Salon 25 TD</strong></td><td><span style="background:#8b5cf618;border:1px solid #8b5cf6;color:#8b5cf6;font-size:10px;padding:1px 6px;border-radius:8px">Xuân Quyền</span></td><td class="num"><span style="color:#f59e0b;font-weight:700">38.2%</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#9</td><td><strong>Salon 237 NTT</strong></td><td><span style="background:#8b5cf618;border:1px solid #8b5cf6;color:#8b5cf6;font-size:10px;padding:1px 6px;border-radius:8px">Xuân Quyền</span></td><td class="num"><span style="color:#f59e0b;font-weight:700">37.1%</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#10</td><td><strong>Salon 11 PKT</strong></td><td><span style="background:#6366f118;border:1px solid #6366f1;color:#6366f1;font-size:10px;padding:1px 6px;border-radius:8px">Như Quỳnh</span></td><td class="num"><span style="color:#f59e0b;font-weight:700">36.9%</span></td></tr></tbody></table></div>
-        </div>
-        <div class="subsec">
-          <h3>🚨 Bottom 10 Book rate thấp nhất</h3>
-          <div class="table-wrap"><table style="font-size:12px"><thead><tr><th>#</th><th>Salon</th><th>Vùng</th><th>Tỉ lệ</th></tr></thead><tbody><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#1</td><td><strong>Salon 451 PVT</strong></td><td><span style="background:#06b6d418;border:1px solid #06b6d4;color:#06b6d4;font-size:10px;padding:1px 6px;border-radius:8px">Việt Cường</span></td><td class="num"><span style="color:#ef4444;font-weight:700">9.1%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#2</td><td><strong>Salon 236 DBT</strong></td><td><span style="background:#8b5cf618;border:1px solid #8b5cf6;color:#8b5cf6;font-size:10px;padding:1px 6px;border-radius:8px">Xuân Quyền</span></td><td class="num"><span style="color:#ef4444;font-weight:700">19.8%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#3</td><td><strong>Salon 420 HTP</strong></td><td><span style="background:#8b5cf618;border:1px solid #8b5cf6;color:#8b5cf6;font-size:10px;padding:1px 6px;border-radius:8px">Xuân Quyền</span></td><td class="num"><span style="color:#ef4444;font-weight:700">21.6%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#4</td><td><strong>Salon 4 LQD BN</strong></td><td><span style="background:#6366f118;border:1px solid #6366f1;color:#6366f1;font-size:10px;padding:1px 6px;border-radius:8px">Như Quỳnh</span></td><td class="num"><span style="color:#ef4444;font-weight:700">21.7%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#5</td><td><strong>Salon 1371 PVT</strong></td><td><span style="background:#06b6d418;border:1px solid #06b6d4;color:#06b6d4;font-size:10px;padding:1px 6px;border-radius:8px">Việt Cường</span></td><td class="num"><span style="color:#ef4444;font-weight:700">23.3%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#6</td><td><strong>Salon 50BT4 NPC LD</strong></td><td><span style="background:#ec489918;border:1px solid #ec4899;color:#ec4899;font-size:10px;padding:1px 6px;border-radius:8px">Hồng Gấm</span></td><td class="num"><span style="color:#ef4444;font-weight:700">23.8%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#7</td><td><strong>Salon 68 LN NA</strong></td><td><span style="background:#ef444418;border:1px solid #ef4444;color:#ef4444;font-size:10px;padding:1px 6px;border-radius:8px">Thị Huệ</span></td><td class="num"><span style="color:#ef4444;font-weight:700">24.6%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#8</td><td><strong>Salon 255 NAN</strong></td><td><span style="background:#06b6d418;border:1px solid #06b6d4;color:#06b6d4;font-size:10px;padding:1px 6px;border-radius:8px">Việt Cường</span></td><td class="num"><span style="color:#ef4444;font-weight:700">25.5%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#9</td><td><strong>Salon 113 THD AG</strong></td><td><span style="background:#8b5cf618;border:1px solid #8b5cf6;color:#8b5cf6;font-size:10px;padding:1px 6px;border-radius:8px">Xuân Quyền</span></td><td class="num"><span style="color:#ef4444;font-weight:700">25.9%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#10</td><td><strong>Salon 264 LLQ</strong></td><td><span style="background:#ec489918;border:1px solid #ec4899;color:#ec4899;font-size:10px;padding:1px 6px;border-radius:8px">Hồng Gấm</span></td><td class="num"><span style="color:#ef4444;font-weight:700">27.2%</span><span class="th-badge th-red">⚠️</span></td></tr></tbody></table></div>
-        </div>
-        <div class="subsec">
-          <h3>⭐ Top 10 XL rate cao nhất</h3>
-          <div class="table-wrap"><table style="font-size:12px"><thead><tr><th>#</th><th>Salon</th><th>Vùng</th><th>Tỉ lệ</th></tr></thead><tbody><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#1</td><td><strong>Salon 12 LDT</strong></td><td><span style="background:#10b98118;border:1px solid #10b981;color:#10b981;font-size:10px;padding:1px 6px;border-radius:8px">Văn Quang</span></td><td class="num"><span style="color:#22c55e;font-weight:700">228.5%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#2</td><td><strong>Salon 304 NT TH</strong></td><td><span style="background:#ef444418;border:1px solid #ef4444;color:#ef4444;font-size:10px;padding:1px 6px;border-radius:8px">Thị Huệ</span></td><td class="num"><span style="color:#22c55e;font-weight:700">164.8%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#3</td><td><strong>Salon 420 HTP</strong></td><td><span style="background:#8b5cf618;border:1px solid #8b5cf6;color:#8b5cf6;font-size:10px;padding:1px 6px;border-radius:8px">Xuân Quyền</span></td><td class="num"><span style="color:#22c55e;font-weight:700">151.9%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#4</td><td><strong>Salon 1146 KVC</strong></td><td><span style="background:#06b6d418;border:1px solid #06b6d4;color:#06b6d4;font-size:10px;padding:1px 6px;border-radius:8px">Việt Cường</span></td><td class="num"><span style="color:#22c55e;font-weight:700">142.3%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#5</td><td><strong>Salon 32 NAT</strong></td><td><span style="background:#10b98118;border:1px solid #10b981;color:#10b981;font-size:10px;padding:1px 6px;border-radius:8px">Văn Quang</span></td><td class="num"><span style="color:#22c55e;font-weight:700">114.5%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#6</td><td><strong>Salon 7 DTP LA</strong></td><td><span style="background:#8b5cf618;border:1px solid #8b5cf6;color:#8b5cf6;font-size:10px;padding:1px 6px;border-radius:8px">Xuân Quyền</span></td><td class="num"><span style="color:#22c55e;font-weight:700">113.1%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#7</td><td><strong>Salon 451 PVT</strong></td><td><span style="background:#06b6d418;border:1px solid #06b6d4;color:#06b6d4;font-size:10px;padding:1px 6px;border-radius:8px">Việt Cường</span></td><td class="num"><span style="color:#22c55e;font-weight:700">112.8%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#8</td><td><strong>Salon 346 KT</strong></td><td><span style="background:#ec489918;border:1px solid #ec4899;color:#ec4899;font-size:10px;padding:1px 6px;border-radius:8px">Hồng Gấm</span></td><td class="num"><span style="color:#22c55e;font-weight:700">109.8%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#9</td><td><strong>Salon 58 NVC NA</strong></td><td><span style="background:#ef444418;border:1px solid #ef4444;color:#ef4444;font-size:10px;padding:1px 6px;border-radius:8px">Thị Huệ</span></td><td class="num"><span style="color:#22c55e;font-weight:700">103.3%</span><span class="th-badge th-green">✅</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#10</td><td><strong>Salon 1180 QT</strong></td><td><span style="background:#10b98118;border:1px solid #10b981;color:#10b981;font-size:10px;padding:1px 6px;border-radius:8px">Văn Quang</span></td><td class="num"><span style="color:#22c55e;font-weight:700">102.6%</span><span class="th-badge th-green">✅</span></td></tr></tbody></table></div>
-        </div>
-        <div class="subsec">
-          <h3>⚠️ Bottom 10 XL rate thấp nhất</h3>
-          <div class="table-wrap"><table style="font-size:12px"><thead><tr><th>#</th><th>Salon</th><th>Vùng</th><th>Tỉ lệ</th></tr></thead><tbody><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#1</td><td><strong>Salon 145 THT</strong></td><td><span style="background:#f59e0b18;border:1px solid #f59e0b;color:#f59e0b;font-size:10px;padding:1px 6px;border-radius:8px">Thanh Sang</span></td><td class="num"><span style="color:#ef4444;font-weight:700">40.1%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#2</td><td><strong>Salon 190 HB</strong></td><td><span style="background:#f59e0b18;border:1px solid #f59e0b;color:#f59e0b;font-size:10px;padding:1px 6px;border-radius:8px">Thanh Sang</span></td><td class="num"><span style="color:#ef4444;font-weight:700">45.4%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#3</td><td><strong>Salon 312 LVS</strong></td><td><span style="background:#f59e0b18;border:1px solid #f59e0b;color:#f59e0b;font-size:10px;padding:1px 6px;border-radius:8px">Thanh Sang</span></td><td class="num"><span style="color:#ef4444;font-weight:700">56.8%</span><span class="th-badge th-red">⚠️</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#4</td><td><strong>Salon 8 CVL</strong></td><td><span style="background:#f59e0b18;border:1px solid #f59e0b;color:#f59e0b;font-size:10px;padding:1px 6px;border-radius:8px">Thanh Sang</span></td><td class="num"><span style="color:#f59e0b;font-weight:700">72.4%</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#5</td><td><strong>Salon 173 TN</strong></td><td><span style="background:#ec489918;border:1px solid #ec4899;color:#ec4899;font-size:10px;padding:1px 6px;border-radius:8px">Hồng Gấm</span></td><td class="num"><span style="color:#f59e0b;font-weight:700">73.3%</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#6</td><td><strong>Salon 50BT4 NPC LD</strong></td><td><span style="background:#ec489918;border:1px solid #ec4899;color:#ec4899;font-size:10px;padding:1px 6px;border-radius:8px">Hồng Gấm</span></td><td class="num"><span style="color:#f59e0b;font-weight:700">78.9%</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#7</td><td><strong>Salon 575 AC</strong></td><td><span style="background:#f59e0b18;border:1px solid #f59e0b;color:#f59e0b;font-size:10px;padding:1px 6px;border-radius:8px">Thanh Sang</span></td><td class="num"><span style="color:#f59e0b;font-weight:700">83.7%</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#8</td><td><strong>Salon 186 QT</strong></td><td><span style="background:#6366f118;border:1px solid #6366f1;color:#6366f1;font-size:10px;padding:1px 6px;border-radius:8px">Như Quỳnh</span></td><td class="num"><span style="color:#f59e0b;font-weight:700">84.1%</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#9</td><td><strong>Salon 4 LQD BN</strong></td><td><span style="background:#6366f118;border:1px solid #6366f1;color:#6366f1;font-size:10px;padding:1px 6px;border-radius:8px">Như Quỳnh</span></td><td class="num"><span style="color:#f59e0b;font-weight:700">85.9%</span></td></tr><tr><td style="width:24px;text-align:center;font-size:11px;color:#94a3b8">#10</td><td><strong>Salon 68 LN NA</strong></td><td><span style="background:#ef444418;border:1px solid #ef4444;color:#ef4444;font-size:10px;padding:1px 6px;border-radius:8px">Thị Huệ</span></td><td class="num"><span style="color:#f59e0b;font-weight:700">86.8%</span></td></tr></tbody></table></div>
-        </div>
-      </div>
-    </div>
-
-  <div style="text-align:center;font-size:11px;color:#94a3b8;padding:8px">
-    R12W Period Review · Kỳ 01–23/06/2026 · Dữ liệu tích lũy 23 ngày đầu tháng 6 2026
-    · Ngưỡng mục tiêu: XL ≥90% · Book ≥40%
+<!-- ===== 4. GĐKV ===== -->
+<section id="gdkv">
+  <div class="sh">
+    <h2>Phân tích theo GĐKV — T4/2026</h2>
+    <p>Sorted theo % book tổng. T4 dùng làm chuẩn vì đủ thời gian để lag thể hiện.</p>
   </div>
+  <div class="two">
+    <div>
+      <div class="sh"><h2 style="color:var(--good)">▲ Top 10</h2></div>
+      <div class="card" style="padding:0;overflow:hidden"><table id="gtop"></table></div>
+    </div>
+    <div>
+      <div class="sh"><h2 style="color:var(--danger)">▼ Bottom 5</h2></div>
+      <div class="card" style="padding:0;overflow:hidden"><table id="gbot"></table></div>
+    </div>
+  </div>
+  <div class="yd" style="margin-top:14px">
+    <div class="yd-title">Ý đồ phần này</div>
+    <strong>HCM dẫn đầu nhất quán</strong> (67–70%) — TT09, TT17, TT08. Hà Nội ổn định 62–64%. <strong>Khoảng cách HCM vs tỉnh là 15–20pp</strong> — một phần có thể do cấu trúc nhóm khách khác nhau (HCM nhiều QTT hơn), một phần là vận hành. Việt Cường Bình Phước (8,4%) là outlier cực đoan — pool chỉ 237 KH, cần kiểm tra data trước khi kết luận.
+  </div>
+</section>
 
-</div>
+<!-- ===== 5. HÀNH TRÌNH ===== -->
+<section id="hanh-trinh">
+  <div class="sh">
+    <h2>Hành trình book lại — Lần 1, 2, 3 sau khi chăm (T4)</h2>
+    <p>Avg ngày từ lần chăm cuối → lần book thứ N. Chỉ tính KH đã có ≥N lần book.</p>
+  </div>
+  <div class="card">
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th>Phân đoạn</th><th>Mức nhiệt</th>
+          <th class="num">Lần 1 (ngày)</th>
+          <th class="num">Lần 2 (ngày)</th>
+          <th class="num">Lần 3 (ngày)</th>
+          <th class="num">Δ 1→2</th>
+          <th class="num">Δ 2→3</th>
+        </tr></thead>
+        <tbody id="jt-tbody"></tbody>
+      </table>
+    </div>
+    <div class="yd">
+      <div class="yd-title">Ý đồ phần này</div>
+      <strong>Khoảng cách giữa lần 2 và 3 luôn ngắn hơn lần 1 và 2.</strong> QTT Thân thiết: 44 → 66 → 74 ngày — delta lần 2 là +22n, delta lần 3 chỉ +8n. MQTT tương tự. Điều này nói lên: khách khi đã book được lần 1 thì tự duy trì chu kỳ nhanh hơn. <strong>Toàn bộ nỗ lực chăm sóc nên dồn vào việc đưa khách đến lần 1 đúng thời điểm</strong> — đừng dải đều nguồn lực sang lần 2, 3.
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. NGƯỠNG ===== -->
+<section id="nguong">
+  <div class="sh"><h2>Ngưỡng nguy hiểm &amp; Hành động theo nhóm</h2></div>
+  <div class="tg" id="tg"></div>
+  <div class="sum">
+    <h2>Tổng kết — 4 insight hành động</h2>
+    <ul>
+      <li data-i="🔑"><strong>Timing là vấn đề cốt lõi, không phải tỉ lệ.</strong> 61% T4 đã book — nhưng phần lớn diễn ra trong khung 30–60 ngày. Call sai thời điểm = phí nguồn lực và làm phiền khách khi họ chưa sẵn sàng.</li>
+      <li data-i="📈"><strong>T5 đang tốt hơn T4 trong giai đoạn sớm.</strong> Tại mốc 25 ngày, QTT Thân thiết T5 đạt 17% vs T4 là 14%. Số tổng thấp hơn chỉ là hiệu ứng lag — kết luận chính thức vào tháng 8–9.</li>
+      <li data-i="🎯"><strong>Lần book đầu là điểm then chốt.</strong> Sau lần 1, khách tự duy trì chu kỳ nhanh hơn đáng kể. Đừng phân tán nguồn lực sang lần 2, 3 — tập trung 100% vào việc kéo KH đến lần đầu, đúng cửa sổ thời gian.</li>
+      <li data-i="⚡"><strong>Cửa sổ call phải khác nhau theo nhóm:</strong> QTT ngày 30–55, MQTT ngày 45–70, QBQ ngày 70–110. MQBQ: cân nhắc lại ROI trước khi tiếp tục chăm với tần suất hiện tại.</li>
+    </ul>
+  </div>
+  <div class="yd" style="margin-top:14px">
+    <div class="yd-title">Ý đồ phần này</div>
+    Không có một ngưỡng "nguy hiểm" chung cho tất cả — mỗi nhóm có nhịp sinh học riêng. <strong>Ngưỡng nguy hiểm = khi đã qua avg lag mà KH vẫn chưa book</strong>: với QTT là sau ngày 60, với QBQ là sau ngày 120. Sau ngưỡng đó xác suất mất KH tăng nhanh. <strong>Cơ hội hành động nằm trước ngưỡng, không phải sau.</strong>
+  </div>
+</section>
+
+</div></main>
 
 <script>
-function switchTab(id, btn) {
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  btn.classList.add('active');
+const fmt = n => Math.round(n).toLocaleString('vi-VN');
+const p = (n,d) => d>0 ? (n/d*100).toFixed(1) : '0.0';
+const segCol = s => ({QTT:'var(--qtt)',MQTT:'var(--mqtt)',QBQ:'var(--qbq)',MQBQ:'var(--mqbq)'}[s]);
+const pctCls = v => v>=65?'ph-c':v>=45?'pm-c':'pl-c';
+
+// ---- KPI ----
+const kpis=[
+  {l:'Pool T4',v:'186.174',s:'khách trong pool T4/2026',c:'var(--accent)'},
+  {l:'Pool T5',v:'197.865',s:'khách trong pool T5/2026',c:'var(--accent)'},
+  {l:'% Book lại T4',v:'61,4%',s:'114.380 / 186.174 KH',c:'var(--good)'},
+  {l:'% Chưa book T4',v:'38,6%',s:'71.794 KH chưa quay lại',c:'var(--danger)'},
+  {l:'Avg lag T4',v:'~52 ngày',s:'lần chăm cuối → book lại',c:'var(--t1)'},
+  {l:'Book ≤30 ngày T4',v:'16,4%',s:'30.581 / 186.174 KH',c:'var(--warn)'},
+];
+const kr=document.getElementById('kpi-row');
+kpis.forEach(k=>{
+  kr.innerHTML+=`<div class="kpi"><div class="eyebrow">${k.l}</div><div class="kv" style="color:${k.c}">${k.v}</div><div class="kl">${k.s}</div></div>`;
+});
+
+// ---- DIST TABLE (T4) ----
+const distT4=[
+  {seg:'QTT',nh:'Thân thiết',total:112257,b7:914,b14:3409,b30:26726,b40:45225,b60:67916,ov:17513,cn:26828,lag:44},
+  {seg:'QTT',nh:'Lơ là',    total:5174,  b7:34, b14:86,  b30:572,  b40:1124, b60:2314, ov:1458, cn:1402, lag:56},
+  {seg:'QTT',nh:'Bỏ quên',  total:2452,  b7:18, b14:44,  b30:242,  b40:449,  b60:915,  ov:731,  cn:806,  lag:59},
+  {seg:'QTT',nh:'Vô tâm',   total:8279,  b7:57, b14:106, b30:466,  b40:814,  b60:1570, ov:1441, cn:5268, lag:61},
+  {seg:'MQTT',nh:'Thân thiết',total:19059,b7:70, b14:225, b30:1827, b40:3160, b60:5396, ov:2606, cn:11057,lag:52},
+  {seg:'MQTT',nh:'Lơ là',    total:999,  b7:7,  b14:12,  b30:66,   b40:128,  b60:249,  ov:183,  cn:567,  lag:59},
+  {seg:'MQTT',nh:'Bỏ quên',  total:625,  b7:1,  b14:4,   b30:33,   b40:67,   b60:155,  ov:115,  cn:355,  lag:60},
+  {seg:'MQTT',nh:'Vô tâm',   total:8087, b7:27, b14:48,  b30:219,  b40:370,  b60:766,  ov:730,  cn:6591, lag:62},
+  {seg:'QBQ', nh:'Thân thiết',total:10122,b7:27, b14:37,  b30:92,   b40:120,  b60:229,  ov:3862, cn:6031, lag:94},
+  {seg:'QBQ', nh:'Lơ là',    total:2357, b7:9,  b14:15,  b30:38,   b40:53,   b60:110,  ov:1201, cn:1046, lag:89},
+  {seg:'QBQ', nh:'Bỏ quên',  total:1583, b7:2,  b14:9,   b30:28,   b40:46,   b60:92,   ov:740,  cn:751,  lag:90},
+  {seg:'QBQ', nh:'Vô tâm',   total:5924, b7:22, b14:52,  b30:180,  b40:216,  b60:291,  ov:1899, cn:3734, lag:91},
+  {seg:'MQBQ',nh:'Thân thiết',total:4089, b7:9,  b14:13,  b30:31,   b40:42,   b60:63,   ov:897,  cn:3129, lag:97},
+  {seg:'MQBQ',nh:'Lơ là',    total:528,  b7:0,  b14:1,   b30:4,    b40:5,    b60:8,    ov:153,  cn:367,  lag:95},
+  {seg:'MQBQ',nh:'Bỏ quên',  total:435,  b7:1,  b14:3,   b30:6,    b40:10,   b60:12,   ov:111,  cn:312,  lag:92},
+  {seg:'MQBQ',nh:'Vô tâm',   total:4204, b7:8,  b14:19,  b30:51,   b40:60,   b60:75,   ov:595,  cn:3534, lag:94},
+];
+
+// helper: aggregate a list of rows
+function aggRows(rows){
+  const T=rows.reduce((s,r)=>s+r.total,0);
+  const sum=k=>rows.reduce((s,r)=>s+r[k],0);
+  const daBook=rows.reduce((s,r)=>s+r.b60+r.ov,0);
+  const wLag=daBook>0?Math.round(rows.reduce((s,r)=>s+(r.b60+r.ov)*r.lag,0)/daBook):0;
+  return{total:T,b7:sum('b7'),b14:sum('b14'),b30:sum('b30'),b40:sum('b40'),b60:sum('b60'),ov:sum('ov'),cn:sum('cn'),lag:wLag};
 }
+
+// helper: render one data row
+function distRow(r, isSub, isTotal){
+  const T=r.total;
+  const s7=r.b7/T*100, s14=(r.b14-r.b7)/T*100, s30=(r.b30-r.b14)/T*100;
+  const s40=(r.b40-r.b30)/T*100, s60=(r.b60-r.b40)/T*100;
+  const sov=r.ov/T*100, scn=r.cn/T*100;
+  const segLabel = r.seg ? `<span class="seg s${r.seg}">${r.seg}</span>` : '';
+  const nhLabel  = r.nh  || (isSub ? '<em>Tổng nhóm</em>' : '<strong>TỔNG CHUNG</strong>');
+  const tr=document.createElement('tr');
+  if(isSub)  tr.className='sub-row';
+  if(isTotal)tr.className='total-row';
+  tr.innerHTML=`
+    <td>${segLabel}</td>
+    <td>${nhLabel}</td>
+    <td class="num">${fmt(T)}</td>
+    <td><div class="stack">
+      <span style="flex:${s7};background:var(--s7)" title="≤7n: ${p(r.b7,T)}%"></span>
+      <span style="flex:${s14};background:var(--s14)" title="8-14n: ${s14.toFixed(1)}%"></span>
+      <span style="flex:${s30};background:var(--s30)" title="15-30n: ${s30.toFixed(1)}%"></span>
+      <span style="flex:${s40};background:var(--s40)" title="31-40n: ${s40.toFixed(1)}%"></span>
+      <span style="flex:${s60};background:var(--s60)" title="41-60n: ${s60.toFixed(1)}%"></span>
+      <span style="flex:${sov};background:var(--s60p)" title=">60n: ${sov.toFixed(1)}%"></span>
+      <span style="flex:${scn};background:var(--snone)" title="Chưa: ${scn.toFixed(1)}%"></span>
+    </div></td>
+    <td class="num">${p(r.b7,T)}%</td>
+    <td class="num">${p(r.b14,T)}%</td>
+    <td class="num">${p(r.b30,T)}%</td>
+    <td class="num">${p(r.b40,T)}%</td>
+    <td class="num"><span class="pv ${isTotal?'':''+pctCls(r.b60/T*100)}">${p(r.b60,T)}%</span></td>
+    <td class="num">${p(r.ov,T)}%</td>
+    <td class="num">${p(r.cn,T)}%</td>
+    <td class="num">${r.lag}n</td>`;
+  return tr;
+}
+
+// Render grouped by segment with subtotals
+const segOrder=['QTT','MQTT','QBQ','MQBQ'];
+const dtb=document.getElementById('dist-tbody');
+segOrder.forEach(seg=>{
+  const rows=distT4.filter(r=>r.seg===seg);
+  // detail rows
+  rows.forEach(r=>dtb.appendChild(distRow(r,false,false)));
+  // subtotal row
+  const agg=aggRows(rows);
+  agg.seg=seg; agg.nh=null;
+  dtb.appendChild(distRow(agg,true,false));
+});
+// grand total row
+const grand=aggRows(distT4);
+grand.seg=null; grand.nh=null;
+dtb.appendChild(distRow(grand,false,true));
+
+// ---- SO SÁNH T4→T5 at 7/14/25 ----
+const ssT4={
+  'QTT|Thân thiết':{t:112257,b7:914,b14:3409,b25:15855},
+  'QTT|Lơ là':{t:5174,b7:34,b14:86,b25:304},
+  'QTT|Bỏ quên':{t:2452,b7:18,b14:44,b25:152},
+  'QTT|Vô tâm':{t:8279,b7:57,b14:106,b25:304},
+  'MQTT|Thân thiết':{t:19059,b7:70,b14:225,b25:1101},
+  'MQTT|Lơ là':{t:999,b7:7,b14:12,b25:36},
+  'MQTT|Bỏ quên':{t:625,b7:1,b14:4,b25:21},
+  'MQTT|Vô tâm':{t:8087,b7:27,b14:48,b25:141},
+};
+const ssT5={
+  'QTT|Thân thiết':{t:118550,b7:1294,b14:4729,b25:20164},
+  'QTT|Lơ là':{t:6188,b7:32,b14:117,b25:550},
+  'QTT|Bỏ quên':{t:2715,b7:24,b14:66,b25:207},
+  'QTT|Vô tâm':{t:7060,b7:45,b14:118,b25:404},
+  'MQTT|Thân thiết':{t:17266,b7:69,b14:284,b25:1173},
+  'MQTT|Lơ là':{t:825,b7:4,b14:9,b25:47},
+  'MQTT|Bỏ quên':{t:523,b7:1,b14:4,b25:12},
+  'MQTT|Vô tâm':{t:5996,b7:9,b14:31,b25:133},
+};
+const ssGroups=[
+  {label:'QTT', keys:['QTT|Thân thiết','QTT|Lơ là','QTT|Bỏ quên','QTT|Vô tâm']},
+  {label:'MQTT',keys:['MQTT|Thân thiết','MQTT|Lơ là','MQTT|Bỏ quên','MQTT|Vô tâm']},
+];
+const stb=document.getElementById('ss-tbody');
+
+function ssRow(seg,nh,a,b,isSub,isTotal){
+  const p4=a.b25/a.t*100, p5=b.b25/b.t*100;
+  const diff=(p5-p4).toFixed(1);
+  const dc=+diff>0.2?'dpos':+diff<-0.2?'dneg':'dflat';
+  const di=+diff>0.2?'▲':+diff<-0.2?'▼':'→';
+  const label=isTotal?'<strong>TỔNG CHUNG</strong>':
+               isSub ?`<span class="seg s${seg}">${seg}</span> <em>Tổng nhóm</em>`:
+                       `<span class="seg s${seg}">${seg}</span> ${nh}`;
+  const tr=document.createElement('tr');
+  if(isSub)  tr.className='sub-row';
+  if(isTotal)tr.className='total-row';
+  tr.innerHTML=`
+    <td>${label}</td>
+    <td class="num">${fmt(a.t)}</td>
+    <td class="num">${(a.b7/a.t*100).toFixed(2)}%</td>
+    <td class="num">${(a.b14/a.t*100).toFixed(2)}%</td>
+    <td class="num"><strong>${p4.toFixed(1)}%</strong></td>
+    <td></td>
+    <td class="num">${fmt(b.t)}</td>
+    <td class="num">${(b.b7/b.t*100).toFixed(2)}%</td>
+    <td class="num">${(b.b14/b.t*100).toFixed(2)}%</td>
+    <td class="num"><strong>${p5.toFixed(1)}%</strong></td>
+    <td class="num"><span class="${dc}">${di} ${Math.abs(diff)}pp</span></td>`;
+  return tr;
+}
+
+// render groups with subtotals
+ssGroups.forEach(g=>{
+  g.keys.forEach(key=>{
+    const [seg,nh]=key.split('|');
+    stb.appendChild(ssRow(seg,nh,ssT4[key],ssT5[key],false,false));
+  });
+  // subtotal
+  const a4={t:g.keys.reduce((s,k)=>s+ssT4[k].t,0), b7:g.keys.reduce((s,k)=>s+ssT4[k].b7,0), b14:g.keys.reduce((s,k)=>s+ssT4[k].b14,0), b25:g.keys.reduce((s,k)=>s+ssT4[k].b25,0)};
+  const a5={t:g.keys.reduce((s,k)=>s+ssT5[k].t,0), b7:g.keys.reduce((s,k)=>s+ssT5[k].b7,0), b14:g.keys.reduce((s,k)=>s+ssT5[k].b14,0), b25:g.keys.reduce((s,k)=>s+ssT5[k].b25,0)};
+  stb.appendChild(ssRow(g.label,'',a4,a5,true,false));
+});
+// grand total
+const allKeys=ssGroups.flatMap(g=>g.keys);
+const gt4={t:allKeys.reduce((s,k)=>s+ssT4[k].t,0), b7:allKeys.reduce((s,k)=>s+ssT4[k].b7,0), b14:allKeys.reduce((s,k)=>s+ssT4[k].b14,0), b25:allKeys.reduce((s,k)=>s+ssT4[k].b25,0)};
+const gt5={t:allKeys.reduce((s,k)=>s+ssT5[k].t,0), b7:allKeys.reduce((s,k)=>s+ssT5[k].b7,0), b14:allKeys.reduce((s,k)=>s+ssT5[k].b14,0), b25:allKeys.reduce((s,k)=>s+ssT5[k].b25,0)};
+stb.appendChild(ssRow('','',gt4,gt5,false,true));
+
+// ---- GĐKV ----
+const gdkvTop=[
+  {n:'TT09 — Quận 4, 7, 8',p:69.9,l:50,t:13573},
+  {n:'TT17 — TP Thủ Đức, Quận 2',p:69.8,l:50,t:6717},
+  {n:'TT06 — Q10,11,5,6 + Bình Chánh',p:67.9,l:52,t:10144},
+  {n:'TT08 — Quận 3,10, Tân Bình, Tân Phú',p:67.4,l:52,t:18133},
+  {n:'(NQ) Tôn Cương — Q1, Bình Thạnh',p:67.1,l:50,t:10376},
+  {n:'(NQ) Thanh Sang — Q10-11-5-6, Bình Chánh',p:65.6,l:51,t:2831},
+  {n:'TT10 — Gò Vấp, Tân Bình, Ninh Kiều',p:64.7,l:52,t:6630},
+  {n:'TT05 — Q1, Bình Thạnh, Phú Nhuận',p:64.2,l:51,t:3961},
+  {n:'TT04 — Phía Nam Hà Nội',p:63.6,l:47,t:11108},
+  {n:'(NQ) Thanh Sang — Q12 HCM',p:63.3,l:52,t:2243},
+];
+const gdkvBot=[
+  {n:'(NQ) Việt Cường — Bình Phước',p:8.4,l:67,t:237},
+  {n:'(NQ) Việt Cường — Long Khánh, Đồng Nai',p:33.4,l:48,t:434},
+  {n:'(NQ) Thị Huệ — Tỉnh miền Trung',p:41.9,l:47,t:489},
+  {n:'(NQ) Xuân Quyền — Cao Lãnh, Đồng Tháp',p:42.8,l:48,t:540},
+  {n:'(NQ) Thanh Sang — TP Quy Nhơn, Bình Định',p:46.3,l:53,t:1178},
+];
+function bGtbl(id,data,gt){
+  const tbl=document.getElementById(id);
+  tbl.innerHTML=`<thead><tr><th>Khu vực</th><th class="num">Pool</th><th style="min-width:100px">% Book</th><th class="num">Avg lag</th></tr></thead>`;
+  const b=document.createElement('tbody');
+  data.forEach(r=>{
+    const col=r.p>=gt?'var(--good)':r.p>=50?'var(--warn)':'var(--danger)';
+    b.innerHTML+=`<tr>
+      <td style="font-size:11.5px">${r.n}</td>
+      <td class="num" style="color:var(--t2)">${fmt(r.t)}</td>
+      <td><div style="display:flex;align-items:center;gap:6px">
+        <div class="bw" style="width:60px"><div class="bf" style="width:${r.p}%;background:${col}"></div></div>
+        <span style="font-weight:600;color:${col};font-size:11.5px">${r.p}%</span>
+      </div></td>
+      <td class="num" style="color:var(--t2)">${r.l}n</td>
+    </tr>`;
+  });
+  tbl.appendChild(b);
+}
+bGtbl('gtop',gdkvTop,63);
+bGtbl('gbot',gdkvBot,50);
+
+// ---- HÀNH TRÌNH ----
+const jData=[
+  {seg:'QTT',nh:'Thân thiết',v:[44,66,74]},{seg:'QTT',nh:'Lơ là',v:[56,82,88]},
+  {seg:'QTT',nh:'Bỏ quên',v:[59,81,89]},{seg:'QTT',nh:'Vô tâm',v:[61,78,84]},
+  {seg:'MQTT',nh:'Thân thiết',v:[52,72,78]},{seg:'MQTT',nh:'Lơ là',v:[59,82,86]},
+  {seg:'MQTT',nh:'Bỏ quên',v:[60,84,92]},{seg:'MQTT',nh:'Vô tâm',v:[62,81,85]},
+  {seg:'QBQ',nh:'Thân thiết',v:[94,122,129]},{seg:'QBQ',nh:'Lơ là',v:[89,122,131]},
+  {seg:'QBQ',nh:'Bỏ quên',v:[90,120,128]},{seg:'QBQ',nh:'Vô tâm',v:[91,116,126]},
+  {seg:'MQBQ',nh:'Thân thiết',v:[97,123,129]},{seg:'MQBQ',nh:'Lơ là',v:[95,126,136]},
+  {seg:'MQBQ',nh:'Bỏ quên',v:[92,124,128]},{seg:'MQBQ',nh:'Vô tâm',v:[94,119,130]},
+];
+const jtb=document.getElementById('jt-tbody');
+jData.forEach(r=>{
+  const d12=r.v[1]-r.v[0], d23=r.v[2]-r.v[1];
+  jtb.innerHTML+=`<tr>
+    <td><span class="seg s${r.seg}">${r.seg}</span></td><td>${r.nh}</td>
+    <td class="num"><strong>${r.v[0]}</strong></td>
+    <td class="num">${r.v[1]}</td><td class="num">${r.v[2]}</td>
+    <td class="num" style="color:var(--t2)">+${d12}</td>
+    <td class="num" style="color:var(--t3)">+${d23}</td>
+  </tr>`;
+});
+
+// ---- THRESH CARDS ----
+const threshData=[
+  {seg:'QTT',col:'var(--qtt)',day:'Day 60',lbl:'ngưỡng nguy hiểm',
+   pts:['Avg lag: 44–61 ngày','Book ≤60 ngày: 60–80% tổng pool','Sau ngày 60: chỉ ~15–20% còn có thể kéo về'],
+   act:'→ Cửa sổ call: ngày 30–55'},
+  {seg:'MQTT',col:'var(--mqtt)',day:'Day 75',lbl:'ngưỡng nguy hiểm',
+   pts:['Avg lag: 52–62 ngày','Book ≤60 ngày: 8–28% tổng pool','Sau ngày 75 tỉ lệ convert sụt nhanh'],
+   act:'→ Cửa sổ call: ngày 45–70'},
+  {seg:'QBQ',col:'var(--qbq)',day:'Day 120',lbl:'ngưỡng nguy hiểm',
+   pts:['Avg lag: 89–94 ngày','Book ≤60 ngày: < 3% — lag tự nhiên đã dài','Gọi trước ngày 60 = quá sớm'],
+   act:'→ Cửa sổ call: ngày 70–110'},
+  {seg:'MQBQ',col:'var(--mqbq)',day:'Xem lại ROI',lbl:'convert rate 16–30%',
+   pts:['Avg lag: 92–97 ngày','70–84% không quay lại dù qua lag avg','Chi phí chăm cao, hiệu quả thấp'],
+   act:'→ Cân nhắc giảm tần suất'},
+];
+const tg=document.getElementById('tg');
+threshData.forEach(t=>{
+  tg.innerHTML+=`<div class="tc" style="border-top-color:${t.col}">
+    <div class="tn" style="color:${t.col}">${t.seg}</div>
+    <div class="td">${t.day}</div>
+    <div class="tl">${t.lbl}</div>
+    <ul>${t.pts.map(p=>`<li>${p}</li>`).join('')}</ul>
+    <div class="ta" style="color:${t.col}">${t.act}</div>
+  </div>`;
+});
+
+// ---- NAV ACTIVE ----
+const secs=[...document.querySelectorAll('section[id]')];
+const links=[...document.querySelectorAll('.snav a')];
+new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.remove('active'));
+      const a=document.querySelector(`.snav a[href="#${e.target.id}"]`);
+      if(a)a.classList.add('active');
+    }
+  });
+},{threshold:0.2}).observe||secs.forEach(s=>{});
+const io=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.snav a[href="#${x.target.id}"]`);if(a)a.classList.add('active');}});
+},{threshold:0.2});
+secs.forEach(s=>io.observe(s));
 </script>
-</body>
-</html>
