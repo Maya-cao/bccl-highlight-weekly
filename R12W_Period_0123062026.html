@@ -203,22 +203,55 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
 <!-- ===== 4. GĐKV ===== -->
 <section id="gdkv">
   <div class="sh">
-    <h2>Phân tích theo GĐKV — T4/2026</h2>
-    <p>Sorted theo % book tổng. T4 dùng làm chuẩn vì đủ thời gian để lag thể hiện.</p>
+    <h2>Phân tích theo GĐKV — T4 &amp; T5/2026</h2>
+    <p>Sắp xếp theo median lag tăng dần — GĐKV có khách book nhanh nhất ở trên. Bar = phân phối thời gian book T4. So sánh T4→T5 dùng cửa sổ ≤25 ngày.</p>
   </div>
-  <div class="two">
-    <div>
-      <div class="sh"><h2 style="color:var(--good)">▲ Top 10</h2></div>
-      <div class="card" style="padding:0;overflow:hidden"><table id="gtop"></table></div>
+  <div class="card">
+    <div class="legend">
+      <span><b style="background:var(--s7)"></b>≤7 ngày</span>
+      <span><b style="background:var(--s14)"></b>7–14 ngày</span>
+      <span><b style="background:var(--s30)"></b>14–30 ngày</span>
+      <span><b style="background:var(--s60)"></b>30–60 ngày</span>
+      <span><b style="background:var(--s60p)"></b>&gt;60 ngày</span>
+      <span><b style="background:var(--snone)"></b>Chưa book</span>
     </div>
-    <div>
-      <div class="sh"><h2 style="color:var(--danger)">▼ Bottom 5</h2></div>
-      <div class="card" style="padding:0;overflow:hidden"><table id="gbot"></table></div>
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th>GĐKV</th>
+          <th class="num">Pool T4</th>
+          <th class="num">% Book</th>
+          <th class="num">Median</th>
+          <th style="min-width:130px">Phân phối T4</th>
+          <th class="num">≤14 ngày</th>
+          <th class="num">≤25 ngày</th>
+          <th class="num">≤30 ngày</th>
+          <th class="num">≤60 ngày</th>
+          <th class="num">Chưa book</th>
+        </tr></thead>
+        <tbody id="gdkv-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="sh" style="margin-bottom:10px"><h2>So sánh T4 → T5 (cửa sổ ≤ 25 ngày)</h2></div>
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th>GĐKV</th>
+          <th class="num">Pool T4</th><th class="num">Pool T5</th>
+          <th class="num">T4 ≤25n</th><th class="num">T5 ≤25n</th><th class="num">Thay đổi</th>
+          <th class="num">T4 median</th><th class="num">T5 median</th><th class="num">Median Δ</th>
+        </tr></thead>
+        <tbody id="gdkv-cmp-tbody"></tbody>
+      </table>
     </div>
   </div>
   <div class="yd" style="margin-top:14px">
     <div class="yd-title">Ý đồ phần này</div>
-    <strong>HCM dẫn đầu nhất quán</strong> (67–70%) — TT09, TT17, TT08. Hà Nội ổn định 62–64%. <strong>Khoảng cách HCM vs tỉnh là 15–20pp</strong> — một phần có thể do cấu trúc nhóm khách khác nhau (HCM nhiều QTT hơn), một phần là vận hành. Việt Cường Bình Phước (8,4%) là outlier cực đoan — pool chỉ 237 KH, cần kiểm tra data trước khi kết luận.
+    <strong>Hai tốp rõ ràng:</strong> Tốp nhanh — Nguyễn Như Quỳnh, Đoàn Trung Đức, Phan Thị Hồng Gấm — median 38–40 ngày, ≥12% khách book trong 25 ngày đầu. Tốp chậm — Nguyễn Việt Cường, Trịnh Văn Quang — median 45–46 ngày, chỉ ~8% book trong 25 ngày. Khoảng cách 6–8 ngày cần điều tra: do cơ cấu nhóm khách (QBQ/MQBQ nhiều hơn?) hay do chất lượng chăm sóc?
+    <br><br>
+    <strong>Tín hiệu tốt T5:</strong> Tất cả 8 GĐKV đều tăng % ≤25 ngày và giảm median. Phan Thị Hồng Gấm cải thiện mạnh nhất (+2.6 pp). <strong>Cần theo dõi — Nguyễn Thị Huệ:</strong> % book thấp nhất (50.7% T4, giảm còn 48.2% T5), gần 49% chưa book — cần kiểm tra salon coverage và chất lượng call. <strong>Nguyễn Việt Cường:</strong> Pool lớn nhất (~33k) nhưng % book thấp nhì (56.3%) — ~14k KH chưa book là dư địa cần khai thác.
   </div>
 </section>
 
@@ -442,45 +475,101 @@ const gt5={t:allKeys.reduce((s,k)=>s+ssT5[k].t,0), b7:allKeys.reduce((s,k)=>s+ss
 stb.appendChild(ssRow('','',gt4,gt5,false,true));
 
 // ---- GĐKV ----
-const gdkvTop=[
-  {n:'TT09 — Quận 4, 7, 8',p:69.9,l:50,t:13573},
-  {n:'TT17 — TP Thủ Đức, Quận 2',p:69.8,l:50,t:6717},
-  {n:'TT06 — Q10,11,5,6 + Bình Chánh',p:67.9,l:52,t:10144},
-  {n:'TT08 — Quận 3,10, Tân Bình, Tân Phú',p:67.4,l:52,t:18133},
-  {n:'(NQ) Tôn Cương — Q1, Bình Thạnh',p:67.1,l:50,t:10376},
-  {n:'(NQ) Thanh Sang — Q10-11-5-6, Bình Chánh',p:65.6,l:51,t:2831},
-  {n:'TT10 — Gò Vấp, Tân Bình, Ninh Kiều',p:64.7,l:52,t:6630},
-  {n:'TT05 — Q1, Bình Thạnh, Phú Nhuận',p:64.2,l:51,t:3961},
-  {n:'TT04 — Phía Nam Hà Nội',p:63.6,l:47,t:11108},
-  {n:'(NQ) Thanh Sang — Q12 HCM',p:63.3,l:52,t:2243},
+const gdkvT4=[
+  {name:'Nguyễn Như Quỳnh', total:11447,da_book:7011, b7:82, b14:352,b25:1546,b30:2476,b45:4238,b60:5222,ov60:1789,med:38},
+  {name:'Nguyễn Thị Huệ',   total:6995, da_book:3547, b7:63, b14:225,b25:867, b30:1277,b45:2105,b60:2590,ov60:957, med:38},
+  {name:'Đoàn Trung Đức',    total:23915,da_book:14720,b7:178,b14:690,b25:3168,b30:4968,b45:8660,b60:10775,ov60:3945,med:39},
+  {name:'Phan Thị Hồng Gấm',total:19557,da_book:11829,b7:154,b14:524,b25:2329,b30:3832,b45:6813,b60:8651,ov60:3178,med:40},
+  {name:'Tống Xuân Quyền',  total:23860,da_book:15334,b7:136,b14:476,b25:2091,b30:3693,b45:7922,b60:10639,ov60:4695,med:44},
+  {name:'Nguyễn Việt Cường',total:32715,da_book:18430,b7:183,b14:549,b25:2477,b30:4266,b45:9271,b60:12432,ov60:5998,med:45},
+  {name:'Nguyễn Thanh Sang',total:31191,da_book:20682,b7:169,b14:531,b25:2527,b30:4561,b45:10237,b60:14044,ov60:6638,med:46},
+  {name:'Trịnh Văn Quang',  total:10836,da_book:6857, b7:52, b14:175,b25:834, b30:1513,b45:3350,b60:4596,ov60:2261,med:46},
 ];
-const gdkvBot=[
-  {n:'(NQ) Việt Cường — Bình Phước',p:8.4,l:67,t:237},
-  {n:'(NQ) Việt Cường — Long Khánh, Đồng Nai',p:33.4,l:48,t:434},
-  {n:'(NQ) Thị Huệ — Tỉnh miền Trung',p:41.9,l:47,t:489},
-  {n:'(NQ) Xuân Quyền — Cao Lãnh, Đồng Tháp',p:42.8,l:48,t:540},
-  {n:'(NQ) Thanh Sang — TP Quy Nhơn, Bình Định',p:46.3,l:53,t:1178},
+const gdkvT5=[
+  {name:'Nguyễn Như Quỳnh', total:12496,b25:1954,med:34},
+  {name:'Nguyễn Thị Huệ',   total:7054, b25:978, med:35},
+  {name:'Đoàn Trung Đức',    total:25641,b25:3961,med:35},
+  {name:'Phan Thị Hồng Gấm',total:21158,b25:3076,med:36},
+  {name:'Tống Xuân Quyền',  total:25585,b25:2781,med:41},
+  {name:'Nguyễn Việt Cường',total:33801,b25:3080,med:41},
+  {name:'Nguyễn Thanh Sang',total:33727,b25:3352,med:41},
+  {name:'Trịnh Văn Quang',  total:11332,b25:1047,med:42},
 ];
-function bGtbl(id,data,gt){
-  const tbl=document.getElementById(id);
-  tbl.innerHTML=`<thead><tr><th>Khu vực</th><th class="num">Pool</th><th style="min-width:100px">% Book</th><th class="num">Avg lag</th></tr></thead>`;
-  const b=document.createElement('tbody');
-  data.forEach(r=>{
-    const col=r.p>=gt?'var(--good)':r.p>=50?'var(--warn)':'var(--danger)';
-    b.innerHTML+=`<tr>
-      <td style="font-size:11.5px">${r.n}</td>
-      <td class="num" style="color:var(--t2)">${fmt(r.t)}</td>
-      <td><div style="display:flex;align-items:center;gap:6px">
-        <div class="bw" style="width:60px"><div class="bf" style="width:${r.p}%;background:${col}"></div></div>
-        <span style="font-weight:600;color:${col};font-size:11.5px">${r.p}%</span>
-      </div></td>
-      <td class="num" style="color:var(--t2)">${r.l}n</td>
-    </tr>`;
-  });
-  tbl.appendChild(b);
-}
-bGtbl('gtop',gdkvTop,63);
-bGtbl('gbot',gdkvBot,50);
+const medCol=m=>m<=40?'var(--good)':m<=45?'var(--warn)':'var(--danger)';
+const bkCol=v=>v>=62?'var(--good)':v>=55?'var(--warn)':'var(--danger)';
+const gdkvTb=document.getElementById('gdkv-tbody');
+gdkvT4.forEach(d=>{
+  const T=d.total,bk=d.da_book/T*100;
+  const s7=d.b7/T*100,s14=(d.b14-d.b7)/T*100,s30=(d.b30-d.b14)/T*100;
+  const s60=(d.b60-d.b30)/T*100,sov=d.ov60/T*100,scn=(T-d.da_book)/T*100;
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td><strong>${d.name}</strong></td>
+    <td class="num">${fmt(T)}</td>
+    <td class="num"><span style="font-weight:700;color:${bkCol(bk)}">${bk.toFixed(1)}%</span></td>
+    <td class="num"><strong style="color:${medCol(d.med)}">${d.med}n</strong></td>
+    <td><div class="stack">
+      <span style="flex:${s7};background:var(--s7)" title="≤7n: ${p(d.b7,T)}%"></span>
+      <span style="flex:${s14};background:var(--s14)" title="7–14n: ${s14.toFixed(1)}%"></span>
+      <span style="flex:${s30};background:var(--s30)" title="14–30n: ${s30.toFixed(1)}%"></span>
+      <span style="flex:${s60};background:var(--s60)" title="30–60n: ${s60.toFixed(1)}%"></span>
+      <span style="flex:${sov};background:var(--s60p)" title=">60n: ${sov.toFixed(1)}%"></span>
+      <span style="flex:${scn};background:var(--snone)" title="Chưa: ${scn.toFixed(1)}%"></span>
+    </div></td>
+    <td class="num">${p(d.b14,T)}%</td>
+    <td class="num">${p(d.b25,T)}%</td>
+    <td class="num">${p(d.b30,T)}%</td>
+    <td class="num">${p(d.b60,T)}%</td>
+    <td class="num">${p(T-d.da_book,T)}%</td>`;
+  gdkvTb.appendChild(tr);
+});
+// grand total row
+const gT4=gdkvT4.reduce((a,d)=>({total:a.total+d.total,da_book:a.da_book+d.da_book,
+  b7:a.b7+d.b7,b14:a.b14+d.b14,b25:a.b25+d.b25,b30:a.b30+d.b30,
+  b60:a.b60+d.b60,ov60:a.ov60+d.ov60}),
+  {total:0,da_book:0,b7:0,b14:0,b25:0,b30:0,b60:0,ov60:0});
+(()=>{
+  const T=gT4.total;
+  const s7=gT4.b7/T*100,s14=(gT4.b14-gT4.b7)/T*100,s30=(gT4.b30-gT4.b14)/T*100;
+  const s60=(gT4.b60-gT4.b30)/T*100,sov=gT4.ov60/T*100,scn=(T-gT4.da_book)/T*100;
+  const tr=document.createElement('tr');tr.className='total-row';
+  tr.innerHTML=`<td>TỔNG CHUNG</td><td class="num">${fmt(T)}</td>
+    <td class="num">${p(gT4.da_book,T)}%</td><td class="num">—</td>
+    <td><div class="stack">
+      <span style="flex:${s7};background:var(--s7)"></span>
+      <span style="flex:${s14};background:var(--s14)"></span>
+      <span style="flex:${s30};background:var(--s30)"></span>
+      <span style="flex:${s60};background:var(--s60)"></span>
+      <span style="flex:${sov};background:var(--s60p)"></span>
+      <span style="flex:${scn};background:rgba(255,255,255,.15)"></span>
+    </div></td>
+    <td class="num">${p(gT4.b14,T)}%</td>
+    <td class="num">${p(gT4.b25,T)}%</td>
+    <td class="num">${p(gT4.b30,T)}%</td>
+    <td class="num">${p(gT4.b60,T)}%</td>
+    <td class="num">${p(T-gT4.da_book,T)}%</td>`;
+  gdkvTb.appendChild(tr);
+})();
+// compare T4 vs T5
+const m5g={};gdkvT5.forEach(d=>m5g[d.name]=d);
+const cmpRows=gdkvT4.map(d=>{
+  const d5=m5g[d.name];if(!d5)return null;
+  return{name:d.name,t4t:d.total,t5t:d5.total,p4:d.b25/d.total*100,p5:d5.b25/d5.total*100,m4:d.med,m5n:d5.med};
+}).filter(Boolean).sort((a,b)=>b.p5-a.p5);
+const cmpTb=document.getElementById('gdkv-cmp-tbody');
+cmpRows.forEach(d=>{
+  const dp=d.p5-d.p4,dm=d.m5n-d.m4;
+  const dpc=dp>=0?'dpos':'dneg',di=dp>=0?'▲':'▼';
+  const dmc=dm<=0?'dpos':'dneg',dmi=dm<0?'▲ ':dm>0?'▼ +':'→ ';
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td>${d.name}</td>
+    <td class="num">${fmt(d.t4t)}</td><td class="num">${fmt(d.t5t)}</td>
+    <td class="num">${d.p4.toFixed(1)}%</td>
+    <td class="num"><strong>${d.p5.toFixed(1)}%</strong></td>
+    <td class="num"><span class="${dpc}">${di} ${Math.abs(dp).toFixed(1)}pp</span></td>
+    <td class="num">${d.m4}n</td><td class="num">${d.m5n}n</td>
+    <td class="num"><span class="${dmc}">${dmi}${Math.abs(dm)}n</span></td>`;
+  cmpTb.appendChild(tr);
+});
 
 // ---- HÀNH TRÌNH ----
 const jData=[
