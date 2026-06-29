@@ -1,0 +1,183 @@
+<title>R12W · Phân tích GĐKV · T4–T5/2026</title>
+<meta name="description" content="Độ trễ từ ngày chăm sóc đến ngày book theo GĐKV, pool 4 nhóm khách quen T4 &amp; T5/2026">
+<style>
+:root{
+  --navy:#0C1829;--navy-mid:#1A3A5C;--page:#F3F6FB;
+  --accent:#2461B8;--green:#059669;--amber:#D97706;--red:#DC2626;
+  --text:#1E2D3D;--sub:#5B7089;--border:#CBD8E8;
+  --row-alt:#EBF0F8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--page);color:var(--text);font-size:14px;line-height:1.5}
+.ph{background:var(--navy);padding:18px 32px 20px;color:#fff;border-bottom:3px solid var(--accent)}
+.ph h1{font-size:19px;font-weight:700;letter-spacing:-.3px}
+.ph .meta{font-size:12px;color:#8AAAC8;margin-top:3px}
+.wrap{max-width:1140px;margin:0 auto;padding:24px 20px 56px}
+.warn{background:#FFFBEB;border:1px solid #FDE68A;border-left:4px solid var(--amber);padding:11px 16px;border-radius:4px;margin-bottom:28px;font-size:13px;color:#92400E;line-height:1.6}
+.warn strong{color:#78350F}
+.sec{margin-bottom:44px}
+.sec-title{font-size:15px;font-weight:700;color:var(--navy);border-left:4px solid var(--accent);padding-left:11px;margin-bottom:6px}
+.sec-desc{font-size:12px;color:var(--sub);margin-bottom:14px;padding-left:15px}
+.tbl-wrap{overflow-x:auto;border-radius:6px;border:1px solid var(--border);background:#fff}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13px}
+thead tr{background:var(--navy-mid);color:#fff}
+thead th{padding:10px 13px;text-align:right;font-weight:600;font-size:11px;white-space:nowrap;letter-spacing:.2px}
+thead th:first-child{text-align:left}
+tbody tr:nth-child(odd){background:#fff}
+tbody tr:nth-child(even){background:var(--row-alt)}
+tbody tr:hover{background:#DDE8F5}
+tbody td{padding:9px 13px;text-align:right;white-space:nowrap;border-bottom:1px solid #E4EBF5}
+tbody td:first-child{text-align:left;font-weight:600}
+tfoot tr{background:var(--navy);color:#fff;font-weight:700}
+tfoot td{padding:9px 13px;text-align:right;white-space:nowrap}
+tfoot td:first-child{text-align:left}
+.mf{color:#065F46;font-weight:700}
+.mm{color:#92400E;font-weight:700}
+.ms{color:#991B1B;font-weight:700}
+.chip{display:inline-block;padding:1px 7px;border-radius:10px;font-size:11px;font-weight:700}
+.cg{background:#D1FAE5;color:#065F46}
+.cr{background:#FEE2E2;color:#991B1B}
+.dp{color:#059669;font-weight:700}
+.dn{color:#DC2626;font-weight:700}
+.fnote{font-size:11px;color:var(--sub);margin-top:7px;padding-left:2px}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin-bottom:16px}
+.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--sub)}
+.ls{width:13px;height:13px;border-radius:2px;flex-shrink:0}
+.brow{display:flex;align-items:center;gap:10px;margin-bottom:5px}
+.blbl{width:175px;font-size:12px;font-weight:600;flex-shrink:0;text-align:right;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btrack{flex:1;height:20px;display:flex;border-radius:3px;overflow:hidden;background:#E5E7EB}
+.bseg{height:100%}
+.bpct{font-size:11px;color:var(--sub);width:62px;flex-shrink:0}
+.ibox{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);padding:18px 22px;border-radius:4px}
+.ibox h3{font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+.ibox p{font-size:13px;line-height:1.75;color:var(--text);margin-bottom:10px}
+.ibox ul{padding-left:18px;font-size:13px;line-height:1.75;color:var(--text)}
+.ibox li{margin-bottom:8px}
+</style>
+
+<div class="ph">
+  <h1>R12W · Phân tích Độ trễ theo GĐKV</h1>
+  <div class="meta">Pool 4 nhóm khách quen &nbsp;·&nbsp; Tháng 4 &amp; 5 / 2026 &nbsp;·&nbsp; Dữ liệu đến 24/06/2026 &nbsp;·&nbsp; ~163k khách / 8 GĐKV công ty</div>
+</div>
+
+<div class="wrap">
+
+<div class="warn">
+  <strong>Lưu ý T5:</strong> Khách pool tháng 5 tính đến 24/6 mới có 25–54 ngày kể từ lần chăm cuối.
+  % book tổng T5 thấp hơn T4 là <em>lag effect</em> — không phải suy giảm thực.
+  So sánh T4 vs T5 chỉ dùng <strong>cửa sổ ≤ 25 ngày</strong> để đảm bảo công bằng.
+</div>
+
+<div class="sec">
+  <div class="sec-title">Tổng quan T4/2026 theo GĐKV</div>
+  <div class="sec-desc">Sắp xếp theo Median lag tăng dần — GĐKV có khách book nhanh nhất ở trên đầu</div>
+  <div class="tbl-wrap"><table id="t4tbl"></table></div>
+  <div class="fnote">* Thái Duy Thiện là GĐKV nhượng quyền. Không bao gồm GĐKV nhượng quyền An NQ, Nhật NQ (~23k khách).</div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Phân phối thời gian book — T4/2026</div>
+  <div class="sec-desc">Mỗi thanh = 100% khách trong pool. Màu thể hiện mốc từ ngày chăm sóc cuối đến ngày book lịch.</div>
+  <div class="legend" id="lgd"></div>
+  <div id="bars"></div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">So sánh T4 → T5 (cửa sổ ≤ 25 ngày)</div>
+  <div class="sec-desc">% khách đã book lịch trong 25 ngày đầu sau chăm sóc. Median = số ngày trung vị thực tế của người đã book. Sắp xếp theo % ≤25 ngày T5 cao nhất.</div>
+  <div class="tbl-wrap"><table id="cmptbl"></table></div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Ý đồ phần này</div>
+  <div class="ibox">
+    <h3>Tại sao phân tích theo GĐKV?</h3>
+    <p>Mỗi GĐKV quản lý nhóm salon có đặc thù địa lý và cơ cấu khách khác nhau. Nhìn vào <strong>median lag</strong> (ngày trung vị) thay vì trung bình — vì một nhóm nhỏ khách book muộn sẽ kéo lệch số trung bình, còn median phản ánh đúng khách điển hình hơn.</p>
+    <ul>
+      <li><strong>Hai tốp rõ ràng:</strong> Tốp nhanh — Nguyễn Như Quỳnh, Đoàn Trung Đức, Phan Thị Hồng Gấm — median 38–40 ngày, ≥12% khách book trong 25 ngày. Tốp chậm — Nguyễn Việt Cường, Trịnh Văn Quang — median 45–46 ngày, chỉ ~8% book trong 25 ngày. Khoảng cách 6–8 ngày cần điều tra: do cơ cấu nhóm khách (QBQ/MQBQ chiếm tỉ lệ cao hơn?) hay do chất lượng chăm sóc?</li>
+      <li><strong>Tín hiệu tốt T5:</strong> Tất cả GĐKV đều tăng % book ≤25 ngày và giảm median lag từ T4 sang T5. Phan Thị Hồng Gấm cải thiện mạnh nhất (+2.6 pp ≤25 ngày), Nguyễn Thanh Sang giảm median 5 ngày.</li>
+      <li><strong>Cần theo dõi — Nguyễn Thị Huệ:</strong> Pool nhỏ nhất (~7k), % book thấp nhất (50.7% T4, 48.2% T5). Gần 49% khách chưa book tính đến cuối cửa sổ quan sát. Ưu tiên điều tra: salon coverage, chất lượng cuộc gọi, hay đặc thù khách khu vực miền Trung?</li>
+      <li><strong>Cần theo dõi — Nguyễn Việt Cường:</strong> Pool lớn nhất (~33k) nhưng % book thấp nhì toàn bảng (56.3% T4). ~14k khách chưa book. Nếu chuyển đổi thêm 5% trong số đó → thêm ~1,600 lượt ghé thăm mỗi pool.</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<script>
+var t4=[
+  {name:"Nguyễn Như Quỳnh", total:11447,da_book:7011, b7:82, b14:352,b25:1546,b30:2476,b45:4238,b60:5222,ov60:1789,med:38},
+  {name:"Nguyễn Thị Huệ",   total:6995, da_book:3547, b7:63, b14:225,b25:867, b30:1277,b45:2105,b60:2590,ov60:957, med:38,warn:1},
+  {name:"Đoàn Trung Đức",    total:23915,da_book:14720,b7:178,b14:690,b25:3168,b30:4968,b45:8660,b60:10775,ov60:3945,med:39},
+  {name:"Phan Thị Hồng Gấm",total:19557,da_book:11829,b7:154,b14:524,b25:2329,b30:3832,b45:6813,b60:8651,ov60:3178,med:40},
+  {name:"Thái Duy Thiện",    total:2618, da_book:1540, b7:10, b14:48, b25:256, b30:442, b45:836, b60:1110,ov60:430, med:42,fr:1},
+  {name:"Tống Xuân Quyền",  total:23860,da_book:15334,b7:136,b14:476,b25:2091,b30:3693,b45:7922,b60:10639,ov60:4695,med:44},
+  {name:"Nguyễn Việt Cường",total:32715,da_book:18430,b7:183,b14:549,b25:2477,b30:4266,b45:9271,b60:12432,ov60:5998,med:45,warn:1},
+  {name:"Nguyễn Thanh Sang",total:31191,da_book:20682,b7:169,b14:531,b25:2527,b30:4561,b45:10237,b60:14044,ov60:6638,med:46},
+  {name:"Trịnh Văn Quang",  total:10836,da_book:6857, b7:52, b14:175,b25:834, b30:1513,b45:3350,b60:4596,ov60:2261,med:46}
+];
+var t5=[
+  {name:"Nguyễn Như Quỳnh", total:12496,da_book:7328, b7:116,b14:449,b25:1954,b30:3047,b45:5012,b60:6117,ov60:1211,med:34},
+  {name:"Nguyễn Thị Huệ",   total:7054, da_book:3401, b7:74, b14:235,b25:978, b30:1402,b45:2284,b60:2754,ov60:647, med:35},
+  {name:"Đoàn Trung Đức",    total:25641,da_book:15449,b7:205,b14:921,b25:3961,b30:6014,b45:10246,b60:12772,ov60:2677,med:35},
+  {name:"Phan Thị Hồng Gấm",total:21158,da_book:12579,b7:215,b14:750,b25:3076,b30:4758,b45:8323,b60:10432,ov60:2147,med:36},
+  {name:"Thái Duy Thiện",    total:2684, da_book:1474, b7:10, b14:51, b25:288, b30:475, b45:916, b60:1202,ov60:272, med:39,fr:1},
+  {name:"Tống Xuân Quyền",  total:25585,da_book:15524,b7:186,b14:685,b25:2781,b30:4614,b45:9205,b60:12441,ov60:3083,med:41},
+  {name:"Nguyễn Việt Cường",total:33801,da_book:18035,b7:251,b14:728,b25:3080,b30:5175,b45:10517,b60:14156,ov60:3879,med:41},
+  {name:"Nguyễn Thanh Sang",total:33727,da_book:21017,b7:253,b14:813,b25:3352,b30:5789,b45:12223,b60:16680,ov60:4337,med:41},
+  {name:"Trịnh Văn Quang",  total:11332,da_book:6627, b7:89, b14:265,b25:1047,b30:1817,b45:3761,b60:5204,ov60:1423,med:42}
+];
+
+function N(n){return n.toLocaleString("vi-VN")}
+function P(n,d,x){x=x||1;return d>0?(n/d*100).toFixed(x)+"%":"—"}
+function medEl(v){var c=v<=40?"mf":v<=45?"mm":"ms";return"<span class=\""+c+"\">"+v+" ngày</span>"}
+function bookEl(n,T){var p=n/T*100;if(p>=62)return"<span class=\"chip cg\">"+p.toFixed(1)+"%</span>";if(p<55)return"<span class=\"chip cr\">"+p.toFixed(1)+"%</span>";return p.toFixed(1)+"%"}
+
+// T4 table
+(function(){
+  var el=document.getElementById("t4tbl");
+  function sum(f){return t4.reduce(function(s,d){return s+(f(d)||0)},0)}
+  var tot=sum(function(d){return d.total}),dab=sum(function(d){return d.da_book});
+  var h="<thead><tr><th style=\"text-align:left;min-width:170px\">GĐKV</th><th>Pool khách</th><th>% Đã book</th><th>Median lag</th><th>≤7 ngày</th><th>≤14 ngày</th><th>≤25 ngày</th><th>≤30 ngày</th><th>≤60 ngày</th><th>Chưa book</th></tr></thead><tbody>";
+  t4.forEach(function(d){
+    var chua=d.total-d.da_book;
+    var nm=d.fr?d.name+" <sup style=\"opacity:.6;font-weight:400\">*</sup>":d.name;
+    h+="<tr><td>"+nm+"</td><td>"+N(d.total)+"</td><td>"+bookEl(d.da_book,d.total)+"</td><td>"+medEl(d.med)+"</td><td>"+P(d.b7,d.total)+"</td><td>"+P(d.b14,d.total)+"</td><td>"+P(d.b25,d.total)+"</td><td>"+P(d.b30,d.total)+"</td><td>"+P(d.b60,d.total)+"</td><td>"+P(chua,d.total)+"</td></tr>";
+  });
+  h+="</tbody><tfoot><tr><td>Tổng (9 GĐKV)</td><td>"+N(tot)+"</td><td>"+P(dab,tot)+"</td><td>—</td><td>"+P(sum(function(d){return d.b7}),tot)+"</td><td>"+P(sum(function(d){return d.b14}),tot)+"</td><td>"+P(sum(function(d){return d.b25}),tot)+"</td><td>"+P(sum(function(d){return d.b30}),tot)+"</td><td>"+P(sum(function(d){return d.b60}),tot)+"</td><td>"+P(sum(function(d){return d.total-d.da_book}),tot)+"</td></tr></tfoot>";
+  el.innerHTML=h;
+})();
+
+// Stacked bars
+(function(){
+  var COLS=["#059669","#34D399","#86EFAC","#FCD34D","#FBBF24","#F97316","#EF4444","#D1D5DB"];
+  var LBL=["≤7 ngày","7–14 ngày","14–25 ngày","25–30 ngày","30–45 ngày","45–60 ngày",">60 ngày","Chưa book"];
+  document.getElementById("lgd").innerHTML=COLS.map(function(c,i){return"<div class=\"li\"><div class=\"ls\" style=\"background:"+c+"\"></div>"+LBL[i]+"</div>"}).join("");
+  var bc=document.getElementById("bars");
+  bc.innerHTML=t4.map(function(d){
+    var T=d.total;
+    var segs=[d.b7,d.b14-d.b7,d.b25-d.b14,d.b30-d.b25,d.b45-d.b30,d.b60-d.b45,d.ov60,T-d.da_book];
+    var barHtml=segs.map(function(v,i){var w=(v/T*100).toFixed(2);return parseFloat(w)>0.01?"<div class=\"bseg\" style=\"width:"+w+"%;background:"+COLS[i]+"\"></div>":""}).join("");
+    var nm=d.fr?d.name+" *":d.name;
+    return"<div class=\"brow\"><div class=\"blbl\">"+nm+"</div><div class=\"btrack\">"+barHtml+"</div><div class=\"bpct\">"+P(d.da_book,T)+" book</div></div>";
+  }).join("");
+})();
+
+// Compare table
+(function(){
+  var m5={};t5.forEach(function(d){m5[d.name]=d});
+  var rows=t4.map(function(d){
+    var d5=m5[d.name];if(!d5)return null;
+    return{name:d.name,fr:d.fr,t4t:d.total,t5t:d5.total,p4:d.b25/d.total*100,p5:d5.b25/d5.total*100,m4:d.med,m5n:d5.med};
+  }).filter(Boolean).sort(function(a,b){return b.p5-a.p5});
+  function dlt(v4,v5,unit,hb){var diff=v5-v4,sg=diff>=0?"+":"";var good=hb===false?diff<=0:diff>=0;return"<span class=\""+(good?"dp":"dn")+"\">"+sg+diff.toFixed(1)+unit+"</span>"}
+  var el=document.getElementById("cmptbl");
+  var h="<thead><tr><th style=\"text-align:left;min-width:170px\">GĐKV</th><th>Pool T4</th><th>Pool T5</th><th>T4 ≤25 ngày</th><th>T5 ≤25 ngày</th><th>Thay đổi</th><th>T4 median</th><th>T5 median</th><th>Median Δ</th></tr></thead><tbody>";
+  rows.forEach(function(d){
+    var nm=d.fr?d.name+" <sup style=\"opacity:.6;font-weight:400\">*</sup>":d.name;
+    h+="<tr><td>"+nm+"</td><td>"+N(d.t4t)+"</td><td>"+N(d.t5t)+"</td><td>"+d.p4.toFixed(1)+"%</td><td><strong>"+d.p5.toFixed(1)+"%</strong></td><td>"+dlt(d.p4,d.p5," pp")+"</td><td>"+d.m4+" ngày</td><td>"+d.m5n+" ngày</td><td>"+dlt(d.m4,d.m5n," ngày",false)+"</td></tr>";
+  });
+  h+="</tbody>";
+  el.innerHTML=h;
+})();
+</script>
