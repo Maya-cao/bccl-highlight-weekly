@@ -99,7 +99,7 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
 
 <header class="ph">
   <div class="wrap">
-    <div class="eyebrow">R12W · 30Shine · 24/06/2026</div>
+    <div class="eyebrow">R12W · 30Shine · 30/06/2026</div>
     <h1>Phân tích độ trễ booking</h1>
     <div class="sub">Pool T4 &amp; T5/2026 · 7 / 14 / 30 / 40 / 60 ngày và sau 60 ngày · theo nhóm khách, GĐKV, hành trình</div>
   </div>
@@ -121,7 +121,7 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
 <div class="notice">
   <strong>⚠ Lưu ý dữ liệu —</strong>
   <strong>T3/2026:</strong> Không có trong bảng Pool. &nbsp;
-  <strong>T5/2026:</strong> Tính đến 24/6 mới qua 25–54 ngày — lag QBQ/MQBQ là 87–97 ngày nên số liệu T5 của 2 nhóm này chưa phản ánh thực tế. Phần so sánh T4→T5 chỉ dùng mốc ≤7, ≤14, ≤25 ngày để đảm bảo công bằng.
+  <strong>T5/2026:</strong> Tính đến 30/6, khách kết nối đầu tháng 5 đã qua ~60 ngày, cuối tháng 5 chỉ ~30 ngày — b_over60 = 0 hoàn toàn, dữ liệu T5 chưa phản ánh đủ dài hạn. So sánh T4→T5 chỉ dùng mốc ≤7, ≤14, ≤25 ngày để đảm bảo công bằng. &nbsp;<strong>Logic đúng:</strong> ngày chăm = ngày kết nối được (Pool_Callday_StatusHis), ngày book = CreatedDate trong view_Booking.
 </div>
 
 <!-- ===== 1. KPI ===== -->
@@ -130,7 +130,7 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
   <div class="kpi-row" id="kpi-row"></div>
   <div class="yd">
     <div class="yd-title">Ý đồ phần này</div>
-    Pool T4 có <strong>186.174 KH</strong>, T5 tăng lên <strong>197.865 KH</strong> (+6%). Nhìn vào con số 61% book lại của T4 thì ổn — nhưng số tuyệt đối <strong>71.794 KH chưa quay lại</strong> là quy mô cần hành động. Và phần lớn nỗ lực chăm hiện tại chưa phân biệt timing theo nhóm, dẫn đến phí nguồn lực. Các phần dưới sẽ bóc tách từng lớp.
+    Pool T4 có <strong>186.174 KH</strong>, T5 tăng lên <strong>197.865 KH</strong> (+6%). Kết nối được T4: <strong>114.108 KH</strong> (61,3% pool). Trong số đã kết nối, <strong>59,3%</strong> (67.697 KH) đã book lại — avg lag <strong>23 ngày</strong> tính từ ngày kết nối đến ngày tạo lịch. Còn <strong>46.411 KH</strong> đã được kết nối nhưng chưa book — đây là dư địa cần theo dõi tiếp. T5 đang tiến tốt: 116.410 KH kết nối được, 54,5% đã book (trong cửa sổ 30–60 ngày).
   </div>
 </section>
 
@@ -138,7 +138,7 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
 <section id="phanphoi">
   <div class="sh">
     <h2>Phân phối thời gian book lại theo nhóm — T4/2026</h2>
-    <p>Mỗi màu = một khoảng thời gian. Bar = tỉ lệ % trên tổng pool của nhóm đó. Nhóm sorted theo % book tổng giảm dần.</p>
+    <p>Mỗi màu = một khoảng thời gian từ ngày kết nối → ngày tạo lịch. Bar = tỉ lệ % trên tổng pool. Chỉ tính KH đã được kết nối ≥1 lần trong tháng pool.</p>
   </div>
   <div class="card">
     <div class="legend">
@@ -167,9 +167,9 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
     </div>
     <div class="yd">
       <div class="yd-title">Ý đồ phần này</div>
-      <strong>QTT:</strong> phần lớn hoạt động nằm trong khung 15–60 ngày (chiếm ~58% tổng pool). Chỉ 3% book trong 14 ngày đầu — giai đoạn im lặng đầu tiên là bình thường, đừng vội call.<br>
-      <strong>MQTT:</strong> rải đều hơn, đỉnh ở 40–60 ngày. Nhóm Vô tâm (18,5%) có phần lớn không quay lại — cần lọc riêng.<br>
-      <strong>QBQ và MQBQ:</strong> thanh màu xanh gần như không tồn tại trong 60 ngày đầu — khách của nhóm này chưa sẵn sàng ở mốc 30 ngày. Toàn bộ convert xảy ra sau ngày 60 (màu đỏ đậm). <strong>Đây là bằng chứng: gọi QBQ/MQBQ ở ngày 30 là lãng phí.</strong>
+      <strong>QTT Thân thiết:</strong> 74,3% kết nối được → book, avg 22 ngày. Book trong 30 ngày đầu = 38,9% pool — cao nhất. Đây là nhóm phản ứng tốt nhất.<br>
+      <strong>MQTT:</strong> 33–39% kết nối được → book, avg 25–28 ngày. Tỉ lệ kết nối tốt (49–61%) nhưng convert thấp hơn — cần xem lại chất lượng cuộc gọi.<br>
+      <strong>QBQ và MQBQ:</strong> Avg lag 27–32 ngày — chỉ dài hơn QTT ~5–10 ngày, KHÔNG phải 2–3x dài hơn như số cũ. Book rate thấp (14–51%) chủ yếu do tỉ lệ kết nối và chất lượng chăm, không phải timing.
     </div>
   </div>
 </section>
@@ -178,7 +178,7 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
 <section id="ss">
   <div class="sh">
     <h2>So sánh T4 → T5 tại mốc 7 / 14 / 25 ngày</h2>
-    <p>Chỉ dùng mốc ≤25 ngày để so T5 (tháng 5 đã qua 25–54 ngày). QBQ/MQBQ số quá nhỏ tại mốc 25 ngày — không so được, bỏ qua.</p>
+    <p>Chỉ dùng mốc ≤25 ngày để so T5 (tháng 5 đã qua 30–60 ngày từ đầu tháng). QBQ/MQBQ số quá nhỏ tại mốc 25 ngày — không so được, bỏ qua.</p>
   </div>
   <div class="card">
     <div class="tw">
@@ -195,7 +195,7 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
     </div>
     <div class="yd">
       <div class="yd-title">Ý đồ phần này</div>
-      <strong>T5 không yếu hơn T4 — thực ra đang nhỉnh hơn.</strong> Trong cùng điều kiện thời gian (≤25 ngày), QTT Thân thiết T5 đạt 17,0% so với T4 là 14,1% (+2,9pp). MQTT Thân thiết T5 = 6,8% so với T4 = 5,8%. <strong>Tín hiệu sớm cho thấy khách tháng 5 đang book nhanh hơn tháng 4</strong>, không phải chậm hơn. Những con số "thấp hơn" khi so tổng là do hiệu ứng lag, không phải suy giảm thật sự.
+      <strong>T5 không yếu hơn T4 — thực ra đang nhỉnh hơn.</strong> Trong cùng cửa sổ 25 ngày, QTT Thân thiết T5 đạt 32,5% vs T4 là 31,3% (+1,2pp). MQTT Thân thiết T5 = 12,0% vs T4 = 10,7% (+1,3pp). MQTT Lơ là T5 = 17,7% vs T4 = 10,7% (+7,0pp). <strong>Tín hiệu sớm: khách tháng 5 book nhanh hơn tháng 4</strong> trong cùng cửa sổ — không phải chậm hơn. Dữ liệu T5 chưa đầy đủ, kết luận chính thức vào tháng 8–9.
     </div>
   </div>
 </section>
@@ -203,22 +203,55 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
 <!-- ===== 4. GĐKV ===== -->
 <section id="gdkv">
   <div class="sh">
-    <h2>Phân tích theo GĐKV — T4/2026</h2>
-    <p>Sorted theo % book tổng. T4 dùng làm chuẩn vì đủ thời gian để lag thể hiện.</p>
+    <h2>Phân tích theo GĐKV — T4 &amp; T5/2026</h2>
+    <p>Sắp xếp theo avg lag tăng dần (ngày kết nối → ngày tạo lịch). Bar = phân phối T4. % book = da_book/pool. So sánh T4→T5 dùng cửa sổ ≤25 ngày.</p>
   </div>
-  <div class="two">
-    <div>
-      <div class="sh"><h2 style="color:var(--good)">▲ Top 10</h2></div>
-      <div class="card" style="padding:0;overflow:hidden"><table id="gtop"></table></div>
+  <div class="card">
+    <div class="legend">
+      <span><b style="background:var(--s7)"></b>≤7 ngày</span>
+      <span><b style="background:var(--s14)"></b>7–14 ngày</span>
+      <span><b style="background:var(--s30)"></b>14–30 ngày</span>
+      <span><b style="background:var(--s60)"></b>30–60 ngày</span>
+      <span><b style="background:var(--s60p)"></b>&gt;60 ngày</span>
+      <span><b style="background:var(--snone)"></b>Chưa book</span>
     </div>
-    <div>
-      <div class="sh"><h2 style="color:var(--danger)">▼ Bottom 5</h2></div>
-      <div class="card" style="padding:0;overflow:hidden"><table id="gbot"></table></div>
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th>GĐKV</th>
+          <th class="num">Pool T4</th>
+          <th class="num">% Book</th>
+          <th class="num">Median</th>
+          <th style="min-width:130px">Phân phối T4</th>
+          <th class="num">≤14 ngày</th>
+          <th class="num">≤25 ngày</th>
+          <th class="num">≤30 ngày</th>
+          <th class="num">≤60 ngày</th>
+          <th class="num">Chưa book</th>
+        </tr></thead>
+        <tbody id="gdkv-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="sh" style="margin-bottom:10px"><h2>So sánh T4 → T5 (cửa sổ ≤ 25 ngày)</h2></div>
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th>GĐKV</th>
+          <th class="num">Pool T4</th><th class="num">Pool T5</th>
+          <th class="num">T4 ≤25n</th><th class="num">T5 ≤25n</th><th class="num">Thay đổi</th>
+          <th class="num">T4 median</th><th class="num">T5 median</th><th class="num">Median Δ</th>
+        </tr></thead>
+        <tbody id="gdkv-cmp-tbody"></tbody>
+      </table>
     </div>
   </div>
   <div class="yd" style="margin-top:14px">
     <div class="yd-title">Ý đồ phần này</div>
-    <strong>HCM dẫn đầu nhất quán</strong> (67–70%) — TT09, TT17, TT08. Hà Nội ổn định 62–64%. <strong>Khoảng cách HCM vs tỉnh là 15–20pp</strong> — một phần có thể do cấu trúc nhóm khách khác nhau (HCM nhiều QTT hơn), một phần là vận hành. Việt Cường Bình Phước (8,4%) là outlier cực đoan — pool chỉ 237 KH, cần kiểm tra data trước khi kết luận.
+    <strong>Chênh lệch giữa GĐKV nhỏ hơn dự tính:</strong> Nguyễn Như Quỳnh nhanh nhất (avg 21n, med 15n), Trịnh Văn Quang chậm nhất (avg 25n, med 20n) — chênh chỉ 4–5 ngày. Không phải nguyên nhân lớn về chất lượng chăm; có thể do cơ cấu khách QTT/MQTT khác nhau giữa vùng.
+    <br><br>
+    <strong>Tốp nhanh T5:</strong> Đoàn Trung Đức, Phan Thị Hồng Gấm cải thiện tốt nhất (+5,7pp, +5,0pp). <strong>Cần theo dõi — Nguyễn Thị Huệ:</strong> kết nối được 71,4% pool nhưng chỉ 33,9% kết nối được → book — chất lượng call cần xem xét. <strong>Nguyễn Việt Cường:</strong> Pool lớn nhất (~33k) nhưng % book chỉ 29,4% pool — ~24k KH chưa book là dư địa lớn nhất.
   </div>
 </section>
 
@@ -226,7 +259,7 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
 <section id="hanh-trinh">
   <div class="sh">
     <h2>Hành trình book lại — Lần 1, 2, 3 sau khi chăm (T4)</h2>
-    <p>Avg ngày từ lần chăm cuối → lần book thứ N. Chỉ tính KH đã có ≥N lần book.</p>
+    <p>Avg ngày từ ngày kết nối cuối → lần tạo lịch thứ N. Chỉ tính KH đã có ≥N lần book sau ngày kết nối. Dữ liệu T4/2026.</p>
   </div>
   <div class="card">
     <div class="tw">
@@ -244,7 +277,7 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
     </div>
     <div class="yd">
       <div class="yd-title">Ý đồ phần này</div>
-      <strong>Khoảng cách giữa lần 2 và 3 luôn ngắn hơn lần 1 và 2.</strong> QTT Thân thiết: 44 → 66 → 74 ngày — delta lần 2 là +22n, delta lần 3 chỉ +8n. MQTT tương tự. Điều này nói lên: khách khi đã book được lần 1 thì tự duy trì chu kỳ nhanh hơn. <strong>Toàn bộ nỗ lực chăm sóc nên dồn vào việc đưa khách đến lần 1 đúng thời điểm</strong> — đừng dải đều nguồn lực sang lần 2, 3.
+      <strong>Delta 2→3 luôn nhỏ hơn delta 1→2 ở mọi nhóm.</strong> QTT Thân thiết: 22 → 47 → 59 ngày (delta +25n, rồi +12n). MQTT Thân thiết: 26 → 49 → 57 ngày (+23n, +8n). Khi đã book lần 1, khách tự duy trì chu kỳ nhanh hơn đáng kể. <strong>Tập trung 100% nguồn lực vào cú push lần 1 trong cửa sổ 14–30 ngày</strong> — không phân tán sang lần 2, 3.
     </div>
   </div>
 </section>
@@ -256,15 +289,15 @@ tr.total-row .bw{background:rgba(255,255,255,.15)}
   <div class="sum">
     <h2>Tổng kết — 4 insight hành động</h2>
     <ul>
-      <li data-i="🔑"><strong>Timing là vấn đề cốt lõi, không phải tỉ lệ.</strong> 61% T4 đã book — nhưng phần lớn diễn ra trong khung 30–60 ngày. Call sai thời điểm = phí nguồn lực và làm phiền khách khi họ chưa sẵn sàng.</li>
-      <li data-i="📈"><strong>T5 đang tốt hơn T4 trong giai đoạn sớm.</strong> Tại mốc 25 ngày, QTT Thân thiết T5 đạt 17% vs T4 là 14%. Số tổng thấp hơn chỉ là hiệu ứng lag — kết luận chính thức vào tháng 8–9.</li>
-      <li data-i="🎯"><strong>Lần book đầu là điểm then chốt.</strong> Sau lần 1, khách tự duy trì chu kỳ nhanh hơn đáng kể. Đừng phân tán nguồn lực sang lần 2, 3 — tập trung 100% vào việc kéo KH đến lần đầu, đúng cửa sổ thời gian.</li>
-      <li data-i="⚡"><strong>Cửa sổ call phải khác nhau theo nhóm:</strong> QTT ngày 30–55, MQTT ngày 45–70, QBQ ngày 70–110. MQBQ: cân nhắc lại ROI trước khi tiếp tục chăm với tần suất hiện tại.</li>
+      <li data-i="🔑"><strong>Cửa sổ call ngắn hơn rất nhiều so với tưởng.</strong> Avg lag thực từ ngày kết nối → ngày tạo lịch chỉ 22–32 ngày (không phải 44–97 ngày như tính cũ). Cơ hội hành động nằm trong 2–3 tuần đầu, không phải 2–3 tháng.</li>
+      <li data-i="📈"><strong>T5 đang tốt hơn T4 trong giai đoạn sớm.</strong> Tại mốc 25 ngày, QTT Thân thiết T5 đạt 32,5% vs T4 là 31,3%. MQTT Lơ là T5 tăng +7pp. Kết luận chính thức vào tháng 8–9 khi T5 đủ lag.</li>
+      <li data-i="🎯"><strong>Lần book đầu là điểm then chốt.</strong> Delta từ lần 1→2 là +22–28 ngày, nhưng lần 2→3 chỉ +6–12 ngày — khách đã vào chu kỳ thì tự duy trì. Dồn 100% vào cú push đầu trong cửa sổ 14–30 ngày.</li>
+      <li data-i="⚡"><strong>Cửa sổ call theo nhóm:</strong> QTT ngày 14–25, MQTT ngày 18–30, QBQ ngày 20–35. MQBQ: book rate 14–27% — cân nhắc lại ROI trước khi tiếp tục chăm với tần suất hiện tại.</li>
     </ul>
   </div>
   <div class="yd" style="margin-top:14px">
     <div class="yd-title">Ý đồ phần này</div>
-    Không có một ngưỡng "nguy hiểm" chung cho tất cả — mỗi nhóm có nhịp sinh học riêng. <strong>Ngưỡng nguy hiểm = khi đã qua avg lag mà KH vẫn chưa book</strong>: với QTT là sau ngày 60, với QBQ là sau ngày 120. Sau ngưỡng đó xác suất mất KH tăng nhanh. <strong>Cơ hội hành động nằm trước ngưỡng, không phải sau.</strong>
+    Không có một ngưỡng "nguy hiểm" chung cho tất cả — mỗi nhóm có nhịp riêng. Với data đúng (ngày kết nối → ngày tạo lịch): <strong>QTT nguy hiểm sau ngày 35, MQTT sau ngày 40, QBQ sau ngày 45</strong> — đều ngắn hơn nhiều so với tính cũ (60–120 ngày). <strong>Cơ hội hành động nằm trong cửa sổ 2–4 tuần đầu, không phải 2–4 tháng.</strong>
   </div>
 </section>
 
@@ -280,10 +313,10 @@ const pctCls = v => v>=65?'ph-c':v>=45?'pm-c':'pl-c';
 const kpis=[
   {l:'Pool T4',v:'186.174',s:'khách trong pool T4/2026',c:'var(--accent)'},
   {l:'Pool T5',v:'197.865',s:'khách trong pool T5/2026',c:'var(--accent)'},
-  {l:'% Book lại T4',v:'61,4%',s:'114.380 / 186.174 KH',c:'var(--good)'},
-  {l:'% Chưa book T4',v:'38,6%',s:'71.794 KH chưa quay lại',c:'var(--danger)'},
-  {l:'Avg lag T4',v:'~52 ngày',s:'lần chăm cuối → book lại',c:'var(--t1)'},
-  {l:'Book ≤30 ngày T4',v:'16,4%',s:'30.581 / 186.174 KH',c:'var(--warn)'},
+  {l:'Kết nối được T4',v:'114.108',s:'61,3% pool — đã có cuộc gọi kết nối',c:'var(--good)'},
+  {l:'% Book (kết nối được) T4',v:'59,3%',s:'67.697 / 114.108 KH đã kết nối',c:'var(--good)'},
+  {l:'Avg lag T4',v:'~23 ngày',s:'ngày kết nối → ngày tạo lịch',c:'var(--t1)'},
+  {l:'Kết nối được T5',v:'116.410',s:'58,8% pool — 54,5% đã book',c:'var(--accent)'},
 ];
 const kr=document.getElementById('kpi-row');
 kpis.forEach(k=>{
@@ -291,23 +324,26 @@ kpis.forEach(k=>{
 });
 
 // ---- DIST TABLE (T4) ----
+// b7/b14/b30/b40/b60 = cumulative counts of booked KH by lag threshold
+// ov = booked > 60 days, cn = pool - da_book (incl non-ketnoi + ketnoi-no-book)
+// lag = avg lag (only among booked)
 const distT4=[
-  {seg:'QTT',nh:'Thân thiết',total:112257,b7:914,b14:3409,b30:26726,b40:45225,b60:67916,ov:17513,cn:26828,lag:44},
-  {seg:'QTT',nh:'Lơ là',    total:5174,  b7:34, b14:86,  b30:572,  b40:1124, b60:2314, ov:1458, cn:1402, lag:56},
-  {seg:'QTT',nh:'Bỏ quên',  total:2452,  b7:18, b14:44,  b30:242,  b40:449,  b60:915,  ov:731,  cn:806,  lag:59},
-  {seg:'QTT',nh:'Vô tâm',   total:8279,  b7:57, b14:106, b30:466,  b40:814,  b60:1570, ov:1441, cn:5268, lag:61},
-  {seg:'MQTT',nh:'Thân thiết',total:19059,b7:70, b14:225, b30:1827, b40:3160, b60:5396, ov:2606, cn:11057,lag:52},
-  {seg:'MQTT',nh:'Lơ là',    total:999,  b7:7,  b14:12,  b30:66,   b40:128,  b60:249,  ov:183,  cn:567,  lag:59},
-  {seg:'MQTT',nh:'Bỏ quên',  total:625,  b7:1,  b14:4,   b30:33,   b40:67,   b60:155,  ov:115,  cn:355,  lag:60},
-  {seg:'MQTT',nh:'Vô tâm',   total:8087, b7:27, b14:48,  b30:219,  b40:370,  b60:766,  ov:730,  cn:6591, lag:62},
-  {seg:'QBQ', nh:'Thân thiết',total:10122,b7:27, b14:37,  b30:92,   b40:120,  b60:229,  ov:3862, cn:6031, lag:94},
-  {seg:'QBQ', nh:'Lơ là',    total:2357, b7:9,  b14:15,  b30:38,   b40:53,   b60:110,  ov:1201, cn:1046, lag:89},
-  {seg:'QBQ', nh:'Bỏ quên',  total:1583, b7:2,  b14:9,   b30:28,   b40:46,   b60:92,   ov:740,  cn:751,  lag:90},
-  {seg:'QBQ', nh:'Vô tâm',   total:5924, b7:22, b14:52,  b30:180,  b40:216,  b60:291,  ov:1899, cn:3734, lag:91},
-  {seg:'MQBQ',nh:'Thân thiết',total:4089, b7:9,  b14:13,  b30:31,   b40:42,   b60:63,   ov:897,  cn:3129, lag:97},
-  {seg:'MQBQ',nh:'Lơ là',    total:528,  b7:0,  b14:1,   b30:4,    b40:5,    b60:8,    ov:153,  cn:367,  lag:95},
-  {seg:'MQBQ',nh:'Bỏ quên',  total:435,  b7:1,  b14:3,   b30:6,    b40:10,   b60:12,   ov:111,  cn:312,  lag:92},
-  {seg:'MQBQ',nh:'Vô tâm',   total:4204, b7:8,  b14:19,  b30:51,   b40:60,   b60:75,   ov:595,  cn:3534, lag:94},
+  {seg:'QTT',nh:'Thân thiết',total:112257,b7:11732,b14:23128,b30:38895,b40:43895,b60:49384,ov:2436, cn:60437,lag:22},
+  {seg:'QTT',nh:'Lơ là',    total:5174,  b7:633,  b14:1103, b30:1647, b40:1825, b60:2054, ov:154,  cn:2966, lag:22},
+  {seg:'QTT',nh:'Bỏ quên',  total:2452,  b7:228,  b14:446,  b30:715,  b40:807,  b60:931,  ov:77,   cn:1444, lag:23},
+  {seg:'QTT',nh:'Vô tâm',   total:8279,  b7:406,  b14:768,  b30:1267, b40:1469, b60:1758, ov:183,  cn:6338, lag:26},
+  {seg:'MQTT',nh:'Thân thiết',total:19059,b7:715,  b14:1331, b30:2335, b40:2734, b60:3321, ov:298,  cn:15440,lag:26},
+  {seg:'MQTT',nh:'Lơ là',    total:999,  b7:44,   b14:80,   b30:126,  b40:155,  b60:197,  ov:17,   cn:785,  lag:28},
+  {seg:'MQTT',nh:'Bỏ quên',  total:625,  b7:27,   b14:60,   b30:102,  b40:110,  b60:132,  ov:13,   cn:480,  lag:25},
+  {seg:'MQTT',nh:'Vô tâm',   total:8087, b7:145,  b14:259,  b30:468,  b40:550,  b60:679,  ov:81,   cn:7327, lag:28},
+  {seg:'QBQ', nh:'Thân thiết',total:10122,b7:423,  b14:788,  b30:1316, b40:1563, b60:1942, ov:250,  cn:7930, lag:29},
+  {seg:'QBQ', nh:'Lơ là',    total:2357, b7:180,  b14:351,  b30:540,  b40:645,  b60:769,  ov:101,  cn:1487, lag:27},
+  {seg:'QBQ', nh:'Bỏ quên',  total:1583, b7:116,  b14:224,  b30:371,  b40:426,  b60:515,  ov:60,   cn:1008, lag:27},
+  {seg:'QBQ', nh:'Vô tâm',   total:5924, b7:213,  b14:441,  b30:806,  b40:978,  b60:1221, ov:200,  cn:4503, lag:31},
+  {seg:'MQBQ',nh:'Thân thiết',total:4089, b7:75,   b14:133,  b30:232,  b40:278,  b60:362,  ov:51,   cn:3676, lag:30},
+  {seg:'MQBQ',nh:'Lơ là',    total:528,  b7:15,   b14:26,   b30:47,   b40:62,   b60:79,   ov:10,   cn:439,  lag:31},
+  {seg:'MQBQ',nh:'Bỏ quên',  total:435,  b7:5,    b14:22,   b30:36,   b40:41,   b60:56,   ov:10,   cn:369,  lag:32},
+  {seg:'MQBQ',nh:'Vô tâm',   total:4204, b7:62,   b14:107,  b30:194,  b40:233,  b60:310,  ov:46,   cn:3848, lag:31},
 ];
 
 // helper: aggregate a list of rows
@@ -373,24 +409,24 @@ dtb.appendChild(distRow(grand,false,true));
 
 // ---- SO SÁNH T4→T5 at 7/14/25 ----
 const ssT4={
-  'QTT|Thân thiết':{t:112257,b7:914,b14:3409,b25:15855},
-  'QTT|Lơ là':{t:5174,b7:34,b14:86,b25:304},
-  'QTT|Bỏ quên':{t:2452,b7:18,b14:44,b25:152},
-  'QTT|Vô tâm':{t:8279,b7:57,b14:106,b25:304},
-  'MQTT|Thân thiết':{t:19059,b7:70,b14:225,b25:1101},
-  'MQTT|Lơ là':{t:999,b7:7,b14:12,b25:36},
-  'MQTT|Bỏ quên':{t:625,b7:1,b14:4,b25:21},
-  'MQTT|Vô tâm':{t:8087,b7:27,b14:48,b25:141},
+  'QTT|Thân thiết':{t:112257,b7:11732,b14:23128,b25:35151},
+  'QTT|Lơ là':    {t:5174,  b7:633,  b14:1103, b25:1527},
+  'QTT|Bỏ quên':  {t:2452,  b7:228,  b14:446,  b25:676},
+  'QTT|Vô tâm':   {t:8279,  b7:406,  b14:768,  b25:1142},
+  'MQTT|Thân thiết':{t:19059,b7:715,  b14:1331, b25:2046},
+  'MQTT|Lơ là':   {t:999,   b7:44,   b14:80,   b25:107},
+  'MQTT|Bỏ quên': {t:625,   b7:27,   b14:60,   b25:94},
+  'MQTT|Vô tâm':  {t:8087,  b7:145,  b14:259,  b25:404},
 };
 const ssT5={
-  'QTT|Thân thiết':{t:118550,b7:1294,b14:4729,b25:20164},
-  'QTT|Lơ là':{t:6188,b7:32,b14:117,b25:550},
-  'QTT|Bỏ quên':{t:2715,b7:24,b14:66,b25:207},
-  'QTT|Vô tâm':{t:7060,b7:45,b14:118,b25:404},
-  'MQTT|Thân thiết':{t:17266,b7:69,b14:284,b25:1173},
-  'MQTT|Lơ là':{t:825,b7:4,b14:9,b25:47},
-  'MQTT|Bỏ quên':{t:523,b7:1,b14:4,b25:12},
-  'MQTT|Vô tâm':{t:5996,b7:9,b14:31,b25:133},
+  'QTT|Thân thiết':{t:118550,b7:14548,b14:26147,b25:38569},
+  'QTT|Lơ là':    {t:6188,  b7:1014, b14:1470, b25:1887},
+  'QTT|Bỏ quên':  {t:2715,  b7:396,  b14:589,  b25:787},
+  'QTT|Vô tâm':   {t:7060,  b7:536,  b14:865,  b25:1200},
+  'MQTT|Thân thiết':{t:17266,b7:750,  b14:1356, b25:2071},
+  'MQTT|Lơ là':   {t:825,   b7:68,   b14:105,  b25:146},
+  'MQTT|Bỏ quên': {t:523,   b7:26,   b14:40,   b25:66},
+  'MQTT|Vô tâm':  {t:5996,  b7:119,  b14:215,  b25:357},
 };
 const ssGroups=[
   {label:'QTT', keys:['QTT|Thân thiết','QTT|Lơ là','QTT|Bỏ quên','QTT|Vô tâm']},
@@ -442,56 +478,114 @@ const gt5={t:allKeys.reduce((s,k)=>s+ssT5[k].t,0), b7:allKeys.reduce((s,k)=>s+ss
 stb.appendChild(ssRow('','',gt4,gt5,false,true));
 
 // ---- GĐKV ----
-const gdkvTop=[
-  {n:'TT09 — Quận 4, 7, 8',p:69.9,l:50,t:13573},
-  {n:'TT17 — TP Thủ Đức, Quận 2',p:69.8,l:50,t:6717},
-  {n:'TT06 — Q10,11,5,6 + Bình Chánh',p:67.9,l:52,t:10144},
-  {n:'TT08 — Quận 3,10, Tân Bình, Tân Phú',p:67.4,l:52,t:18133},
-  {n:'(NQ) Tôn Cương — Q1, Bình Thạnh',p:67.1,l:50,t:10376},
-  {n:'(NQ) Thanh Sang — Q10-11-5-6, Bình Chánh',p:65.6,l:51,t:2831},
-  {n:'TT10 — Gò Vấp, Tân Bình, Ninh Kiều',p:64.7,l:52,t:6630},
-  {n:'TT05 — Q1, Bình Thạnh, Phú Nhuận',p:64.2,l:51,t:3961},
-  {n:'TT04 — Phía Nam Hà Nội',p:63.6,l:47,t:11108},
-  {n:'(NQ) Thanh Sang — Q12 HCM',p:63.3,l:52,t:2243},
+// Sorted by avg lag ascending. da_book counts from ketnoi customers only.
+const gdkvT4=[
+  {name:'Nguyễn Như Quỳnh', total:11447,da_book:4945, b7:1316,b14:2380,b25:3364,b30:3686,b60:4671,ov60:274, med:15},
+  {name:'Đoàn Trung Đức',    total:23915,da_book:8204, b7:1976,b14:3713,b25:5504,b30:6033,b60:7713,ov60:491, med:16},
+  {name:'Phan Thị Hồng Gấm',total:19557,da_book:5303, b7:1307,b14:2368,b25:3548,b30:3905,b60:4997,ov60:306, med:16},
+  {name:'Nguyễn Thị Huệ',   total:6995, da_book:2374, b7:561, b14:1082,b25:1586,b30:1724,b60:2209,ov60:165, med:16},
+  {name:'Tống Xuân Quyền',  total:23860,da_book:10856,b7:2252,b14:4618,b25:7131,b30:7907,b60:10253,ov60:603, med:17},
+  {name:'Nguyễn Thanh Sang',total:31191,da_book:16024,b7:3372,b14:6781,b25:10435,b30:11631,b60:15089,ov60:935,med:17},
+  {name:'Nguyễn Việt Cường',total:32715,da_book:9627, b7:2048,b14:4028,b25:6128,b30:6840,b60:8977,ov60:650, med:18},
+  {name:'Trịnh Văn Quang',  total:10836,da_book:6134, b7:981, b14:2241,b25:3774,b30:4228,b60:5716,ov60:418, med:20},
 ];
-const gdkvBot=[
-  {n:'(NQ) Việt Cường — Bình Phước',p:8.4,l:67,t:237},
-  {n:'(NQ) Việt Cường — Long Khánh, Đồng Nai',p:33.4,l:48,t:434},
-  {n:'(NQ) Thị Huệ — Tỉnh miền Trung',p:41.9,l:47,t:489},
-  {n:'(NQ) Xuân Quyền — Cao Lãnh, Đồng Tháp',p:42.8,l:48,t:540},
-  {n:'(NQ) Thanh Sang — TP Quy Nhơn, Bình Định',p:46.3,l:53,t:1178},
+const gdkvT5=[
+  {name:'Nguyễn Như Quỳnh', total:12496,da_book:5297, b25:4179,med:13},
+  {name:'Đoàn Trung Đức',    total:25641,da_book:9360, b25:7370,med:13},
+  {name:'Phan Thị Hồng Gấm',total:21158,da_book:6183, b25:4888,med:13},
+  {name:'Nguyễn Thị Huệ',   total:7054, da_book:2120, b25:1645,med:14},
+  {name:'Tống Xuân Quyền',  total:25585,da_book:9019, b25:6759,med:14},
+  {name:'Nguyễn Thanh Sang',total:33727,da_book:13568,b25:10493,med:13},
+  {name:'Nguyễn Việt Cường',total:33801,da_book:9274, b25:6903,med:15},
+  {name:'Trịnh Văn Quang',  total:11332,da_book:5855, b25:4062,med:16},
 ];
-function bGtbl(id,data,gt){
-  const tbl=document.getElementById(id);
-  tbl.innerHTML=`<thead><tr><th>Khu vực</th><th class="num">Pool</th><th style="min-width:100px">% Book</th><th class="num">Avg lag</th></tr></thead>`;
-  const b=document.createElement('tbody');
-  data.forEach(r=>{
-    const col=r.p>=gt?'var(--good)':r.p>=50?'var(--warn)':'var(--danger)';
-    b.innerHTML+=`<tr>
-      <td style="font-size:11.5px">${r.n}</td>
-      <td class="num" style="color:var(--t2)">${fmt(r.t)}</td>
-      <td><div style="display:flex;align-items:center;gap:6px">
-        <div class="bw" style="width:60px"><div class="bf" style="width:${r.p}%;background:${col}"></div></div>
-        <span style="font-weight:600;color:${col};font-size:11.5px">${r.p}%</span>
-      </div></td>
-      <td class="num" style="color:var(--t2)">${r.l}n</td>
-    </tr>`;
-  });
-  tbl.appendChild(b);
-}
-bGtbl('gtop',gdkvTop,63);
-bGtbl('gbot',gdkvBot,50);
+const medCol=m=>m<=15?'var(--good)':m<=18?'var(--warn)':'var(--danger)';
+const bkCol=v=>v>=48?'var(--good)':v>=38?'var(--warn)':'var(--danger)';
+const gdkvTb=document.getElementById('gdkv-tbody');
+gdkvT4.forEach(d=>{
+  const T=d.total,bk=d.da_book/T*100;
+  const s7=d.b7/T*100,s14=(d.b14-d.b7)/T*100,s30=(d.b30-d.b14)/T*100;
+  const s60=(d.b60-d.b30)/T*100,sov=d.ov60/T*100,scn=(T-d.da_book)/T*100;
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td><strong>${d.name}</strong></td>
+    <td class="num">${fmt(T)}</td>
+    <td class="num"><span style="font-weight:700;color:${bkCol(bk)}">${bk.toFixed(1)}%</span></td>
+    <td class="num"><strong style="color:${medCol(d.med)}">${d.med}n</strong></td>
+    <td><div class="stack">
+      <span style="flex:${s7};background:var(--s7)" title="≤7n: ${p(d.b7,T)}%"></span>
+      <span style="flex:${s14};background:var(--s14)" title="7–14n: ${s14.toFixed(1)}%"></span>
+      <span style="flex:${s30};background:var(--s30)" title="14–30n: ${s30.toFixed(1)}%"></span>
+      <span style="flex:${s60};background:var(--s60)" title="30–60n: ${s60.toFixed(1)}%"></span>
+      <span style="flex:${sov};background:var(--s60p)" title=">60n: ${sov.toFixed(1)}%"></span>
+      <span style="flex:${scn};background:var(--snone)" title="Chưa: ${scn.toFixed(1)}%"></span>
+    </div></td>
+    <td class="num">${p(d.b14,T)}%</td>
+    <td class="num">${p(d.b25,T)}%</td>
+    <td class="num">${p(d.b30,T)}%</td>
+    <td class="num">${p(d.b60,T)}%</td>
+    <td class="num">${p(T-d.da_book,T)}%</td>`;
+  gdkvTb.appendChild(tr);
+});
+// grand total row
+const gT4=gdkvT4.reduce((a,d)=>({total:a.total+d.total,da_book:a.da_book+d.da_book,
+  b7:a.b7+d.b7,b14:a.b14+d.b14,b25:a.b25+d.b25,b30:a.b30+d.b30,
+  b60:a.b60+d.b60,ov60:a.ov60+d.ov60}),
+  {total:0,da_book:0,b7:0,b14:0,b25:0,b30:0,b60:0,ov60:0});
+(()=>{
+  const T=gT4.total;
+  const s7=gT4.b7/T*100,s14=(gT4.b14-gT4.b7)/T*100,s30=(gT4.b30-gT4.b14)/T*100;
+  const s60=(gT4.b60-gT4.b30)/T*100,sov=gT4.ov60/T*100,scn=(T-gT4.da_book)/T*100;
+  const tr=document.createElement('tr');tr.className='total-row';
+  tr.innerHTML=`<td>TỔNG CHUNG</td><td class="num">${fmt(T)}</td>
+    <td class="num">${p(gT4.da_book,T)}%</td><td class="num">—</td>
+    <td><div class="stack">
+      <span style="flex:${s7};background:var(--s7)"></span>
+      <span style="flex:${s14};background:var(--s14)"></span>
+      <span style="flex:${s30};background:var(--s30)"></span>
+      <span style="flex:${s60};background:var(--s60)"></span>
+      <span style="flex:${sov};background:var(--s60p)"></span>
+      <span style="flex:${scn};background:rgba(255,255,255,.15)"></span>
+    </div></td>
+    <td class="num">${p(gT4.b14,T)}%</td>
+    <td class="num">${p(gT4.b25,T)}%</td>
+    <td class="num">${p(gT4.b30,T)}%</td>
+    <td class="num">${p(gT4.b60,T)}%</td>
+    <td class="num">${p(T-gT4.da_book,T)}%</td>`;
+  gdkvTb.appendChild(tr);
+})();
+// compare T4 vs T5
+const m5g={};gdkvT5.forEach(d=>m5g[d.name]=d);
+const cmpRows=gdkvT4.map(d=>{
+  const d5=m5g[d.name];if(!d5)return null;
+  return{name:d.name,t4t:d.total,t5t:d5.total,p4:d.b25/d.total*100,p5:d5.b25/d5.total*100,m4:d.med,m5n:d5.med};
+}).filter(Boolean).sort((a,b)=>b.p5-a.p5);
+const cmpTb=document.getElementById('gdkv-cmp-tbody');
+cmpRows.forEach(d=>{
+  const dp=d.p5-d.p4,dm=d.m5n-d.m4;
+  const dpc=dp>=0?'dpos':'dneg',di=dp>=0?'▲':'▼';
+  const dmc=dm<=0?'dpos':'dneg',dmi=dm<0?'▲ ':dm>0?'▼ +':'→ ';
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td>${d.name}</td>
+    <td class="num">${fmt(d.t4t)}</td><td class="num">${fmt(d.t5t)}</td>
+    <td class="num">${d.p4.toFixed(1)}%</td>
+    <td class="num"><strong>${d.p5.toFixed(1)}%</strong></td>
+    <td class="num"><span class="${dpc}">${di} ${Math.abs(dp).toFixed(1)}pp</span></td>
+    <td class="num">${d.m4}n</td><td class="num">${d.m5n}n</td>
+    <td class="num"><span class="${dmc}">${dmi}${Math.abs(dm)}n</span></td>`;
+  cmpTb.appendChild(tr);
+});
 
 // ---- HÀNH TRÌNH ----
+// v = [avg ngày từ kết nối → lần book 1, 2, 3]
 const jData=[
-  {seg:'QTT',nh:'Thân thiết',v:[44,66,74]},{seg:'QTT',nh:'Lơ là',v:[56,82,88]},
-  {seg:'QTT',nh:'Bỏ quên',v:[59,81,89]},{seg:'QTT',nh:'Vô tâm',v:[61,78,84]},
-  {seg:'MQTT',nh:'Thân thiết',v:[52,72,78]},{seg:'MQTT',nh:'Lơ là',v:[59,82,86]},
-  {seg:'MQTT',nh:'Bỏ quên',v:[60,84,92]},{seg:'MQTT',nh:'Vô tâm',v:[62,81,85]},
-  {seg:'QBQ',nh:'Thân thiết',v:[94,122,129]},{seg:'QBQ',nh:'Lơ là',v:[89,122,131]},
-  {seg:'QBQ',nh:'Bỏ quên',v:[90,120,128]},{seg:'QBQ',nh:'Vô tâm',v:[91,116,126]},
-  {seg:'MQBQ',nh:'Thân thiết',v:[97,123,129]},{seg:'MQBQ',nh:'Lơ là',v:[95,126,136]},
-  {seg:'MQBQ',nh:'Bỏ quên',v:[92,124,128]},{seg:'MQBQ',nh:'Vô tâm',v:[94,119,130]},
+  {seg:'QTT',nh:'Thân thiết',v:[22,47,59]},{seg:'QTT',nh:'Lơ là',v:[22,48,59]},
+  {seg:'QTT',nh:'Bỏ quên',v:[23,47,58]},{seg:'QTT',nh:'Vô tâm',v:[26,45,55]},
+  {seg:'MQTT',nh:'Thân thiết',v:[26,49,57]},{seg:'MQTT',nh:'Lơ là',v:[28,53,60]},
+  {seg:'MQTT',nh:'Bỏ quên',v:[25,47,62]},{seg:'MQTT',nh:'Vô tâm',v:[28,48,52]},
+  {seg:'QBQ',nh:'Thân thiết',v:[29,57,63]},{seg:'QBQ',nh:'Lơ là',v:[27,59,68]},
+  {seg:'QBQ',nh:'Bỏ quên',v:[27,56,67]},{seg:'QBQ',nh:'Vô tâm',v:[31,52,64]},
+  {seg:'MQBQ',nh:'Thân thiết',v:[30,55,57]},{seg:'MQBQ',nh:'Lơ là',v:[31,56,62]},
+  {seg:'MQBQ',nh:'Bỏ quên',v:[32,56,72]},{seg:'MQBQ',nh:'Vô tâm',v:[31,52,64]},
 ];
 const jtb=document.getElementById('jt-tbody');
 jData.forEach(r=>{
@@ -507,18 +601,18 @@ jData.forEach(r=>{
 
 // ---- THRESH CARDS ----
 const threshData=[
-  {seg:'QTT',col:'var(--qtt)',day:'Day 60',lbl:'ngưỡng nguy hiểm',
-   pts:['Avg lag: 44–61 ngày','Book ≤60 ngày: 60–80% tổng pool','Sau ngày 60: chỉ ~15–20% còn có thể kéo về'],
-   act:'→ Cửa sổ call: ngày 30–55'},
-  {seg:'MQTT',col:'var(--mqtt)',day:'Day 75',lbl:'ngưỡng nguy hiểm',
-   pts:['Avg lag: 52–62 ngày','Book ≤60 ngày: 8–28% tổng pool','Sau ngày 75 tỉ lệ convert sụt nhanh'],
-   act:'→ Cửa sổ call: ngày 45–70'},
-  {seg:'QBQ',col:'var(--qbq)',day:'Day 120',lbl:'ngưỡng nguy hiểm',
-   pts:['Avg lag: 89–94 ngày','Book ≤60 ngày: < 3% — lag tự nhiên đã dài','Gọi trước ngày 60 = quá sớm'],
-   act:'→ Cửa sổ call: ngày 70–110'},
-  {seg:'MQBQ',col:'var(--mqbq)',day:'Xem lại ROI',lbl:'convert rate 16–30%',
-   pts:['Avg lag: 92–97 ngày','70–84% không quay lại dù qua lag avg','Chi phí chăm cao, hiệu quả thấp'],
-   act:'→ Cân nhắc giảm tần suất'},
+  {seg:'QTT',col:'var(--qtt)',day:'Day 35',lbl:'ngưỡng nguy hiểm',
+   pts:['Avg lag: 22–26 ngày (kết nối → tạo lịch)','74,3% QTT Thân thiết đã book trong 30 ngày','Sau ngày 35: xác suất convert giảm nhanh'],
+   act:'→ Cửa sổ call: ngày 14–25'},
+  {seg:'MQTT',col:'var(--mqtt)',day:'Day 40',lbl:'ngưỡng nguy hiểm',
+   pts:['Avg lag: 25–28 ngày','33–39% kết nối được → book trong 30 ngày đầu','MQTT Vô tâm chỉ 15,2% — cần lọc riêng'],
+   act:'→ Cửa sổ call: ngày 18–30'},
+  {seg:'QBQ',col:'var(--qbq)',day:'Day 45',lbl:'ngưỡng nguy hiểm',
+   pts:['Avg lag: 27–31 ngày','36–51% kết nối được → book trong 30 ngày','Không phải nhóm chậm — cần tiếp cận đúng'],
+   act:'→ Cửa sổ call: ngày 20–35'},
+  {seg:'MQBQ',col:'var(--mqbq)',day:'Xem lại ROI',lbl:'book rate 14–27%',
+   pts:['Avg lag: 30–32 ngày','Vô tâm chỉ 13,8% đã book sau kết nối','Book rate thấp nhất — cần review chất lượng call'],
+   act:'→ Cân nhắc giảm tần suất chăm'},
 ];
 const tg=document.getElementById('tg');
 threshData.forEach(t=>{
