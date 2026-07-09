@@ -3,585 +3,760 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Book Rate R12W — Kỳ 02–08/07/2026</title>
+<title>Book Rate R12W — 02–08/07/2026</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; }
-.header { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); color: #fff; padding: 32px 40px; }
-.header h1 { font-size: 1.6rem; font-weight: 700; }
-.header .sub { font-size: 0.9rem; opacity: .7; margin-top: 6px; }
-.target-badge { display:inline-block; background:#f59e0b; color:#000; font-size:0.78rem; font-weight:700;
-    padding:3px 10px; border-radius:20px; margin-top:10px; }
-.container { max-width: 1100px; margin: 0 auto; padding: 28px 20px; }
-h2 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; border-left: 4px solid #6366f1; padding-left: 12px; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Segoe UI',sans-serif;background:#f8fafc;color:#1e293b;font-size:14px}
 
-/* System ranking */
-.rank-table { width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden;
-    box-shadow:0 1px 4px rgba(0,0,0,.06); margin-bottom:32px; }
-.rank-table th { background:#f1f5f9; font-size:.78rem; font-weight:600; padding:10px 14px; text-align:left; color:#475569; }
-.rank-table td { padding:11px 14px; border-top:1px solid #f1f5f9; font-size:.88rem; }
-.rank-table tr:hover td { background:#fafbff; }
-.rank-num { font-weight:700; color:#94a3b8; width:32px; }
-.gdkv-dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:7px; }
-.bk-bar-wrap { display:flex; align-items:center; gap:8px; }
-.bk-bar-bg { flex:1; height:8px; background:#e2e8f0; border-radius:4px; overflow:hidden; max-width:220px; }
-.bk-bar-fill { height:100%; border-radius:4px; }
-.bk-val { font-weight:700; min-width:48px; }
-.target-line-label { font-size:.72rem; color:#94a3b8; }
+.header{background:linear-gradient(135deg,#1e293b 0%,#334155 100%);color:#fff;padding:22px 36px 0}
+.header h1{font-size:1.35rem;font-weight:700}
+.header .sub{font-size:.82rem;opacity:.65;margin-top:3px}
+.target-badge{display:inline-block;background:#f59e0b;color:#000;font-size:.73rem;font-weight:700;padding:2px 10px;border-radius:20px;margin-top:7px}
+
+.tab-bar{display:flex;margin-top:16px}
+.tab-btn{padding:10px 22px;font-size:.86rem;font-weight:600;cursor:pointer;border:none;background:transparent;
+  color:rgba(255,255,255,.55);border-bottom:3px solid transparent;transition:.15s}
+.tab-btn.active{color:#fff;border-bottom-color:#f59e0b}
+.tab-btn:hover{color:#fff}
+
+.filter-bar{background:#fff;border-bottom:1px solid #e2e8f0;padding:9px 36px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.filter-bar label{font-size:.78rem;font-weight:600;color:#64748b}
+.filter-bar select{font-size:.8rem;padding:4px 10px;border:1px solid #cbd5e1;border-radius:6px;cursor:pointer;color:#1e293b}
+
+.tab-content{display:none}
+.tab-content.active{display:block}
+.container{max-width:1140px;margin:0 auto;padding:22px 20px}
+
+/* Section headers */
+.section-title{font-size:1rem;font-weight:700;color:#1e293b;margin:24px 0 12px;border-left:4px solid #6366f1;padding-left:11px;display:flex;align-items:center;gap:8px}
+.section-title.green{border-color:#22c55e}
+.section-title.red{border-color:#ef4444}
+.section-title.amber{border-color:#f59e0b}
+
+/* KPI row */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-top:3px solid #6366f1}
+.kpi .lbl{font-size:.72rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.03em}
+.kpi .val{font-size:1.5rem;font-weight:800;margin-top:3px}
+.kpi .sub{font-size:.76rem;color:#94a3b8;margin-top:2px}
+
+/* Analysis prose */
+.prose-box{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:16px;line-height:1.75}
+.prose-box p{color:#334155;font-size:.88rem;margin-bottom:8px}
+.prose-box p:last-child{margin-bottom:0}
+.prose-box strong{color:#1e293b}
+.callout{border-left:3px solid #f59e0b;padding:10px 14px;margin:10px 0;background:#fffbeb;border-radius:0 8px 8px 0;font-size:.86rem;color:#92400e}
+.callout.red{border-color:#ef4444;background:#fef2f2;color:#991b1b}
+.callout.green{border-color:#22c55e;background:#f0fdf4;color:#166534}
+.callout.blue{border-color:#3b82f6;background:#eff6ff;color:#1e40af}
+
+/* Rank table */
+.rank-tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:16px}
+.rank-tbl th{background:#f1f5f9;font-size:.73rem;font-weight:600;padding:8px 13px;text-align:left;color:#475569}
+.rank-tbl td{padding:9px 13px;border-top:1px solid #f1f5f9;font-size:.84rem;vertical-align:middle}
+.rank-tbl tr:hover td{background:#fafbff}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;flex-shrink:0}
+.bar-wrap{display:flex;align-items:center;gap:7px}
+.bar-bg{height:7px;background:#e2e8f0;border-radius:4px;overflow:hidden;width:160px}
+.bar-fill{height:100%;border-radius:4px}
+.bkv{font-weight:700;min-width:44px}
+.rank-badge{display:inline-block;width:22px;height:22px;border-radius:50%;text-align:center;line-height:22px;font-size:.72rem;font-weight:700;margin-right:4px}
 
 /* Region cards */
-.region-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(480px, 1fr)); gap:20px; margin-bottom:32px; }
-.region-card { background:#fff; border-radius:14px; box-shadow:0 1px 4px rgba(0,0,0,.06); overflow:hidden; }
-.region-card-header { padding:14px 18px; display:flex; justify-content:space-between; align-items:center; }
-.region-card-header .name { font-weight:700; font-size:.95rem; }
-.region-card-header .bk-big { font-size:1.5rem; font-weight:800; }
-.region-card-header .vs { font-size:.8rem; margin-left:8px; }
-.salon-table { width:100%; border-collapse:collapse; }
-.salon-table th { font-size:.72rem; color:#94a3b8; font-weight:600; padding:6px 14px; text-align:left;
-    background:#f8fafc; border-top:1px solid #f1f5f9; }
-.salon-table td { padding:7px 14px; font-size:.83rem; border-top:1px solid #f1f5f9; }
-.salon-table tr:last-child td { border-bottom:none; }
-.tag-top { background:#dcfce7; color:#166534; font-size:.7rem; font-weight:600; padding:2px 7px; border-radius:10px; }
-.tag-bot { background:#fee2e2; color:#991b1b; font-size:.7rem; font-weight:600; padding:2px 7px; border-radius:10px; }
-.s-bar { display:inline-block; height:6px; border-radius:3px; vertical-align:middle; margin-left:6px; }
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(500px,1fr));gap:16px;margin-bottom:16px}
+.rcard{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.rcard.hidden{display:none}
+.rcard-head{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-left:5px solid #888}
+.rcard-head .rname{font-weight:700;font-size:.92rem}
+.rcard-head .rsub{font-size:.73rem;color:#94a3b8;margin-top:1px}
+.rcard-head .rbk{font-size:1.35rem;font-weight:800}
+.rcard-head .rvs{font-size:.76rem;margin-left:5px}
+.stbl{width:100%;border-collapse:collapse}
+.stbl th{font-size:.68rem;color:#94a3b8;font-weight:600;padding:5px 13px;text-align:left;background:#f8fafc;border-top:1px solid #f1f5f9}
+.stbl td{padding:6px 13px;font-size:.81rem;border-top:1px solid #f1f5f9}
+.tag{font-size:.66rem;font-weight:700;padding:1px 6px;border-radius:8px}
+.tag.top{background:#dcfce7;color:#166534}
+.tag.bot{background:#fee2e2;color:#991b1b}
+.tag.warn{background:#fef3c7;color:#92400e}
+.sbar{display:inline-block;height:5px;border-radius:3px;vertical-align:middle;margin-left:4px}
+.rcard-analysis{padding:10px 16px 14px;border-top:1px solid #f1f5f9;font-size:.82rem;color:#475569;line-height:1.7}
+.rcard-analysis strong{color:#1e293b}
+.rcard-alerts{padding:0 16px 12px}
 
-/* Summary section */
-.summary-box { background:#fff; border-radius:14px; padding:22px 24px; box-shadow:0 1px 4px rgba(0,0,0,.06); margin-bottom:32px; }
-.summary-box p { line-height:1.8; font-size:.9rem; color:#334155; margin-bottom:8px; }
-.summary-box strong { color:#1e293b; }
-.summary-box .insight { border-left:3px solid #f59e0b; padding-left:12px; margin-top:12px; }
-/* Region narrative */
-.region-note { padding:10px 18px 14px; font-size:.83rem; color:#475569; line-height:1.65; border-top:1px solid #f1f5f9; }
-.region-note strong { color:#1e293b; }
+/* Salon rank grid */
+.salon-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 
-@media(max-width:600px) {
-    .region-grid { grid-template-columns:1fr; }
-    .header { padding:20px; }
-    .container { padding:16px 12px; }
+@media(max-width:720px){
+  .kpi-row{grid-template-columns:repeat(2,1fr)}
+  .rgrid{grid-template-columns:1fr}
+  .salon-grid{grid-template-columns:1fr}
+  .header,.filter-bar{padding-left:14px;padding-right:14px}
+  .tab-btn{padding:8px 12px;font-size:.8rem}
 }
-@media(prefers-color-scheme:dark) {
-    body { background:#0f172a; color:#e2e8f0; }
-    .header { background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%); }
-    .rank-table, .region-card, .summary-box { background:#1e293b; }
-    .rank-table th, .salon-table th { background:#0f172a; color:#94a3b8; }
-    .rank-table td, .salon-table td { border-color:#334155; }
-    .rank-table tr:hover td { background:#1a2740; }
-    h2 { color:#e2e8f0; }
-    .bk-bar-bg { background:#334155; }
-    .summary-box p { color:#cbd5e1; }
-    .summary-box strong { color:#f1f5f9; }
+@media(prefers-color-scheme:dark){
+  body{background:#0f172a;color:#e2e8f0}
+  .header{background:linear-gradient(135deg,#0f172a,#1e293b)}
+  .filter-bar{background:#1e293b;border-color:#334155}
+  .filter-bar select{background:#0f172a;color:#e2e8f0;border-color:#475569}
+  .prose-box,.kpi,.rank-tbl,.rcard,.salon-grid > div{background:#1e293b}
+  .rank-tbl th,.stbl th{background:#0f172a;color:#94a3b8}
+  .rank-tbl td,.stbl td{border-color:#334155}
+  .rank-tbl tr:hover td{background:#162032}
+  .rcard-analysis{color:#94a3b8}
+  .rcard-analysis strong,.prose-box strong{color:#e2e8f0}
+  .prose-box p{color:#cbd5e1}
+  .callout{background:#1e293b;color:#fbbf24}
+  .callout.red{background:#1e293b;color:#fca5a5}
+  .callout.green{background:#1e293b;color:#86efac}
+  .callout.blue{background:#1e293b;color:#93c5fd}
+  .section-title{color:#e2e8f0}
+  .bar-bg{background:#334155}
+  .stbl td{border-color:#334155}
 }
 </style>
 </head>
 <body>
+
 <div class="header">
-  <h1>📊 Phân tích Book Rate R12W</h1>
-  <div class="sub">Kỳ 02–08/07/2026 · 8 vùng · Tập trung tỉ lệ chuyển đổi sang lịch hẹn</div>
+  <h1>📊 Phân tích Book Rate — R12W</h1>
+  <div class="sub">Kỳ 02–08/07/2026 · 8 vùng · Chỉ tập trung tỉ lệ book</div>
   <div class="target-badge">Mục tiêu: 65% lead book trong 3 ngày · khách đến trong 7 ngày</div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('t1',this)">📊 Tổng quan hệ thống</button>
+    <button class="tab-btn" onclick="switchTab('t2',this)">🗺️ Phân tích theo Vùng</button>
+    <button class="tab-btn" onclick="switchTab('t3',this)">📈 Xu hướng</button>
+    <button class="tab-btn" onclick="switchTab('t4',this)">👤 Theo Nhân viên</button>
+  </div>
 </div>
-<div class="container">
-  <h2>Xếp hạng Book Rate toàn hệ thống</h2>
-  
-    <table class="rank-table">
-      <thead><tr>
-        <th>#</th><th>GĐKV</th>
-        <th>Book Rate kỳ này · <span style="color:#f59e0b">Mục tiêu 65%</span></th>
-        <th>Kỳ trước (kỳ 7/07)</th>
-      </tr></thead>
-      <tbody>
-        <tr>
-          <td class="rank-num">1</td>
-          <td><span class="gdkv-dot" style="background:#f59e0b"></span>GĐKV Nguyễn Thanh Sang</td>
-          <td>
-            <div class="bk-bar-wrap">
-              <div class="bk-bar-bg"><div class="bk-bar-fill" style="width:23.2%;background:#f59e0b"></div></div>
-              <span class="bk-val" style="color:#f59e0b">15.1%</span>
-              <span style="color:#ef4444">▼1.4%</span>
-            </div>
-          </td>
-          <td style="color:#94a3b8;font-size:.8rem">16.5%</td>
-        </tr>
-        <tr>
-          <td class="rank-num">2</td>
-          <td><span class="gdkv-dot" style="background:#f97316"></span>GĐKV Đoàn Trung Đức</td>
-          <td>
-            <div class="bk-bar-wrap">
-              <div class="bk-bar-bg"><div class="bk-bar-fill" style="width:21.6%;background:#f59e0b"></div></div>
-              <span class="bk-val" style="color:#f59e0b">14.1%</span>
-              <span style="color:#ef4444">▼1.0%</span>
-            </div>
-          </td>
-          <td style="color:#94a3b8;font-size:.8rem">15.1%</td>
-        </tr>
-        <tr>
-          <td class="rank-num">3</td>
-          <td><span class="gdkv-dot" style="background:#6366f1"></span>GĐKV Nguyễn Như Quỳnh</td>
-          <td>
-            <div class="bk-bar-wrap">
-              <div class="bk-bar-bg"><div class="bk-bar-fill" style="width:18.3%;background:#ef4444"></div></div>
-              <span class="bk-val" style="color:#ef4444">11.9%</span>
-              <span style="color:#ef4444">▼0.1%</span>
-            </div>
-          </td>
-          <td style="color:#94a3b8;font-size:.8rem">12.0%</td>
-        </tr>
-        <tr>
-          <td class="rank-num">4</td>
-          <td><span class="gdkv-dot" style="background:#10b981"></span>GĐKV Trịnh Văn Quang</td>
-          <td>
-            <div class="bk-bar-wrap">
-              <div class="bk-bar-bg"><div class="bk-bar-fill" style="width:18.1%;background:#ef4444"></div></div>
-              <span class="bk-val" style="color:#ef4444">11.8%</span>
-              <span style="color:#ef4444">▼1.9%</span>
-            </div>
-          </td>
-          <td style="color:#94a3b8;font-size:.8rem">13.7%</td>
-        </tr>
-        <tr>
-          <td class="rank-num">5</td>
-          <td><span class="gdkv-dot" style="background:#06b6d4"></span>GĐKV Nguyễn Việt Cường</td>
-          <td>
-            <div class="bk-bar-wrap">
-              <div class="bk-bar-bg"><div class="bk-bar-fill" style="width:17.9%;background:#ef4444"></div></div>
-              <span class="bk-val" style="color:#ef4444">11.6%</span>
-              <span style="color:#ef4444">▼1.5%</span>
-            </div>
-          </td>
-          <td style="color:#94a3b8;font-size:.8rem">13.1%</td>
-        </tr>
-        <tr>
-          <td class="rank-num">6</td>
-          <td><span class="gdkv-dot" style="background:#ef4444"></span>GĐKV Nguyễn Thị Huệ</td>
-          <td>
-            <div class="bk-bar-wrap">
-              <div class="bk-bar-bg"><div class="bk-bar-fill" style="width:16.2%;background:#ef4444"></div></div>
-              <span class="bk-val" style="color:#ef4444">10.5%</span>
-              <span style="color:#22c55e">▲0.4%</span>
-            </div>
-          </td>
-          <td style="color:#94a3b8;font-size:.8rem">10.1%</td>
-        </tr>
-        <tr>
-          <td class="rank-num">7</td>
-          <td><span class="gdkv-dot" style="background:#ec4899"></span>GĐKV Phan Thị Hồng Gấm</td>
-          <td>
-            <div class="bk-bar-wrap">
-              <div class="bk-bar-bg"><div class="bk-bar-fill" style="width:15.7%;background:#ef4444"></div></div>
-              <span class="bk-val" style="color:#ef4444">10.2%</span>
-              <span style="color:#ef4444">▼0.5%</span>
-            </div>
-          </td>
-          <td style="color:#94a3b8;font-size:.8rem">10.7%</td>
-        </tr>
-        <tr>
-          <td class="rank-num">8</td>
-          <td><span class="gdkv-dot" style="background:#8b5cf6"></span>GĐKV Tống Xuân Quyền</td>
-          <td>
-            <div class="bk-bar-wrap">
-              <div class="bk-bar-bg"><div class="bk-bar-fill" style="width:13.1%;background:#ef4444"></div></div>
-              <span class="bk-val" style="color:#ef4444">8.5%</span>
-              <span style="color:#ef4444">▼0.9%</span>
-            </div>
-          </td>
-          <td style="color:#94a3b8;font-size:.8rem">9.4%</td>
-        </tr></tbody>
-    </table>
-  
-    <div class="summary-box">
-      <p><strong>Tổng quan kỳ 02–08/07/2026:</strong> Mục tiêu 65% lead được book trong 3 ngày đầu.
-      <strong>Chưa có vùng nào đạt mục tiêu.</strong> <strong>7/8 vùng giảm book rate</strong> so với kỳ trước — xu hướng toàn hệ thống đang đi xuống, không phải vấn đề cục bộ.</p>
 
-      <p>Book rate trung bình hệ thống: <strong>11.7%</strong> (-0.9% so với kỳ trước — 12.6%). Còn cách mục tiêu 65% là <strong>53.3%</strong>.</p>
+<div class="filter-bar">
+  <label>Lọc GĐKV</label>
+  <select id="gf" onchange="render()">
+    <option value="all">Tất cả GĐKV</option>
+    <option value="Nguyễn Thanh Sang">Nguyễn Thanh Sang</option><option value="Đoàn Trung Đức">Đoàn Trung Đức</option><option value="Nguyễn Như Quỳnh">Nguyễn Như Quỳnh</option><option value="Trịnh Văn Quang">Trịnh Văn Quang</option><option value="Nguyễn Việt Cường">Nguyễn Việt Cường</option><option value="Nguyễn Thị Huệ">Nguyễn Thị Huệ</option><option value="Phan Thị Hồng Gấm">Phan Thị Hồng Gấm</option><option value="Tống Xuân Quyền">Tống Xuân Quyền</option>
+  </select>
+</div>
 
-      <p>Vùng dẫn đầu: <strong>GĐKV Sang</strong> (15.1%).
-      Vùng thấp nhất: <strong>GĐKV Quyền</strong> (8.5%).
-      Giảm nhiều nhất: <strong>GĐKV Quang</strong> (-1.9%). · Tăng duy nhất đáng chú ý: <strong>GĐKV Huệ</strong> (+0.4%).</p>
+<div id="t1" class="tab-content active"><div class="container" id="c1"></div></div>
+<div id="t2" class="tab-content"><div class="container" id="c2"></div></div>
+<div id="t3" class="tab-content"><div class="container" id="c3"></div></div>
+<div id="t4" class="tab-content"><div class="container">
+  <div style="background:#fff;border-radius:10px;padding:40px;text-align:center;color:#94a3b8;box-shadow:0 1px 3px rgba(0,0,0,.06)">
+    <div style="font-size:2rem;margin-bottom:12px">👤</div>
+    <h3 style="color:#64748b;margin-bottom:8px">Book Rate theo Nhân viên</h3>
+    <p style="font-size:.86rem;line-height:1.7">Cần file dữ liệu NV-level.<br>GĐKV đang xác nhận nguồn data — sẽ cập nhật sớm.</p>
+  </div>
+</div></div>
 
-      <div class="insight">
-        <p>Vùng có khoảng cách nội bộ lớn nhất: <strong>GĐKV Sang</strong> — <strong>8 CVL</strong> đạt <strong>20.3%</strong> trong khi <strong>708 LTT</strong> chỉ <strong>6.5%</strong> (chênh <strong>13.8%</strong>). Đây là dấu hiệu có NV làm được nhưng chưa được nhân rộng.</p>
-      </div>
-      <div class="insight" style="border-color:#ef4444;margin-top:10px">
-        <p>GĐKV Quyền đang ở cuối bảng với <strong>8.5%</strong>. Các salon thấp nhất vùng: <strong>25 TD</strong> (6.1%), <strong>237 NTT</strong> (5.7%), <strong>113 THD AG</strong> (5.6%) — vấn đề đồng đều trên diện rộng, cần rà lại quy trình tiếp cận lead từ đầu.</p>
-      </div>
+<script>
+const RD = [{"rsm": "Nguyễn Thanh Sang", "short": "Sang", "color": "#f59e0b", "bk_cur": 0.15065502183406113, "bk_prv": 0.16496291842052516, "salons": [{"name": "8 CVL", "rate": 0.20327421555252387, "book": 149.0, "pool": 3216.0}, {"name": "575 AC", "rate": 0.1816326530612245, "book": 89.0, "pool": 2589.0}, {"name": "312 LVS", "rate": 0.16749585406301823, "book": 101.0, "pool": 3639.0}, {"name": "99 TSN", "rate": 0.15335868187579213, "book": 121.0, "pool": 3712.0}, {"name": "190 HB", "rate": 0.1487603305785124, "book": 18.0, "pool": 2182.0}, {"name": "145 THT", "rate": 0.14622641509433962, "book": 62.0, "pool": 4687.0}, {"name": "730 TL10", "rate": 0.12473721093202522, "book": 178.0, "pool": 3328.0}, {"name": "927 HG", "rate": 0.09912536443148688, "book": 34.0, "pool": 3854.0}, {"name": "708 LTT", "rate": 0.06481481481481481, "book": 7.0, "pool": 1603.0}], "pool": 28810.0, "book": 759.0}, {"rsm": "Đoàn Trung Đức", "short": "Đức", "color": "#f97316", "bk_cur": 0.14052369077306734, "bk_prv": 0.15061425061425063, "salons": [{"name": "382 NT", "rate": 0.20161290322580644, "book": 250.0, "pool": 3779.0}, {"name": "116 TK", "rate": 0.1679771265189421, "book": 235.0, "pool": 3592.0}, {"name": "109 TQH", "rate": 0.14481897627965043, "book": 116.0, "pool": 3069.0}, {"name": "55A NVL", "rate": 0.1335478680611424, "book": 166.0, "pool": 1509.0}, {"name": "62 LH", "rate": 0.11587982832618025, "book": 108.0, "pool": 1235.0}, {"name": "90 NH", "rate": 0.10866372980910426, "book": 148.0, "pool": 1605.0}, {"name": "65 CD", "rate": 0.09971236816874401, "book": 104.0, "pool": 1249.0}], "pool": 16038.0, "book": 1127.0}, {"rsm": "Nguyễn Như Quỳnh", "short": "Quỳnh", "color": "#6366f1", "bk_cur": 0.11867977528089887, "bk_prv": 0.11976764052622586, "salons": [{"name": "168 NVC", "rate": 0.12489660876757651, "book": 302.0, "pool": 3221.0}, {"name": "10 TP", "rate": 0.12310866574965612, "book": 179.0, "pool": 2230.0}, {"name": "362 NGT BN", "rate": 0.12274096385542169, "book": 163.0, "pool": 2788.0}, {"name": "4 LQD BN", "rate": 0.11428571428571428, "book": 56.0, "pool": 702.0}, {"name": "186 QT", "rate": 0.1044776119402985, "book": 56.0, "pool": 714.0}, {"name": "11 PKT", "rate": 0.09955257270693513, "book": 89.0, "pool": 1326.0}], "pool": 10981.0, "book": 845.0}, {"rsm": "Trịnh Văn Quang", "short": "Quang", "color": "#10b981", "bk_cur": 0.1177186929165821, "bk_prv": 0.13658536585365855, "salons": [{"name": "12 LDT", "rate": 0.1853035143769968, "book": 116.0, "pool": 2437.0}, {"name": "32 NAT", "rate": 0.14832535885167464, "book": 62.0, "pool": 1314.0}, {"name": "483 TN", "rate": 0.12156166814551908, "book": 137.0, "pool": 2205.0}, {"name": "1180 QT", "rate": 0.10068792995622264, "book": 161.0, "pool": 1941.0}, {"name": "76 PVH", "rate": 0.0898876404494382, "book": 104.0, "pool": 1697.0}], "pool": 9594.0, "book": 580.0}, {"rsm": "Nguyễn Việt Cường", "short": "Cường", "color": "#06b6d4", "bk_cur": 0.11640414905877833, "bk_prv": 0.13123287671232878, "salons": [{"name": "103 TN", "rate": 0.163003663003663, "book": 356.0, "pool": 5468.0}, {"name": "401/1 NDT", "rate": 0.13875598086124402, "book": 58.0, "pool": 1633.0}, {"name": "1146 KVC", "rate": 0.12471655328798185, "book": 55.0, "pool": 1391.0}, {"name": "451 PVT", "rate": 0.11320754716981132, "book": 24.0, "pool": 1044.0}, {"name": "29 HB", "rate": 0.09742120343839542, "book": 136.0, "pool": 2533.0}, {"name": "36 N1 BD", "rate": 0.09425625920471281, "book": 64.0, "pool": 1358.0}, {"name": "1371 PVT", "rate": 0.09302325581395349, "book": 60.0, "pool": 1495.0}, {"name": "255 NAN", "rate": 0.08683473389355742, "book": 62.0, "pool": 2389.0}, {"name": "80 PL BD", "rate": 0.08392857142857142, "book": 94.0, "pool": 2332.0}], "pool": 19643.0, "book": 909.0}, {"rsm": "Nguyễn Thị Huệ", "short": "Huệ", "color": "#ef4444", "bk_cur": 0.10517970401691332, "bk_prv": 0.10072951739618406, "salons": [{"name": "595 BT TH", "rate": 0.1531791907514451, "book": 53.0, "pool": 783.0}, {"name": "80 TP TH", "rate": 0.11377245508982035, "book": 95.0, "pool": 1120.0}, {"name": "290 QT TH", "rate": 0.10143198090692124, "book": 85.0, "pool": 893.0}, {"name": "58 NVC NA", "rate": 0.10009354536950421, "book": 107.0, "pool": 1108.0}, {"name": "68 LN NA", "rate": 0.08372093023255814, "book": 36.0, "pool": 875.0}, {"name": "304 NT TH", "rate": 0.08270676691729323, "book": 22.0, "pool": 788.0}], "pool": 5567.0, "book": 398.0}, {"rsm": "Phan Thị Hồng Gấm", "short": "Gấm", "color": "#ec4899", "bk_cur": 0.10213259828811838, "bk_prv": 0.10722250814891061, "salons": [{"name": "173 TN", "rate": 0.14038461538461539, "book": 73.0, "pool": 1862.0}, {"name": "50BT4 NPC LD", "rate": 0.12197802197802197, "book": 111.0, "pool": 2561.0}, {"name": "39 HBT", "rate": 0.11794138670478914, "book": 165.0, "pool": 1774.0}, {"name": "264 LLQ", "rate": 0.11254851228978008, "book": 87.0, "pool": 1830.0}, {"name": "346 KT", "rate": 0.09950248756218906, "book": 100.0, "pool": 1592.0}, {"name": "363 LNQ TN", "rate": 0.07711864406779662, "book": 91.0, "pool": 1456.0}, {"name": "202 DC", "rate": 0.0729559748427673, "book": 58.0, "pool": 2203.0}, {"name": "148 TD", "rate": 0.06109324758842444, "book": 19.0, "pool": 1209.0}], "pool": 14487.0, "book": 704.0}, {"rsm": "Tống Xuân Quyền", "short": "Quyền", "color": "#8b5cf6", "bk_cur": 0.08547199285873688, "bk_prv": 0.09410056750692887, "salons": [{"name": "186 DTH", "rate": 0.11901159858799798, "book": 236.0, "pool": 2700.0}, {"name": "236 DBT", "rate": 0.10772578890097932, "book": 99.0, "pool": 2728.0}, {"name": "420 HTP", "rate": 0.09340659340659341, "book": 187.0, "pool": 3728.0}, {"name": "341 XVNT", "rate": 0.06896551724137931, "book": 28.0, "pool": 1286.0}, {"name": "7 DTP LA", "rate": 0.06699751861042183, "book": 27.0, "pool": 1162.0}, {"name": "25 TD", "rate": 0.061068702290076333, "book": 72.0, "pool": 2951.0}, {"name": "237 NTT", "rate": 0.056896551724137934, "book": 66.0, "pool": 4710.0}, {"name": "113 THD AG", "rate": 0.056043956043956046, "book": 51.0, "pool": 1021.0}], "pool": 20286.0, "book": 766.0}];
+const META = {"period": "02–08/07/2026", "dd_end": 8, "dd_start": 2, "mm": 7, "bk_target": 0.65, "alert_low": 0.08};
+const PREV_LABEL = "kỳ 7/07";
+const HISTORY = [{"key": "0707", "label": "1–7/07", "sys_avg": 0.12565195564737655, "regions": {"Nguyễn Như Quỳnh": 0.11976764052622586, "Nguyễn Việt Cường": 0.13123287671232878, "Tống Xuân Quyền": 0.09410056750692887, "Đoàn Trung Đức": 0.15061425061425063, "Nguyễn Thị Huệ": 0.10072951739618406, "Trịnh Văn Quang": 0.13658536585365855, "Nguyễn Thanh Sang": 0.16496291842052516, "Phan Thị Hồng Gấm": 0.10722250814891061}}, {"key": "0807", "label": "2–8/07", "sys_avg": 0.11709570312839454, "regions": {"Nguyễn Như Quỳnh": 0.11867977528089887, "Nguyễn Việt Cường": 0.11640414905877833, "Tống Xuân Quyền": 0.08547199285873688, "Đoàn Trung Đức": 0.14052369077306734, "Nguyễn Thị Huệ": 0.10517970401691332, "Trịnh Văn Quang": 0.1177186929165821, "Nguyễn Thanh Sang": 0.15065502183406113, "Phan Thị Hồng Gấm": 0.10213259828811838}}];
+
+function pct(v,d=1){ return v==null?'—':(v*100).toFixed(d)+'%'; }
+function fmt(v){ return v==null?'—':Math.round(v).toLocaleString('vi'); }
+
+function bkColor(r){
+  if(r==null) return '#94a3b8';
+  if(r>=META.bk_target) return '#22c55e';
+  if(r>=0.12) return '#f59e0b';
+  return '#ef4444';
+}
+
+function arrowSpan(cur,prv){
+  if(cur==null||prv==null) return '';
+  const d=cur-prv;
+  if(Math.abs(d)<0.001) return '<span style="color:#94a3b8">▶</span>';
+  if(d>0) return `<span style="color:#22c55e">▲${(d*100).toFixed(1)}%</span>`;
+  return `<span style="color:#ef4444">▼${(Math.abs(d)*100).toFixed(1)}%</span>`;
+}
+
+function filtered(){
+  const f=document.getElementById('gf').value;
+  return f==='all'?RD:RD.filter(r=>r.rsm===f);
+}
+
+// ══════════════════════════════════════════════════════
+//  ANALYSIS ENGINE
+// ══════════════════════════════════════════════════════
+
+function analyzeSystem(regs){
+  const n = regs.length;
+  const avg = regs.reduce((s,r)=>s+(r.bk_cur||0),0)/n;
+  const withPrev = regs.filter(r=>r.bk_prv!=null&&r.bk_cur!=null);
+  const downRegs = withPrev.filter(r=>r.bk_cur<r.bk_prv).sort((a,b)=>(a.bk_cur-a.bk_prv)-(b.bk_cur-b.bk_prv));
+  const upRegs   = withPrev.filter(r=>r.bk_cur>r.bk_prv).sort((a,b)=>(b.bk_cur-b.bk_prv)-(a.bk_cur-a.bk_prv));
+  const avgPrv   = withPrev.length?withPrev.reduce((s,r)=>s+(r.bk_prv||0),0)/withPrev.length:null;
+  const sysGap   = META.bk_target - avg;
+  const pctOfTarget = avg/META.bk_target;
+
+  // All salons flat
+  const allSalons = regs.flatMap(r=>r.salons.map(s=>({...s,rsm:r.rsm,short:r.short,color:r.color})));
+  allSalons.sort((a,b)=>b.rate-a.rate);
+  const alertSalons = allSalons.filter(s=>s.rate<META.alert_low);
+
+  // Structural problem regions (2+ salons in system bottom 10)
+  const sysBot10 = [...allSalons].reverse().slice(0,10).map(s=>s.rsm);
+  const botCount = {};
+  sysBot10.forEach(rsm=>{ botCount[rsm]=(botCount[rsm]||0)+1; });
+  const structuralProblems = Object.entries(botCount).filter(([,c])=>c>=2).sort((a,b)=>b[1]-a[1]);
+
+  // Internal gap per region
+  const gapByRegion = regs.map(r=>{
+    if(r.salons.length<2) return {rsm:r.rsm,short:r.short,gap:0};
+    return {rsm:r.rsm,short:r.short,gap:r.salons[0].rate-r.salons[r.salons.length-1].rate,
+             top:r.salons[0],bot:r.salons[r.salons.length-1]};
+  }).sort((a,b)=>b.gap-a.gap);
+
+  return {avg,avgPrv,sysGap,pctOfTarget,downRegs,upRegs,allSalons,alertSalons,structuralProblems,gapByRegion,withPrev};
+}
+
+function analyzeRegion(r, allSalons){
+  const n = r.salons.length;
+  if(!n) return {};
+  const avg = r.salons.reduce((s,x)=>s+(x.rate||0),0)/n;
+  const aboveAvg = r.salons.filter(x=>x.rate>=avg).length;
+  const gap = n>=2 ? r.salons[0].rate-r.salons[n-1].rate : 0;
+  const top = r.salons[0], bot = r.salons[n-1];
+  const sysRank = allSalons.findIndex(s=>s.name===top.name)+1;
+  const botRankInSys = [...allSalons].reverse().findIndex(s=>s.name===bot.name)+1;
+  const lowSalons = r.salons.filter(s=>s.rate<META.alert_low);
+  const alertSalons = r.salons.filter(s=>s.rate<0.10);
+  const concentrated = aboveAvg<=Math.ceil(n/3)&&n>=4;
+  const sysAvg = allSalons.reduce((s,x)=>s+(x.rate||0),0)/allSalons.length;
+  const vsSystem = r.bk_cur - sysAvg;
+
+  return {n,avg,aboveAvg,gap,top,bot,sysRank,botRankInSys,lowSalons,alertSalons,concentrated,vsSystem};
+}
+
+// ══════════════════════════════════════════════════════
+//  TAB 1 — TỔNG QUAN HỆ THỐNG
+// ══════════════════════════════════════════════════════
+function buildTab1(){
+  const regs = filtered();
+  const a = analyzeSystem(regs);
+  let html = '';
+
+  // KPI row
+  const kpiColor = a.pctOfTarget>=0.5?'#f59e0b':a.pctOfTarget>=0.3?'#f97316':'#ef4444';
+  html += `<div class="kpi-row">
+    <div class="kpi" style="border-color:${kpiColor}">
+      <div class="lbl">Book Rate TB hệ thống</div>
+      <div class="val" style="color:${kpiColor}">${pct(a.avg)}</div>
+      <div class="sub">Mục tiêu: ${pct(META.bk_target)} · đạt ${(a.pctOfTarget*100).toFixed(0)}%</div>
     </div>
-  <h2>Phân tích từng vùng — Top & Bottom Salon</h2>
-  <div class="region-grid">
-        <div class="region-card">
-          <div class="region-card-header" style="border-left:5px solid #f59e0b">
-            <div>
-              <div class="name" style="color:#f59e0b">GĐKV Nguyễn Thanh Sang</div>
-              <div style="font-size:.78rem;color:#94a3b8;margin-top:2px">9 salon · Pool: 28,810</div>
-            </div>
-            <div style="text-align:right">
-              <span class="bk-big" style="color:#f59e0b">15.1%</span>
-              <span class="vs"><span style="color:#ef4444">▼1.4%</span></span>
-            </div>
-          </div>
-          <table class="salon-table">
-            <thead><tr><th></th><th>Salon</th><th>Book Rate</th></tr></thead>
-            <tbody><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>8 CVL</td>
-              <td><span class="bk-val" style="color:#f59e0b">20.3%</span>
-                <span class="s-bar" style="width:31px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>575 AC</td>
-              <td><span class="bk-val" style="color:#f59e0b">18.2%</span>
-                <span class="s-bar" style="width:28px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>312 LVS</td>
-              <td><span class="bk-val" style="color:#f59e0b">16.7%</span>
-                <span class="s-bar" style="width:26px;background:#f59e0b"></span></td>
-            </tr><tr><td colspan="3" style="padding:2px 14px;background:#f8fafc;font-size:.7rem;color:#94a3b8">Thấp nhất vùng</td></tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>708 LTT</td>
-              <td><span class="bk-val" style="color:#ef4444">6.5%</span>
-                <span class="s-bar" style="width:10px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>927 HG</td>
-              <td><span class="bk-val" style="color:#ef4444">9.9%</span>
-                <span class="s-bar" style="width:15px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>730 TL10</td>
-              <td><span class="bk-val" style="color:#f59e0b">12.5%</span>
-                <span class="s-bar" style="width:19px;background:#f59e0b"></span></td>
-            </tr></tbody>
-          </table>
-          <div class="region-note">Giảm <strong>-1.4%</strong> so với kỳ trước (16.5% → 15.1%). Nội vùng: salon cao nhất <strong>8 CVL</strong> đạt <strong>20.3%</strong>, thấp nhất <strong>708 LTT</strong> chỉ <strong>6.5%</strong> — chênh <strong>13.8%</strong>. Khoảng cách lớn cho thấy có salon đang làm tốt nhưng chưa nhân ra được.</div>
+    <div class="kpi" style="border-color:#ef4444">
+      <div class="lbl">Còn cách mục tiêu</div>
+      <div class="val" style="color:#ef4444">${pct(a.sysGap)}</div>
+      <div class="sub">${a.avgPrv?'Kỳ trước: '+pct(a.avgPrv):'Không có kỳ trước'}</div>
+    </div>
+    <div class="kpi" style="border-color:#22c55e">
+      <div class="lbl">Vùng dẫn đầu</div>
+      <div class="val" style="color:#22c55e;font-size:1.1rem">GĐKV ${regs[0]?.short}</div>
+      <div class="sub">${pct(regs[0]?.bk_cur)} ${arrowSpan(regs[0]?.bk_cur,regs[0]?.bk_prv)}</div>
+    </div>
+    <div class="kpi" style="border-color:#ef4444">
+      <div class="lbl">Vùng thấp nhất</div>
+      <div class="val" style="color:#ef4444;font-size:1.1rem">GĐKV ${regs[regs.length-1]?.short}</div>
+      <div class="sub">${pct(regs[regs.length-1]?.bk_cur)} ${arrowSpan(regs[regs.length-1]?.bk_cur,regs[regs.length-1]?.bk_prv)}</div>
+    </div>
+  </div>`;
+
+  // ── Đánh giá tổng quan ──
+  html += `<div class="section-title">📋 Đánh giá tổng quan</div>`;
+  let summaryText = '';
+  const targetPctStr = (a.pctOfTarget*100).toFixed(0);
+  summaryText += `<p>Kỳ <strong>${META.period}</strong> — Hệ thống R12W đang ở mức book rate trung bình <strong>${pct(a.avg)}</strong>, `;
+  summaryText += `tức chỉ đạt <strong>${targetPctStr}% mục tiêu</strong> (65%). `;
+  if(a.avgPrv){
+    const sysDiff = a.avg - a.avgPrv;
+    if(sysDiff<-0.005) summaryText += `So với kỳ trước (<strong>${pct(a.avgPrv)}</strong>), toàn hệ thống <strong>giảm ${(Math.abs(sysDiff)*100).toFixed(1)}%</strong> — xu hướng đi lùi cần được chú ý ngay. `;
+    else if(sysDiff>0.005) summaryText += `So với kỳ trước (<strong>${pct(a.avgPrv)}</strong>), toàn hệ thống <strong>tăng ${(sysDiff*100).toFixed(1)}%</strong> — tín hiệu tích cực. `;
+    else summaryText += `So với kỳ trước (<strong>${pct(a.avgPrv)}</strong>), toàn hệ thống gần như <strong>không thay đổi</strong>. `;
+  }
+  summaryText += `</p>`;
+
+  if(a.downRegs.length>=5){
+    summaryText += `<p><strong>${a.downRegs.length}/${regs.length} vùng giảm book rate</strong> so với kỳ trước. Đây không phải vấn đề cục bộ — cả hệ thống đang đi xuống. `;
+    const bigDown = a.downRegs[0];
+    summaryText += `Vùng giảm mạnh nhất: <strong>GĐKV ${bigDown.short}</strong> (từ ${pct(bigDown.bk_prv)} xuống ${pct(bigDown.bk_cur)}, giảm <strong>${((bigDown.bk_prv-bigDown.bk_cur)*100).toFixed(1)}%</strong>).</p>`;
+  } else if(a.upRegs.length>=5){
+    summaryText += `<p><strong>${a.upRegs.length}/${regs.length} vùng tăng</strong> so với kỳ trước — tín hiệu tích cực trên diện rộng. `;
+    const bigUp = a.upRegs[0];
+    summaryText += `Vùng tăng mạnh nhất: <strong>GĐKV ${bigUp.short}</strong> (+${((bigUp.bk_cur-bigUp.bk_prv)*100).toFixed(1)}%).</p>`;
+  } else if(a.withPrev.length>0){
+    summaryText += `<p>Kỳ này: <strong>${a.upRegs.length} vùng tăng</strong>, <strong>${a.downRegs.length} vùng giảm</strong> — kết quả phân hoá, không đồng đều giữa các vùng.</p>`;
+  }
+
+  html += `<div class="prose-box">${summaryText}`;
+
+  // Structural problems
+  if(a.structuralProblems.length){
+    a.structuralProblems.forEach(([rsm,cnt])=>{
+      const r = regs.find(x=>x.rsm===rsm);
+      html += `<div class="callout red">⚠️ <strong>Vấn đề cấu trúc — GĐKV ${r?.short}:</strong> có <strong>${cnt} salon</strong> nằm trong bottom 10 hệ thống. Đây không phải vài salon cá biệt — cả vùng đang có vấn đề đồng đều, cần GĐKV rà soát lại quy trình cấp vùng.</div>`;
+    });
+  }
+
+  // Alert salons
+  if(a.alertSalons.length){
+    const names = a.alertSalons.map(s=>`<strong>${s.name}</strong> (${pct(s.rate)})`).join(', ');
+    html += `<div class="callout red">🚨 <strong>Salon cảnh báo đỏ (dưới ${(META.alert_low*100).toFixed(0)}%):</strong> ${names}. Các salon này cần được kiểm tra ngay — book rate ở mức gần như không hoạt động.</div>`;
+  }
+
+  // Bright spots
+  const brightSpots = a.upRegs.filter(r=>r.bk_cur>=0.13);
+  if(brightSpots.length){
+    const names = brightSpots.map(r=>`<strong>GĐKV ${r.short}</strong> (${pct(r.bk_cur)}, +${((r.bk_cur-r.bk_prv)*100).toFixed(1)}%)`).join(', ');
+    html += `<div class="callout green">✅ <strong>Điểm sáng:</strong> ${names} — đang có xu hướng tốt, cần tìm hiểu gì đang làm đúng để nhân rộng.</div>`;
+  }
+
+  // Internal gap anomaly
+  const highGap = a.gapByRegion.filter(g=>g.gap>0.12);
+  if(highGap.length){
+    highGap.slice(0,2).forEach(g=>{
+      html += `<div class="callout blue">🔍 <strong>Bất thường nội vùng — GĐKV ${g.short}:</strong> salon đầu <strong>${g.top.name}</strong> đạt ${pct(g.top.rate)} trong khi salon cuối <strong>${g.bot.name}</strong> chỉ ${pct(g.bot.rate)} — chênh <strong>${(g.gap*100).toFixed(1)}%</strong>. Chứng tỏ có NV/salon làm được nhưng cách làm chưa được nhân rộng trong vùng.</div>`;
+    });
+  }
+
+  html += `</div>`;
+
+  // ── Xếp hạng vùng ──
+  html += `<div class="section-title">🏆 Xếp hạng Book Rate — Các vùng GĐKV</div>`;
+  const prevTh = PREV_LABEL?`Kỳ trước (${PREV_LABEL})`:'Kỳ trước';
+  html += `<table class="rank-tbl"><thead><tr>
+    <th>#</th><th>GĐKV</th>
+    <th>Book Rate kỳ này · <span style="color:#f59e0b">Mục tiêu 65%</span></th>
+    <th>${prevTh}</th><th>Thay đổi</th><th>Pool</th>
+  </tr></thead><tbody>`;
+  regs.forEach((r,i)=>{
+    const fill=Math.min((r.bk_cur||0)/META.bk_target*100,100);
+    const bc=bkColor(r.bk_cur);
+    const medal = i===0?'🥇':i===1?'🥈':i===2?'🥉':`${i+1}`;
+    html+=`<tr>
+      <td style="font-weight:700;color:#94a3b8;width:36px">${medal}</td>
+      <td><span class="dot" style="background:${r.color}"></span>GĐKV ${r.rsm}</td>
+      <td><div class="bar-wrap">
+        <div class="bar-bg"><div class="bar-fill" style="width:${fill.toFixed(1)}%;background:${bc}"></div></div>
+        <span class="bkv" style="color:${bc}">${pct(r.bk_cur)}</span>
+      </div></td>
+      <td style="color:#94a3b8">${r.bk_prv?pct(r.bk_prv):'—'}</td>
+      <td>${arrowSpan(r.bk_cur,r.bk_prv)}</td>
+      <td style="color:#64748b;font-size:.8rem">${fmt(r.pool)}</td>
+    </tr>`;
+  });
+  html += `</tbody></table>`;
+
+  // ── Xếp hạng salon hệ thống ──
+  const allS = regs.flatMap(r=>r.salons.map(s=>(({...s,rsm:r.rsm,short:r.short,color:r.color})))).sort((a,b)=>b.rate-a.rate);
+  const top15 = allS.slice(0,15);
+  const bot15 = [...allS].reverse().slice(0,15);
+
+  const salonRows = (list,isTop) => list.map((s,i)=>{
+    const bc=bkColor(s.rate);
+    const fill=Math.min((s.rate||0)/META.bk_target*100,100);
+    return `<tr>
+      <td style="color:#94a3b8;width:24px">${i+1}</td>
+      <td>${s.name}</td>
+      <td><span class="dot" style="background:${s.color}"></span>${s.short}</td>
+      <td><span class="bkv" style="color:${bc}">${pct(s.rate)}</span>
+        <span class="sbar" style="width:${Math.min(fill*0.7,70).toFixed(0)}px;background:${bc}"></span></td>
+      <td style="color:#94a3b8;font-size:.78rem">${fmt(s.pool)}</td>
+    </tr>`;
+  }).join('');
+
+  html += `<div class="section-title green">📈 Salon book rate cao nhất hệ thống</div>`;
+  html += `<table class="rank-tbl"><thead><tr><th>#</th><th>Salon</th><th>Vùng</th><th>Book Rate</th><th>Pool</th></tr></thead><tbody>${salonRows(top15,true)}</tbody></table>`;
+
+  // Analysis of top salons
+  const topRegions = [...new Set(top15.map(s=>s.short))];
+  html += `<div class="prose-box"><p>`;
+  html += `Salon dẫn đầu hệ thống: <strong>${top15[0].name}</strong> (GĐKV ${top15[0].short}) với <strong>${pct(top15[0].rate)}</strong>. `;
+  if(topRegions.length<=3) html += `Top 15 salon tập trung chủ yếu ở ${topRegions.length} vùng (${topRegions.map(r=>'GĐKV '+r).join(', ')}) — các vùng còn lại cần tìm hiểu gì làm khác biệt ở đây. `;
+  else html += `Top 15 salon phân bổ tương đối đều ở ${topRegions.length} vùng — cho thấy tuy chưa đạt mục tiêu nhưng có nhiều salon đơn lẻ đang làm tốt. `;
+  html += `</p></div>`;
+
+  html += `<div class="section-title red">⚠️ Salon book rate thấp nhất hệ thống</div>`;
+  html += `<table class="rank-tbl"><thead><tr><th>#</th><th>Salon</th><th>Vùng</th><th>Book Rate</th><th>Pool</th></tr></thead><tbody>${salonRows(bot15,false)}</tbody></table>`;
+
+  // Analysis of bottom salons
+  const botRegCount = {};
+  bot15.forEach(s=>{ botRegCount[s.short]=(botRegCount[s.short]||0)+1; });
+  const botRegSorted = Object.entries(botRegCount).sort((a,b)=>b[1]-a[1]);
+  html += `<div class="prose-box"><p>`;
+  html += `Salon thấp nhất hệ thống: <strong>${bot15[bot15.length-1]?.name}</strong> (GĐKV ${bot15[bot15.length-1]?.short}) chỉ <strong>${pct(bot15[bot15.length-1]?.rate)}</strong>. `;
+  if(botRegSorted[0]&&botRegSorted[0][1]>=3){
+    html += `<strong>Đáng chú ý: GĐKV ${botRegSorted[0][0]} có ${botRegSorted[0][1]} salon trong bottom 15</strong> — đây là dấu hiệu vấn đề hệ thống cả vùng, không phải cá biệt. `;
+  }
+  const veryLow = bot15.filter(s=>s.rate<META.alert_low);
+  if(veryLow.length) html += `${veryLow.length} salon đang dưới ngưỡng cảnh báo ${(META.alert_low*100).toFixed(0)}% — cần kiểm tra ngay có phải dữ liệu bất thường hay NV không thực sự gọi book. `;
+  html += `</p></div>`;
+
+  document.getElementById('c1').innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
+//  TAB 2 — PHÂN TÍCH THEO VÙNG
+// ══════════════════════════════════════════════════════
+function buildTab2(){
+  const regs = filtered();
+  const allSalons = regs.flatMap(r=>r.salons.map(s=>(({...s,rsm:r.rsm,short:r.short,color:r.color}))));
+  allSalons.sort((a,b)=>b.rate-a.rate);
+  const sysAvg = allSalons.reduce((s,x)=>s+(x.rate||0),0)/allSalons.length;
+  let html = '';
+
+  html += `<div class="section-title">🗺️ Phân tích chi tiết từng vùng GĐKV</div>`;
+  html += `<div class="rgrid">`;
+
+  regs.forEach((r,idx)=>{
+    const ra = analyzeRegion(r, allSalons);
+    const n = ra.n||0;
+    const top3 = r.salons.slice(0,3);
+    const bot3 = n>3?[...r.salons].slice(-3).reverse():[];
+
+    const topRows = top3.map(s=>`<tr>
+      <td><span class="tag top">TOP</span></td>
+      <td>${s.name}</td>
+      <td><span class="bkv" style="color:${bkColor(s.rate)}">${pct(s.rate)}</span>
+        <span class="sbar" style="width:${Math.min((s.rate||0)/META.bk_target*70,70).toFixed(0)}px;background:${bkColor(s.rate)}"></span></td>
+      <td style="color:#94a3b8;font-size:.76rem">${fmt(s.pool)}</td>
+    </tr>`).join('');
+
+    const botRows = bot3.map(s=>`<tr>
+      <td><span class="tag ${s.rate<META.alert_low?'warn':'bot'}">${s.rate<META.alert_low?'⚠️':'BOT'}</span></td>
+      <td>${s.name}</td>
+      <td><span class="bkv" style="color:${bkColor(s.rate)}">${pct(s.rate)}</span>
+        <span class="sbar" style="width:${Math.min((s.rate||0)/META.bk_target*70,70).toFixed(0)}px;background:${bkColor(s.rate)}"></span></td>
+      <td style="color:#94a3b8;font-size:.76rem">${fmt(s.pool)}</td>
+    </tr>`).join('');
+
+    const botSep = bot3.length?`<tr><td colspan="4" style="padding:2px 13px;font-size:.68rem;color:#94a3b8;background:#f8fafc">Thấp nhất vùng</td></tr>`:'';
+
+    // ── Region narrative ──
+    let analysis = [];
+
+    // Trend
+    if(r.bk_prv!=null){
+      const d=r.bk_cur-r.bk_prv;
+      if(d<-0.02) analysis.push(`Giảm mạnh <strong>-${(Math.abs(d)*100).toFixed(1)}%</strong> so với kỳ trước (${pct(r.bk_prv)} → ${pct(r.bk_cur)}).`);
+      else if(d<-0.005) analysis.push(`Giảm nhẹ <strong>${(d*100).toFixed(1)}%</strong> so với kỳ trước (${pct(r.bk_prv)} → ${pct(r.bk_cur)}).`);
+      else if(d>0.02) analysis.push(`Tăng tốt <strong>+${(d*100).toFixed(1)}%</strong> so với kỳ trước — xu hướng đang tích cực.`);
+      else if(d>0.005) analysis.push(`Tăng nhẹ <strong>+${(d*100).toFixed(1)}%</strong> so với kỳ trước.`);
+      else analysis.push(`Ổn định so với kỳ trước (${pct(r.bk_prv)}).`);
+    }
+
+    // vs system
+    if(ra.vsSystem!=null){
+      if(ra.vsSystem>0.02) analysis.push(`Book rate <strong>cao hơn trung bình hệ thống ${(ra.vsSystem*100).toFixed(1)}%</strong> (${pct(sysAvg)}).`);
+      else if(ra.vsSystem<-0.02) analysis.push(`Book rate <strong>thấp hơn trung bình hệ thống ${(Math.abs(ra.vsSystem)*100).toFixed(1)}%</strong> — cần cải thiện để bắt kịp.`);
+    }
+
+    // Internal gap
+    if(n>=2){
+      if(ra.gap>0.12) analysis.push(`Khoảng cách nội vùng rất lớn: <strong>${ra.top.name}</strong> đạt <strong>${pct(ra.top.rate)}</strong> trong khi <strong>${ra.bot.name}</strong> chỉ <strong>${pct(ra.bot.rate)}</strong> (chênh ${(ra.gap*100).toFixed(1)}%) — có NV làm được nhưng chưa nhân rộng cách làm.`);
+      else if(ra.gap>0.06) analysis.push(`Khoảng cách nội vùng ở mức trung bình (${(ra.gap*100).toFixed(1)}%): salon đầu ${pct(ra.top.rate)}, salon cuối ${pct(ra.bot.rate)}.`);
+      else analysis.push(`Các salon trong vùng tương đối đồng đều (chênh ${(ra.gap*100).toFixed(1)}%).`);
+    }
+
+    // Concentration
+    if(ra.concentrated) analysis.push(`Chỉ <strong>${ra.aboveAvg}/${n} salon</strong> vượt trung bình vùng (${pct(ra.avg)}) — kết quả tổng đang bị kéo bởi vài salon đầu.`);
+
+    // Alert salons
+    if(ra.alertSalons&&ra.alertSalons.length){
+      const names = ra.alertSalons.map(s=>`<strong>${s.name}</strong> (${pct(s.rate)})`).join(', ');
+      analysis.push(`Salon cần kiểm tra ngay (dưới 10%): ${names}.`);
+    }
+
+    // Rank context
+    analysis.push(`Xếp hạng hệ thống: <strong>#${idx+1}/${regs.length}</strong>. Đang ở ${(r.bk_cur/META.bk_target*100).toFixed(0)}% mục tiêu 65%.`);
+
+    const analysisHtml = analysis.map(s=>`<p>${s}</p>`).join('');
+
+    // Alerts
+    let alertsHtml = '';
+    if(ra.alertSalons&&ra.alertSalons.length)
+      alertsHtml += `<div class="rcard-alerts"><div class="callout red" style="margin:0">🚨 ${ra.alertSalons.length} salon dưới 10% — cần kiểm tra ngay</div></div>`;
+    if(ra.concentrated)
+      alertsHtml += `<div class="rcard-alerts"><div class="callout" style="margin:0">📌 Kết quả tập trung vào ${ra.aboveAvg} salon đầu — rủi ro nếu các salon này giảm</div></div>`;
+
+    html += `<div class="rcard" data-rsm="${r.rsm}">
+      <div class="rcard-head" style="border-left-color:${r.color}">
+        <div>
+          <div class="rname" style="color:${r.color}">GĐKV ${r.rsm}</div>
+          <div class="rsub">${n} salon · Pool: ${fmt(r.pool)}</div>
         </div>
-        <div class="region-card">
-          <div class="region-card-header" style="border-left:5px solid #f97316">
-            <div>
-              <div class="name" style="color:#f97316">GĐKV Đoàn Trung Đức</div>
-              <div style="font-size:.78rem;color:#94a3b8;margin-top:2px">7 salon · Pool: 16,038</div>
-            </div>
-            <div style="text-align:right">
-              <span class="bk-big" style="color:#f59e0b">14.1%</span>
-              <span class="vs"><span style="color:#ef4444">▼1.0%</span></span>
-            </div>
-          </div>
-          <table class="salon-table">
-            <thead><tr><th></th><th>Salon</th><th>Book Rate</th></tr></thead>
-            <tbody><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>382 NT</td>
-              <td><span class="bk-val" style="color:#f59e0b">20.2%</span>
-                <span class="s-bar" style="width:31px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>116 TK</td>
-              <td><span class="bk-val" style="color:#f59e0b">16.8%</span>
-                <span class="s-bar" style="width:26px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>109 TQH</td>
-              <td><span class="bk-val" style="color:#f59e0b">14.5%</span>
-                <span class="s-bar" style="width:22px;background:#f59e0b"></span></td>
-            </tr><tr><td colspan="3" style="padding:2px 14px;background:#f8fafc;font-size:.7rem;color:#94a3b8">Thấp nhất vùng</td></tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>65 CD</td>
-              <td><span class="bk-val" style="color:#ef4444">10.0%</span>
-                <span class="s-bar" style="width:15px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>90 NH</td>
-              <td><span class="bk-val" style="color:#ef4444">10.9%</span>
-                <span class="s-bar" style="width:17px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>62 LH</td>
-              <td><span class="bk-val" style="color:#ef4444">11.6%</span>
-                <span class="s-bar" style="width:18px;background:#ef4444"></span></td>
-            </tr></tbody>
-          </table>
-          <div class="region-note">Giảm <strong>-1.0%</strong> so với kỳ trước (15.1% → 14.1%). Nội vùng: salon cao nhất <strong>382 NT</strong> đạt <strong>20.2%</strong>, thấp nhất <strong>65 CD</strong> chỉ <strong>10.0%</strong> — chênh <strong>10.2%</strong>.</div>
+        <div style="text-align:right">
+          <span class="rbk" style="color:${bkColor(r.bk_cur)}">${pct(r.bk_cur)}</span>
+          <span class="rvs">${arrowSpan(r.bk_cur,r.bk_prv)}</span>
+          <div style="font-size:.72rem;color:#94a3b8">#${idx+1} toàn hệ thống</div>
         </div>
-        <div class="region-card">
-          <div class="region-card-header" style="border-left:5px solid #6366f1">
-            <div>
-              <div class="name" style="color:#6366f1">GĐKV Nguyễn Như Quỳnh</div>
-              <div style="font-size:.78rem;color:#94a3b8;margin-top:2px">6 salon · Pool: 10,981</div>
-            </div>
-            <div style="text-align:right">
-              <span class="bk-big" style="color:#ef4444">11.9%</span>
-              <span class="vs"><span style="color:#ef4444">▼0.1%</span></span>
-            </div>
-          </div>
-          <table class="salon-table">
-            <thead><tr><th></th><th>Salon</th><th>Book Rate</th></tr></thead>
-            <tbody><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>168 NVC</td>
-              <td><span class="bk-val" style="color:#f59e0b">12.5%</span>
-                <span class="s-bar" style="width:19px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>10 TP</td>
-              <td><span class="bk-val" style="color:#f59e0b">12.3%</span>
-                <span class="s-bar" style="width:19px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>362 NGT BN</td>
-              <td><span class="bk-val" style="color:#f59e0b">12.3%</span>
-                <span class="s-bar" style="width:19px;background:#f59e0b"></span></td>
-            </tr><tr><td colspan="3" style="padding:2px 14px;background:#f8fafc;font-size:.7rem;color:#94a3b8">Thấp nhất vùng</td></tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>11 PKT</td>
-              <td><span class="bk-val" style="color:#ef4444">10.0%</span>
-                <span class="s-bar" style="width:15px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>186 QT</td>
-              <td><span class="bk-val" style="color:#ef4444">10.4%</span>
-                <span class="s-bar" style="width:16px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>4 LQD BN</td>
-              <td><span class="bk-val" style="color:#ef4444">11.4%</span>
-                <span class="s-bar" style="width:18px;background:#ef4444"></span></td>
-            </tr></tbody>
-          </table>
-          <div class="region-note">Ổn định, không thay đổi đáng kể so với kỳ trước (12.0%). Nội vùng: salon cao nhất <strong>168 NVC</strong> đạt <strong>12.5%</strong>, thấp nhất <strong>11 PKT</strong> chỉ <strong>10.0%</strong> — chênh <strong>2.5%</strong>. Khoảng cách nhỏ — các salon trong vùng đang hoạt động khá đồng đều.</div>
-        </div>
-        <div class="region-card">
-          <div class="region-card-header" style="border-left:5px solid #10b981">
-            <div>
-              <div class="name" style="color:#10b981">GĐKV Trịnh Văn Quang</div>
-              <div style="font-size:.78rem;color:#94a3b8;margin-top:2px">5 salon · Pool: 9,594</div>
-            </div>
-            <div style="text-align:right">
-              <span class="bk-big" style="color:#ef4444">11.8%</span>
-              <span class="vs"><span style="color:#ef4444">▼1.9%</span></span>
-            </div>
-          </div>
-          <table class="salon-table">
-            <thead><tr><th></th><th>Salon</th><th>Book Rate</th></tr></thead>
-            <tbody><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>12 LDT</td>
-              <td><span class="bk-val" style="color:#f59e0b">18.5%</span>
-                <span class="s-bar" style="width:29px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>32 NAT</td>
-              <td><span class="bk-val" style="color:#f59e0b">14.8%</span>
-                <span class="s-bar" style="width:23px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>483 TN</td>
-              <td><span class="bk-val" style="color:#f59e0b">12.2%</span>
-                <span class="s-bar" style="width:19px;background:#f59e0b"></span></td>
-            </tr><tr><td colspan="3" style="padding:2px 14px;background:#f8fafc;font-size:.7rem;color:#94a3b8">Thấp nhất vùng</td></tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>76 PVH</td>
-              <td><span class="bk-val" style="color:#ef4444">9.0%</span>
-                <span class="s-bar" style="width:14px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>1180 QT</td>
-              <td><span class="bk-val" style="color:#ef4444">10.1%</span>
-                <span class="s-bar" style="width:15px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>483 TN</td>
-              <td><span class="bk-val" style="color:#f59e0b">12.2%</span>
-                <span class="s-bar" style="width:19px;background:#f59e0b"></span></td>
-            </tr></tbody>
-          </table>
-          <div class="region-note">Giảm <strong>-1.9%</strong> so với kỳ trước (13.7% → 11.8%). Nội vùng: salon cao nhất <strong>12 LDT</strong> đạt <strong>18.5%</strong>, thấp nhất <strong>76 PVH</strong> chỉ <strong>9.0%</strong> — chênh <strong>9.5%</strong>. Chỉ 2/5 salon vượt trung bình vùng — kết quả đang bị kéo bởi vài salon đầu.</div>
-        </div>
-        <div class="region-card">
-          <div class="region-card-header" style="border-left:5px solid #06b6d4">
-            <div>
-              <div class="name" style="color:#06b6d4">GĐKV Nguyễn Việt Cường</div>
-              <div style="font-size:.78rem;color:#94a3b8;margin-top:2px">9 salon · Pool: 19,643</div>
-            </div>
-            <div style="text-align:right">
-              <span class="bk-big" style="color:#ef4444">11.6%</span>
-              <span class="vs"><span style="color:#ef4444">▼1.5%</span></span>
-            </div>
-          </div>
-          <table class="salon-table">
-            <thead><tr><th></th><th>Salon</th><th>Book Rate</th></tr></thead>
-            <tbody><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>103 TN</td>
-              <td><span class="bk-val" style="color:#f59e0b">16.3%</span>
-                <span class="s-bar" style="width:25px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>401/1 NDT</td>
-              <td><span class="bk-val" style="color:#f59e0b">13.9%</span>
-                <span class="s-bar" style="width:21px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>1146 KVC</td>
-              <td><span class="bk-val" style="color:#f59e0b">12.5%</span>
-                <span class="s-bar" style="width:19px;background:#f59e0b"></span></td>
-            </tr><tr><td colspan="3" style="padding:2px 14px;background:#f8fafc;font-size:.7rem;color:#94a3b8">Thấp nhất vùng</td></tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>80 PL BD</td>
-              <td><span class="bk-val" style="color:#ef4444">8.4%</span>
-                <span class="s-bar" style="width:13px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>255 NAN</td>
-              <td><span class="bk-val" style="color:#ef4444">8.7%</span>
-                <span class="s-bar" style="width:13px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>1371 PVT</td>
-              <td><span class="bk-val" style="color:#ef4444">9.3%</span>
-                <span class="s-bar" style="width:14px;background:#ef4444"></span></td>
-            </tr></tbody>
-          </table>
-          <div class="region-note">Giảm <strong>-1.5%</strong> so với kỳ trước (13.1% → 11.6%). Nội vùng: salon cao nhất <strong>103 TN</strong> đạt <strong>16.3%</strong>, thấp nhất <strong>80 PL BD</strong> chỉ <strong>8.4%</strong> — chênh <strong>7.9%</strong>.</div>
-        </div>
-        <div class="region-card">
-          <div class="region-card-header" style="border-left:5px solid #ef4444">
-            <div>
-              <div class="name" style="color:#ef4444">GĐKV Nguyễn Thị Huệ</div>
-              <div style="font-size:.78rem;color:#94a3b8;margin-top:2px">6 salon · Pool: 5,567</div>
-            </div>
-            <div style="text-align:right">
-              <span class="bk-big" style="color:#ef4444">10.5%</span>
-              <span class="vs"><span style="color:#22c55e">▲0.4%</span></span>
-            </div>
-          </div>
-          <table class="salon-table">
-            <thead><tr><th></th><th>Salon</th><th>Book Rate</th></tr></thead>
-            <tbody><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>595 BT TH</td>
-              <td><span class="bk-val" style="color:#f59e0b">15.3%</span>
-                <span class="s-bar" style="width:24px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>80 TP TH</td>
-              <td><span class="bk-val" style="color:#ef4444">11.4%</span>
-                <span class="s-bar" style="width:18px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>290 QT TH</td>
-              <td><span class="bk-val" style="color:#ef4444">10.1%</span>
-                <span class="s-bar" style="width:16px;background:#ef4444"></span></td>
-            </tr><tr><td colspan="3" style="padding:2px 14px;background:#f8fafc;font-size:.7rem;color:#94a3b8">Thấp nhất vùng</td></tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>304 NT TH</td>
-              <td><span class="bk-val" style="color:#ef4444">8.3%</span>
-                <span class="s-bar" style="width:13px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>68 LN NA</td>
-              <td><span class="bk-val" style="color:#ef4444">8.4%</span>
-                <span class="s-bar" style="width:13px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>58 NVC NA</td>
-              <td><span class="bk-val" style="color:#ef4444">10.0%</span>
-                <span class="s-bar" style="width:15px;background:#ef4444"></span></td>
-            </tr></tbody>
-          </table>
-          <div class="region-note">Ổn định, không thay đổi đáng kể so với kỳ trước (10.1%). Nội vùng: salon cao nhất <strong>595 BT TH</strong> đạt <strong>15.3%</strong>, thấp nhất <strong>304 NT TH</strong> chỉ <strong>8.3%</strong> — chênh <strong>7.0%</strong>. Chỉ 2/6 salon vượt trung bình vùng — kết quả đang bị kéo bởi vài salon đầu.</div>
-        </div>
-        <div class="region-card">
-          <div class="region-card-header" style="border-left:5px solid #ec4899">
-            <div>
-              <div class="name" style="color:#ec4899">GĐKV Phan Thị Hồng Gấm</div>
-              <div style="font-size:.78rem;color:#94a3b8;margin-top:2px">8 salon · Pool: 14,487</div>
-            </div>
-            <div style="text-align:right">
-              <span class="bk-big" style="color:#ef4444">10.2%</span>
-              <span class="vs"><span style="color:#ef4444">▼0.5%</span></span>
-            </div>
-          </div>
-          <table class="salon-table">
-            <thead><tr><th></th><th>Salon</th><th>Book Rate</th></tr></thead>
-            <tbody><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>173 TN</td>
-              <td><span class="bk-val" style="color:#f59e0b">14.0%</span>
-                <span class="s-bar" style="width:22px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>50BT4 NPC LD</td>
-              <td><span class="bk-val" style="color:#f59e0b">12.2%</span>
-                <span class="s-bar" style="width:19px;background:#f59e0b"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>39 HBT</td>
-              <td><span class="bk-val" style="color:#ef4444">11.8%</span>
-                <span class="s-bar" style="width:18px;background:#ef4444"></span></td>
-            </tr><tr><td colspan="3" style="padding:2px 14px;background:#f8fafc;font-size:.7rem;color:#94a3b8">Thấp nhất vùng</td></tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>148 TD</td>
-              <td><span class="bk-val" style="color:#ef4444">6.1%</span>
-                <span class="s-bar" style="width:9px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>202 DC</td>
-              <td><span class="bk-val" style="color:#ef4444">7.3%</span>
-                <span class="s-bar" style="width:11px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>363 LNQ TN</td>
-              <td><span class="bk-val" style="color:#ef4444">7.7%</span>
-                <span class="s-bar" style="width:12px;background:#ef4444"></span></td>
-            </tr></tbody>
-          </table>
-          <div class="region-note">Giảm <strong>-0.5%</strong> so với kỳ trước (10.7% → 10.2%). Nội vùng: salon cao nhất <strong>173 TN</strong> đạt <strong>14.0%</strong>, thấp nhất <strong>148 TD</strong> chỉ <strong>6.1%</strong> — chênh <strong>7.9%</strong>.</div>
-        </div>
-        <div class="region-card">
-          <div class="region-card-header" style="border-left:5px solid #8b5cf6">
-            <div>
-              <div class="name" style="color:#8b5cf6">GĐKV Tống Xuân Quyền</div>
-              <div style="font-size:.78rem;color:#94a3b8;margin-top:2px">8 salon · Pool: 20,286</div>
-            </div>
-            <div style="text-align:right">
-              <span class="bk-big" style="color:#ef4444">8.5%</span>
-              <span class="vs"><span style="color:#ef4444">▼0.9%</span></span>
-            </div>
-          </div>
-          <table class="salon-table">
-            <thead><tr><th></th><th>Salon</th><th>Book Rate</th></tr></thead>
-            <tbody><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>186 DTH</td>
-              <td><span class="bk-val" style="color:#ef4444">11.9%</span>
-                <span class="s-bar" style="width:18px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>236 DBT</td>
-              <td><span class="bk-val" style="color:#ef4444">10.8%</span>
-                <span class="s-bar" style="width:17px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-top">TOP</span></td>
-              <td>420 HTP</td>
-              <td><span class="bk-val" style="color:#ef4444">9.3%</span>
-                <span class="s-bar" style="width:14px;background:#ef4444"></span></td>
-            </tr><tr><td colspan="3" style="padding:2px 14px;background:#f8fafc;font-size:.7rem;color:#94a3b8">Thấp nhất vùng</td></tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>113 THD AG</td>
-              <td><span class="bk-val" style="color:#ef4444">5.6%</span>
-                <span class="s-bar" style="width:9px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>237 NTT</td>
-              <td><span class="bk-val" style="color:#ef4444">5.7%</span>
-                <span class="s-bar" style="width:9px;background:#ef4444"></span></td>
-            </tr><tr>
-              <td><span class="tag-bot">BOT</span></td>
-              <td>25 TD</td>
-              <td><span class="bk-val" style="color:#ef4444">6.1%</span>
-                <span class="s-bar" style="width:9px;background:#ef4444"></span></td>
-            </tr></tbody>
-          </table>
-          <div class="region-note">Giảm <strong>-0.9%</strong> so với kỳ trước (9.4% → 8.5%). Nội vùng: salon cao nhất <strong>186 DTH</strong> đạt <strong>11.9%</strong>, thấp nhất <strong>113 THD AG</strong> chỉ <strong>5.6%</strong> — chênh <strong>6.3%</strong>.</div>
-        </div></div>
-</div>
-</body>
-</html>
+      </div>
+      <table class="stbl">
+        <thead><tr><th></th><th>Salon</th><th>Book Rate</th><th>Pool</th></tr></thead>
+        <tbody>${topRows}${botSep}${botRows}</tbody>
+      </table>
+      ${alertsHtml}
+      <div class="rcard-analysis">${analysisHtml}</div>
+    </div>`;
+  });
+
+  html += `</div>`;
+  document.getElementById('c2').innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
+//  TAB 3 — XU HƯỚNG
+// ══════════════════════════════════════════════════════
+function buildTrend(){
+  const c = document.getElementById('c3');
+  if(!HISTORY||HISTORY.length===0){
+    c.innerHTML='<div class="prose-box"><p>Chưa đủ dữ liệu lịch sử cho tháng này.</p></div>';
+    return;
+  }
+
+  const COLORS = {};
+  RD.forEach(r=>COLORS[r.rsm]=r.color);
+  const nPeriods = HISTORY.length;
+
+  // ── SVG Chart builder ──────────────────────────────
+  function makeSVG(seriesList, labels, opts={}){
+    const W=opts.width||760, H=opts.height||300;
+    const PAD={t:24,r:24,b:48,l:52};
+    const cW=W-PAD.l-PAD.r, cH=H-PAD.t-PAD.b;
+
+    const allVals = seriesList.flatMap(s=>s.vals).filter(v=>v!=null);
+    const maxY = Math.max(...allVals, 0.18)*1.15;
+    const minY = 0;
+    const range = maxY - minY;
+
+    const xPos = i => PAD.l + (nPeriods<=1 ? cW/2 : i/(nPeriods-1)*cW);
+    const yPos = v => PAD.t + cH - ((v-minY)/range*cH);
+
+    // Grid lines
+    const yTicks = [];
+    const step = maxY<=0.15?0.02:maxY<=0.25?0.05:0.10;
+    for(let v=0; v<=maxY; v+=step) yTicks.push(parseFloat(v.toFixed(3)));
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg">`;
+
+    // Grid
+    yTicks.forEach(v=>{
+      const y=yPos(v);
+      svg+=`<line x1="${PAD.l}" y1="${y}" x2="${W-PAD.r}" y2="${y}" stroke="#e2e8f0" stroke-width="1"/>`;
+      svg+=`<text x="${PAD.l-6}" y="${y+4}" text-anchor="end" font-size="10" fill="#94a3b8">${(v*100).toFixed(0)}%</text>`;
+    });
+
+    // X axis labels
+    labels.forEach((lbl,i)=>{
+      svg+=`<text x="${xPos(i)}" y="${H-10}" text-anchor="middle" font-size="10" fill="#64748b">${lbl}</text>`;
+    });
+
+    // Target line (if visible in range)
+    if(META.bk_target <= maxY*1.05){
+      const yt=yPos(META.bk_target);
+      svg+=`<line x1="${PAD.l}" y1="${yt}" x2="${W-PAD.r}" y2="${yt}" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,3"/>`;
+      svg+=`<text x="${W-PAD.r+2}" y="${yt+4}" font-size="9" fill="#ef4444">65%</text>`;
+    }
+
+    // Series lines + points
+    seriesList.forEach(s=>{
+      const pts = s.vals.map((v,i)=>v!=null?`${xPos(i)},${yPos(v)}`:null).filter(Boolean);
+      if(pts.length<1) return;
+      // Break line at nulls
+      let segments=[], seg=[];
+      s.vals.forEach((v,i)=>{
+        if(v!=null) seg.push([xPos(i),yPos(v)]);
+        else if(seg.length){segments.push(seg);seg=[];}
+      });
+      if(seg.length) segments.push(seg);
+      segments.forEach(sg=>{
+        if(sg.length>=2){
+          svg+=`<polyline points="${sg.map(p=>p.join(',')).join(' ')}" fill="none" stroke="${s.color}" stroke-width="${s.bold?2.5:1.5}" stroke-opacity="${s.bold?1:0.75}" ${s.dash?'stroke-dasharray="5,3"':''}/>`;
+        }
+      });
+      // Points
+      s.vals.forEach((v,i)=>{
+        if(v==null) return;
+        svg+=`<circle cx="${xPos(i)}" cy="${yPos(v)}" r="${s.bold?5:4}" fill="${s.color}" stroke="#fff" stroke-width="2">
+          <title>GĐKV ${s.label} — Kỳ ${labels[i]}: ${(v*100).toFixed(1)}%</title>
+        </circle>`;
+        if(s.bold){
+          svg+=`<text x="${xPos(i)}" y="${yPos(v)-9}" text-anchor="middle" font-size="10" font-weight="700" fill="${s.color}">${(v*100).toFixed(1)}%</text>`;
+        }
+      });
+    });
+
+    // Axes
+    svg+=`<line x1="${PAD.l}" y1="${PAD.t}" x2="${PAD.l}" y2="${PAD.t+cH}" stroke="#cbd5e1" stroke-width="1.5"/>`;
+    svg+=`<line x1="${PAD.l}" y1="${PAD.t+cH}" x2="${W-PAD.r}" y2="${PAD.t+cH}" stroke="#cbd5e1" stroke-width="1.5"/>`;
+
+    svg+=`</svg>`;
+    return svg;
+  }
+
+  const labels = HISTORY.map(h=>h.label);
+
+  // ── System average series ──────────────────────────
+  const sysVals = HISTORY.map(h=>h.sys_avg);
+
+  // ── Per region series ──────────────────────────────
+  const regionSeries = RD.map(r=>{
+    return {
+      rsm: r.rsm, short: r.short, color: r.color,
+      vals: HISTORY.map(h=>(h.regions||{})[r.rsm]||null),
+    };
+  });
+
+  // ── Trend analysis ──────────────────────────────────
+  function trendAnalysis(){
+    if(nPeriods<2) return '<p>Cần ít nhất 2 kỳ để phân tích xu hướng.</p>';
+    const first=HISTORY[0], last=HISTORY[nPeriods-1];
+    const bullets=[];
+
+    // System trend
+    const sysDiff = last.sys_avg - first.sys_avg;
+    if(Math.abs(sysDiff)<0.002) bullets.push('Hệ thống ổn định: book rate trung bình gần như không đổi từ kỳ đầu đến kỳ cuối ('+pct(first.sys_avg)+' → '+pct(last.sys_avg)+').');
+    else if(sysDiff<0) bullets.push('Hệ thống đang có xu hướng <strong>giảm</strong>: từ '+pct(first.sys_avg)+' (kỳ '+first.label+') xuống '+pct(last.sys_avg)+' (kỳ '+last.label+') — giảm '+pct(Math.abs(sysDiff))+'.');
+    else bullets.push('Hệ thống đang có xu hướng <strong>tăng</strong>: từ '+pct(first.sys_avg)+' (kỳ '+first.label+') lên '+pct(last.sys_avg)+' (kỳ '+last.label+') — tăng '+pct(sysDiff)+'.');
+
+    // Per region
+    const improving=[], declining=[], stable=[];
+    regionSeries.forEach(s=>{
+      const f=s.vals[0], l=s.vals[nPeriods-1];
+      if(f==null||l==null) return;
+      const d=l-f;
+      if(d>0.01) improving.push({short:s.short,d,f,l,color:s.color});
+      else if(d<-0.01) declining.push({short:s.short,d,f,l,color:s.color});
+      else stable.push(s.short);
+    });
+    improving.sort((a,b)=>b.d-a.d);
+    declining.sort((a,b)=>a.d-b.d);
+
+    if(improving.length) bullets.push('<strong>Đang tăng:</strong> '+improving.map(r=>'<strong style="color:'+r.color+'">GĐKV '+r.short+'</strong> (+'+( r.d*100).toFixed(1)+'%, '+pct(r.f)+'→'+pct(r.l)+')').join(' · ')+'.');
+    if(declining.length) bullets.push('<strong>Đang giảm:</strong> '+declining.map(r=>'<strong style="color:'+r.color+'">GĐKV '+r.short+'</strong> ('+(r.d*100).toFixed(1)+'%, '+pct(r.f)+'→'+pct(r.l)+')').join(' · ')+'.');
+    if(stable.length) bullets.push('Ổn định (biến động <1%): '+stable.map(s=>'GĐKV '+s).join(', ')+'.');
+
+    // Ranking shift
+    const firstRank = [...regionSeries].filter(s=>s.vals[0]!=null).sort((a,b)=>b.vals[0]-a.vals[0]).map(s=>s.short);
+    const lastRank  = [...regionSeries].filter(s=>s.vals[nPeriods-1]!=null).sort((a,b)=>b.vals[nPeriods-1]-a.vals[nPeriods-1]).map(s=>s.short);
+    const bigRises=[],bigDrops=[];
+    lastRank.forEach((s,newIdx)=>{
+      const oldIdx=firstRank.indexOf(s);
+      if(oldIdx<0) return;
+      const diff=oldIdx-newIdx;
+      if(diff>=2) bigRises.push(`GĐKV ${s} tăng ${diff} bậc`);
+      else if(diff<=-2) bigDrops.push(`GĐKV ${s} giảm ${Math.abs(diff)} bậc`);
+    });
+    if(bigRises.length||bigDrops.length){
+      bullets.push('<strong>Thay đổi thứ hạng đáng chú ý:</strong> '+[...bigRises,...bigDrops].join(', ')+'.');
+    }
+
+    // Warning: consistently low
+    const consistentLow = regionSeries.filter(s=>s.vals.every(v=>v!=null&&v<0.10));
+    if(consistentLow.length) bullets.push('<strong>⚠️ Cảnh báo:</strong> '+consistentLow.map(s=>'<strong style="color:'+s.color+'">GĐKV '+s.short+'</strong>').join(', ')+' duy trì book rate dưới 10% liên tục — cần can thiệp sớm.');
+
+    // Note on limited data
+    if(nPeriods<=3) bullets.push('<em>Lưu ý: hiện chỉ có '+nPeriods+' kỳ dữ liệu — xu hướng sẽ rõ hơn khi tích lũy thêm.</em>');
+
+    return bullets.map(b=>`<p>${b}</p>`).join('');
+  }
+
+  function pct(v){ return v==null?'—':(v*100).toFixed(1)+'%'; }
+
+  // ── Legend ────────────────────────────────────────
+  const legendHtml = [
+    `<span style="display:inline-flex;align-items:center;gap:5px;cursor:pointer;margin:4px 10px 4px 0" onclick="toggleSeries('__sys__')">
+       <svg width="24" height="3"><line x1="0" y1="1.5" x2="24" y2="1.5" stroke="#1e293b" stroke-width="2.5" stroke-dasharray="5,3"/></svg>
+       <span style="font-size:.8rem;color:#1e293b;font-weight:600">Hệ thống TB</span>
+     </span>`,
+    ...RD.map(r=>`<span style="display:inline-flex;align-items:center;gap:5px;cursor:pointer;margin:4px 10px 4px 0" onclick="toggleSeries('${r.rsm}')">
+       <svg width="24" height="3"><line x1="0" y1="1.5" x2="24" y2="1.5" stroke="${r.color}" stroke-width="2.5"/></svg>
+       <span style="font-size:.8rem;color:${r.color};font-weight:600">GĐKV ${r.short}</span>
+     </span>`)
+  ].join('');
+
+  // ── Mini charts per GĐKV ─────────────────────────
+  const miniCharts = RD.map(r=>{
+    const s = regionSeries.find(x=>x.rsm===r.rsm);
+    const firstVal=s.vals.find(v=>v!=null), lastVal=[...s.vals].reverse().find(v=>v!=null);
+    const diff = (firstVal!=null&&lastVal!=null) ? lastVal-firstVal : null;
+    const diffStr = diff==null?'':(diff>=0?`<span style="color:#22c55e">▲${(diff*100).toFixed(1)}%</span>`:`<span style="color:#ef4444">▼${(Math.abs(diff)*100).toFixed(1)}%</span>`);
+    const miniSvg = makeSVG([
+      {label:r.short, color:r.color, vals:s.vals, bold:true},
+    ], labels, {width:340, height:160});
+    return `<div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-top:3px solid ${r.color}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span style="font-weight:700;font-size:.88rem;color:${r.color}">GĐKV ${r.rsm}</span>
+        <span style="font-size:.8rem">${pct(lastVal)} ${diffStr}</span>
+      </div>
+      ${miniSvg}
+    </div>`;
+  }).join('');
+
+  // ── Main chart data ───────────────────────────────
+  const hidden = new Set();
+  const allSeries = [
+    {label:'Hệ thống TB', color:'#1e293b', vals:sysVals, bold:false, dash:true},
+    ...regionSeries.map(s=>{return {label:'GĐKV '+s.short, color:s.color, vals:s.vals, bold:false, dash:false}})
+  ];
+
+  const mainChartId = 'trend-main-svg';
+  function renderMainChart(){
+    const visible = allSeries.filter(s=>!hidden.has(s.label));
+    document.getElementById(mainChartId).innerHTML = makeSVG(visible, labels, {width:840, height:320});
+  }
+
+  // Store for toggle
+  window._trendSeries = allSeries;
+  window._trendHidden = hidden;
+  window._renderMainChart = renderMainChart;
+
+  let html = '';
+  html += `<div class="section-title">📈 Xu hướng Book Rate — Kỳ 7 ngày tháng ${META.mm}/2026</div>`;
+  html += `<div class="prose-box">
+    <p>Mỗi điểm trên biểu đồ là 1 kỳ 7 ngày liên tiếp. Ngày cuối kỳ tăng dần theo ngày tháng (vd: kỳ 1–7/7, kỳ 2–8/7, ...). Biểu đồ sẽ tự cập nhật thêm điểm mỗi khi generate báo cáo ngày mới.</p>
+  </div>`;
+  html += `<div style="background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:16px">`;
+  html += `<div style="margin-bottom:10px;flex-wrap:wrap;display:flex">${legendHtml}</div>`;
+  html += `<div id="${mainChartId}"></div>`;
+  html += `</div>`;
+
+  html += `<div class="section-title amber">📝 Phân tích xu hướng</div>`;
+  html += `<div class="prose-box">${trendAnalysis()}</div>`;
+
+  html += `<div class="section-title">📊 Xu hướng từng vùng GĐKV</div>`;
+  html += `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-bottom:16px">${miniCharts}</div>`;
+
+  c.innerHTML = html;
+  renderMainChart();
+}
+
+window.toggleSeries = function(label){
+  if(!window._trendSeries) return;
+  if(window._trendHidden.has(label)) window._trendHidden.delete(label);
+  else window._trendHidden.add(label);
+  window._renderMainChart();
+};
+
+// ══════════════════════════════════════════════════════
+//  ROUTING
+// ══════════════════════════════════════════════════════
+let activeTab = 't1';
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  activeTab=id; render();
+}
+
+function render(){
+  buildTab1();
+  buildTab2();
+  buildTrend();
+}
+
+render();
+</script>
+</body></html>
