@@ -47,8 +47,12 @@ h2 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; b
 
 /* Summary section */
 .summary-box { background:#fff; border-radius:14px; padding:22px 24px; box-shadow:0 1px 4px rgba(0,0,0,.06); margin-bottom:32px; }
-.summary-box p { line-height:1.8; font-size:.9rem; color:#334155; }
+.summary-box p { line-height:1.8; font-size:.9rem; color:#334155; margin-bottom:8px; }
 .summary-box strong { color:#1e293b; }
+.summary-box .insight { border-left:3px solid #f59e0b; padding-left:12px; margin-top:12px; }
+/* Region narrative */
+.region-note { padding:10px 18px 14px; font-size:.83rem; color:#475569; line-height:1.65; border-top:1px solid #f1f5f9; }
+.region-note strong { color:#1e293b; }
 
 @media(max-width:600px) {
     .region-grid { grid-template-columns:1fr; }
@@ -184,11 +188,21 @@ h2 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; b
     </table>
   
     <div class="summary-box">
-      <p>Kỳ 02–08/07/2026 — Mục tiêu: <strong>65% lead được book trong 3 ngày đầu.</strong>
-      Chưa có vùng nào đạt mục tiêu. <strong>7/8 vùng giảm book rate</strong> so với kỳ trước — xu hướng toàn hệ thống đi xuống.</p>
-      <p style="margin-top:10px">Vùng dẫn đầu: <strong>GĐKV Sang (15.1%)</strong>.
-      Vùng thấp nhất: <strong>GĐKV Quyền (8.5%)</strong>.</p>
-      <p style='margin-top:10px'>Khoảng cách nội vùng lớn nhất: <strong>GĐKV Sang</strong> — salon đứng đầu <strong>8 CVL</strong> đạt <strong>20.3%</strong>, salon thấp nhất <strong>708 LTT</strong> chỉ <strong>6.5%</strong> (chênh <strong>13.8%</strong>).</p>
+      <p><strong>Tổng quan kỳ 02–08/07/2026:</strong> Mục tiêu 65% lead được book trong 3 ngày đầu.
+      <strong>Chưa có vùng nào đạt mục tiêu.</strong> <strong>7/8 vùng giảm book rate</strong> so với kỳ trước — xu hướng toàn hệ thống đang đi xuống, không phải vấn đề cục bộ.</p>
+
+      <p>Book rate trung bình hệ thống: <strong>11.7%</strong> (-0.9% so với kỳ trước — 12.6%). Còn cách mục tiêu 65% là <strong>53.3%</strong>.</p>
+
+      <p>Vùng dẫn đầu: <strong>GĐKV Sang</strong> (15.1%).
+      Vùng thấp nhất: <strong>GĐKV Quyền</strong> (8.5%).
+      Giảm nhiều nhất: <strong>GĐKV Quang</strong> (-1.9%). · Tăng duy nhất đáng chú ý: <strong>GĐKV Huệ</strong> (+0.4%).</p>
+
+      <div class="insight">
+        <p>Vùng có khoảng cách nội bộ lớn nhất: <strong>GĐKV Sang</strong> — <strong>8 CVL</strong> đạt <strong>20.3%</strong> trong khi <strong>708 LTT</strong> chỉ <strong>6.5%</strong> (chênh <strong>13.8%</strong>). Đây là dấu hiệu có NV làm được nhưng chưa được nhân rộng.</p>
+      </div>
+      <div class="insight" style="border-color:#ef4444;margin-top:10px">
+        <p>GĐKV Quyền đang ở cuối bảng với <strong>8.5%</strong>. Các salon thấp nhất vùng: <strong>25 TD</strong> (6.1%), <strong>237 NTT</strong> (5.7%), <strong>113 THD AG</strong> (5.6%) — vấn đề đồng đều trên diện rộng, cần rà lại quy trình tiếp cận lead từ đầu.</p>
+      </div>
     </div>
   <h2>Phân tích từng vùng — Top & Bottom Salon</h2>
   <div class="region-grid">
@@ -237,6 +251,7 @@ h2 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; b
                 <span class="s-bar" style="width:19px;background:#f59e0b"></span></td>
             </tr></tbody>
           </table>
+          <div class="region-note">Giảm <strong>-1.4%</strong> so với kỳ trước (16.5% → 15.1%). Nội vùng: salon cao nhất <strong>8 CVL</strong> đạt <strong>20.3%</strong>, thấp nhất <strong>708 LTT</strong> chỉ <strong>6.5%</strong> — chênh <strong>13.8%</strong>. Khoảng cách lớn cho thấy có salon đang làm tốt nhưng chưa nhân ra được.</div>
         </div>
         <div class="region-card">
           <div class="region-card-header" style="border-left:5px solid #f97316">
@@ -283,6 +298,7 @@ h2 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; b
                 <span class="s-bar" style="width:18px;background:#ef4444"></span></td>
             </tr></tbody>
           </table>
+          <div class="region-note">Giảm <strong>-1.0%</strong> so với kỳ trước (15.1% → 14.1%). Nội vùng: salon cao nhất <strong>382 NT</strong> đạt <strong>20.2%</strong>, thấp nhất <strong>65 CD</strong> chỉ <strong>10.0%</strong> — chênh <strong>10.2%</strong>.</div>
         </div>
         <div class="region-card">
           <div class="region-card-header" style="border-left:5px solid #6366f1">
@@ -329,6 +345,7 @@ h2 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; b
                 <span class="s-bar" style="width:18px;background:#ef4444"></span></td>
             </tr></tbody>
           </table>
+          <div class="region-note">Ổn định, không thay đổi đáng kể so với kỳ trước (12.0%). Nội vùng: salon cao nhất <strong>168 NVC</strong> đạt <strong>12.5%</strong>, thấp nhất <strong>11 PKT</strong> chỉ <strong>10.0%</strong> — chênh <strong>2.5%</strong>. Khoảng cách nhỏ — các salon trong vùng đang hoạt động khá đồng đều.</div>
         </div>
         <div class="region-card">
           <div class="region-card-header" style="border-left:5px solid #10b981">
@@ -375,6 +392,7 @@ h2 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; b
                 <span class="s-bar" style="width:19px;background:#f59e0b"></span></td>
             </tr></tbody>
           </table>
+          <div class="region-note">Giảm <strong>-1.9%</strong> so với kỳ trước (13.7% → 11.8%). Nội vùng: salon cao nhất <strong>12 LDT</strong> đạt <strong>18.5%</strong>, thấp nhất <strong>76 PVH</strong> chỉ <strong>9.0%</strong> — chênh <strong>9.5%</strong>. Chỉ 2/5 salon vượt trung bình vùng — kết quả đang bị kéo bởi vài salon đầu.</div>
         </div>
         <div class="region-card">
           <div class="region-card-header" style="border-left:5px solid #06b6d4">
@@ -421,6 +439,7 @@ h2 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; b
                 <span class="s-bar" style="width:14px;background:#ef4444"></span></td>
             </tr></tbody>
           </table>
+          <div class="region-note">Giảm <strong>-1.5%</strong> so với kỳ trước (13.1% → 11.6%). Nội vùng: salon cao nhất <strong>103 TN</strong> đạt <strong>16.3%</strong>, thấp nhất <strong>80 PL BD</strong> chỉ <strong>8.4%</strong> — chênh <strong>7.9%</strong>.</div>
         </div>
         <div class="region-card">
           <div class="region-card-header" style="border-left:5px solid #ef4444">
@@ -467,6 +486,7 @@ h2 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; b
                 <span class="s-bar" style="width:15px;background:#ef4444"></span></td>
             </tr></tbody>
           </table>
+          <div class="region-note">Ổn định, không thay đổi đáng kể so với kỳ trước (10.1%). Nội vùng: salon cao nhất <strong>595 BT TH</strong> đạt <strong>15.3%</strong>, thấp nhất <strong>304 NT TH</strong> chỉ <strong>8.3%</strong> — chênh <strong>7.0%</strong>. Chỉ 2/6 salon vượt trung bình vùng — kết quả đang bị kéo bởi vài salon đầu.</div>
         </div>
         <div class="region-card">
           <div class="region-card-header" style="border-left:5px solid #ec4899">
@@ -513,6 +533,7 @@ h2 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; b
                 <span class="s-bar" style="width:12px;background:#ef4444"></span></td>
             </tr></tbody>
           </table>
+          <div class="region-note">Giảm <strong>-0.5%</strong> so với kỳ trước (10.7% → 10.2%). Nội vùng: salon cao nhất <strong>173 TN</strong> đạt <strong>14.0%</strong>, thấp nhất <strong>148 TD</strong> chỉ <strong>6.1%</strong> — chênh <strong>7.9%</strong>.</div>
         </div>
         <div class="region-card">
           <div class="region-card-header" style="border-left:5px solid #8b5cf6">
@@ -559,6 +580,7 @@ h2 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; b
                 <span class="s-bar" style="width:9px;background:#ef4444"></span></td>
             </tr></tbody>
           </table>
+          <div class="region-note">Giảm <strong>-0.9%</strong> so với kỳ trước (9.4% → 8.5%). Nội vùng: salon cao nhất <strong>186 DTH</strong> đạt <strong>11.9%</strong>, thấp nhất <strong>113 THD AG</strong> chỉ <strong>5.6%</strong> — chênh <strong>6.3%</strong>.</div>
         </div></div>
 </div>
 </body>
