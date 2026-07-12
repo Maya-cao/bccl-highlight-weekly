@@ -882,8 +882,7 @@ function drawDistChart(canvas, nvs){
   ctx.fillRect(0,0,W,H);
 
   const buckets = [
-    {label:'Chưa gọi
-/ 0%',  color:'#ef4444', fn: n => n.called===0 || n.booked===0},
+    {label:'Chưa gọi / 0%',  color:'#ef4444', fn: n => n.called===0 || n.booked===0},
     {label:'1–10%',            color:'#f97316', fn: n => n.rate!=null && n.rate>0    && n.rate<0.10},
     {label:'10–15%',           color:'#f59e0b', fn: n => n.rate!=null && n.rate>=0.10 && n.rate<0.15},
     {label:'15–20%',           color:'#eab308', fn: n => n.rate!=null && n.rate>=0.15 && n.rate<0.20},
@@ -925,9 +924,7 @@ function drawDistChart(canvas, nvs){
     }
     // X label (multi-line)
     ctx.fillStyle = '#64748b'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
-    b.label.split('\n').forEach((line,li) => {
-      ctx.fillText(line, x+bw/2, pad.top+chartH+15+li*13);
-    });
+    ctx.fillText(b.label, x+bw/2, pad.top+chartH+15);
   });
 
   // Y axis label
