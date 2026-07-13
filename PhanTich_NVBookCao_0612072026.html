@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phân tích NV Booking cao — Kỳ 06-12/07/2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Segoe UI',sans-serif;background:#f8fafc;color:#1e293b;font-size:14px}
+.header{background:linear-gradient(135deg,#1e293b 0%,#334155 100%);color:#fff;padding:22px 36px}
+.header h1{font-size:1.35rem;font-weight:700}
+.header .sub{font-size:.82rem;opacity:.65;margin-top:3px}
+.container{max-width:1140px;margin:0 auto;padding:22px 20px}
+.section-title{font-size:1.05rem;font-weight:700;color:#1e293b;margin:28px 0 12px;border-left:4px solid #6366f1;padding-left:11px}
+.section-title.green{border-color:#22c55e}
+.section-title.amber{border-color:#f59e0b}
+.section-title.red{border-color:#ef4444}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-top:3px solid #6366f1}
+.kpi .lbl{font-size:.72rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.03em}
+.kpi .val{font-size:1.5rem;font-weight:800;margin-top:3px}
+.kpi .sub{font-size:.76rem;color:#94a3b8;margin-top:2px}
+.prose-box{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:16px;line-height:1.75}
+.prose-box p{color:#334155;font-size:.88rem;margin-bottom:8px}
+.prose-box p:last-child{margin-bottom:0}
+.prose-box strong{color:#1e293b}
+.callout{border-left:3px solid #f59e0b;padding:10px 14px;margin:10px 0;background:#fffbeb;border-radius:0 8px 8px 0;font-size:.86rem;color:#92400e}
+.callout.red{border-color:#ef4444;background:#fef2f2;color:#991b1b}
+.callout.green{border-color:#22c55e;background:#f0fdf4;color:#166534}
+.callout.blue{border-color:#3b82f6;background:#eff6ff;color:#1e40af}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:20px;font-size:.83rem}
+th{background:#f1f5f9;color:#475569;text-align:left;padding:8px 10px;font-size:.72rem;text-transform:uppercase;letter-spacing:.02em}
+td{padding:7px 10px;border-top:1px solid #f1f5f9}
+tr:hover td{background:#f8fafc}
+.tbl-wrap{overflow-x:auto}
+.tag{display:inline-block;padding:2px 8px;border-radius:5px;font-size:.72rem;font-weight:700}
+.tag.blue{background:#dbeafe;color:#1d4ed8}
+.tag.amber{background:#fef3c7;color:#92400e}
+footer{text-align:center;color:#94a3b8;font-size:.75rem;padding:24px}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Phân tích NV Booking cao & Ảnh hưởng Salon</h1>
+  <div class="sub">Kỳ 06–12/07/2026 · Nguồn: THỐNG KÊ KẾT QUẢ NHÂN SỰ GỌI CHO KHÁCH + Pool_Callday_StatusHis (Temp_30ShineBI)</div>
+</div>
+<div class="container">
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="lbl">Tổng NV</div><div class="val">416</div></div>
+    <div class="kpi"><div class="lbl">Book rate hệ thống</div><div class="val">13.0%</div></div>
+    <div class="kpi" style="border-top-color:#22c55e"><div class="lbl">NV rate ≥25% (đủ mẫu)</div><div class="val">23</div><div class="sub">≥30 cuộc gọi, loại nhiễu mẫu nhỏ</div></div>
+    <div class="kpi" style="border-top-color:#f59e0b"><div class="lbl">Salon có ≥1 NV cao</div><div class="val">18</div></div>
+  </div>
+
+  <div class="section-title">Phân tích 1 — Nhân viên Booking &gt;25%</div>
+  <div class="prose-box">
+    <p><strong>Phương pháp:</strong> lọc rate ≥25% VÀ ≥30 cuộc gọi để loại nhiễu do mẫu nhỏ (đây là lựa chọn phân tích, không phải định nghĩa chính thức — nếu tính tất cả rate≥25% không lọc volume thì có 28 người, trong đó 5 người có &lt;30 cuộc gọi nên tỷ lệ dễ bị ảo, xem bảng phụ bên dưới).</p>
+    <p><strong>Theo vị trí:</strong> Skinner áp đảo (17/23), Stylist 3, Chuyên viên tư vấn 2, SM 1 — không phải do lợi thế vị trí (Tư vấn vốn có baseline book rate cao hơn cả hệ thống nhưng chỉ 2 người lọt nhóm này), cho thấy đây nghiêng về kỹ năng/nỗ lực cá nhân hơn là đặc thù công việc.</p>
+    <p><strong>Follow-up:</strong> nhóm NV cao gọi lại cùng 1 khách nhiều ngày hơn nhóm còn lại (2,0% khách bị gọi ≥2 ngày trong kỳ, so với 1,0% ở nhóm còn lại) — chênh lệch có nhưng mẫu nhóm cao chỉ 2.093 cuộc gọi nên chưa đủ mạnh để kết luận chắc chắn.</p>
+    <div class="callout red">
+      <strong>Giới hạn dữ liệu quan trọng:</strong> Không có dữ liệu về kênh booking thành công (gọi điện/tin nhắn/khách tự đặt/Skinner giới thiệu), kịch bản chăm sóc, hay giờ gọi trong ngày — các bảng đã khảo sát trong DB không có field phân biệt được. Đã thử dùng field <code>StatusCall='Đã book được lịch'</code> trong Pool_Callday_StatusHis để so sánh kết quả cuộc gọi giữa 2 nhóm, nhưng kết quả <strong>mâu thuẫn với báo cáo chính thức</strong> (nhóm rate cao lại có tỷ lệ field này thấp hơn — 4,4% so với 9,0%; tổng field này toàn hệ thống chỉ ra 4.342 lượt trong khi báo cáo gốc ghi 6.284 lượt book) → field này không phản ánh đúng khái niệm "đã book", nên <strong>không dùng để kết luận về kịch bản/kỹ năng.</strong>
+    </div>
+  </div>
+
+  <div class="tbl-wrap"><table>
+    <tr><th>#</th><th>Nhân viên</th><th>Vị trí</th><th>Salon</th><th>GĐKV</th><th>Gọi</th><th>Book</th><th>Rate</th></tr>
+    <tr><td>1</td><td>(19764) Trương Huỳnh Trung Nghĩa</td><td>Stylist</td><td>708 LTT</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">40</td><td style="text-align:right">15</td>
+        <td style="text-align:right;font-weight:700;color:#166534">37.5%</td></tr>
+<tr><td>2</td><td>(20967) Dương Quốc Khánh</td><td>Stylist</td><td>99 TSN</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">100</td><td style="text-align:right">37</td>
+        <td style="text-align:right;font-weight:700;color:#166534">37.0%</td></tr>
+<tr><td>3</td><td>(4065) Nguyễn Hữu Nhân SMSUP</td><td>Trưởng salon (SM)</td><td>50BT4 NPC LD</td><td>Phan Thị Hồng Gấm</td>
+        <td style="text-align:right">84</td><td style="text-align:right">30</td>
+        <td style="text-align:right;font-weight:700;color:#166534">35.7%</td></tr>
+<tr><td>4</td><td>(20040) Nguyễn Thị Yến Vy</td><td>Skinner</td><td>145 THT</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">40</td><td style="text-align:right">13</td>
+        <td style="text-align:right;font-weight:700;color:#166534">32.5%</td></tr>
+<tr><td>5</td><td>(8595) Uông Bội Linh</td><td>Skinner</td><td>290 QT TH</td><td>Nguyễn Thị Huệ</td>
+        <td style="text-align:right">41</td><td style="text-align:right">13</td>
+        <td style="text-align:right;font-weight:700;color:#166534">31.7%</td></tr>
+<tr><td>6</td><td>(17588) Bùi Thị Ánh Ngọc</td><td>Skinner</td><td>264 LLQ</td><td>Phan Thị Hồng Gấm</td>
+        <td style="text-align:right">60</td><td style="text-align:right">19</td>
+        <td style="text-align:right;font-weight:700;color:#166534">31.7%</td></tr>
+<tr><td>7</td><td>(20756) Nguyễn Thị Hồng Cẩm</td><td>Skinner</td><td>401/1 NDT</td><td>Nguyễn Việt Cường</td>
+        <td style="text-align:right">46</td><td style="text-align:right">14</td>
+        <td style="text-align:right;font-weight:700;color:#166534">30.4%</td></tr>
+<tr><td>8</td><td>(7548) Nguyễn Thụy Thùy Trang</td><td>Chuyên viên tư vấn</td><td>237 NTT</td><td>Tống Xuân Quyền</td>
+        <td style="text-align:right">127</td><td style="text-align:right">37</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">29.1%</td></tr>
+<tr><td>9</td><td>(17362) Trần Thị Tuyết Ngân</td><td>Skinner</td><td>109 TQH</td><td>Đoàn Trung Đức</td>
+        <td style="text-align:right">31</td><td style="text-align:right">9</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">29.0%</td></tr>
+<tr><td>10</td><td>(21015) Nguyễn Thị Linh</td><td>Skinner</td><td>12 LDT</td><td>Trịnh Văn Quang</td>
+        <td style="text-align:right">100</td><td style="text-align:right">29</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">29.0%</td></tr>
+<tr><td>11</td><td>(18311) Nguyễn Lan Anh</td><td>Skinner</td><td>10 TP</td><td>Nguyễn Như Quỳnh</td>
+        <td style="text-align:right">97</td><td style="text-align:right">28</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">28.9%</td></tr>
+<tr><td>12</td><td>(4780) Đào Mạnh Đạt</td><td>Stylist</td><td>99 TSN</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">98</td><td style="text-align:right">27</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">27.6%</td></tr>
+<tr><td>13</td><td>(18586) Nguyễn Thị Lan</td><td>Skinner</td><td>382 NT</td><td>Đoàn Trung Đức</td>
+        <td style="text-align:right">207</td><td style="text-align:right">57</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">27.5%</td></tr>
+<tr><td>14</td><td>(20106) Trương Huỳnh Nhi</td><td>Skinner</td><td>927 HG</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">80</td><td style="text-align:right">22</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">27.5%</td></tr>
+<tr><td>15</td><td>(20652) Lê Thị Thanh Thuý</td><td>Skinner</td><td>80 TP TH</td><td>Nguyễn Thị Huệ</td>
+        <td style="text-align:right">51</td><td style="text-align:right">14</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">27.5%</td></tr>
+<tr><td>16</td><td>(20856) Lương Thị Thảo Nhi</td><td>Skinner</td><td>312 LVS</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">100</td><td style="text-align:right">27</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">27.0%</td></tr>
+<tr><td>17</td><td>(5866) Đỗ Thị Linh</td><td>Skinner</td><td>927 HG</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">91</td><td style="text-align:right">24</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">26.4%</td></tr>
+<tr><td>18</td><td>(20874) ngan.knsk</td><td>Skinner</td><td>341 XVNT</td><td>Tống Xuân Quyền</td>
+        <td style="text-align:right">54</td><td style="text-align:right">14</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">25.9%</td></tr>
+<tr><td>19</td><td>(14732) Nguyễn Thị Thái Vi</td><td>Skinner</td><td>575 AC</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">124</td><td style="text-align:right">32</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">25.8%</td></tr>
+<tr><td>20</td><td>(5948) Tô Huyền Trang</td><td>Chuyên viên tư vấn</td><td>173 TN</td><td>Phan Thị Hồng Gấm</td>
+        <td style="text-align:right">230</td><td style="text-align:right">59</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">25.7%</td></tr>
+<tr><td>21</td><td>(7597) Danh Thị Sa Ri</td><td>Skinner</td><td>99 TSN</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">67</td><td style="text-align:right">17</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">25.4%</td></tr>
+<tr><td>22</td><td>(5018) Nguyễn Thị Diễm CTV</td><td>Skinner</td><td>312 LVS</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">100</td><td style="text-align:right">25</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">25.0%</td></tr>
+<tr><td>23</td><td>(19670) Nguyễn Ngọc Mai Thanh</td><td>Skinner</td><td>237 NTT</td><td>Tống Xuân Quyền</td>
+        <td style="text-align:right">84</td><td style="text-align:right">21</td>
+        <td style="text-align:right;font-weight:700;color:#1d4ed8">25.0%</td></tr>
+  </table></div>
+
+  <div class="prose-box">
+    <p><strong>Bảng phụ — rate ≥25% nhưng &lt;30 cuộc gọi (dễ ảo do mẫu nhỏ, không tính vào nhóm chính):</strong></p>
+  </div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Nhân viên</th><th>Salon</th><th>Gọi</th><th>Book</th><th>Rate</th></tr>
+    <tr><td>(20365) Đỗ Ngọc Bích</td><td>109 TQH</td>
+        <td style="text-align:right">14</td><td style="text-align:right">6</td>
+        <td style="text-align:right">42.9%</td></tr>
+<tr><td>(19572) Bạch Xuân Thiện SMST</td><td>236 DBT</td>
+        <td style="text-align:right">8</td><td style="text-align:right">3</td>
+        <td style="text-align:right">37.5%</td></tr>
+<tr><td>(16635) Dương Thị Ngọc Trinh</td><td>103 TN</td>
+        <td style="text-align:right">20</td><td style="text-align:right">7</td>
+        <td style="text-align:right">35.0%</td></tr>
+<tr><td>(13728) Nguyễn Thị Khánh Linh</td><td>10 TP</td>
+        <td style="text-align:right">20</td><td style="text-align:right">6</td>
+        <td style="text-align:right">30.0%</td></tr>
+<tr><td>(5921) Nguyễn Viết Văn</td><td>186 QT</td>
+        <td style="text-align:right">12</td><td style="text-align:right">3</td>
+        <td style="text-align:right">25.0%</td></tr>
+  </table></div>
+
+  <div class="section-title green">Phân tích 2 — Ảnh hưởng Salon</div>
+  <div class="prose-box">
+    <p>4 salon có nhiều NV cao nhất (99 TSN, 312 LVS, 927 HG, 237 NTT) đều có <strong>rate cả salon (17-21%) cao hơn hẳn trung bình hệ thống (13.0%)</strong> — không chỉ 2-3 cá nhân kéo lên, mà cả salon đang vận hành tốt hơn mặt bằng chung. Đây là dấu hiệu know-how cấp salon, đáng tìm hiểu để nhân rộng, không chỉ là năng lực lẻ tẻ của vài người.</p>
+    <p>3/4 salon dẫn đầu đều thuộc GĐKV Nguyễn Thanh Sang — vùng này cũng có book rate vùng cao nhất hệ thống theo BC hiện tại, khớp với nhận định trên.</p>
+  </div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Salon</th><th>GĐKV</th><th>#NV</th><th>#NV cao (≥25%)</th><th>Rate cả salon</th><th>Tổng gọi</th><th>Tổng book</th></tr>
+    <tr><td>99 TSN</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">11</td>
+        <td style="text-align:right;font-weight:700">3</td>
+        <td style="text-align:right">21.1%</td>
+        <td style="text-align:right">782</td>
+        <td style="text-align:right">165</td></tr>
+<tr><td>312 LVS</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">8</td>
+        <td style="text-align:right;font-weight:700">2</td>
+        <td style="text-align:right">20.9%</td>
+        <td style="text-align:right">652</td>
+        <td style="text-align:right">136</td></tr>
+<tr><td>927 HG</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">8</td>
+        <td style="text-align:right;font-weight:700">2</td>
+        <td style="text-align:right">19.7%</td>
+        <td style="text-align:right">727</td>
+        <td style="text-align:right">143</td></tr>
+<tr><td>237 NTT</td><td>Tống Xuân Quyền</td>
+        <td style="text-align:right">14</td>
+        <td style="text-align:right;font-weight:700">2</td>
+        <td style="text-align:right">17.2%</td>
+        <td style="text-align:right">1664</td>
+        <td style="text-align:right">286</td></tr>
+<tr><td>145 THT</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">2</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">25.5%</td>
+        <td style="text-align:right">55</td>
+        <td style="text-align:right">14</td></tr>
+<tr><td>173 TN</td><td>Phan Thị Hồng Gấm</td>
+        <td style="text-align:right">2</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">23.5%</td>
+        <td style="text-align:right">561</td>
+        <td style="text-align:right">132</td></tr>
+<tr><td>708 LTT</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">2</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">21.3%</td>
+        <td style="text-align:right">108</td>
+        <td style="text-align:right">23</td></tr>
+<tr><td>109 TQH</td><td>Đoàn Trung Đức</td>
+        <td style="text-align:right">4</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">20.9%</td>
+        <td style="text-align:right">796</td>
+        <td style="text-align:right">166</td></tr>
+<tr><td>382 NT</td><td>Đoàn Trung Đức</td>
+        <td style="text-align:right">6</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">20.3%</td>
+        <td style="text-align:right">1254</td>
+        <td style="text-align:right">254</td></tr>
+<tr><td>12 LDT</td><td>Trịnh Văn Quang</td>
+        <td style="text-align:right">5</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">19.9%</td>
+        <td style="text-align:right">608</td>
+        <td style="text-align:right">121</td></tr>
+<tr><td>575 AC</td><td>Nguyễn Thanh Sang</td>
+        <td style="text-align:right">5</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">19.9%</td>
+        <td style="text-align:right">558</td>
+        <td style="text-align:right">111</td></tr>
+<tr><td>50BT4 NPC LD</td><td>Phan Thị Hồng Gấm</td>
+        <td style="text-align:right">11</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">17.8%</td>
+        <td style="text-align:right">1254</td>
+        <td style="text-align:right">223</td></tr>
+<tr><td>401/1 NDT</td><td>Nguyễn Việt Cường</td>
+        <td style="text-align:right">5</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">16.1%</td>
+        <td style="text-align:right">584</td>
+        <td style="text-align:right">94</td></tr>
+<tr><td>264 LLQ</td><td>Phan Thị Hồng Gấm</td>
+        <td style="text-align:right">6</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">15.8%</td>
+        <td style="text-align:right">988</td>
+        <td style="text-align:right">156</td></tr>
+<tr><td>290 QT TH</td><td>Nguyễn Thị Huệ</td>
+        <td style="text-align:right">7</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">13.4%</td>
+        <td style="text-align:right">402</td>
+        <td style="text-align:right">54</td></tr>
+<tr><td>10 TP</td><td>Nguyễn Như Quỳnh</td>
+        <td style="text-align:right">11</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">13.0%</td>
+        <td style="text-align:right">1284</td>
+        <td style="text-align:right">167</td></tr>
+<tr><td>341 XVNT</td><td>Tống Xuân Quyền</td>
+        <td style="text-align:right">7</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">12.6%</td>
+        <td style="text-align:right">660</td>
+        <td style="text-align:right">83</td></tr>
+<tr><td>80 TP TH</td><td>Nguyễn Thị Huệ</td>
+        <td style="text-align:right">9</td>
+        <td style="text-align:right;font-weight:700">1</td>
+        <td style="text-align:right">9.8%</td>
+        <td style="text-align:right">500</td>
+        <td style="text-align:right">49</td></tr>
+  </table></div>
+
+  <div class="section-title amber">Phân tích 3 — Đặc điểm khách hàng nhóm NV Booking cao</div>
+  <div class="prose-box">
+    <p><strong>Mục tiêu:</strong> loại trừ khả năng nhóm NV rate cao chỉ vì đang chăm tập khách "dễ" hơn. So sánh tập khách của nhóm NV cao (n=2.052 khách) với nhóm còn lại (n=44.717 khách) qua dữ liệu <code>Pool_Callday_StatusHis</code>.</p>
+  </div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Chỉ số</th><th>Nhóm NV cao</th><th>Nhóm còn lại</th></tr>
+    <tr><td>Số lần đến TB (total_visits)</td><td style="text-align:right;font-weight:700">43.6</td><td style="text-align:right">31.8</td></tr>
+    <tr><td>Số ngày từ lần đến gần nhất (TB)</td><td style="text-align:right;font-weight:700">38.1</td><td style="text-align:right">34.0</td></tr>
+    <tr><td>Khoảng cách trung bình giữa 2 lần đến (ngày)</td><td style="text-align:right;font-weight:700">45.8</td><td style="text-align:right">72.6</td></tr>
+    <tr><td>% Khách "Thân thiết" (tag_mucnhiet)</td><td style="text-align:right">65.9%</td><td style="text-align:right;font-weight:700">86.3%</td></tr>
+    <tr><td>% Khách "Lơ là" + "Bỏ quên"</td><td style="text-align:right;font-weight:700">28.6%</td><td style="text-align:right">9.4%</td></tr>
+  </table></div>
+  <div class="prose-box">
+    <div class="callout blue">
+      <strong>Ngược với giả thuyết "khách dễ":</strong> khách của nhóm NV rate cao thực ra có tỷ lệ "Lơ là/Bỏ quên" (khách đã nhạt) cao hơn hẳn nhóm còn lại (28,6% vs 9,4%), tức họ đang chăm tập khách khó hơn về mặt cảm xúc, không phải được giao sẵn khách dễ chốt. Đồng thời khách quay lại nhanh hơn khi được nhóm này chăm (avg_gap_days 45,8 so với 72,6 ngày) — gợi ý rate cao đến từ năng lực chăm sóc thực sự.</p>
+      <p style="margin-top:6px">Lưu ý: <code>tag_mucnhiet</code>/<code>tag_segment</code> là phân loại tĩnh theo lịch sử đến salon (độc lập với log cuộc gọi), đáng tin hơn field StatusCall đã nêu ở Phân tích 1, nhưng chưa đối chiếu chéo với nguồn dữ liệu thứ 2 nào khác.</p>
+    </div>
+  </div>
+
+</div>
+<footer>Báo cáo phân tích nội bộ — Kỳ 06-12/07/2026 · Dữ liệu: Temp_30ShineBI (Pool_Callday_StatusHis), file THỐNG KÊ KẾT QUẢ NHÂN SỰ GỌI CHO KHÁCH 6-12.7.xlsx</footer>
+</body>
+</html>
