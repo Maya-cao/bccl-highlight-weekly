@@ -1,0 +1,42 @@
+[
+  {
+    "label": "07–13/07/2026",
+    "dd_s": 7,
+    "dd_e": 13,
+    "mm": 7,
+    "year": 2026,
+    "file": "R12W_BookRate_0713072026.html"
+  },
+  {
+    "label": "06–12/07/2026",
+    "dd_s": 6,
+    "dd_e": 12,
+    "mm": 7,
+    "year": 2026,
+    "file": "R12W_BookRate_0612072026.html"
+  },
+  {
+    "label": "04–10/07/2026",
+    "dd_s": 4,
+    "dd_e": 10,
+    "mm": 7,
+    "year": 2026,
+    "file": "R12W_BookRate_0410072026.html"
+  },
+  {
+    "label": "03–09/07/2026",
+    "dd_s": 3,
+    "dd_e": 9,
+    "mm": 7,
+    "year": 2026,
+    "file": "R12W_BookRate_0309072026.html"
+  },
+  {
+    "label": "02–08/07/2026",
+    "dd_s": 2,
+    "dd_e": 8,
+    "mm": 7,
+    "year": 2026,
+    "file": "R12W_BookRate_0208072026.html"
+  }
+]

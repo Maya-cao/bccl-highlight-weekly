@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>R12W Book Rate — Chọn kỳ báo cáo</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f0f4f8;--card:#fff;--border:#e2e8f0;
+  --t1:#1e293b;--t2:#64748b;--t3:#94a3b8;
+  --accent:#f59e0b;--navy:#1e293b;
+  --hover:#f8fafc;
+}
+@media(prefers-color-scheme:dark){
+  :root{--bg:#0f172a;--card:#1e293b;--border:#334155;
+    --t1:#f1f5f9;--t2:#94a3b8;--t3:#475569;
+    --hover:#243044;
+  }
+}
+:root[data-theme="light"]{--bg:#f0f4f8;--card:#fff;--border:#e2e8f0;--t1:#1e293b;--t2:#64748b;--t3:#94a3b8;--hover:#f8fafc}
+:root[data-theme="dark"]{--bg:#0f172a;--card:#1e293b;--border:#334155;--t1:#f1f5f9;--t2:#94a3b8;--t3:#475569;--hover:#243044}
+
+body{font-family:-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;padding:32px 16px}
+
+.topbar{max-width:640px;margin:0 auto 28px;display:flex;align-items:center;gap:12px}
+.logo{width:36px;height:36px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo svg{width:20px;height:20px;fill:var(--accent)}
+.brand{flex:1}
+.brand-name{font-size:1rem;font-weight:700;color:var(--t1)}
+.brand-sub{font-size:.75rem;color:var(--t2)}
+.theme-btn{font-size:.75rem;border:1px solid var(--border);background:var(--card);color:var(--t2);padding:5px 12px;border-radius:20px;cursor:pointer}
+
+.section-label{max-width:640px;margin:0 auto 12px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)}
+
+.list{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+
+.report-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:16px 20px;display:flex;align-items:center;gap:16px;
+  text-decoration:none;color:inherit;
+  transition:background .15s,border-color .15s,transform .1s;
+}
+.report-card:hover{background:var(--hover);border-color:var(--accent);transform:translateX(3px)}
+.report-card.latest{border-color:var(--accent)}
+
+.card-badge{
+  flex-shrink:0;width:44px;height:44px;border-radius:10px;
+  background:#f59e0b1a;display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;
+}
+.card-badge.latest{background:#f59e0b33}
+
+.card-body{flex:1}
+.card-period{font-size:.95rem;font-weight:700;color:var(--t1)}
+.card-meta{font-size:.75rem;color:var(--t2);margin-top:2px}
+.card-new{
+  font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--accent);color:#fff;padding:2px 7px;border-radius:10px;margin-left:8px;
+  vertical-align:middle;
+}
+
+.card-arrow{color:var(--t3);font-size:1rem;flex-shrink:0}
+
+.month-header{
+  max-width:640px;margin:20px auto 10px;
+  font-size:.82rem;font-weight:700;color:var(--t2);
+  display:flex;align-items:center;gap:8px;
+}
+.month-header::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.empty{max-width:640px;margin:40px auto;text-align:center;color:var(--t3);font-size:.9rem}
+.spinner{max-width:640px;margin:40px auto;text-align:center;color:var(--t3);font-size:.85rem}
+
+.footer{max-width:640px;margin:32px auto 0;text-align:center;font-size:.72rem;color:var(--t3)}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">
+    <svg viewBox="0 0 24 24"><path d="M3 3h18v2H3zm0 4h18v2H3zm0 4h12v2H3zm0 4h18v2H3zm0 4h12v2H3z"/></svg>
+  </div>
+  <div class="brand">
+    <div class="brand-name">R12W Book Rate</div>
+    <div class="brand-sub">Báo cáo hiệu suất gọi theo kỳ 7 ngày</div>
+  </div>
+  <button class="theme-btn" onclick="toggleTheme()">Sáng / Tối</button>
+</div>
+
+<div id="content"><div class="spinner">Đang tải danh sách báo cáo…</div></div>
+
+<div class="footer">Cập nhật tự động mỗi kỳ · 30Shine CSKH</div>
+
+<script>
+function toggleTheme(){
+  const cur = document.documentElement.dataset.theme;
+  document.documentElement.dataset.theme = cur === 'dark' ? 'light' : 'dark';
+}
+// Respect OS preference on first load
+if(!document.documentElement.dataset.theme){
+  if(window.matchMedia('(prefers-color-scheme:dark)').matches)
+    document.documentElement.dataset.theme = 'dark';
+}
+
+const MONTH_VN = ['','Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6',
+                   'Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
+
+fetch('manifest.json?t=' + Date.now())
+  .then(r => r.json())
+  .then(reports => {
+    const el = document.getElementById('content');
+    if(!reports.length){
+      el.innerHTML = '<div class="empty">Chưa có báo cáo nào.</div>';
+      return;
+    }
+
+    let html = '';
+    let lastMonthKey = null;
+
+    reports.forEach((r, i) => {
+      const monthKey = r.year + '-' + r.mm;
+      if(monthKey !== lastMonthKey){
+        html += `<div class="month-header">${MONTH_VN[r.mm]} ${r.year}</div>`;
+        lastMonthKey = monthKey;
+      }
+
+      const isLatest = i === 0;
+      html += `
+        <a class="report-card${isLatest?' latest':''}" href="${r.file}">
+          <div class="card-badge${isLatest?' latest':''}">📋</div>
+          <div class="card-body">
+            <div class="card-period">Kỳ ${r.label}${isLatest?'<span class="card-new">Mới nhất</span>':''}</div>
+            <div class="card-meta">Kỳ rolling 7 ngày · ${r.dd_e < 10 ? '0'+r.dd_e : r.dd_e}/${r.mm < 10 ? '0'+r.mm : r.mm}/${r.year}</div>
+          </div>
+          <div class="card-arrow">›</div>
+        </a>`;
+    });
+
+    el.innerHTML = '<div class="section-label">Chọn kỳ báo cáo</div><div class="list">' + html + '</div>';
+  })
+  .catch(() => {
+    document.getElementById('content').innerHTML =
+      '<div class="empty">Không tải được danh sách báo cáo.</div>';
+  });
+</script>
+</body>
+</html>
