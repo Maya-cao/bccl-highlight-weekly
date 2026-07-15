@@ -179,7 +179,7 @@ function pct(v,d=1){ return v==null?'—':(v*100).toFixed(d)+'%'; }
 })();
 function navigatePeriod(){
   const v = document.getElementById('pf').value;
-  if(v && v !== CURRENT_FILE) window.location.href = v;
+  if(v && v !== CURRENT_FILE) window.location.href = v + '#' + activeTab;
 }
 function fmt(v){ return v==null?'—':Math.round(v).toLocaleString('vi'); }
 
@@ -1366,7 +1366,7 @@ function drawScatterChart(canvas, nvs){
 // ══════════════════════════════════════════════════════
 //  ROUTING
 // ══════════════════════════════════════════════════════
-let activeTab = 't1';
+let activeTab = (location.hash && location.hash.match(/^#t[1-4]$/)) ? location.hash.slice(1) : 't1';
 function switchTab(id,btn){
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -1374,6 +1374,13 @@ function switchTab(id,btn){
   btn.classList.add('active');
   activeTab=id; render();
 }
+// Restore tab from hash on load
+(function(){
+  if(activeTab !== 't1'){
+    const btn = document.querySelector('.tab-btn[onclick*="' + activeTab + '"]');
+    if(btn) switchTab(activeTab, btn);
+  }
+})();
 
 function render(){
   buildTab1();
