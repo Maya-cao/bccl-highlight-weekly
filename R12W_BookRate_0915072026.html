@@ -205,6 +205,40 @@ function arrowSpan(cur,prv){
   if(d>0) return `<span style="color:#22c55e">▲${(d*100).toFixed(1)}%</span>`;
   return `<span style="color:#ef4444">▼${(Math.abs(d)*100).toFixed(1)}%</span>`;
 }
+// Trả về {dir:'down'|'up'|'flat', count:N, from:rate, to:rate} cho hệ thống
+function sysTrend(){
+  if(!HISTORY||HISTORY.length<2) return null;
+  const vals=HISTORY.map(h=>h.sys_avg).filter(v=>v!=null);
+  if(vals.length<2) return null;
+  const last=vals[vals.length-1],prev=vals[vals.length-2];
+  const dir=last<prev-0.001?'down':last>prev+0.001?'up':'flat';
+  if(dir==='flat') return {dir,count:1,from:prev,to:last};
+  let count=1;
+  for(let i=vals.length-2;i>=1;i--){
+    const d=vals[i]-vals[i-1];
+    if(dir==='down'&&d<-0.001) count++;
+    else if(dir==='up'&&d>0.001) count++;
+    else break;
+  }
+  return {dir,count,from:vals[Math.max(0,vals.length-1-count)],to:last};
+}
+// Trả về trend cho 1 vùng cụ thể (rsm = tên đầy đủ)
+function regionTrend(rsm){
+  if(!HISTORY||HISTORY.length<2) return null;
+  const vals=HISTORY.map(h=>(h.regions||{})[rsm]).filter(v=>v!=null);
+  if(vals.length<2) return null;
+  const last=vals[vals.length-1],prev=vals[vals.length-2];
+  const dir=last<prev-0.001?'down':last>prev+0.001?'up':'flat';
+  if(dir==='flat') return {dir,count:1,from:prev,to:last};
+  let count=1;
+  for(let i=vals.length-2;i>=1;i--){
+    const d=vals[i]-vals[i-1];
+    if(dir==='down'&&d<-0.001) count++;
+    else if(dir==='up'&&d>0.001) count++;
+    else break;
+  }
+  return {dir,count,from:vals[Math.max(0,vals.length-1-count)],to:last};
+}
 
 function filtered(){
   const f=document.getElementById('gf').value;
@@ -300,27 +334,47 @@ function buildTab1(){
   // ── Đánh giá tổng quan ──
   html += `<div class="section-title">📋 Đánh giá tổng quan</div>`;
   let summaryText = '';
+  const st = sysTrend();
+  const deficit = META.bk_target - a.avg;
   const targetPctStr = (a.pctOfTarget*100).toFixed(0);
-  summaryText += `<p>Kỳ <strong>${META.period}</strong> — Hệ thống R12W đang ở mức book rate trung bình <strong>${pct(a.avg)}</strong>, `;
-  summaryText += `tức chỉ đạt <strong>${targetPctStr}% mục tiêu</strong> (65%). `;
-  if(a.avgPrv){
-    const sysDiff = a.avg - a.avgPrv;
-    if(sysDiff<-0.005) summaryText += `So với kỳ trước (<strong>${pct(a.avgPrv)}</strong>), toàn hệ thống <strong>giảm ${(Math.abs(sysDiff)*100).toFixed(1)}%</strong> — xu hướng đi lùi cần được chú ý ngay. `;
-    else if(sysDiff>0.005) summaryText += `So với kỳ trước (<strong>${pct(a.avgPrv)}</strong>), toàn hệ thống <strong>tăng ${(sysDiff*100).toFixed(1)}%</strong> — tín hiệu tích cực. `;
-    else summaryText += `So với kỳ trước (<strong>${pct(a.avgPrv)}</strong>), toàn hệ thống gần như <strong>không thay đổi</strong>. `;
+
+  // Dẫn bằng khoảng cách đến mục tiêu, không phải số tuyệt đối
+  summaryText += `<p>Kỳ <strong>${META.period}</strong> — Book rate hệ thống <strong>${pct(a.avg)}</strong>, `;
+  summaryText += `còn thiếu <strong>${pct(deficit)}</strong> mới đạt mục tiêu 65% (hiện đạt <strong>${targetPctStr}%</strong> mục tiêu). `;
+
+  // Xu hướng liên tiếp — ưu tiên hơn so sánh 1 kỳ
+  if(st&&st.dir==='down'&&st.count>=3){
+    summaryText += `</p><p><strong style="color:#ef4444">⚠ Hệ thống giảm ${st.count} kỳ liên tiếp</strong> (từ ${pct(st.from)} xuống ${pct(st.to)}, mất tổng ${pct(st.from-st.to)}). `;
+    summaryText += `Đây không còn là biến động ngẫu nhiên — cần hành động ngay: <strong>họp GĐKV xác định nguyên nhân</strong>, rà soát script gọi, kiểm tra NV không gọi hoặc gọi nhiều mà không book được.</p>`;
+  } else if(st&&st.dir==='down'&&st.count===2){
+    summaryText += `Đang giảm 2 kỳ liên tiếp (${pct(st.from)} → ${pct(st.to)}). Chưa phải báo động nhưng cần theo dõi sát — nếu kỳ tới tiếp tục giảm cần can thiệp quy trình ngay.</p>`;
+  } else if(a.avgPrv){
+    const sysDiff=a.avg-a.avgPrv;
+    if(sysDiff<-0.005) summaryText += `Giảm <strong>${(Math.abs(sysDiff)*100).toFixed(1)}%</strong> so với kỳ trước (${pct(a.avgPrv)}).</p>`;
+    else if(sysDiff>0.005){
+      if(a.avg<0.20) summaryText += `Tăng <strong>+${(sysDiff*100).toFixed(1)}%</strong> so với kỳ trước (${pct(a.avgPrv)}) — chiều đi đúng, nhưng với mức hiện tại vẫn còn rất xa mục tiêu.</p>`;
+      else summaryText += `Tăng <strong>+${(sysDiff*100).toFixed(1)}%</strong> so với kỳ trước (${pct(a.avgPrv)}) — tiếp tục duy trì đà này.</p>`;
+    } else summaryText += `Không thay đổi so với kỳ trước (${pct(a.avgPrv)}) — trong khi vẫn đang thiếu ${pct(deficit)} so với mục tiêu. Cần có hành động cụ thể để thoát khỏi vùng trì trệ này.</p>`;
+  } else summaryText += `</p>`;
+
+  if(st&&st.dir==='up'&&st.count>=2){
+    summaryText += `<p><strong style="color:#22c55e">Tăng ${st.count} kỳ liên tiếp</strong> (${pct(st.from)} → ${pct(st.to)})`;
+    summaryText += st.to<0.30?` — chiều tốt, nhưng mức hiện tại vẫn còn xa mục tiêu 65%. Cần duy trì và đẩy nhanh hơn.`:` — đang tiến về mục tiêu, cần duy trì đà.`;
+    summaryText += `</p>`;
   }
-  summaryText += `</p>`;
 
   if(a.downRegs.length>=5){
-    summaryText += `<p><strong>${a.downRegs.length}/${regs.length} vùng giảm book rate</strong> so với kỳ trước. Đây không phải vấn đề cục bộ — cả hệ thống đang đi xuống. `;
-    const bigDown = a.downRegs[0];
-    summaryText += `Vùng giảm mạnh nhất: <strong>GĐKV ${bigDown.short}</strong> (từ ${pct(bigDown.bk_prv)} xuống ${pct(bigDown.bk_cur)}, giảm <strong>${((bigDown.bk_prv-bigDown.bk_cur)*100).toFixed(1)}%</strong>).</p>`;
+    summaryText += `<p><strong>${a.downRegs.length}/${regs.length} vùng cùng giảm</strong> kỳ này — vấn đề không cục bộ mà lan rộng toàn hệ thống. `;
+    const bigDown=a.downRegs[0];
+    summaryText += `Vùng giảm mạnh nhất: <strong>GĐKV ${bigDown.short}</strong> (từ ${pct(bigDown.bk_prv)} xuống ${pct(bigDown.bk_cur)}, -${((bigDown.bk_prv-bigDown.bk_cur)*100).toFixed(1)}%).</p>`;
   } else if(a.upRegs.length>=5){
-    summaryText += `<p><strong>${a.upRegs.length}/${regs.length} vùng tăng</strong> so với kỳ trước — tín hiệu tích cực trên diện rộng. `;
-    const bigUp = a.upRegs[0];
-    summaryText += `Vùng tăng mạnh nhất: <strong>GĐKV ${bigUp.short}</strong> (+${((bigUp.bk_cur-bigUp.bk_prv)*100).toFixed(1)}%).</p>`;
+    summaryText += `<p><strong>${a.upRegs.length}/${regs.length} vùng cùng tăng</strong> kỳ này. `;
+    const bigUp=a.upRegs[0];
+    summaryText += `Vùng tăng mạnh nhất: <strong>GĐKV ${bigUp.short}</strong> (+${((bigUp.bk_cur-bigUp.bk_prv)*100).toFixed(1)}%). `;
+    summaryText += a.avg<0.20?`Tuy nhiên mức tuyệt đối toàn hệ thống vẫn còn thấp — cần tiếp tục duy trì và đẩy mạnh thêm.`:`Tín hiệu phục hồi trên diện rộng.`;
+    summaryText += `</p>`;
   } else if(a.withPrev.length>0){
-    summaryText += `<p>Kỳ này: <strong>${a.upRegs.length} vùng tăng</strong>, <strong>${a.downRegs.length} vùng giảm</strong> — kết quả phân hoá, không đồng đều giữa các vùng.</p>`;
+    summaryText += `<p>Kỳ này: <strong>${a.upRegs.length} vùng tăng</strong>, <strong>${a.downRegs.length} vùng giảm</strong> — kết quả phân hoá giữa các vùng.</p>`;
   }
 
   html += `<div class="prose-box">${summaryText}`;
@@ -343,7 +397,8 @@ function buildTab1(){
   const brightSpots = a.upRegs.filter(r=>r.bk_cur>=0.13);
   if(brightSpots.length){
     const names = brightSpots.map(r=>`<strong>GĐKV ${r.short}</strong> (${pct(r.bk_cur)}, +${((r.bk_cur-r.bk_prv)*100).toFixed(1)}%)`).join(', ');
-    html += `<div class="callout green">✅ <strong>Điểm sáng:</strong> ${names} — đang có xu hướng tốt, cần tìm hiểu gì đang làm đúng để nhân rộng.</div>`;
+    const bsNote = brightSpots.some(r=>r.bk_cur>=0.30)?'đang tiến gần mục tiêu':'mức tuyệt đối vẫn còn cách mục tiêu 65% — nhưng chiều đi đúng';
+    html += `<div class="callout green">✅ <strong>Điểm sáng:</strong> ${names} — ${bsNote}, cần tìm hiểu gì đang làm đúng để nhân rộng.</div>`;
   }
 
   // Internal gap anomaly
@@ -407,8 +462,8 @@ function buildTab1(){
   const topRegions = [...new Set(top15.map(s=>s.short))];
   html += `<div class="prose-box"><p>`;
   html += `Salon dẫn đầu hệ thống: <strong>${top15[0].name}</strong> (GĐKV ${top15[0].short}) với <strong>${pct(top15[0].rate)}</strong>. `;
-  if(topRegions.length<=3) html += `Top 15 salon tập trung chủ yếu ở ${topRegions.length} vùng (${topRegions.map(r=>'GĐKV '+r).join(', ')}) — các vùng còn lại cần tìm hiểu gì làm khác biệt ở đây. `;
-  else html += `Top 15 salon phân bổ tương đối đều ở ${topRegions.length} vùng — cho thấy tuy chưa đạt mục tiêu nhưng có nhiều salon đơn lẻ đang làm tốt. `;
+  if(topRegions.length<=3) html += `Top 15 salon tập trung ở ${topRegions.length} vùng (${topRegions.map(r=>'GĐKV '+r).join(', ')}) — các vùng không có salon trong top 15 cần tìm hiểu gì đang làm khác biệt ở đây. `;
+  else html += `Top 15 salon phân bổ ở ${topRegions.length} vùng — cho thấy có nhiều salon đơn lẻ đang làm được, vấn đề là chưa nhân rộng được cách làm ra toàn vùng. `;
   html += `</p></div>`;
 
   html += `<div class="section-title red">⚠️ Salon book rate thấp nhất hệ thống</div>`;
@@ -470,40 +525,54 @@ function buildTab2(){
     // ── Region narrative ──
     let analysis = [];
 
-    // Trend
-    if(r.bk_prv!=null){
-      const d=r.bk_cur-r.bk_prv;
-      if(d<-0.02) analysis.push(`Giảm mạnh <strong>-${(Math.abs(d)*100).toFixed(1)}%</strong> so với kỳ trước (${pct(r.bk_prv)} → ${pct(r.bk_cur)}).`);
-      else if(d<-0.005) analysis.push(`Giảm nhẹ <strong>${(d*100).toFixed(1)}%</strong> so với kỳ trước (${pct(r.bk_prv)} → ${pct(r.bk_cur)}).`);
-      else if(d>0.02) analysis.push(`Tăng tốt <strong>+${(d*100).toFixed(1)}%</strong> so với kỳ trước — xu hướng đang tích cực.`);
-      else if(d>0.005) analysis.push(`Tăng nhẹ <strong>+${(d*100).toFixed(1)}%</strong> so với kỳ trước.`);
-      else analysis.push(`Ổn định so với kỳ trước (${pct(r.bk_prv)}).`);
+    // Deficit vs target — dẫn đầu bằng khoảng cách đến mục tiêu
+    const rDeficit = META.bk_target - r.bk_cur;
+    const rPctOfTarget = (r.bk_cur/META.bk_target*100).toFixed(0);
+    analysis.push(`Còn cách mục tiêu 65% là <strong>${pct(rDeficit)}</strong> (đạt <strong>${rPctOfTarget}%</strong> mục tiêu) — xếp hạng <strong>#${idx+1}/${regs.length}</strong> toàn hệ thống.`);
+
+    // Xu hướng liên tiếp
+    const rt = regionTrend(r.rsm);
+    if(rt){
+      if(rt.dir==='down'&&rt.count>=3){
+        analysis.push(`<strong style="color:#ef4444">Giảm ${rt.count} kỳ liên tiếp</strong> (từ ${pct(rt.from)} xuống ${pct(r.bk_cur)}, mất ${pct(rt.from-r.bk_cur)}). Đề xuất: GĐKV rà soát ngay NV không gọi + NV gọi nhiều mà không book — ưu tiên ${Math.min(3,n)} salon thấp nhất.`);
+      } else if(rt.dir==='down'&&rt.count===2){
+        analysis.push(`Giảm 2 kỳ liên tiếp (${pct(rt.from)} → ${pct(r.bk_prv)} → ${pct(r.bk_cur)}). Cần theo dõi sát kỳ tới — nếu tiếp tục giảm cần can thiệp quy trình ngay.`);
+      } else if(rt.dir==='down'){
+        const d=r.bk_cur-(r.bk_prv||r.bk_cur);
+        analysis.push(d<-0.02?`Giảm mạnh ${(Math.abs(d)*100).toFixed(1)}% so với kỳ trước (${pct(r.bk_prv)} → ${pct(r.bk_cur)}).`:`Giảm ${(Math.abs(d)*100).toFixed(1)}% so với kỳ trước (${pct(r.bk_prv)} → ${pct(r.bk_cur)}).`);
+      } else if(rt.dir==='up'&&rt.count>=3){
+        analysis.push(`<strong style="color:#22c55e">Tăng ${rt.count} kỳ liên tiếp</strong> (${pct(rt.from)} → ${pct(r.bk_cur)}).`+(r.bk_cur<0.25?` Chiều đi đúng — cần duy trì và đẩy thêm để thu hẹp khoảng cách đến mục tiêu.`:` Đang tiến tốt về mục tiêu.`));
+      } else if(rt.dir==='up'&&rt.count===2){
+        analysis.push(`Tăng 2 kỳ liên tiếp (${pct(rt.from)} → ${pct(r.bk_cur)}) — tín hiệu phục hồi, cần duy trì.`);
+      } else if(rt.dir==='up'){
+        const d=r.bk_cur-(r.bk_prv||r.bk_cur);
+        analysis.push(`Tăng ${(d*100).toFixed(1)}% so với kỳ trước (${pct(r.bk_prv)} → ${pct(r.bk_cur)}).`+(r.bk_cur<0.25?` Nhưng mức tuyệt đối vẫn còn thấp, cần tiếp tục đẩy.`:''));
+      } else {
+        analysis.push(`Không thay đổi so với kỳ trước (${pct(r.bk_prv)}) — vẫn đang thiếu ${pct(rDeficit)} so với mục tiêu. Cần hành động cụ thể thay vì duy trì hiện trạng.`);
+      }
     }
 
-    // vs system
+    // vs system — chỉ nói khi chênh đáng kể, và luôn nhắc ngưỡng tuyệt đối
     if(ra.vsSystem!=null){
-      if(ra.vsSystem>0.02) analysis.push(`Book rate <strong>cao hơn trung bình hệ thống ${(ra.vsSystem*100).toFixed(1)}%</strong> (${pct(sysAvg)}).`);
-      else if(ra.vsSystem<-0.02) analysis.push(`Book rate <strong>thấp hơn trung bình hệ thống ${(Math.abs(ra.vsSystem)*100).toFixed(1)}%</strong> — cần cải thiện để bắt kịp.`);
+      if(ra.vsSystem>0.02) analysis.push(`Cao hơn trung bình hệ thống ${(ra.vsSystem*100).toFixed(1)}% (${pct(sysAvg)}) — nhưng cả hệ thống vẫn đang xa mục tiêu, mức này chưa thể dừng lại.`);
+      else if(ra.vsSystem<-0.02) analysis.push(`Thấp hơn trung bình hệ thống ${(Math.abs(ra.vsSystem)*100).toFixed(1)}% (${pct(sysAvg)}) — cần cải thiện để bắt kịp các vùng khác.`);
     }
 
     // Internal gap
     if(n>=2){
-      if(ra.gap>0.12) analysis.push(`Khoảng cách nội vùng rất lớn: <strong>${ra.top.name}</strong> đạt <strong>${pct(ra.top.rate)}</strong> trong khi <strong>${ra.bot.name}</strong> chỉ <strong>${pct(ra.bot.rate)}</strong> (chênh ${(ra.gap*100).toFixed(1)}%) — có NV làm được nhưng chưa nhân rộng cách làm.`);
-      else if(ra.gap>0.06) analysis.push(`Khoảng cách nội vùng ở mức trung bình (${(ra.gap*100).toFixed(1)}%): salon đầu ${pct(ra.top.rate)}, salon cuối ${pct(ra.bot.rate)}.`);
-      else analysis.push(`Các salon trong vùng tương đối đồng đều (chênh ${(ra.gap*100).toFixed(1)}%).`);
+      if(ra.gap>0.12) analysis.push(`Chênh lệch nội vùng rất lớn: <strong>${ra.top.name}</strong> đạt <strong>${pct(ra.top.rate)}</strong> trong khi <strong>${ra.bot.name}</strong> chỉ <strong>${pct(ra.bot.rate)}</strong> (chênh ${(ra.gap*100).toFixed(1)}%) — salon đầu đang làm được, cần GĐKV tổ chức chia sẻ cách làm ngay.`);
+      else if(ra.gap>0.06) analysis.push(`Chênh lệch nội vùng ${(ra.gap*100).toFixed(1)}%: salon cao nhất ${pct(ra.top.rate)}, thấp nhất ${pct(ra.bot.rate)} — còn dư địa cải thiện ở các salon đuôi.`);
+      else if(r.bk_cur<0.15) analysis.push(`Các salon trong vùng có kết quả gần nhau (chênh ${(ra.gap*100).toFixed(1)}%) — nhưng đồng đều ở mức thấp, vấn đề là quy trình chung của cả vùng chứ không phải cá biệt từng salon.`);
     }
 
     // Concentration
-    if(ra.concentrated) analysis.push(`Chỉ <strong>${ra.aboveAvg}/${n} salon</strong> vượt trung bình vùng (${pct(ra.avg)}) — kết quả tổng đang bị kéo bởi vài salon đầu.`);
+    if(ra.concentrated) analysis.push(`Chỉ <strong>${ra.aboveAvg}/${n} salon</strong> vượt trung bình vùng (${pct(ra.avg)}) — kết quả tổng đang bị kéo bởi vài salon đầu, rủi ro cao nếu các salon này giảm.`);
 
     // Alert salons
     if(ra.alertSalons&&ra.alertSalons.length){
-      const names = ra.alertSalons.map(s=>`<strong>${s.name}</strong> (${pct(s.rate)})`).join(', ');
-      analysis.push(`Salon cần kiểm tra ngay (dưới 10%): ${names}.`);
+      const names=ra.alertSalons.map(s=>`<strong>${s.name}</strong> (${pct(s.rate)})`).join(', ');
+      analysis.push(`Salon cần kiểm tra ngay (dưới ${(META.alert_low*100).toFixed(0)}%): ${names} — xác minh NV có đang thực sự gọi không.`);
     }
-
-    // Rank context
-    analysis.push(`Xếp hạng hệ thống: <strong>#${idx+1}/${regs.length}</strong>. Đang ở ${(r.bk_cur/META.bk_target*100).toFixed(0)}% mục tiêu 65%.`);
 
     const analysisHtml = analysis.map(s=>`<p>${s}</p>`).join('');
 
