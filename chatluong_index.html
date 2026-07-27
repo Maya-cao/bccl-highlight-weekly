@@ -4,38 +4,20 @@
 <title>Báo cáo Chất lượng — 30Shine</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:48px 16px}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 16px}
 h1{font-size:1.4em;font-weight:700;margin-bottom:6px;color:#fff}
-.sub{color:#64748b;font-size:0.88em;margin-bottom:36px}
-.type-tabs{display:flex;gap:8px;margin-bottom:28px}
-.type-tab{background:#1e293b;color:#94a3b8;border:1px solid #334155;border-radius:20px;padding:8px 20px;font-size:0.92em;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
-.type-tab:hover{background:#1e3a5f;color:#fff}
-.type-tab.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
-.type-panel{display:none}
-.type-panel.active{display:flex;flex-direction:column;align-items:center}
-.grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:760px}
-.period-card{display:block;background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px 22px;text-decoration:none;color:#e2e8f0;transition:all .15s;min-width:180px}
-.period-card:hover,.period-card--active{background:#1e3a5f;border-color:#3b82f6}
-.pc-week{font-weight:700;font-size:1em;margin-bottom:4px}
-.pc-date{font-size:0.78em;color:#64748b}
-.period-card--active .pc-week::after{content:" ★";color:#fbbf24}
-.empty{color:#64748b;font-size:0.9em;padding:24px}
+.sub{color:#64748b;font-size:0.88em;margin-bottom:32px}
+.jump{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+.jump-btn{background:#3b82f6;color:#fff;border:1px solid #3b82f6;border-radius:20px;padding:10px 24px;font-size:0.95em;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;transition:all .15s}
+.jump-btn:hover{background:#2563eb}
+.jump-btn.disabled{background:#1e293b;color:#64748b;border-color:#334155;cursor:default;pointer-events:none}
+.latest-note{font-size:0.76em;color:#64748b;text-align:center;margin-top:6px}
 </style>
 </head><body>
 <h1>📋 Báo cáo Chất lượng — 30Shine</h1>
-<p class="sub">Chọn loại báo cáo và kỳ để xem</p>
-<div class="type-tabs">
-<button class="type-tab active" onclick="switchType('week', this)">Báo cáo tuần</button>
-<button class="type-tab" onclick="switchType('month', this)">Báo cáo tháng</button>
+<p class="sub">Bấm để xem báo cáo mới nhất — chọn kỳ khác bằng dropdown trong báo cáo</p>
+<div class="jump">
+<a class="jump-btn" href="BaoCaoChatLuong_20072026.html">Báo cáo tuần</a>
+<span class="jump-btn disabled">Báo cáo tháng (chưa có)</span>
 </div>
-<div class="type-panel active" id="panel-week"><div class="grid"><a class="period-card" href="BaoCaoChatLuong_20072026.html"><div class="pc-week">20-26/7/2026</div><div class="pc-date">Tạo ngày 27/07/2026</div></a></div></div>
-<div class="type-panel" id="panel-month"><div class="grid"><div class="empty">Chưa có báo cáo nào.</div></div></div>
-<script>
-function switchType(t, btn) {
-  document.querySelectorAll('.type-panel').forEach(function(p){ p.classList.remove('active'); });
-  document.querySelectorAll('.type-tab').forEach(function(b){ b.classList.remove('active'); });
-  document.getElementById('panel-' + t).classList.add('active');
-  btn.classList.add('active');
-}
-</script>
 </body></html>
