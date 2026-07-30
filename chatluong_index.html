@@ -12,12 +12,69 @@ h1{font-size:1.4em;font-weight:700;margin-bottom:6px;color:#fff}
 .jump-btn:hover{background:#2563eb}
 .jump-btn.disabled{background:#1e293b;color:#64748b;border-color:#334155;cursor:default;pointer-events:none}
 .latest-note{font-size:0.76em;color:#64748b;text-align:center;margin-top:6px}
+.pw-gate { position:fixed; inset:0; background:#0f172a; z-index:9999; display:flex; align-items:center; justify-content:center; flex-direction:column; }
+.pw-box { background:#1e293b; border:1px solid #334155; border-radius:12px; padding:32px 36px; max-width:320px; width:90%; text-align:center; }
+.pw-box h2 { color:#fff; font-size:1.1em; margin-bottom:16px; }
+.pw-box input { width:100%; padding:10px 12px; border-radius:8px; border:1px solid #334155; background:#0f172a; color:#e2e8f0; font-size:1em; font-family:inherit; margin-bottom:12px; text-align:center; }
+.pw-box input:focus { outline:none; border-color:#3b82f6; }
+.pw-box button { width:100%; padding:10px; border-radius:8px; border:none; background:#3b82f6; color:#fff; font-size:1em; font-weight:600; cursor:pointer; font-family:inherit; }
+.pw-box button:hover { background:#2563eb; }
+.pw-error { color:#f87171; font-size:0.85em; margin-top:8px; min-height:1.2em; }
+body.pw-locked > *:not(.pw-gate) { display:none !important; }
 </style>
-</head><body>
+</head><body class="pw-locked">
+<div class="pw-gate" id="pw-gate">
+<div class="pw-box">
+<h2>🔒 Báo cáo Chất lượng — 30Shine</h2>
+<input type="password" id="pw-input" placeholder="Nhập mật khẩu" autocomplete="off">
+<button onclick="pwCheck()">Truy cập</button>
+<div class="pw-error" id="pw-error"></div>
+</div>
+</div>
 <h1>📋 Báo cáo Chất lượng — 30Shine</h1>
 <p class="sub">Bấm để xem báo cáo mới nhất — chọn kỳ khác bằng dropdown trong báo cáo</p>
 <div class="jump">
 <a class="jump-btn" href="BaoCaoChatLuong_20072026.html">Báo cáo tuần</a>
 <span class="jump-btn disabled">Báo cáo tháng (chưa có)</span>
 </div>
+<script>
+var PW_HASH = "c413ca9ac20e0ee437615997a4d0f8f5801fc20d0d3b9190e7be62a095b396dc";
+async function _sha256(text) {
+  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return Array.prototype.map.call(new Uint8Array(buf), function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+function pwCheck() {
+  var input = document.getElementById('pw-input');
+  var err = document.getElementById('pw-error');
+  _sha256(input.value).then(function(hash){
+    if (hash === PW_HASH) {
+      sessionStorage.setItem('bcCLUnlocked', '1');
+      document.body.classList.remove('pw-locked');
+      var gate = document.getElementById('pw-gate');
+      if (gate) gate.remove();
+    } else {
+      err.textContent = 'Sai mật khẩu, thử lại.';
+      input.value = '';
+      input.focus();
+    }
+  });
+}
+(function(){
+  if (sessionStorage.getItem('bcCLUnlocked') === '1') {
+    document.addEventListener('DOMContentLoaded', function(){
+      document.body.classList.remove('pw-locked');
+      var gate = document.getElementById('pw-gate');
+      if (gate) gate.remove();
+    });
+  } else {
+    document.addEventListener('DOMContentLoaded', function(){
+      var input = document.getElementById('pw-input');
+      if (input) {
+        input.focus();
+        input.addEventListener('keydown', function(e){ if (e.key === 'Enter') pwCheck(); });
+      }
+    });
+  }
+})();
+</script>
 </body></html>
